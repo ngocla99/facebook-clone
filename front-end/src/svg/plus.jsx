@@ -1,6 +1,12 @@
-function Plus({ color }) {
+function Plus(props) {
   return (
-    <svg width="1em" height="1em" fill={color} viewBox="0 0 20 20">
+    <svg
+      width="1em"
+      height="1em"
+      fill="currentColor"
+      viewBox="0 0 20 20"
+      {...props}
+    >
       <g fillRule="nonzero">
         <path
           d="M449.5 361h13a1 1 0 100-2h-13a1 1 0 100 2z"

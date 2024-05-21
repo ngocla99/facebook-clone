@@ -1,5 +1,11 @@
+import { Header } from "@/components/header"
+
 const Home = () => {
-  return <div className="bg-primary text-primary-foreground">Home</div>
+  return (
+    <>
+      <Header />
+    </>
+  )
 }
 
 export default Home

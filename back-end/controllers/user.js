@@ -18,7 +18,7 @@ exports.register = async (req, res) => {
     const existedEmail = await User.findOne({ email });
     if (existedEmail) {
       return res.status(400).json({
-        message: "this email address already exists, try with a different email address",
+        message: "This email address already exists. Try with a different email address",
       });
     }
 
@@ -70,7 +70,7 @@ exports.register = async (req, res) => {
       last_name: user.last_name,
       token: token,
       verified: user.verified,
-      message: "Register Success! Please activate your email to start",
+      message: "Register Success! Please activate your email to start.",
     });
   } catch (error) {
     res.status(500).json({ message: error.message });
@@ -102,7 +102,7 @@ exports.login = async (req, res) => {
     const user = await User.findOne({ email });
 
     if (!user) {
-      return res.status(400).json({ message: "the email address you entered is not connected to an account" });
+      return res.status(400).json({ message: "The email address you entered is not connected to an account." });
     }
 
     const check = await bcrypt.compare(password, user.password);

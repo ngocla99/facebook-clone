@@ -1,6 +1,7 @@
 import Logout from "@/pages/auth/logout"
 import Error from "@/pages/error"
 import Home from "@/pages/home"
+import Profile from "@/pages/profile"
 import { createBrowserRouter, RouterProvider } from "react-router-dom"
 
 import { useAuth } from "@/providers/auth-provider"
@@ -38,7 +39,7 @@ const Routes = () => {
         },
         {
           path: "/profile",
-          element: <div>User Profile</div>,
+          element: <Profile />,
         },
         {
           path: "/logout",

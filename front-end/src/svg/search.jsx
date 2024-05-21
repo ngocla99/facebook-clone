@@ -1,8 +1,12 @@
-import React from "react"
-
-function Search({ color }) {
+function Search(props) {
   return (
-    <svg width="16" height="16" fill={color} viewBox="0 0 16 16">
+    <svg
+      width="16"
+      height="16"
+      viewBox="0 0 16 16"
+      fill="currentColor"
+      {...props}
+    >
       <g fillRule="nonzero">
         <path
           d="M458.743 546.257a6 6 0 11-8.485 8.486 6 6 0 018.485-8.486zm-1.06 1.06a4.5 4.5 0 10-6.365 6.364 4.5 4.5 0 006.364-6.363z"

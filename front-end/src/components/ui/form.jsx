@@ -75,11 +75,11 @@ const FormControl = React.forwardRef(({ ...props }, ref) => {
       ref={ref}
       id={formItemId}
       aria-describedby={
-        !error
+        !error && !props?.error
           ? `${formDescriptionId}`
           : `${formDescriptionId} ${formMessageId}`
       }
-      aria-invalid={!!error}
+      aria-invalid={!!error || props?.error}
       {...props}
     />
   )

@@ -22,7 +22,12 @@ module.exports = {
         border: "var(--border)",
         input: "var(--input)",
         ring: "var(--ring)",
-        background: "var(--background)",
+        background: {
+          DEFAULT: "var(--background)",
+          secondary: "var(--background-secondary)",
+          comment: "var(--background-comment)",
+          "hover-overlay": "var(--background-hover-overlay)",
+        },
         foreground: "var(--foreground)",
         primary: {
           DEFAULT: "var(--primary)",
@@ -72,7 +77,16 @@ module.exports = {
         "accordion-down": "accordion-down 0.2s ease-out",
         "accordion-up": "accordion-up 0.2s ease-out",
       },
+      height: {
+        header: "56px",
+      },
+      boxShadow: {
+        header: "1px 8px 15px -7px rgba(0, 0, 0, 0.1)",
+      },
     },
   },
-  plugins: [require("tailwindcss-animate")],
+  plugins: [
+    require("tailwindcss-animate"),
+    require("tailwindcss-aria-attributes"),
+  ],
 }
