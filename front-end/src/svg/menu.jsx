@@ -1,6 +1,12 @@
-function Menu() {
+function Menu({ ...props }) {
   return (
-    <svg width="20" height="20" viewBox="0 0 44 44">
+    <svg
+      width="20"
+      height="20"
+      viewBox="0 0 44 44"
+      fill="currentColor"
+      {...props}
+    >
       <circle cx="7" cy="7" r="6"></circle>
       <circle cx="22" cy="7" r="6"></circle>
       <circle cx="37" cy="7" r="6"></circle>

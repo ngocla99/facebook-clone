@@ -22,11 +22,16 @@ module.exports = {
         border: "var(--border)",
         input: "var(--input)",
         ring: "var(--ring)",
+        "scroll-thumb": "var(--scroll-thumb)",
+
+        hover: {
+          DEFAULT: "var(--hover)",
+        },
+
         background: {
           DEFAULT: "var(--background)",
           secondary: "var(--background-secondary)",
           comment: "var(--background-comment)",
-          "hover-overlay": "var(--background-hover-overlay)",
         },
         foreground: "var(--foreground)",
         primary: {
@@ -81,6 +86,9 @@ module.exports = {
         header: "56px",
       },
       boxShadow: {
+        DEFAULT: "0 1px 2px rgba(0, 0, 0, 0.2)",
+        "2xl":
+          "0 12px 12px rgba(0, 0, 0, 0.2) , inset 0 0 0 0 rgba(255, 255, 255, 0.5)",
         header: "1px 8px 15px -7px rgba(0, 0, 0, 0.1)",
       },
     },

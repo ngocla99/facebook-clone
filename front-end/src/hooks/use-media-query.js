@@ -1,6 +1,6 @@
 import { useEffect, useState } from "react"
 
-export default function useMediaQuery() {
+export function useMediaQuery() {
   const [device, setDevice] = useState(null)
   const [dimensions, setDimensions] = useState(null)
 

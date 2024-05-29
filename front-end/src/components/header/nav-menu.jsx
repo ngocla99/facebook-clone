@@ -64,7 +64,7 @@ export const NavMenu = () => {
                 ) : (
                   <Icon />
                 )}
-                <div className="absolute inset-x-0 inset-y-1 rounded-lg bg-background-hover-overlay opacity-0 transition-opacity group-hover:opacity-100" />
+                <div className="bg-hover absolute inset-x-0 inset-y-1 rounded-lg opacity-0 transition-opacity group-hover:opacity-100" />
               </TooltipTrigger>
               <TooltipContent sideOffset={16}>
                 <p>{title}</p>

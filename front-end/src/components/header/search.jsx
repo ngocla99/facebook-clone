@@ -1,20 +1,20 @@
-import { Search as SearchIcon } from "@/svg"
+import React from "react"
 
-import { cn } from "@/lib/utils"
+import { useClickOutside } from "@/hooks/use-click-outside"
 
-export const Search = ({ className, ...props }) => {
+import { SearchInput } from "./search-input"
+import { SearchMenu } from "./search-menu"
+
+export const Search = ({ className }) => {
+  const [isShowRecent, setIsShowRecent] = React.useState(false)
+  const menuRef = React.useRef(null)
+
+  useClickOutside(menuRef, () => setIsShowRecent(false))
+
   return (
-    <div className="bg-background-comment flex items-center rounded-[50px] pl-3">
-      <SearchIcon className="text-[#65676b]" />
-      <input
-        type="text"
-        placeholder="Search Facebook"
-        className={cn(
-          "flex w-full border-none bg-transparent px-2 pb-[9px] pt-[7px] outline-none placeholder:text-muted-foreground",
-          className
-        )}
-        {...props}
-      />
+    <div className={className}>
+      <SearchInput onClick={() => setIsShowRecent(true)} />
+      {isShowRecent && <SearchMenu ref={menuRef} />}
     </div>
   )
 }
