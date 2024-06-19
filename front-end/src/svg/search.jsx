@@ -1,4 +1,4 @@
-function Search(props) {
+export const Search = (props) => {
   return (
     <svg
       width="16"
@@ -28,5 +28,3 @@ function Search(props) {
     </svg>
   )
 }
-
-export default Search

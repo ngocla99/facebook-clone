@@ -1,12 +1,21 @@
 import { Menu } from "@/svg"
 
 import { siteConfig } from "@/config/site"
+import { Button } from "@/components/ui/button"
+import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card"
+import {
+  Popover,
+  PopoverContent,
+  PopoverTrigger,
+} from "@/components/ui/popover"
+import { ScrollArea } from "@/components/ui/scroll-area"
+import { Separator } from "@/components/ui/separator"
+import {
+  Tooltip,
+  TooltipContent,
+  TooltipTrigger,
+} from "@/components/ui/tooltip"
 
-import { Card, CardContent, CardHeader, CardTitle } from "../ui/card"
-import { Popover, PopoverContent, PopoverTrigger } from "../ui/popover"
-import { ScrollArea } from "../ui/scroll-area"
-import { Separator } from "../ui/separator"
-import { Tooltip, TooltipContent, TooltipTrigger } from "../ui/tooltip"
 import { SearchInput } from "./search-input"
 
 export const AllMenu = () => {
@@ -18,14 +27,14 @@ export const AllMenu = () => {
             <TooltipTrigger>
               <Menu className="group-data-[state=open]:text-primary" />
             </TooltipTrigger>
-            <TooltipContent>Menu</TooltipContent>
+            <TooltipContent sideOffset={18}>Menu</TooltipContent>
           </div>
         </PopoverTrigger>
       </Tooltip>
       <PopoverContent className="w-[608px] bg-[#f7f8fa] p-0 shadow-2xl">
         <h3 className="p-4 text-2xl font-bold">Menu</h3>
         <ScrollArea className="h-[calc(100vh-150px)] px-4">
-          <div className="grid grid-cols-[1fr_200px] items-start gap-4">
+          <div className="grid grid-cols-[1fr_200px] items-start gap-4 pb-4">
             <Card>
               <CardHeader>
                 <SearchInput placeholder="Search menu" />
@@ -100,7 +109,7 @@ export const AllMenu = () => {
               <CardHeader className="p-3">
                 <CardTitle className="text-xl font-bold">Create</CardTitle>
               </CardHeader>
-              <CardContent className="px-2">
+              <CardContent className="grid px-2">
                 <MenuGroup
                   items={siteConfig.createMenu.slice(0, 3)}
                   srcName="create"
@@ -136,7 +145,7 @@ const MenuGroup = ({ title, srcName, items, ItemComponent }) => {
 
 const MenuItem = ({ menu }) => {
   return (
-    <div className="flex cursor-pointer gap-3 rounded-lg px-2 py-3 hover:bg-background-comment">
+    <div className="flex cursor-pointer gap-3 rounded-lg px-2 py-3 hover:bg-hover active:bg-active">
       <img src={menu.icon} className="h-9 w-9" />
       <div className="space-y-[10px]">
         <p className="text-[15px] font-medium">{menu.name}</p>
@@ -150,11 +159,15 @@ const MenuItem = ({ menu }) => {
 
 const CreateItem = ({ create }) => {
   return (
-    <div className="flex h-[52px] cursor-pointer items-center gap-3 rounded-lg px-2 hover:bg-hover">
+    <Button
+      size="xl"
+      variant="ghost"
+      className="justify-start gap-3 whitespace-normal text-left"
+    >
       <div className="flex h-9 w-9 min-w-9 items-center justify-center rounded-full bg-background-secondary">
         <i className={create.icon}></i>
       </div>
       <p className="text-[15px] font-medium">{create.name}</p>
-    </div>
+    </Button>
   )
 }

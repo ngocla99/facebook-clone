@@ -1,24 +1,24 @@
-function Plus(props) {
+export const Plus = (props) => {
   return (
     <svg
-      width="1em"
-      height="1em"
-      fill="currentColor"
       viewBox="0 0 20 20"
+      width="20"
+      height="20"
+      fill="currentColor"
       {...props}
     >
-      <g fillRule="nonzero">
-        <path
-          d="M449.5 361h13a1 1 0 100-2h-13a1 1 0 100 2z"
-          transform="translate(-446 -350)"
-        ></path>
-        <path
-          d="M457 366.5v-13a1 1 0 10-2 0v13a1 1 0 102 0z"
-          transform="translate(-446 -350)"
-        ></path>
+      <g fillRule="evenodd" transform="translate(-446 -350)">
+        <g fillRule="nonzero">
+          <path
+            d="M95 201.5h13a1 1 0 1 0 0-2H95a1 1 0 1 0 0 2z"
+            transform="translate(354.5 159.5)"
+          ></path>
+          <path
+            d="M102.5 207v-13a1 1 0 1 0-2 0v13a1 1 0 1 0 2 0z"
+            transform="translate(354.5 159.5)"
+          ></path>
+        </g>
       </g>
     </svg>
   )
 }
-
-export default Plus

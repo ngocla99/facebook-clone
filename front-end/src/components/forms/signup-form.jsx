@@ -356,6 +356,7 @@ export const SignUpForm = ({ className }) => {
                     >
                       <FormControl>
                         <RadioGroupItem
+                          size="sm"
                           value={itm.value}
                           className="absolute right-[10px] border-muted-foreground group-hover:border-[#1c1e21]"
                         />
@@ -385,7 +386,7 @@ export const SignUpForm = ({ className }) => {
         <div className="flex justify-center py-[10px]">
           <LoadingButton
             className="h-9 min-w-[194px] bg-[#00a400] from-[#79bc64] to-[#578843] px-8 text-[18px] hover:bg-gradient-to-b"
-            size="sm"
+            size="lg"
             loading={signUpMutation.isPending}
           >
             Sign Up

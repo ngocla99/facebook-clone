@@ -20,7 +20,7 @@ const PasswordInput = React.forwardRef(({ className, ...props }, ref) => {
       <Button
         type="button"
         variant="ghost"
-        size="sm"
+        size="lg"
         className={cn(
           "absolute right-0 top-0 h-full px-3 py-1 hover:bg-transparent",
           props.value === "" || (props.disabled && "hidden")

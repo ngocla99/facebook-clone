@@ -9,7 +9,11 @@ import {
 } from "@/svg"
 import { NavLink } from "react-router-dom"
 
-import { Tooltip, TooltipContent, TooltipTrigger } from "../ui/tooltip"
+import {
+  Tooltip,
+  TooltipContent,
+  TooltipTrigger,
+} from "@/components/ui/tooltip"
 
 const mainNav = [
   {
@@ -64,7 +68,7 @@ export const NavMenu = () => {
                 ) : (
                   <Icon />
                 )}
-                <div className="bg-hover absolute inset-x-0 inset-y-1 rounded-lg opacity-0 transition-opacity group-hover:opacity-100" />
+                <div className="absolute inset-x-0 inset-y-1 rounded-lg bg-hover opacity-0 transition-opacity group-hover:opacity-100" />
               </TooltipTrigger>
               <TooltipContent sideOffset={16}>
                 <p>{title}</p>

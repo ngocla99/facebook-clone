@@ -93,7 +93,7 @@ export const LoginForm = () => {
             </FormItem>
           )}
         />
-        <LoadingButton size="sm" loading={logInMutation.isPending}>
+        <LoadingButton size="lg" loading={logInMutation.isPending}>
           Log in
           <span className="sr-only">Log in</span>
         </LoadingButton>

@@ -2,8 +2,9 @@ import React from "react"
 import { Return } from "@/svg"
 import { X } from "lucide-react"
 
-import { Avatar, AvatarFallback, AvatarImage } from "../ui/avatar"
-import { Button } from "../ui/button"
+import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar"
+import { Button } from "@/components/ui/button"
+
 import { SearchInput } from "./search-input"
 
 export const SearchMenu = React.forwardRef((props, ref) => {

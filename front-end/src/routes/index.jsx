@@ -6,6 +6,7 @@ import { createBrowserRouter, RouterProvider } from "react-router-dom"
 
 import { useAuth } from "@/providers/auth-provider"
 
+import { AppLayout } from "./app-layout"
 import ErrorBoundary from "./error-boundary"
 import { ProtectedRoute } from "./protected-route"
 
@@ -31,11 +32,15 @@ const Routes = () => {
   const routesForAuthenticatedOnly = [
     {
       path: "/",
-      element: <ProtectedRoute />, // Wrap the component in ProtectedRoute
+      element: (
+        <AppLayout>
+          <ProtectedRoute />
+        </AppLayout>
+      ),
       children: [
         {
           path: "/",
-          element: <div>User Home Page</div>,
+          element: <Home />,
         },
         {
           path: "/profile",
@@ -72,7 +77,7 @@ const Routes = () => {
   // Combine and conditionally include routes based on authentication status
   const router = createBrowserRouter([
     ...routesForPublic,
-    ...(!token ? routesForNotAuthenticatedOnly : []),
+    // ...(!token ? routesForNotAuthenticatedOnly : []),
     ...routesForAuthenticatedOnly,
   ])
 

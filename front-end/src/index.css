@@ -38,9 +38,11 @@
     --border: #dddfe2;
     --input: #ccced2;
     --ring: 222.2 84% 4.9%;
+    --positive: #31a24c;
     --scroll-thumb: #bcc0c4;
     --hover: rgba(0, 0, 0, 0.05);
-
+    --active: rgba(0, 0, 0, 0.1);
+    --tooltip: rgba(11, 11, 11, 0.8);
     --radius: 0.5rem;
   }
 
@@ -82,4 +84,34 @@
   body {
     @apply bg-background text-foreground;
   }
+}
+
+@layer components {
+}
+
+.filter-accent {
+  filter: invert(19%) sepia(70%) saturate(5671%) hue-rotate(203deg)
+    brightness(96%) contrast(101%);
+}
+
+.overlay-story {
+  background: linear-gradient(
+    180deg,
+    rgba(0, 0, 0, 0) 0%,
+    rgba(0, 0, 0, 0.0029348165) 11.79%,
+    rgba(0, 0, 0, 0.01134518) 21.38%,
+    rgba(0, 0, 0, 0.02464) 29.12%,
+    rgba(0, 0, 0, 0.0422282) 35.34%,
+    rgba(0, 0, 0, 0.06351835) 40.37%,
+    rgba(0, 0, 0, 0.08792) 44.56%,
+    rgba(0, 0, 0, 0.11484165) 48.24%,
+    rgba(0, 0, 0, 0.1436918) 51.76%,
+    rgba(0, 0, 0, 0.17388) 55.44%,
+    rgba(0, 0, 0, 0.20481475) 59.63%,
+    rgba(0, 0, 0, 0.23590525) 64.66%,
+    rgba(0, 0, 0, 0.26656) 70.88%,
+    rgba(0, 0, 0, 0.2961882) 78.62%,
+    rgba(0, 0, 0, 0.32419835) 88.21%,
+    rgba(0, 0, 0, 0.35) 100%
+  );
 }

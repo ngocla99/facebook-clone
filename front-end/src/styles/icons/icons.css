@@ -275,14 +275,13 @@
   -webkit-filter: invert(40%);
 }
 .ad_choices_icon {
-  background-image: url(./icons/icons6.png);
-  background-position: 0 -126px;
+  background-image: url(./icons/icons38.png);
+  background-position: 0px -811px;
   background-size: auto;
   width: 12px;
   height: 12px;
   background-repeat: no-repeat;
   display: inline-block;
-  transform: translateY(1px);
   -webkit-filter: invert(40%);
 }
 
@@ -737,4 +736,67 @@
   width: 16px;
   height: 16px;
   background-position: 0 -60px;
+}
+.check_icon {
+  background-image: url(./icons/icons39.png);
+  background-position: 0px -117px;
+  background-size: auto;
+  width: 20px;
+  height: 20px;
+  background-repeat: no-repeat;
+  display: inline-block;
+}
+.fb_language_icon {
+  background-image: url(./icons/icons40.png);
+  background-position: 0px -277px;
+  background-size: auto;
+  width: 20px;
+  height: 20px;
+  background-repeat: no-repeat;
+  display: inline-block;
+}
+.feed_icon {
+  background-image: url(./icons/icons40.png);
+  background-position: 0px -88px;
+  background-size: auto;
+  width: 20px;
+  height: 20px;
+  background-repeat: no-repeat;
+  display: inline-block;
+}
+.compact_mode_icon {
+  background-image: url(./icons/icons40.png);
+  background-position: 0px -256px;
+  background-size: auto;
+  width: 20px;
+  height: 20px;
+  background-repeat: no-repeat;
+  display: inline-block;
+}
+.pointer_icon {
+  background-image: url(./icons/icons41.png);
+  background-position: 0px -356px;
+  background-size: auto;
+  width: 20px;
+  height: 20px;
+  background-repeat: no-repeat;
+  display: inline-block;
+}
+.star_icon {
+  background-image: url(./icons/icons41.png);
+  background-position: 0px -671px;
+  background-size: auto;
+  width: 20px;
+  height: 20px;
+  background-repeat: no-repeat;
+  display: inline-block;
+}
+.gift_icon {
+  height: 36px;
+  width: 36px;
+  background-image: url(./icons/gift.png);
+  background-position: 0px 0px;
+  background-size: auto;
+  background-repeat: no-repeat;
+  display: inline-block;
 }

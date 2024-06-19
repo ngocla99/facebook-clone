@@ -42,7 +42,7 @@ const Login = () => {
               </CardContent>
               <CardFooter className="flex justify-center px-0 pt-[6px]">
                 <Button
-                  size="sm"
+                  size="lg"
                   className="bg-[#42b72a] text-[17px] hover:bg-[#36a420]"
                   onClick={() => setShowSignUpModal(true)}
                 >

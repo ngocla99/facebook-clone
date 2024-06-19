@@ -1,6 +1,10 @@
 import { Messenger as MessengerIcon } from "@/svg"
 
-import { Tooltip, TooltipContent, TooltipTrigger } from "../ui/tooltip"
+import {
+  Tooltip,
+  TooltipContent,
+  TooltipTrigger,
+} from "@/components/ui/tooltip"
 
 export const Messenger = () => {
   return (
