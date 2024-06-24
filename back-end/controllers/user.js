@@ -1,13 +1,29 @@
-const { sendVerificationEmail } = require("../helpers/mailer");
+const { sendVerificationEmail, sendResetCode } = require("../helpers/mailer");
 const { generateToken } = require("../helpers/tokens");
-const { validateEmail, validateLength, validateUsername } = require("../helpers/validation");
+const {
+  validateEmail,
+  validateLength,
+  validateUsername,
+} = require("../helpers/validation");
 const jwt = require("jsonwebtoken");
 const User = require("../models/User");
 const bcrypt = require("bcrypt");
+const { generateCode } = require("../helpers/generateCode");
+const Code = require("../models/Code");
 
 exports.register = async (req, res) => {
   try {
-    const { first_name, last_name, username, email, password, bYear, bMonth, bDay, gender } = req.body;
+    const {
+      first_name,
+      last_name,
+      username,
+      email,
+      password,
+      bYear,
+      bMonth,
+      bDay,
+      gender,
+    } = req.body;
 
     if (!validateEmail(email)) {
       return res.status(400).json({
@@ -18,7 +34,8 @@ exports.register = async (req, res) => {
     const existedEmail = await User.findOne({ email });
     if (existedEmail) {
       return res.status(400).json({
-        message: "This email address already exists. Try with a different email address",
+        message:
+          "This email address already exists. Try with a different email address",
       });
     }
 
@@ -57,7 +74,10 @@ exports.register = async (req, res) => {
     });
 
     await user.save();
-    const emailVerificationToken = generateToken({ id: user._id.toString() }, "30m");
+    const emailVerificationToken = generateToken(
+      { id: user._id.toString() },
+      "30m"
+    );
     const url = `${process.env.BASE_URL}/activate/${emailVerificationToken}`;
     sendVerificationEmail(user.email, user.first_name, url);
     const token = generateToken({ id: user._id.toString() }, "7d");
@@ -83,13 +103,23 @@ exports.activateAccount = async (req, res) => {
 
     const userData = jwt.verify(token, process.env.TOKEN_SECRET);
 
+    if (req.user.id !== userData.id) {
+      return res.status(400).json({
+        message: "You don't have the authorization to complete thie operation.",
+      });
+    }
+
     const user = await User.findById(userData.id);
     if (user.verified === true) {
-      return res.status(400).json({ message: "this email is already in activated" });
+      return res
+        .status(400)
+        .json({ message: "this email is already in activated" });
     } else {
       user.verified = true;
       await user.save();
-      return res.status(200).json({ message: "account has been activated successfully" });
+      return res
+        .status(200)
+        .json({ message: "account has been activated successfully" });
     }
   } catch (error) {
     res.status(500).json({ message: error.message });
@@ -102,13 +132,18 @@ exports.login = async (req, res) => {
     const user = await User.findOne({ email });
 
     if (!user) {
-      return res.status(400).json({ message: "The email address you entered is not connected to an account." });
+      return res.status(400).json({
+        message:
+          "The email address you entered is not connected to an account.",
+      });
     }
 
     const check = await bcrypt.compare(password, user.password);
 
     if (!check) {
-      return res.status(400).json({ message: "Invalid credentials. Please try again." });
+      return res
+        .status(400)
+        .json({ message: "Invalid credentials. Please try again." });
     }
 
     const token = generateToken({ id: user._id.toString() }, "7d");
@@ -125,4 +160,88 @@ exports.login = async (req, res) => {
   } catch (error) {
     res.status(500).json({ message: error.message });
   }
+};
+
+exports.sendVerification = (req, res) => {
+  try {
+    const id = req.user.id;
+    const user = User.findById(id);
+    if (user.verified) {
+      return res
+        .status(400)
+        .json({ message: "This account is already activated." });
+    }
+
+    const emailVerificationToken = generateToken(
+      { id: user._id.toString() },
+      "30m"
+    );
+    const url = `${process.env.BASE_URL}/activate/${emailVerificationToken}`;
+    sendVerificationEmail(user.email, user.first_name, url);
+
+    return res.json({
+      message: "Email verification link has been sent to your email.",
+    });
+  } catch (error) {
+    res.status(500).json({ message: error.message });
+  }
+};
+
+exports.findUser = async (req, res) => {
+  try {
+    const user = await User.findOne({ email: req.body.email });
+
+    if (!user) {
+      return res.status(400).json({ message: "Account dose not exists." });
+    }
+
+    return res.json({ email: user.email, picture: user.picture });
+  } catch (error) {
+    res.status(500).json({ message: error.message });
+  }
+};
+
+exports.sendResetPasswordCode = async (req, res) => {
+  try {
+    const { email } = req.body;
+    const user = await User.findOne({ email });
+
+    await Code.findOneAndDelete({ user: user._id });
+
+    const code = generateCode(5);
+    const savedCode = new Code({ code, user: user._id });
+    savedCode.save();
+    sendResetCode(user.email, user.firt_name, code);
+
+    return res.json({
+      message: "Email reset code has been sent to your email",
+    });
+  } catch (error) {
+    res.status(500).json({ message: error.message });
+  }
+};
+
+exports.validateResetCode = async (req, res) => {
+  try {
+    const { email, code } = req.body;
+    const user = await User.findOne({ email });
+    const codeStored = await Code.findOne({ user: user._id });
+
+    if (codeStored.code !== code) {
+      return res.status(400).json({ message: "Verification code is wrong." });
+    }
+
+    return res.status(200).json({ message: "ok" });
+  } catch (error) {
+    res.status(500).json({ message: error.message });
+  }
+};
+
+exports.changePassword = async (req, res) => {
+  const { email, password } = req.body;
+
+  const cryptedPassword = await bcrypt.hash(password, 12);
+  await User.findOneAndUpdate({ email }, { password: cryptedPassword });
+
+  return res.status(200).json({ message: "ok" });
 };
