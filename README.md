@@ -5,7 +5,7 @@ Money sharing is the open-source for managing team.
 ## Features
 
 - [x] Validation with **Zod**
-- [x] Authentication
+- [x] Authentication (Activate account, Reset password)
 - [x] User, group management
 
 ## Tech Stack
