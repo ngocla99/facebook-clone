@@ -49,7 +49,7 @@ export const Stories = () => {
       className="w-full max-w-2xl"
     >
       <CarouselContent className="m-0">
-        <CarouselItem className="basis-auto py-2">
+        <CarouselItem className="basis-auto py-2 pl-0">
           <Card className="group grid h-[250px] w-[140px] overflow-hidden hover:brightness-90">
             <CardContent className="flex flex-col p-0">
               <div className="flex-1 overflow-hidden">

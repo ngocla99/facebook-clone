@@ -6,7 +6,7 @@ export const AppLayout = ({ children }) => {
     <div className={cn("min-h-screen bg-background font-sans antialiased")}>
       <div className="relative flex min-h-screen flex-col">
         <SiteHeader />
-        <main className="flex-1">{children}</main>
+        <main className="bg-background-comment flex-1">{children}</main>
       </div>
     </div>
   )

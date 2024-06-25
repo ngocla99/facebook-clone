@@ -30,7 +30,7 @@ export function Modal({
       navigate(-1)
     }
   }
-  const { isMobile } = useMediaQuery()
+  const isMobile = useMediaQuery("(max-width: 640px)")
 
   if (isMobile && !desktopOnly) {
     return (

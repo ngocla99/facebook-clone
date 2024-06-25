@@ -10,7 +10,7 @@ import { Search } from "./search"
 
 export const SiteHeader = () => {
   return (
-    <header className="sticky top-0 z-50 grid h-header w-full grid-cols-3 bg-background shadow-header">
+    <header className="sticky top-0 z-50 grid h-header w-full grid-cols-[204px_1fr_204px] bg-background shadow-header xl:grid-cols-[320px_1fr_320px]">
       <div className="flex w-[320px] items-center gap-3 px-4">
         <Link to="/" className="">
           <Logo />
@@ -18,7 +18,7 @@ export const SiteHeader = () => {
         <Search className="flex-1" />
       </div>
       <NavMenu />
-      <div className="mr-4 flex items-center justify-end gap-2">
+      <div className="flex items-center justify-end gap-2 pl-1 pr-4">
         <AllMenu />
         <Messenger />
         <Notifications />

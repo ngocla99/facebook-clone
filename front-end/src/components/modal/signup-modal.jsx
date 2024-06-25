@@ -1,4 +1,4 @@
-import React, { useCallback, useMemo, useState } from "react"
+import React, { useCallback, useMemo } from "react"
 
 import {
   DialogDescription,
@@ -10,12 +10,10 @@ import { Separator } from "@/components/ui/separator"
 
 import { SignUpForm } from "../forms/signup-form"
 
-// import { SignUpForm } from "@/components/forms/create-group-form"
-
 const SignUpModalHelper = ({ showSignUpModal, setShowSignUpModal }) => {
   return (
     <Modal
-      className="w-[432px] p-0"
+      className="w-auto p-0 sm:w-[432px]"
       showModal={showSignUpModal}
       setShowModal={setShowSignUpModal}
     >
@@ -24,7 +22,7 @@ const SignUpModalHelper = ({ showSignUpModal, setShowSignUpModal }) => {
           Sign Up
         </DialogTitle>
         <DialogDescription className="text-[15px] text-[#606770]">
-          It's quick and easy.
+          It&apos;s quick and easy.
         </DialogDescription>
       </DialogHeader>
       <Separator />

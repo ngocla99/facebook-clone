@@ -1,41 +1,19 @@
-import { useEffect, useState } from "react"
+import React from "react"
 
-export const useMediaQuery = () => {
-  const [device, setDevice] = useState(null)
-  const [dimensions, setDimensions] = useState(null)
+export const useMediaQuery = (query) => {
+  const [value, setValue] = React.useState(false)
 
-  useEffect(() => {
-    const checkDevice = () => {
-      if (window.matchMedia("(max-width: 640px)").matches) {
-        setDevice("mobile")
-      } else if (
-        window.matchMedia("(min-width: 641px) and (max-width: 1024px)").matches
-      ) {
-        setDevice("tablet")
-      } else {
-        setDevice("desktop")
-      }
-      setDimensions({ width: window.innerWidth, height: window.innerHeight })
+  React.useEffect(() => {
+    function onChange(event) {
+      setValue(event.matches)
     }
 
-    // Initial detection
-    checkDevice()
+    const result = matchMedia(query)
+    result.addEventListener("change", onChange)
+    setValue(result.matches)
 
-    // Listener for windows resize
-    window.addEventListener("resize", checkDevice)
+    return () => result.removeEventListener("change", onChange)
+  }, [query])
 
-    // Cleanup listener
-    return () => {
-      window.removeEventListener("resize", checkDevice)
-    }
-  }, [])
-
-  return {
-    device,
-    width: dimensions?.width,
-    height: dimensions?.height,
-    isMobile: device === "mobile",
-    isTablet: device === "tablet",
-    isDesktop: device === "desktop",
-  }
+  return value
 }

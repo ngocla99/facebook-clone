@@ -98,6 +98,13 @@ module.exports = {
         "3xl":
           "0 12px 28px 0 rgba(0, 0, 0, 0.2), 0 2px 4px 0 rgba(0, 0, 0, 0.1)",
       },
+      screens: {
+        sm: "640px",
+        md: "768px",
+        lg: "1100px",
+        xl: "1379px",
+        "2xl": "1536px",
+      },
     },
   },
   plugins: [
