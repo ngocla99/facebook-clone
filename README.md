@@ -21,6 +21,7 @@ Money sharing is the open-source for managing team.
 - [MongodB](https://www.mongodb.com) - database
 - [OAuth2](https://developers.google.com/identity/protocols/oauth2) - authentication
 - [Nodemailer](https://www.nodemailer.com) - send email
+- [Cloudinary](https://cloudinary.com) - upload image
 
 ## License
 

@@ -1,12 +1,19 @@
 const express = require("express");
 const mongoose = require("mongoose");
 const cors = require("cors");
+const fileUpload = require("express-fileupload");
 
 const { readdirSync } = require("fs");
 const app = express();
 
 app.use(express.json());
 app.use(cors());
+app.use(
+  fileUpload({
+    useTempFiles: true,
+    tempFileDir: "/tmp/",
+  })
+);
 
 // routes
 readdirSync("./routes").map((r) => app.use("/", require("./routes/" + r)));
