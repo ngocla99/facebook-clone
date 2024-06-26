@@ -12,5 +12,6 @@ router.post("/findUser", userController.findUser);
 router.post("/sendResetPasswordCode", userController.sendResetPasswordCode);
 router.post("/validateResetCode", userController.validateResetCode);
 router.post("/changePassword", userController.changePassword);
+router.post("/getProfile/:username", userController.getProfile);
 
 module.exports = router;
