@@ -17,7 +17,7 @@ export const SidebarNav = ({ className }) => {
   return (
     <div className={className}>
       <ScrollArea
-        className="h-[calc(100vh-56px)] w-[360px]"
+        className="h-[calc(100vh-56px)]"
         classNameViewport="[&>div]:relative [&>div]:h-full [&>div]:pb-[64px]"
       >
         <div className="mt-4 grid px-2">

@@ -9,7 +9,7 @@ import { GroupConversations } from "./group-conversations"
 export const SidebarRight = ({ className }) => {
   return (
     <div className={className}>
-      <ScrollArea className="h-[calc(100vh-56px)] w-[360px]">
+      <ScrollArea className="h-[calc(100vh-56px)]">
         <div className="mt-4 grid px-2">
           <FriendRequests />
           <Divider />

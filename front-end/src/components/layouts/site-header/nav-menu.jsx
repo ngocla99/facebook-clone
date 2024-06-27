@@ -1,5 +1,3 @@
-import React from "react"
-import { useMediaQuery } from "@/hooks"
 import {
   Friends,
   FriendsActive,
@@ -12,6 +10,7 @@ import {
 } from "@/svg"
 import { NavLink } from "react-router-dom"
 
+import { cn } from "@/lib/utils"
 import {
   Tooltip,
   TooltipContent,
@@ -20,66 +19,61 @@ import {
 
 const mainNav = [
   {
+    key: "home",
     title: "Home",
     href: "/",
     Icon: Home,
     IconActive: HomeActive,
   },
   {
+    key: "video",
     title: "Video",
     href: "/video",
     Icon: Watch,
     IconActive: Watch,
   },
   {
+    key: "marketplace",
     title: "Marketplace",
     href: "/marketplace",
     Icon: Market,
     IconActive: Market,
   },
   {
+    key: "group",
     title: "Group",
     href: "/group",
     Icon: Friends,
     IconActive: FriendsActive,
   },
+  {
+    key: "gaming",
+    title: "Gaming",
+    href: "/gaming",
+    Icon: Gaming,
+    IconActive: Gaming,
+  },
+  {
+    key: "more",
+    title: "More",
+    href: "/more",
+    Icon: More,
+    IconActive: More,
+  },
 ]
 
 export const NavMenu = () => {
-  const isTablet = useMediaQuery("(max-width:1100px)")
-  const [navList, setNavList] = React.useState([])
-
-  React.useEffect(() => {
-    if (!isTablet) {
-      setNavList([
-        ...mainNav,
-        {
-          title: "Gaming",
-          href: "/gaming",
-          Icon: Gaming,
-          IconActive: Gaming,
-        },
-      ])
-    } else {
-      setNavList([
-        ...mainNav,
-        {
-          title: "More",
-          href: "/more",
-          Icon: More,
-          IconActive: More,
-        },
-      ])
-    }
-  }, [isTablet])
-
   return (
-    <div className="flex items-stretch justify-center gap-2">
-      {navList.map(({ title, href, Icon, IconActive }) => (
+    <div className="flex items-stretch justify-start gap-2 sm:justify-center">
+      {mainNav.map(({ key, title, href, Icon, IconActive }) => (
         <NavLink
           to={href}
           key={href}
-          className="group relative flex min-w-[50px] max-w-[calc(15vw-55px)] flex-1 items-center justify-center lg:max-w-[112px] xl:max-w-[130px]"
+          className={cn(
+            "group relative hidden min-w-[50px] max-w-[calc(15vw-55px)] flex-1 items-center justify-center sm:flex lg:max-w-[112px] xl:max-w-[130px]",
+            key === "more" && "flex lg:hidden",
+            key === "gaming" && "sm:hidden lg:flex"
+          )}
         >
           {({ isActive }) => (
             <Tooltip>

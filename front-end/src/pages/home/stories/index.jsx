@@ -1,5 +1,6 @@
 import { Plus } from "@/svg"
 
+import { cn } from "@/lib/utils"
 import { Card, CardContent } from "@/components/ui/card"
 import {
   Carousel,
@@ -39,14 +40,14 @@ const DUMMY = [
   },
 ]
 
-export const Stories = () => {
+export const Stories = ({ className }) => {
   return (
     <Carousel
       opts={{
         align: "start",
         slidesToScroll: 3,
       }}
-      className="w-full max-w-2xl"
+      className={cn("w-full", className)}
     >
       <CarouselContent className="m-0">
         <CarouselItem className="basis-auto py-2 pl-0">
