@@ -32,6 +32,7 @@ exports.register = async (req, res) => {
     }
 
     const existedEmail = await User.findOne({ email });
+    console.log("🚀 ~ exports.register= ~ existedEmail:", existedEmail)
     if (existedEmail) {
       return res.status(400).json({
         message:
