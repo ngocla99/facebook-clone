@@ -1,4 +1,4 @@
-import { Notifications as NotificationsIcon } from "@/svg"
+import { Notifications as NotificationsIcon } from "@/assets/svg"
 
 import {
   Tooltip,

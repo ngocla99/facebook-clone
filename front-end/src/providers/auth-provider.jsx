@@ -7,29 +7,29 @@ const AuthContext = createContext()
 
 // Define the possible actions for the authReducer
 const ACTIONS = {
-  setAuth: "setAuth",
-  clearAuth: "clearAuth",
+  setToken: "setToken",
+  clearToken: "clearToken",
 }
 
 // Reducer function to handle authentication state changes
 const authReducer = (state, action) => {
   switch (action.type) {
-    case ACTIONS.setAuth:
+    case ACTIONS.setToken:
       // Set the authentication token in axios headers and local storage
       axiosClient.defaults.headers.common["Authorization"] =
         "Bearer " + action.payload.token
-      Cookies.set("auth", JSON.stringify(action.payload))
+      Cookies.set("token", JSON.stringify(action.payload))
 
       return {
         ...state,
-        auth: action.payload,
+        token: action.payload,
       }
-    case ACTIONS.clearAuth:
+    case ACTIONS.clearToken:
       // Clear the authentication token from axios headers and local storage
       delete axiosClient.defaults.headers.common["Authorization"]
-      Cookies.set("auth", "")
+      Cookies.set("token", "")
 
-      return { ...state, auth: null }
+      return { ...state, token: null }
     // Handle other actions (if any)
 
     default:
@@ -41,27 +41,27 @@ const authReducer = (state, action) => {
 
 // Initial state for the authentication context
 const initialData = {
-  auth: Cookies.get("auth") ? JSON.parse(Cookies.get("auth")) : null,
+  token: Cookies.get("token") ? JSON.parse(Cookies.get("token")) : null,
 }
 
 const AuthProvider = ({ children }) => {
   // Use reducer to manage the authentication state
   const [state, dispatch] = useReducer(authReducer, initialData)
 
-  const setAuth = (auth) => {
-    dispatch({ type: ACTIONS.setAuth, payload: auth })
+  const setToken = (auth) => {
+    dispatch({ type: ACTIONS.setToken, payload: auth })
   }
 
-  const clearAuth = () => {
-    dispatch({ type: ACTIONS.clearAuth })
+  const clearToken = () => {
+    dispatch({ type: ACTIONS.clearToken })
   }
 
   // Memoized value of the authentication context
   const contextValue = useMemo(
     () => ({
       ...state,
-      setAuth,
-      clearAuth,
+      setToken,
+      clearToken,
     }),
     [state]
   )

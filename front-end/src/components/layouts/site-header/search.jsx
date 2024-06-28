@@ -1,6 +1,6 @@
 import React from "react"
 import { useClickOutside } from "@/hooks"
-import { Search as SearchIcon } from "@/svg"
+import { Search as SearchIcon } from "@/assets/svg"
 
 import { SearchMenu } from "./search-menu"
 
@@ -21,7 +21,9 @@ export const Search = ({ className }) => {
           onClick={() => setIsShowRecent(true)}
         />
       </label>
-      {isShowRecent && <SearchMenu ref={menuRef} />}
+      {isShowRecent && (
+        <SearchMenu ref={menuRef} onBack={() => setIsShowRecent(false)} />
+      )}
     </div>
   )
 }

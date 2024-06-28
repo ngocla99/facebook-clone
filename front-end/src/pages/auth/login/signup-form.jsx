@@ -18,23 +18,45 @@ import {
   FormMessage,
 } from "@/components/ui/form"
 import { Input } from "@/components/ui/input"
-import { PasswordInput } from "@/components/password-input"
-
-import LoadingButton from "../button/loading-button"
-import { Popover, PopoverContent, PopoverTrigger } from "../ui/popover"
-import { RadioGroup, RadioGroupItem } from "../ui/radio-group"
+import {
+  Popover,
+  PopoverContent,
+  PopoverTrigger,
+} from "@/components/ui/popover"
+import { RadioGroup, RadioGroupItem } from "@/components/ui/radio-group"
 import {
   Select,
   SelectContent,
   SelectItem,
   SelectTrigger,
   SelectValue,
-} from "../ui/select"
+} from "@/components/ui/select"
+import LoadingButton from "@/components/button/loading-button"
+import { PasswordInput } from "@/components/password-input"
+
+const yearOptions = Array.from(
+  new Array(120),
+  (val, index) => new Date().getFullYear() - index
+)
+
+const monthOptions = Array.from(new Array(12), (val, index) => 1 + index)
+
+const genderOptions = [
+  { value: "female", label: "Female" },
+  { value: "male", label: "Male" },
+  { value: "custom", label: "Custom" },
+]
 
 export const SignUpForm = ({ className }) => {
-  const { setAuth } = useAuth()
+  const { setToken } = useAuth()
   const navigate = useNavigate()
   const [messageRes, setMessageRes] = React.useState()
+  const [dayOptions, setDayOptions] = React.useState(
+    Array.from(
+      new Array(getDays(new Date().getFullYear(), new Date().getMonth() + 1)),
+      (val, index) => 1 + index
+    )
+  )
 
   // react-hook-form
   const form = useForm({
@@ -51,6 +73,14 @@ export const SignUpForm = ({ className }) => {
     },
   })
 
+  React.useEffect(() => {
+    const year = form.getValues("bYear")
+    const month = form.getValues("bMonth")
+    setDayOptions(
+      Array.from(new Array(getDays(year, month)), (val, index) => 1 + index)
+    )
+  }, [form.getValues("bYear"), form.getValues("bMonth")])
+
   const signUpMutation = useMutation({
     mutationFn: signUpApi,
     onSuccess: ({ data }) => {
@@ -60,7 +90,7 @@ export const SignUpForm = ({ className }) => {
         message,
       })
       setTimeout(() => {
-        setAuth(rest)
+        setToken(rest.token)
         navigate("/")
       }, 2000)
     },
@@ -72,25 +102,7 @@ export const SignUpForm = ({ className }) => {
     },
   })
 
-  const option = React.useMemo(() => {
-    const nowYear = new Date().getFullYear()
-    const years = Array.from(new Array(120), (val, index) => nowYear - index)
-    const months = Array.from(new Array(12), (val, index) => 1 + index)
-    const genders = [
-      { value: "female", label: "Female" },
-      { value: "male", label: "Male" },
-      { value: "custom", label: "Custom" },
-    ]
-
-    return { years, months, genders }
-  }, [])
-  const days = Array.from(new Array(getDays()), (val, index) => 1 + index)
-  option.days = days
-
-  function getDays() {
-    const year = form.getValues("bYear")
-    const month = form.getValues("bMonth")
-
+  function getDays(year, month) {
     return new Date(year, month, 0).getDate()
   }
 
@@ -241,7 +253,7 @@ export const SignUpForm = ({ className }) => {
                       </SelectTrigger>
                     </FormControl>
                     <SelectContent>
-                      {option.days.map((itm) => (
+                      {dayOptions.map((itm) => (
                         <SelectItem key={itm} value={itm.toString()}>
                           {itm}
                         </SelectItem>
@@ -271,7 +283,7 @@ export const SignUpForm = ({ className }) => {
                       </SelectTrigger>
                     </FormControl>
                     <SelectContent>
-                      {option.months.map((itm) => (
+                      {monthOptions.map((itm) => (
                         <SelectItem key={itm} value={itm.toString()}>
                           {itm}
                         </SelectItem>
@@ -301,7 +313,7 @@ export const SignUpForm = ({ className }) => {
                       </SelectTrigger>
                     </FormControl>
                     <SelectContent>
-                      {option.years.map((itm) => (
+                      {yearOptions.map((itm) => (
                         <SelectItem key={itm} value={itm.toString()}>
                           {itm}
                         </SelectItem>
@@ -349,7 +361,7 @@ export const SignUpForm = ({ className }) => {
                   defaultValue={field.value}
                   className="grid grid-cols-3 gap-3"
                 >
-                  {option.genders.map((itm) => (
+                  {genderOptions.map((itm) => (
                     <FormItem
                       key={itm.value}
                       className="group relative flex items-center space-y-0"

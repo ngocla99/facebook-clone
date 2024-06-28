@@ -1,4 +1,4 @@
-import { Plus } from "@/svg"
+import { Plus } from "@/assets/svg"
 import { Link } from "react-router-dom"
 
 import { siteConfig } from "@/config/site"

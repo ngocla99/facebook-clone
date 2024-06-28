@@ -1,4 +1,5 @@
 import React, { useCallback, useMemo } from "react"
+import { SignUpForm } from "@/pages/auth/login/signup-form"
 
 import {
   DialogDescription,
@@ -7,8 +8,6 @@ import {
 } from "@/components/ui/dialog"
 import { Modal } from "@/components/ui/modal"
 import { Separator } from "@/components/ui/separator"
-
-import { SignUpForm } from "../forms/signup-form"
 
 const SignUpModalHelper = ({ showSignUpModal, setShowSignUpModal }) => {
   return (

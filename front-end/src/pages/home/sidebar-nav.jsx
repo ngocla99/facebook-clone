@@ -1,5 +1,5 @@
 import React from "react"
-import { ArrowDown1, ArrowUp } from "@/svg"
+import { ArrowDown1, ArrowUp } from "@/assets/svg"
 import { Link } from "react-router-dom"
 
 import { siteConfig } from "@/config/site"
@@ -95,7 +95,7 @@ const LinkItem = ({ className, href, children, ...props }) => {
     <Button
       variant="ghost"
       size="xl"
-      className={cn("justify-start gap-3 text-left", className)}
+      className={cn("justify-start gap-3 px-2 text-left", className)}
       asChild
       {...props}
     >

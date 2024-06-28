@@ -15,12 +15,11 @@ import {
   FormMessage,
 } from "@/components/ui/form"
 import { Input } from "@/components/ui/input"
+import LoadingButton from "@/components/button/loading-button"
 import { PasswordInput } from "@/components/password-input"
 
-import LoadingButton from "../button/loading-button"
-
 export const LoginForm = () => {
-  const { setAuth } = useAuth()
+  const { setToken } = useAuth()
   const navigate = useNavigate()
   const [errorRes, setErrorRes] = React.useState()
 
@@ -36,7 +35,7 @@ export const LoginForm = () => {
   const logInMutation = useMutation({
     mutationFn: logInApi,
     onSuccess: ({ data }) => {
-      setAuth(data)
+      setToken(data.token)
       navigate("/")
     },
     onError: (err) => {
@@ -93,7 +92,11 @@ export const LoginForm = () => {
             </FormItem>
           )}
         />
-        <LoadingButton size="lg" loading={logInMutation.isPending}>
+        <LoadingButton
+          size="lg"
+          className="text-xl font-bold"
+          loading={logInMutation.isPending}
+        >
           Log in
           <span className="sr-only">Log in</span>
         </LoadingButton>

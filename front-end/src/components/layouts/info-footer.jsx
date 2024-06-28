@@ -1,4 +1,4 @@
-import { ArrowTooltip } from "@/svg"
+import { ArrowTooltip } from "@/assets/svg"
 import { Link } from "react-router-dom"
 
 import { cn } from "@/lib/utils"

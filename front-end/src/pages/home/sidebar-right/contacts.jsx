@@ -1,4 +1,4 @@
-import { Dots, Search } from "@/svg"
+import { Dots, Search } from "@/assets/svg"
 
 import { cn } from "@/lib/utils"
 import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar"
@@ -33,7 +33,7 @@ export const Contacts = ({ className }) => {
             key={idx}
             variant="ghost"
             size="xl"
-            className="justify-start gap-3 text-left"
+            className="justify-start gap-3 px-2 text-left"
           >
             <Avatar>
               <AvatarImage src="https://github.com/shadcn.png" alt="@shadcn" />

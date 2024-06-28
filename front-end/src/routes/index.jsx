@@ -1,3 +1,5 @@
+import { ForgotPassword } from "@/pages/auth/forgot-password"
+import Login from "@/pages/auth/login"
 import Logout from "@/pages/auth/logout"
 import Error from "@/pages/error"
 import Home from "@/pages/home"
@@ -5,9 +7,10 @@ import Profile from "@/pages/profile"
 import { createBrowserRouter, RouterProvider } from "react-router-dom"
 
 import { useAuth } from "@/providers/auth-provider"
+import { AppLayout } from "@/components/layouts/app-layout"
+import { AuthLayout } from "@/components/layouts/auth-layout"
+import ErrorBoundary from "@/components/layouts/error-boundary"
 
-import { AppLayout } from "./app-layout"
-import ErrorBoundary from "./error-boundary"
 import { ProtectedRoute } from "./protected-route"
 
 const Routes = () => {
@@ -58,26 +61,33 @@ const Routes = () => {
   const routesForNotAuthenticatedOnly = [
     {
       path: "/",
-      element: <Home />,
-    },
-    {
-      path: "/login",
-      lazy: async () => {
-        let Login = await import("@/pages/auth/login")
-        return { Component: Login.default }
-      },
-    },
-    {
-      path: "/error",
-      element: <Error />,
-      errorElement: <ErrorBoundary />,
+      element: <AuthLayout />,
+      children: [
+        {
+          path: "/",
+          element: <Login />,
+        },
+        {
+          path: "/login",
+          element: <Login />,
+        },
+        {
+          path: "/forgot-password",
+          element: <ForgotPassword />,
+        },
+        {
+          path: "/error",
+          element: <Error />,
+          errorElement: <ErrorBoundary />,
+        },
+      ],
     },
   ]
 
   // Combine and conditionally include routes based on authentication status
   const router = createBrowserRouter([
     ...routesForPublic,
-    // ...(!token ? routesForNotAuthenticatedOnly : []),
+    ...(!token ? routesForNotAuthenticatedOnly : []),
     ...routesForAuthenticatedOnly,
   ])
 

@@ -1,5 +1,5 @@
 import * as React from "react"
-import { ArrowLeft1, ArrowRight1 } from "@/svg"
+import { ArrowLeft1, ArrowRight1 } from "@/assets/svg"
 import useEmblaCarousel from "embla-carousel-react"
 
 import { cn } from "@/lib/utils"
@@ -201,7 +201,7 @@ const CarouselNext = React.forwardRef(
         className={cn(
           "absolute size-12 rounded-full border-none p-0 text-muted-foreground shadow-[0_2px_8px_rgba(0,0,0,0.1),0_0_0_1px_rgba(0,0,0,0.1)] hover:bg-white/90",
           orientation === "horizontal"
-            ? "-right-4 top-1/2 -translate-y-1/2"
+            ? "right-3 top-1/2 -translate-y-1/2"
             : "-bottom-12 left-1/2 -translate-x-1/2 rotate-90",
           className,
           !canScrollNext && "hidden"

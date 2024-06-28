@@ -1,4 +1,4 @@
-import { Logo } from "@/svg"
+import { Logo } from "@/assets/svg"
 import { Link } from "react-router-dom"
 
 import { AccountSettings } from "./account-settings"

@@ -1,4 +1,4 @@
-import { Plus } from "@/svg"
+import { Plus } from "@/assets/svg"
 
 import { cn } from "@/lib/utils"
 import { Card, CardContent } from "@/components/ui/card"

@@ -1,4 +1,4 @@
-@import "./styles/icons/icons.css";
+@import "./icons.css";
 
 @tailwind base;
 @tailwind components;

@@ -1,5 +1,5 @@
 import React from "react"
-import { Return } from "@/svg"
+import { Return } from "@/assets/svg"
 import { X } from "lucide-react"
 
 import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar"
@@ -7,7 +7,7 @@ import { Button } from "@/components/ui/button"
 
 import { SearchInput } from "./search-input"
 
-export const SearchMenu = React.forwardRef((props, ref) => {
+export const SearchMenu = React.forwardRef(({ onBack }, ref) => {
   const inputRef = React.useRef()
 
   React.useEffect(() => {
@@ -20,7 +20,11 @@ export const SearchMenu = React.forwardRef((props, ref) => {
       className="fixed inset-0 h-[500px] w-80 transform-none rounded-lg rounded-tl-none bg-card p-0 shadow-2xl"
     >
       <div className="grid h-14 grid-cols-[auto_1fr] items-center gap-2 px-4">
-        <Button variant="ghost" className="h-8 w-8 rounded-full p-0">
+        <Button
+          variant="ghost"
+          className="h-8 w-8 rounded-full p-0"
+          onClick={onBack}
+        >
           <Return className="text-[#65676b]" />
         </Button>
         <SearchInput ref={inputRef} />

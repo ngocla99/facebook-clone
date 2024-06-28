@@ -1,4 +1,4 @@
-import { Menu } from "@/svg"
+import { Menu } from "@/assets/svg"
 
 import { siteConfig } from "@/config/site"
 import { Button } from "@/components/ui/button"

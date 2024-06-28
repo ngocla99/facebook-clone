@@ -1,3 +1,4 @@
+import { useAuth } from "@/providers/auth-provider"
 import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar"
 import { Button } from "@/components/ui/button"
 import { Card, CardContent } from "@/components/ui/card"
@@ -8,6 +9,8 @@ import { InfoFooter } from "../../info-footer"
 import { SettingItem } from "./components"
 
 export const ViewBase = ({ setView }) => {
+  const { clearToken } = useAuth()
+
   return (
     <div className="pt-3">
       <Card className="m-4 mt-0 shadow-xl">
@@ -53,6 +56,7 @@ export const ViewBase = ({ setView }) => {
         <SettingItem
           icon={<i className="logout_filled_icon"></i>}
           title="Logout"
+          onClick={clearToken}
         />
       </div>
       <InfoFooter className="p-4" />

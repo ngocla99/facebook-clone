@@ -7,7 +7,7 @@ import {
   Market,
   More,
   Watch,
-} from "@/svg"
+} from "@/assets/svg"
 import { NavLink } from "react-router-dom"
 
 import { cn } from "@/lib/utils"

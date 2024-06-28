@@ -1,9 +1,16 @@
-import { Return } from "@/svg"
+import { Return } from "@/assets/svg"
 
 import { cn } from "@/lib/utils"
 import { Button } from "@/components/ui/button"
 
-export const SettingItem = ({ icon, title, subTitle, onNext, className }) => {
+export const SettingItem = ({
+  icon,
+  title,
+  subTitle,
+  onNext,
+  className,
+  ...props
+}) => {
   return (
     <Button
       size="xl"
@@ -13,6 +20,7 @@ export const SettingItem = ({ icon, title, subTitle, onNext, className }) => {
         className
       )}
       {...(onNext ? { onClick: onNext } : {})}
+      {...props}
     >
       <div className="flex h-9 w-9 items-center justify-center rounded-full bg-background-secondary">
         {icon}

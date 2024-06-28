@@ -1,5 +1,5 @@
 import React from "react"
-import { Search } from "@/svg"
+import { Search } from "@/assets/svg"
 
 import { cn } from "@/lib/utils"
 

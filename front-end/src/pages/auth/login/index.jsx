@@ -3,15 +3,15 @@ import { Link } from "react-router-dom"
 import { Button } from "@/components/ui/button"
 import { Card, CardContent, CardFooter } from "@/components/ui/card"
 import { Separator } from "@/components/ui/separator"
-import { LoginForm } from "@/components/forms/login-form"
-import { LoginFooter } from "@/components/layouts/login-footer"
 import { useSignUpModal } from "@/components/modal/signup-modal"
+
+import { LoginForm } from "./login-form"
 
 const Login = () => {
   const { setShowSignUpModal, SignUpModal } = useSignUpModal()
 
   return (
-    <div className="">
+    <>
       <div className="bg-background-secondary px-10 pb-28 pt-[72px]">
         <div className="mx-10 flex w-auto flex-col items-center justify-between gap-8 py-5 lg:mx-auto lg:w-[980px] lg:flex-row lg:items-start">
           <div className="text-center lg:text-left">
@@ -33,7 +33,7 @@ const Login = () => {
                 <div className="mt-4 text-center">
                   <Link
                     className="text-sm font-medium text-primary hover:underline hover:underline-offset-2"
-                    to=""
+                    to="/forgot-password"
                   >
                     Forgotten password?
                   </Link>
@@ -43,7 +43,7 @@ const Login = () => {
               <CardFooter className="flex justify-center px-0 pt-[6px]">
                 <Button
                   size="lg"
-                  className="bg-[#42b72a] text-[17px] hover:bg-[#36a420]"
+                  className="bg-[#42b72a] text-[17px] font-bold hover:bg-[#36a420]"
                   onClick={() => setShowSignUpModal(true)}
                 >
                   Create new account
@@ -62,11 +62,9 @@ const Login = () => {
           </div>
         </div>
       </div>
-      <div className="pt-5">
-        <LoginFooter className="mx-10 lg:mx-auto lg:w-[980px]" />
-      </div>
+
       <SignUpModal />
-    </div>
+    </>
   )
 }
 

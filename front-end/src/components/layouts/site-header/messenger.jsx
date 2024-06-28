@@ -1,4 +1,4 @@
-import { Messenger as MessengerIcon } from "@/svg"
+import { Messenger as MessengerIcon } from "@/assets/svg"
 
 import {
   Tooltip,

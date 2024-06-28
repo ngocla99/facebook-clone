@@ -16,7 +16,7 @@ export const GroupConversations = ({ className }) => {
             key={idx}
             variant="ghost"
             size="xl"
-            className="justify-start gap-3 text-left"
+            className="justify-start gap-3 px-2 text-left"
           >
             <Avatar>
               <AvatarImage src="https://github.com/shadcn.png" alt="@shadcn" />
@@ -28,7 +28,7 @@ export const GroupConversations = ({ className }) => {
         <Button
           variant="ghost"
           size="xl"
-          className="justify-start gap-3 text-left"
+          className="justify-start gap-3 px-2 text-left"
         >
           <div className="flex h-9 w-9 min-w-9 items-center justify-center rounded-full bg-background-secondary">
             <i className="plus_icon"></i>
