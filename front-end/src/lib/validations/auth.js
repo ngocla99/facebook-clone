@@ -100,7 +100,50 @@ export const signUpSchema = z
   )
 
 export const forgotPasswordSchema = z.object({
-  email: z.string().email({
-    message: "Please enter a valid email address.",
+  email: z.string().min(1, {
+    message: "Fill in at least one field to search for your account",
   }),
+})
+
+export const resetCodeSchema = z.object({
+  code: z
+    .string()
+    .trim()
+    .refine((val) => !isNaN(val), {
+      message:
+        "It looks like you've entered some letters. Your code is 6 numbers long.",
+    })
+    .superRefine((val, ctx) => {
+      if (val.length === 0) {
+        ctx.addIssue({
+          code: z.ZodIssueCode.custom,
+          message: "Please enter a code.",
+          fatal: true,
+        })
+        return z.NEVER
+      }
+      if (val.length === 1) {
+        ctx.addIssue({
+          code: z.ZodIssueCode.custom,
+          message: `You only entered one number. Please check your code and try again.`,
+          fatal: true,
+        })
+      }
+      if (val.length > 1 && val.length < 6) {
+        ctx.addIssue({
+          code: z.ZodIssueCode.custom,
+          message: `You only entered ${val.length} number. Please check your code and try again.`,
+          fatal: true,
+        })
+        return z.NEVER
+      }
+      if (val.length === 6) return true
+      if (val.length > 6) {
+        ctx.addIssue({
+          code: z.ZodIssueCode.custom,
+          message: `You've entered more than six numbers. Please check your code and try again.`,
+          fatal: true,
+        })
+      }
+    }),
 })

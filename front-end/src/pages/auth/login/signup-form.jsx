@@ -125,7 +125,7 @@ export const SignUpForm = ({ className }) => {
         {messageRes && (
           <div
             className={cn(
-              "mt-3 overflow-hidden border   px-[3px] py-[7px] text-center",
+              "mt-3 overflow-hidden border px-[3px] py-[7px] text-center",
               messageRes.type === "success" && "border-green-700 bg-green-50",
               messageRes.type === "error" && "border-[#dd3c10] bg-[#ffebe8]"
             )}

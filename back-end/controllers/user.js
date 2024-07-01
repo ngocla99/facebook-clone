@@ -32,7 +32,7 @@ exports.register = async (req, res) => {
     }
 
     const existedEmail = await User.findOne({ email });
-    console.log("🚀 ~ exports.register= ~ existedEmail:", existedEmail)
+    console.log("🚀 ~ exports.register= ~ existedEmail:", existedEmail);
     if (existedEmail) {
       return res.status(400).json({
         message:
@@ -193,10 +193,17 @@ exports.findUser = async (req, res) => {
     const user = await User.findOne({ email: req.body.email });
 
     if (!user) {
-      return res.status(400).json({ message: "Account dose not exists." });
+      return res
+        .status(400)
+        .json({ message: "User account not found", code: "USER_NOT_FOUND" });
     }
 
-    return res.json({ email: user.email, picture: user.picture });
+    return res.json({
+      email: user.email,
+      picture: user.picture,
+      first_name: user.first_name,
+      last_name: user.last_name,
+    });
   } catch (error) {
     res.status(500).json({ message: error.message });
   }
@@ -209,10 +216,10 @@ exports.sendResetPasswordCode = async (req, res) => {
 
     await Code.findOneAndDelete({ user: user._id });
 
-    const code = generateCode(5);
+    const code = generateCode(6);
     const savedCode = new Code({ code, user: user._id });
     savedCode.save();
-    sendResetCode(user.email, user.firt_name, code);
+    sendResetCode(user.email, user.first_name, code);
 
     return res.json({
       message: "Email reset code has been sent to your email",
@@ -229,7 +236,10 @@ exports.validateResetCode = async (req, res) => {
     const codeStored = await Code.findOne({ user: user._id });
 
     if (codeStored.code !== code) {
-      return res.status(400).json({ message: "Verification code is wrong." });
+      return res.status(400).json({
+        message:
+          "The number that you've entered doesn't match your code. Please try again.",
+      });
     }
 
     return res.status(200).json({ message: "ok" });

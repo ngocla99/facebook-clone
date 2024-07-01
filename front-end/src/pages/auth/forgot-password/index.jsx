@@ -1,25 +1,53 @@
-import { Button } from "@/components/ui/button"
-import { Card, CardContent, CardFooter, CardHeader } from "@/components/ui/card"
+import React from "react"
 
-import { ForgotPasswordForm } from "./forgot-password-form"
+import { FindUser } from "./find-user"
+import { NewPassword } from "./new-password"
+import { ResetMethods } from "./reset-methods"
+import { SecurityCode } from "./security-code"
 
 export const ForgotPassword = () => {
+  const [data, setData] = React.useState()
+  const [currentStepIdx, setCurrentStepIdx] = React.useState(3)
+
+  const goNext = (dataFromStep) => {
+    setData({ ...data, ...dataFromStep })
+    setCurrentStepIdx((prev) => prev + 1)
+  }
+
+  const goBack = () => {
+    setCurrentStepIdx((prev) => prev - 1)
+  }
+
   return (
     <div className="grid place-items-center bg-background-secondary px-10 pb-28 pt-[72px]">
-      <Card className="w-[500px]">
-        <CardHeader className="border-b border-[rgba(0,0,0,0.1)] px-[18px] pb-4 text-xl font-bold text-[#162643]">
-          Find Your Account
-        </CardHeader>
-        <CardContent className="border-b border-[rgba(0,0,0,0.1)] p-[18px] pt-4">
-          <ForgotPasswordForm />
-        </CardContent>
-        <CardFooter className="flex justify-end gap-2 p-4">
-          <Button variant="secondary" className="px-5 text-[15px] font-bold">
-            Cancel
-          </Button>
-          <Button className="px-5 text-[15px] font-bold">Search</Button>
-        </CardFooter>
-      </Card>
+      <ControlledSteps
+        currentIdx={currentStepIdx}
+        onNext={goNext}
+        onBack={goBack}
+      >
+        <FindUser />
+        <ResetMethods data={data} />
+        <SecurityCode data={data} />
+        <NewPassword data={data} />
+      </ControlledSteps>
     </div>
   )
+}
+
+const ControlledSteps = ({ children, currentIdx, onNext, onBack }) => {
+  const currentChild = React.Children.toArray(children)[currentIdx]
+
+  const goNext = (dataFromStep) => {
+    onNext(dataFromStep)
+  }
+
+  const goBack = () => {
+    onBack()
+  }
+
+  if (React.isValidElement(currentChild)) {
+    return React.cloneElement(currentChild, { goNext, goBack })
+  }
+
+  return currentChild
 }
