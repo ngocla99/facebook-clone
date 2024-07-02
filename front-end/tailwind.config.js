@@ -20,6 +20,7 @@ module.exports = {
     extend: {
       colors: {
         border: "var(--border)",
+        separator: "var(--separator)",
         input: "var(--input)",
         ring: "var(--ring)",
         "scroll-thumb": "var(--scroll-thumb)",

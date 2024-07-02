@@ -40,6 +40,8 @@ const Button = React.forwardRef(
     const Comp = asChild ? Slot : "button"
     return (
       <Comp
+        // if onClick is passed, it's a "button" type, otherwise it's being used in a form, hence "submit"
+        type={props.onClick ? "button" : "submit"}
         className={cn(buttonVariants({ variant, size, className }))}
         ref={ref}
         {...props}
