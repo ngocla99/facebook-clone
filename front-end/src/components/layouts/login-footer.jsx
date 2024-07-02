@@ -1,15 +1,15 @@
-import { Plus } from "@/assets/svg"
 import { Link } from "react-router-dom"
 
 import { siteConfig } from "@/config/site"
 import { cn } from "@/lib/utils"
+import { Plus } from "@/assets/svg"
 
 import { Separator } from "../ui/separator"
 
 export const LoginFooter = ({ className }) => {
   return (
     <footer className={cn("", className)}>
-      <div className="flex flex-wrap gap-[10px] pt-2 text-xs text-[#8a8d91]">
+      <div className="flex flex-wrap items-center gap-[10px] pt-2 text-xs text-[#8a8d91]">
         {siteConfig.footerNav.locales.map((item) => (
           <Link
             key={item.title}
@@ -26,7 +26,7 @@ export const LoginFooter = ({ className }) => {
           to=""
           className="flex h-5 items-center rounded-sm border border-[#ccd0d5] bg-[#f5f6f7] px-2 text-xs text-[#4b4f56] transition-all hover:bg-[#ebedf0]"
         >
-          <Plus />
+          <Plus className="size-3" />
         </Link>
       </div>
       <Separator className="my-2" />

@@ -800,3 +800,21 @@
   background-repeat: no-repeat;
   display: inline-block;
 }
+.arrow_left_icon {
+  background-image: url(./icons/icons38.png);
+  background-position: 0px -675px;
+  background-size: auto;
+  width: 16px;
+  height: 16px;
+  background-repeat: no-repeat;
+  display: inline-block;
+}
+.more_icon {
+  background-image: url(./icons/icons42.png);
+  background-position: 0px -260px;
+  background-size: auto;
+  width: 16px;
+  height: 16px;
+  background-repeat: no-repeat;
+  display: inline-block;
+}
