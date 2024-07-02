@@ -16,7 +16,7 @@ import {
 } from "@/components/ui/form"
 import { Input } from "@/components/ui/input"
 import LoadingButton from "@/components/button/loading-button"
-import { PasswordInput } from "@/components/password-input"
+import { PasswordInput } from "@/components/input/password-input"
 
 export const LoginForm = () => {
   const { setToken } = useAuth()

@@ -1,13 +1,13 @@
 import React from "react"
 
+import { ChangePassword } from "./change-password"
 import { FindUser } from "./find-user"
-import { NewPassword } from "./new-password"
 import { ResetMethods } from "./reset-methods"
 import { SecurityCode } from "./security-code"
 
 export const ForgotPassword = () => {
   const [data, setData] = React.useState()
-  const [currentStepIdx, setCurrentStepIdx] = React.useState(3)
+  const [currentStepIdx, setCurrentStepIdx] = React.useState(0)
 
   const goNext = (dataFromStep) => {
     setData({ ...data, ...dataFromStep })
@@ -28,7 +28,7 @@ export const ForgotPassword = () => {
         <FindUser />
         <ResetMethods data={data} />
         <SecurityCode data={data} />
-        <NewPassword data={data} />
+        <ChangePassword data={data} />
       </ControlledSteps>
     </div>
   )

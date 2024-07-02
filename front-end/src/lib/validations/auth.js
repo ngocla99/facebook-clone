@@ -147,3 +147,53 @@ export const resetCodeSchema = z.object({
       }
     }),
 })
+
+export const changePasswordSchema = z.object({
+  password: z
+    .string()
+    .min(6, {
+      message: "short",
+    })
+    .superRefine((password, ctx) => {
+      const uppercaseRegex = /[A-Z]/
+      const lowercaseRegex = /[a-z]/
+      const numberRegex = /[0-9]/
+      const specialCharRegex = /[!@#$%^&*()_+\-=\[\]{};':"\\|,.<>\/?]/
+
+      const uppercaseValid = uppercaseRegex.test(password)
+      const lowercaseValid = lowercaseRegex.test(password)
+      const numberValid = numberRegex.test(password)
+      const specialCharValid = specialCharRegex.test(password)
+      const lengthValid = password.length >= 8
+
+      if (
+        (uppercaseValid && numberValid && lengthValid) ||
+        (uppercaseValid && specialCharValid && lengthValid) ||
+        (uppercaseValid && specialCharValid && numberValid) ||
+        (lowercaseValid && specialCharValid && numberValid && lengthValid)
+      ) {
+        return true
+      }
+
+      if (
+        (numberValid && lowercaseValid) ||
+        (uppercaseValid && lowercaseValid) ||
+        (uppercaseValid && numberValid && !lengthValid) ||
+        (uppercaseValid && specialCharValid && !lengthValid) ||
+        (lowercaseValid && numberValid && lengthValid)
+      ) {
+        ctx.addIssue({
+          code: z.ZodIssueCode.custom,
+          message: "medium",
+          fatal: true,
+        })
+        return z.NEVER
+      }
+
+      ctx.addIssue({
+        code: z.ZodIssueCode.custom,
+        message: "weak",
+        fatal: true,
+      })
+    }),
+})

@@ -19,3 +19,7 @@ export const sendResetPasswordCodeApi = ({ email }) => {
 export const validateResetCodeApi = ({ email, code }) => {
   return axiosClient.post("/validateResetCode", { email, code })
 }
+
+export const changePasswordApi = (data) => {
+  return axiosClient.post("/changePassword", data)
+}

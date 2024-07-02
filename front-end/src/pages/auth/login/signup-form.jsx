@@ -32,7 +32,7 @@ import {
   SelectValue,
 } from "@/components/ui/select"
 import LoadingButton from "@/components/button/loading-button"
-import { PasswordInput } from "@/components/password-input"
+import { PasswordInput } from "@/components/input/password-input"
 
 const yearOptions = Array.from(
   new Array(120),

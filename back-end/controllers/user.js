@@ -243,18 +243,25 @@ exports.validateResetCode = async (req, res) => {
     }
 
     return res.status(200).json({ message: "ok" });
-  } catch (error) {
-    res.status(500).json({ message: error.message });
+  } catch (err) {
+    res.status(500).json({ message: err.message });
   }
 };
 
 exports.changePassword = async (req, res) => {
-  const { email, password } = req.body;
+  try {
+    const { email, password } = req.body;
+    if (!email) {
+      return res.status(400).json({ message: "Please enter your email" });
+    }
 
-  const cryptedPassword = await bcrypt.hash(password, 12);
-  await User.findOneAndUpdate({ email }, { password: cryptedPassword });
+    const cryptedPassword = await bcrypt.hash(password, 12);
+    await User.findOneAndUpdate({ email }, { password: cryptedPassword });
 
-  return res.status(200).json({ message: "ok" });
+    return res.status(200).json({ message: "ok" });
+  } catch (err) {
+    return res.status(500).json({ message: err.message });
+  }
 };
 
 exports.getProfile = async (req, res) => {

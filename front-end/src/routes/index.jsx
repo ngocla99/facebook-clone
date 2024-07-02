@@ -1,4 +1,5 @@
 import { ForgotPassword } from "@/pages/auth/forgot-password"
+import { PasswordChanged } from "@/pages/auth/forgot-password/password-changed"
 import Login from "@/pages/auth/login"
 import Logout from "@/pages/auth/logout"
 import Error from "@/pages/error"
@@ -50,8 +51,8 @@ const Routes = () => {
           element: <Profile />,
         },
         {
-          path: "/logout",
-          element: <Logout />,
+          path: "/password/change/reason",
+          element: <PasswordChanged />,
         },
       ],
     },
