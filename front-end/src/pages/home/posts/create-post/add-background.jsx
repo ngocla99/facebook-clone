@@ -1,5 +1,7 @@
 import React from "react"
 
+import { cn } from "@/lib/utils"
+
 const postBackgrounds = {
   avatar: [
     "images/postBackgrounds/avatar1.webp",
@@ -14,20 +16,31 @@ const postBackgrounds = {
     "images/postBackgrounds/new3.jpg",
     "images/postBackgrounds/new4.jpg",
     "images/postBackgrounds/new5.jpg",
-    "images/postBackgrounds/new6.jpg",
   ],
   popular: [
+    "images/postBackgrounds/popular1.jpg",
     "images/postBackgrounds/popular2.jpg",
     "images/postBackgrounds/popular3.jpg",
-    "images/postBackgrounds/popular4.jpg",
+    "images/postBackgrounds/popula4.jpg",
     "images/postBackgrounds/popular5.jpg",
-    "images/postBackgrounds/popular6.jpg",
-    "images/postBackgrounds/popular7.jpg",
   ],
+  color: ["#c600ff", "#e2013b", "#111111"],
 }
 
-export const AddBackground = () => {
+const shadowClassNameDefault =
+  "shadow-[inset_0_0_0_2px_#ffffff,0_0_5px_0_rgba(0,0,0,0.2)]"
+
+const shadowClassName =
+  "shadow-[inset_0_0_0_2px_#ffffff,0_0_4px_0_rgba(0,0,0,0.1)]"
+
+export const AddBackground = ({ onChangeBg }) => {
   const [showMore, setShowMore] = React.useState(false)
+  const [backGround, setBackGround] = React.useState()
+
+  const changeBackground = (data) => {
+    setBackGround(data)
+    onChangeBg(data)
+  }
 
   return (
     <div className="">
@@ -47,19 +60,35 @@ export const AddBackground = () => {
             <i className="arrow_left_icon"></i>
           </div>
           <div
-            className="flex size-8 items-center justify-center rounded-lg bg-background-secondary"
-            onClick={() => setShowMore(false)}
-          >
-          </div>
+            className={cn(
+              "flex size-8 items-center justify-center rounded-lg bg-background-comment",
+              !backGround && shadowClassNameDefault
+            )}
+            onClick={() => changeBackground(null)}
+          ></div>
           {postBackgrounds.avatar.map((src) => (
-            <img src={src} className="size-8 rounded-lg" />
+            <div
+              key={src}
+              className={cn(
+                "size-8 rounded-lg border-none bg-contain",
+                backGround === `url(${src})` && shadowClassName
+              )}
+              style={{ backgroundImage: `url(${src})` }}
+              onClick={() => changeBackground(`url(${src})`)}
+            ></div>
           ))}
-          <div className="size-8 rounded-lg bg-[#c600ff]"></div>
-          <div className="size-8 rounded-lg bg-[#e2013b]"></div>
-          <div className="size-8 rounded-lg bg-[#111111]"></div>
+          {postBackgrounds.color.map((color) => (
+            <div
+              className={cn(
+                `size-8 rounded-lg bg-[${color}] border-none`,
+                backGround === color && shadowClassName
+              )}
+              onClick={() => changeBackground(color)}
+            ></div>
+          ))}
           <div
             className="flex size-8 items-center justify-center rounded-lg bg-background-secondary"
-            onClick={() => setShowMore(false)}
+            onClick={() => {}}
           >
             <i className="more_icon"></i>
           </div>

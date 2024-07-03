@@ -18,7 +18,7 @@ const CreatePostModalHelper = ({
       <DialogHeader className="grid h-[60px] place-items-center space-y-0 border-b border-border">
         <DialogTitle>Create post</DialogTitle>
       </DialogHeader>
-      <div className="p-4">
+      <div className="px-0 py-4">
         <CreatePostForm />
       </div>
     </Modal>
