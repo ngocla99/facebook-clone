@@ -33,14 +33,8 @@ const shadowClassNameDefault =
 const shadowClassName =
   "shadow-[inset_0_0_0_2px_#ffffff,0_0_4px_0_rgba(0,0,0,0.1)]"
 
-export const AddBackground = ({ onChangeBg }) => {
+export const AddBackground = ({ backGround, onChangeBg }) => {
   const [showMore, setShowMore] = React.useState(false)
-  const [backGround, setBackGround] = React.useState()
-
-  const changeBackground = (data) => {
-    setBackGround(data)
-    onChangeBg(data)
-  }
 
   return (
     <div className="">
@@ -64,7 +58,7 @@ export const AddBackground = ({ onChangeBg }) => {
               "flex size-8 items-center justify-center rounded-lg bg-background-comment",
               !backGround && shadowClassNameDefault
             )}
-            onClick={() => changeBackground(null)}
+            onClick={() => onChangeBg(null)}
           ></div>
           {postBackgrounds.avatar.map((src) => (
             <div
@@ -74,16 +68,17 @@ export const AddBackground = ({ onChangeBg }) => {
                 backGround === `url(${src})` && shadowClassName
               )}
               style={{ backgroundImage: `url(${src})` }}
-              onClick={() => changeBackground(`url(${src})`)}
+              onClick={() => onChangeBg(`url(${src})`)}
             ></div>
           ))}
           {postBackgrounds.color.map((color) => (
             <div
               className={cn(
-                `size-8 rounded-lg bg-[${color}] border-none`,
+                `size-8 rounded-lg border-none`,
                 backGround === color && shadowClassName
               )}
-              onClick={() => changeBackground(color)}
+              style={{ backgroundColor: color }}
+              onClick={() => onChangeBg(color)}
             ></div>
           ))}
           <div

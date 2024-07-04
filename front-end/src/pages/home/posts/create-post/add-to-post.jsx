@@ -1,3 +1,4 @@
+import { cn } from "@/lib/utils"
 import { Button } from "@/components/ui/button"
 import {
   Tooltip,
@@ -6,7 +7,7 @@ import {
 } from "@/components/ui/tooltip"
 import { Dots } from "@/assets/svg"
 
-export const AddToPost = () => {
+export const AddToPost = ({ showImageUpload, setShowImageUpload }) => {
   return (
     <div className="flex items-center justify-between rounded-lg border border-separator p-2 shadow-[0_1px_2px_rgba(0,0,0,0.1)]">
       <a className="cursor-pointer px-2">Add to your post</a>
@@ -14,10 +15,10 @@ export const AddToPost = () => {
         <Tooltip>
           <TooltipTrigger asChild>
             <Button
-              className="size-9"
+              className={cn("size-9", showImageUpload && "bg-[#e4f0d5]")}
               variant="ghost"
               size="icon"
-              onClick={() => {}}
+              onClick={() => setShowImageUpload(true)}
             >
               <img src="icons/photo.png" alt="Photo" className="size-6" />
             </Button>
@@ -73,6 +74,7 @@ export const AddToPost = () => {
               className="size-9"
               variant="ghost"
               size="icon"
+              disabled={showImageUpload}
               onClick={() => {}}
             >
               <img src="icons/gif.png" alt="Gif" className="size-6" />

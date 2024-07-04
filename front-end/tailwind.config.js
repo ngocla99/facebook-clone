@@ -28,6 +28,7 @@ module.exports = {
 
         hover: {
           DEFAULT: "var(--hover)",
+          media: "var(--hover-media)",
         },
 
         active: "var(--active)",
@@ -66,6 +67,7 @@ module.exports = {
         card: {
           DEFAULT: "var(--card)",
           foreground: "var(--card-foreground)",
+          flat: "var(--card-flat)",
         },
       },
       borderRadius: {
