@@ -2,6 +2,8 @@ import React from "react"
 
 import { cn } from "@/lib/utils"
 
+import { VIEWS } from "./create-post-form"
+
 const postBackgrounds = {
   avatar: [
     "images/postBackgrounds/avatar1.webp",
@@ -21,7 +23,7 @@ const postBackgrounds = {
     "images/postBackgrounds/popular1.jpg",
     "images/postBackgrounds/popular2.jpg",
     "images/postBackgrounds/popular3.jpg",
-    "images/postBackgrounds/popula4.jpg",
+    "images/postBackgrounds/popular4.jpg",
     "images/postBackgrounds/popular5.jpg",
   ],
   color: ["#c600ff", "#e2013b", "#111111"],
@@ -33,7 +35,7 @@ const shadowClassNameDefault =
 const shadowClassName =
   "shadow-[inset_0_0_0_2px_#ffffff,0_0_4px_0_rgba(0,0,0,0.1)]"
 
-export const AddBackground = ({ backGround, onChangeBg }) => {
+export const AddBackground = ({ background, onChangeBg, setView }) => {
   const [showMore, setShowMore] = React.useState(false)
 
   return (
@@ -56,7 +58,7 @@ export const AddBackground = ({ backGround, onChangeBg }) => {
           <div
             className={cn(
               "flex size-8 items-center justify-center rounded-lg bg-background-comment",
-              !backGround && shadowClassNameDefault
+              !background && shadowClassNameDefault
             )}
             onClick={() => onChangeBg(null)}
           ></div>
@@ -65,7 +67,7 @@ export const AddBackground = ({ backGround, onChangeBg }) => {
               key={src}
               className={cn(
                 "size-8 rounded-lg border-none bg-contain",
-                backGround === `url(${src})` && shadowClassName
+                background === `url(${src})` && shadowClassName
               )}
               style={{ backgroundImage: `url(${src})` }}
               onClick={() => onChangeBg(`url(${src})`)}
@@ -75,7 +77,7 @@ export const AddBackground = ({ backGround, onChangeBg }) => {
             <div
               className={cn(
                 `size-8 rounded-lg border-none`,
-                backGround === color && shadowClassName
+                background === color && shadowClassName
               )}
               style={{ backgroundColor: color }}
               onClick={() => onChangeBg(color)}
@@ -83,7 +85,7 @@ export const AddBackground = ({ backGround, onChangeBg }) => {
           ))}
           <div
             className="flex size-8 items-center justify-center rounded-lg bg-background-secondary"
-            onClick={() => {}}
+            onClick={() => setView(VIEWS.BACKGROUND)}
           >
             <i className="more_icon"></i>
           </div>

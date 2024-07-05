@@ -5,10 +5,13 @@ import { useForm } from "react-hook-form"
 import { cn } from "@/lib/utils"
 import { postSchema } from "@/lib/validations/post"
 import { Button } from "@/components/ui/button"
+import { DialogHeader, DialogTitle } from "@/components/ui/dialog"
 import { Form } from "@/components/ui/form"
+import { Return } from "@/assets/svg"
 
-import { Audience } from "./audience"
-import { PostForm } from "./post-form"
+import { PostAudience } from "./views/post-audience"
+import { PostBackgound } from "./views/post-background"
+import { PostRoot } from "./views/post-root"
 
 export const VIEWS = {
   ROOT: "root",
@@ -18,10 +21,12 @@ export const VIEWS = {
   LOCATION: "location",
   GIF: "gif",
   MORE: "more",
+  BACKGROUND: "background",
 }
 
 export const CreatePostForm = () => {
   const [view, setView] = React.useState(VIEWS.ROOT)
+  const postRef = React.useRef(null)
 
   const form = useForm({
     resolver: zodResolver(postSchema),
@@ -35,7 +40,6 @@ export const CreatePostForm = () => {
     console.log("🚀 ~ onSubmit ~ data:", data)
   }
 
-  console.log("🚀 ~ CreatePostForm ~ form:", form.getValues())
   return (
     <Form {...form}>
       <form
@@ -43,11 +47,18 @@ export const CreatePostForm = () => {
         onSubmit={(...args) => void form.handleSubmit(onSubmit)(...args)}
       >
         <ViewRoot setView={setView}>
-          <PostForm
+          <PostRoot
+            ref={postRef}
             form={form}
             className={cn("hidden", view === VIEWS.ROOT && "block")}
           />
-          {view === VIEWS.AUDIENCE && <Audience />}
+          {view === VIEWS.AUDIENCE && <PostAudience />}
+          {view === VIEWS.BACKGROUND && (
+            <PostBackgound
+              background={postRef.current.background}
+              onChangeBg={postRef.current.changeBg}
+            />
+          )}
         </ViewRoot>
       </form>
     </Form>
@@ -65,5 +76,20 @@ const ViewRoot = ({ setView, children }) => {
         return child
       })}
     </>
+  )
+}
+
+export const HeadOnBack = ({ onBack, title }) => {
+  return (
+    <DialogHeader className="flex-rows relative items-center space-y-0 border-b border-border px-4 py-3 text-center">
+      <Button
+        variant="secondary"
+        className="absolute left-4 top-3 w-9 rounded-full p-0"
+        onClick={onBack}
+      >
+        <Return className="text-[#65676b]" />
+      </Button>
+      <DialogTitle className="leading-9">{title}</DialogTitle>
+    </DialogHeader>
   )
 }

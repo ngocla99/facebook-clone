@@ -1,12 +1,13 @@
 import { cn } from "@/lib/utils"
 import { Button, buttonVariants } from "@/components/ui/button"
+import { Checkbox } from "@/components/ui/checkbox"
 import { DialogFooter, DialogHeader, DialogTitle } from "@/components/ui/dialog"
 import { Label } from "@/components/ui/label"
 import { RadioGroup, RadioGroupItem } from "@/components/ui/radio-group"
 import { ScrollArea } from "@/components/ui/scroll-area"
 import { Return } from "@/assets/svg"
 
-import { VIEWS } from "."
+import { HeadOnBack, VIEWS } from "../create-post-form"
 
 const optionsAudience = [
   {
@@ -52,19 +53,10 @@ const optionsAudience = [
   },
 ]
 
-export const Audience = ({ setView }) => {
+export const PostAudience = ({ setView }) => {
   return (
     <>
-      <DialogHeader className="flex-rows relative items-center space-y-0 border-b border-border px-4 py-3 text-center">
-        <Button
-          variant="secondary"
-          className="absolute left-4 top-3 w-9 rounded-full p-0"
-          onClick={() => setView(VIEWS.ROOT)}
-        >
-          <Return className="text-[#65676b]" />
-        </Button>
-        <DialogTitle className="leading-9">Post Audience</DialogTitle>
-      </DialogHeader>
+      <HeadOnBack title="Post Audience" onBack={() => setView(VIEWS.ROOT)} />
       <ScrollArea className="h-[470px]">
         <div className="p-4">
           <h3 className="text-[17px] font-semibold">Who can see your post?</h3>
@@ -104,15 +96,19 @@ export const Audience = ({ setView }) => {
           ))}
         </RadioGroup>
       </ScrollArea>
-      <DialogFooter className="shadow-[0_2px_5px_rgba(0,0,0,0.5)] sm:flex-col">
-        <div className="flex items-center p-2">
-          <Button variant="ghost" size="icon" className="size-10">
-            Check
-          </Button>
+      <DialogFooter className="shadow-[0_2px_5px_rgba(0,0,0,0.5)] sm:flex-col sm:space-x-0">
+        <div className="flex items-center pt-2">
+          <div className="grid size-10 place-items-center rounded-full hover:bg-hover">
+            <Checkbox />
+          </div>
           <p className="text-[15px] font-semibold">Set as default audience.</p>
         </div>
         <div className="flex justify-end gap-3 p-3">
-          <Button variant="ghost" className="text-primary hover:text-primary">
+          <Button
+            variant="ghost"
+            className="text-primary hover:text-primary"
+            onClick={() => setView(VIEWS.ROOT)}
+          >
             Cancel
           </Button>
           <Button className="w-[116px] text-[15px]">Done</Button>

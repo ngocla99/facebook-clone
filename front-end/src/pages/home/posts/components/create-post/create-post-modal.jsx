@@ -2,7 +2,7 @@ import React, { useCallback, useMemo } from "react"
 
 import { Modal } from "@/components/ui/modal"
 
-import { CreatePostForm } from "../create-post-form"
+import { CreatePostForm } from "./create-post-form"
 
 const CreatePostModalHelper = ({
   showCreatePostModal,
