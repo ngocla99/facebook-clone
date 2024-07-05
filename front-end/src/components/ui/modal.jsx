@@ -12,6 +12,7 @@ export function Modal({
   onClose,
   desktopOnly,
   preventDefaultClose,
+  enableCloseBtn = true,
 }) {
   const navigate = useNavigation()
 
@@ -60,6 +61,7 @@ export function Modal({
         onOpenAutoFocus={(e) => e.preventDefault()}
         onCloseAutoFocus={(e) => e.preventDefault()}
         className={className}
+        enableCloseBtn={enableCloseBtn}
       >
         {children}
       </DialogContent>

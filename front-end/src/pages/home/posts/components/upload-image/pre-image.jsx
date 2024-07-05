@@ -2,6 +2,7 @@ export const PreImage = ({ file }) => {
   return (
     <>
       {isFileWithPreview(file) ? (
+        // TODO: zoom images to show more correctly
         <img
           src={file.preview}
           alt={file.name}
@@ -13,6 +14,6 @@ export const PreImage = ({ file }) => {
   )
 }
 
-function isFileWithPreview(file) {
+export function isFileWithPreview(file) {
   return "preview" in file && typeof file.preview === "string"
 }

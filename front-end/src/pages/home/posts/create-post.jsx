@@ -4,7 +4,7 @@ import { Card, CardContent } from "@/components/ui/card"
 import { Separator } from "@/components/ui/separator"
 import { Feeling, LiveVideo, Photo } from "@/assets/svg"
 
-import { useCreatePostModal } from "./create-post-modal"
+import { useCreatePostModal } from "./components/create-post/create-post-modal"
 
 export const CreatePost = () => {
   const { setShowCreatePostModal, CreatePostModal } = useCreatePostModal()

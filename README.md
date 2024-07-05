@@ -12,9 +12,11 @@ Money sharing is the open-source for managing team.
 
 ### Frontend
 
-- [Tailwind](https://tailwindcss.com/) – CSS
-- [Shadcn/ui](https://ui.shadcn.com/) - UI component
+- [Tailwind](https://tailwindcss.com) – CSS
+- [Shadcn/ui](https://ui.shadcn.com) - UI component
 - [TanStack Query v5](https://tanstack.com/query/latest) - state management
+- [React hook form](https://react-hook-form.com) - state management form
+- [Zod](https://zod.dev) - validation input
 
 ### Backend
 
