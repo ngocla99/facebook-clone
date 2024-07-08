@@ -1,24 +1,28 @@
+import React from "react"
+import { useFormContext } from "react-hook-form"
+
 import { cn } from "@/lib/utils"
 import { Button, buttonVariants } from "@/components/ui/button"
 import { Checkbox } from "@/components/ui/checkbox"
-import { DialogFooter, DialogHeader, DialogTitle } from "@/components/ui/dialog"
+import { DialogFooter } from "@/components/ui/dialog"
 import { Label } from "@/components/ui/label"
 import { RadioGroup, RadioGroupItem } from "@/components/ui/radio-group"
 import { ScrollArea } from "@/components/ui/scroll-area"
-import { Return } from "@/assets/svg"
 
-import { HeadOnBack, VIEWS } from "../create-post-form"
+import { HeadOnBack, VIEWS } from "../../create-post-form"
 
 const optionsAudience = [
   {
     key: "public",
     title: "Public",
+    value: "EVERYONE",
     description: "Anyone on or off Facebook",
     imgSrc: "icons/24x24/public.png",
   },
   {
     key: "friends",
     title: "Friends",
+    value: "FRIENDS",
     description: "Your friends on Facebook",
     imgSrc: "icons/24x24/friends.png",
   },
@@ -27,33 +31,54 @@ const optionsAudience = [
     title: "Friends except...",
     description: "Don't show to some friends",
     imgSrc: "icons/24x24/friends-except.png",
+    disabled: true,
   },
   {
-    key: "specific-friends",
+    key: "friends-specific",
     title: "Specific friends",
     description: "Only show to some friends",
     imgSrc: "icons/24x24/friend.png",
+    disabled: true,
   },
   {
     key: "private",
     title: "Only me",
+    value: "SELF",
     imgSrc: "icons/24x24/private.png",
   },
   {
-    key: "custom",
+    key: "friends-custom",
     title: "Custom",
     description: "Include and exclude friends and lists",
     imgSrc: "icons/24x24/setting.png",
+    disabled: true,
   },
   {
     key: "close-friends",
     title: "Close friends",
     description: "Your custom list",
     imgSrc: "icons/24x24/close-friends.png",
+    disabled: true,
   },
 ]
-
 export const PostAudience = ({ setView }) => {
+  const { getValues, setValue } = useFormContext()
+  const [audience, setAudience] = React.useState(() => {
+    return getValues("audience")
+  })
+
+  const handleChangeAudience = (data) => {
+    setAudience(data)
+    if (data === "friends-except") return setView(VIEWS.FRIENDS_EXCEPT)
+    if (data === "friends-specific") return setView(VIEWS.FRIENDS_SPECIFIC)
+    if (data === "friends-custom") return setView(VIEWS.FRIENDS_CUSTOM)
+  }
+
+  const handleSave = () => {
+    setValue("audience", audience)
+    setView(VIEWS.ROOT)
+  }
+
   return (
     <>
       <HeadOnBack title="Post Audience" onBack={() => setView(VIEWS.ROOT)} />
@@ -70,7 +95,11 @@ export const PostAudience = ({ setView }) => {
             the audience of this specific post.
           </p>
         </div>
-        <RadioGroup defaultValue="option-one" className="gap-0 px-2 pb-2">
+        <RadioGroup
+          defaultValue={audience}
+          className="gap-0 px-2 pb-2"
+          onValueChange={handleChangeAudience}
+        >
           {optionsAudience.map((itm) => (
             <Label
               key={itm.key}
@@ -91,7 +120,11 @@ export const PostAudience = ({ setView }) => {
                   </span>
                 )}
               </div>
-              <RadioGroupItem value={itm.key} id={itm.key} />
+              <RadioGroupItem
+                value={itm.value}
+                id={itm.key}
+                disabled={!!itm.disabled}
+              />
             </Label>
           ))}
         </RadioGroup>
@@ -111,7 +144,9 @@ export const PostAudience = ({ setView }) => {
           >
             Cancel
           </Button>
-          <Button className="w-[116px] text-[15px]">Done</Button>
+          <Button className="w-[116px] text-[15px]" onClick={handleSave}>
+            Done
+          </Button>
         </div>
       </DialogFooter>
     </>

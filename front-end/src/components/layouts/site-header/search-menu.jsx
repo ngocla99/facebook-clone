@@ -1,11 +1,10 @@
 import React from "react"
-import { Return } from "@/assets/svg"
 import { X } from "lucide-react"
 
 import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar"
 import { Button } from "@/components/ui/button"
-
-import { SearchInput } from "./search-input"
+import { SearchInput } from "@/components/input/search-input"
+import { Return } from "@/assets/svg"
 
 export const SearchMenu = React.forwardRef(({ onBack }, ref) => {
   const inputRef = React.useRef()
@@ -27,7 +26,11 @@ export const SearchMenu = React.forwardRef(({ onBack }, ref) => {
         >
           <Return className="text-[#65676b]" />
         </Button>
-        <SearchInput ref={inputRef} />
+        <SearchInput
+          placeholder="Search Facebook"
+          ref={inputRef}
+          className="h-10"
+        />
       </div>
       <div className="p-2">
         <div className="mb-2 flex h-[21px] items-center justify-between px-2">

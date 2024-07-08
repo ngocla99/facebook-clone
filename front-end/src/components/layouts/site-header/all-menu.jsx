@@ -1,5 +1,3 @@
-import { Menu } from "@/assets/svg"
-
 import { siteConfig } from "@/config/site"
 import { Button } from "@/components/ui/button"
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card"
@@ -15,8 +13,8 @@ import {
   TooltipContent,
   TooltipTrigger,
 } from "@/components/ui/tooltip"
-
-import { SearchInput } from "./search-input"
+import { SearchInput } from "@/components/input/search-input"
+import { Menu } from "@/assets/svg"
 
 export const AllMenu = () => {
   return (

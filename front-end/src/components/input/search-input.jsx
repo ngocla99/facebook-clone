@@ -1,7 +1,7 @@
 import React from "react"
-import { Search } from "@/assets/svg"
 
 import { cn } from "@/lib/utils"
+import { Search } from "@/assets/svg"
 
 export const SearchInput = React.forwardRef(({ className, ...props }, ref) => {
   return (
@@ -10,9 +10,8 @@ export const SearchInput = React.forwardRef(({ className, ...props }, ref) => {
       <input
         ref={ref}
         type="text"
-        placeholder="Search Facebook"
         className={cn(
-          "flex w-full border-none bg-transparent px-2 pb-[9px] pt-[7px] outline-none placeholder:text-muted-foreground",
+          "flex w-full border-none bg-transparent px-2 pb-[9px] pt-[7px] text-[15px] leading-5 outline-none placeholder:text-muted-foreground",
           className
         )}
         {...props}

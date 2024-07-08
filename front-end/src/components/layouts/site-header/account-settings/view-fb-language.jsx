@@ -3,9 +3,9 @@ import { useDebounce } from "@/hooks"
 
 import { siteConfig } from "@/config/site"
 import { ScrollArea } from "@/components/ui/scroll-area"
+import { SearchInput } from "@/components/input/search-input"
 
 import { VIEWS } from "."
-import { SearchInput } from "../search-input"
 import { HeadGoBack } from "./components"
 
 const reorderLanguages = () => {

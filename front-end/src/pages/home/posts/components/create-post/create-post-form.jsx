@@ -10,12 +10,18 @@ import { Form } from "@/components/ui/form"
 import { Return } from "@/assets/svg"
 
 import { PostAudience } from "./views/post-audience"
+import { FriendsCustom } from "./views/post-audience/friends-custom"
+import { FriendsExcept } from "./views/post-audience/friends-except"
+import { FriendsSpecific } from "./views/post-audience/friends-specific"
 import { PostBackgound } from "./views/post-background"
 import { PostRoot } from "./views/post-root"
 
 export const VIEWS = {
   ROOT: "root",
   AUDIENCE: "audience",
+  FRIENDS_EXCEPT: "friends-except",
+  FRIENDS_SPECIFIC: "friends-specific",
+  FRIENDS_CUSTOM: "friends-custom",
   TAG: "tag",
   FEELING: "feeling",
   LOCATION: "location",
@@ -32,6 +38,7 @@ export const CreatePostForm = () => {
     resolver: zodResolver(postSchema),
     defaultValues: {
       text: "",
+      audience: "EVERYONE",
       images: [],
     },
   })
@@ -53,6 +60,9 @@ export const CreatePostForm = () => {
             className={cn("hidden", view === VIEWS.ROOT && "block")}
           />
           {view === VIEWS.AUDIENCE && <PostAudience />}
+          {view === VIEWS.FRIENDS_EXCEPT && <FriendsExcept />}
+          {view === VIEWS.FRIENDS_SPECIFIC && <FriendsSpecific />}
+          {view === VIEWS.FRIENDS_CUSTOM && <FriendsCustom />}
           {view === VIEWS.BACKGROUND && (
             <PostBackgound
               background={postRef.current.background}

@@ -7,7 +7,11 @@ import {
 } from "@/components/ui/tooltip"
 import { Dots } from "@/assets/svg"
 
-export const AddToPost = ({ showImageUpload, setShowImageUpload }) => {
+export const AddToPost = ({
+  background,
+  showImageUpload,
+  setShowImageUpload,
+}) => {
   return (
     <div className="flex items-center justify-between rounded-lg border border-separator p-2 shadow-[0_1px_2px_rgba(0,0,0,0.1)]">
       <a className="cursor-pointer px-2">Add to your post</a>
@@ -18,6 +22,7 @@ export const AddToPost = ({ showImageUpload, setShowImageUpload }) => {
               className={cn("size-9", showImageUpload && "bg-[#e4f0d5]")}
               variant="ghost"
               size="icon"
+              disabled={!!background}
               onClick={() => setShowImageUpload(true)}
             >
               <img src="icons/photo.png" alt="Photo" className="size-6" />
@@ -74,7 +79,7 @@ export const AddToPost = ({ showImageUpload, setShowImageUpload }) => {
               className="size-9"
               variant="ghost"
               size="icon"
-              disabled={showImageUpload}
+              disabled={showImageUpload || !!background}
               onClick={() => {}}
             >
               <img src="icons/gif.png" alt="Gif" className="size-6" />

@@ -27,6 +27,7 @@ export const PostRoot = React.forwardRef(
     const [showImageUpload, setShowImageUpload] = React.useState(false)
 
     const boxTextRef = React.useRef(null)
+    const audience = form.watch("audience")
 
     const handleChangeBg = (data) => {
       setBackground(data)
@@ -84,8 +85,24 @@ export const PostRoot = React.forwardRef(
                 className="flex h-6 items-center gap-1 px-2 py-1 text-[13px]"
                 onClick={() => setView(VIEWS.AUDIENCE)}
               >
-                <img src="icons/public.png" alt="Public" />
-                Public
+                {audience === "EVERYONE" && (
+                  <>
+                    <img src="icons/12x12/public.png" alt="Public" />
+                    Public
+                  </>
+                )}
+                {audience === "FRIENDS" && (
+                  <>
+                    <img src="icons/12x12/friends.png" alt="Friends" />
+                    Friends
+                  </>
+                )}
+                {audience === "SELF" && (
+                  <>
+                    <img src="icons/12x12/private.png" alt="Only me" />
+                    Only me
+                  </>
+                )}
                 <i className="arrowDown_icon"></i>
               </Button>
             </div>
@@ -172,6 +189,7 @@ export const PostRoot = React.forwardRef(
           </ScrollArea>
           <div className="grid gap-4 px-4">
             <AddToPost
+              background={background}
               showImageUpload={showImageUpload}
               setShowImageUpload={setShowImageUpload}
             />

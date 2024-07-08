@@ -818,3 +818,21 @@
   background-repeat: no-repeat;
   display: inline-block;
 }
+.remove_icon {
+  background-image: url(./icons/icons43.png);
+  background-position: 0px -100px;
+  background-size: auto;
+  width: 24px;
+  height: 24px;
+  background-repeat: no-repeat;
+  display: inline-block;
+}
+.remove_icon_active {
+  background-image: url(./icons/icons43.png);
+  background-position: 0px -125px;
+  background-size: auto;
+  width: 24px;
+  height: 24px;
+  background-repeat: no-repeat;
+  display: inline-block;
+}
