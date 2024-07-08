@@ -8,24 +8,22 @@ import { Button } from "@/components/ui/button"
 import { DialogClose, DialogHeader, DialogTitle } from "@/components/ui/dialog"
 import { FormControl, FormField, FormItem } from "@/components/ui/form"
 import { ScrollArea } from "@/components/ui/scroll-area"
-import {
-  Tooltip,
-  TooltipContent,
-  TooltipTrigger,
-} from "@/components/ui/tooltip"
 import LoadingButton from "@/components/button/loading-button"
 
 import { UploadImages } from "../../upload-image"
 import { AddBackground } from "../add-background"
 import { AddToPost } from "../add-to-post"
 import { VIEWS } from "../create-post-form"
+import { EmojiPopover } from "../emoji-popover"
 
 export const PostRoot = React.forwardRef(
   ({ form, className, setView }, ref) => {
-    const [isSmallText, setIsSmallText] = React.useState(false)
     const [background, setBackground] = React.useState()
+    const [isSmallText, setIsSmallText] = React.useState(false)
     const [showImageUpload, setShowImageUpload] = React.useState(false)
+    const [cursorPosition, setCursorPosition] = React.useState()
 
+    const textRef = React.useRef(null)
     const boxTextRef = React.useRef(null)
     const audience = form.watch("audience")
 
@@ -46,6 +44,17 @@ export const PostRoot = React.forwardRef(
       boxTextRef.current.style.backgroundColor = data
     }
 
+    const handleEmojiClick = ({ emoji }) => {
+      const currentText = form.getValues("text")
+      const start = currentText.substring(0, cursorPosition)
+      const end = currentText.substring(cursorPosition)
+      form.setValue("text", start + emoji + end)
+    }
+
+    const handleClickTextarea = () => {
+      setCursorPosition(textRef.current.selectionEnd)
+    }
+
     React.useImperativeHandle(
       ref,
       () => {
@@ -61,7 +70,7 @@ export const PostRoot = React.forwardRef(
       <div className={className}>
         <DialogHeader className="relative h-[60px] items-center justify-center space-y-0 border-b border-border">
           <DialogTitle>Create post</DialogTitle>
-          <DialogClose>
+          <DialogClose asChild>
             <Button
               variant="secondary"
               className="absolute right-4 top-3 size-9 rounded-full text-muted-foreground"
@@ -125,6 +134,8 @@ export const PostRoot = React.forwardRef(
                   >
                     <FormControl>
                       <TextareaAutosize
+                        value={field.value}
+                        ref={textRef}
                         className={cn(
                           "w-full resize-none whitespace-pre-wrap break-words border-none bg-transparent text-2xl leading-[28px] outline-none placeholder:text-muted-foreground",
                           (isSmallText || showImageUpload) &&
@@ -143,7 +154,8 @@ export const PostRoot = React.forwardRef(
                               "transparent"
                           }
                         }}
-                        {...field}
+                        onChange={field.onChange}
+                        onClick={handleClickTextarea}
                       />
                     </FormControl>
                   </FormItem>
@@ -177,12 +189,10 @@ export const PostRoot = React.forwardRef(
                       onChangeBg={handleChangeBg}
                     />
                   )}
-                  <Tooltip>
-                    <TooltipTrigger asChild>
-                      <i className="emoji_icon_large ml-auto"></i>
-                    </TooltipTrigger>
-                    <TooltipContent>Emoji</TooltipContent>
-                  </Tooltip>
+                  <EmojiPopover
+                    onEmojiClick={handleEmojiClick}
+                    className="ml-auto"
+                  />
                 </div>
               )}
             </div>
