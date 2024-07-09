@@ -44,15 +44,17 @@ export const PostRoot = React.forwardRef(
       boxTextRef.current.style.backgroundColor = data
     }
 
-    const handleEmojiClick = ({ emoji }) => {
-      const currentText = form.getValues("text")
-      const start = currentText.substring(0, cursorPosition)
-      const end = currentText.substring(cursorPosition)
-      form.setValue("text", start + emoji + end)
+    const handleClickEmoji = ({ emoji }) => {
+      const text = form.getValues("text")
+      const start = text.substring(0, cursorPosition)
+      const end = text.substring(cursorPosition)
+      const newText = start + emoji + end
+      form.setValue("text", newText)
+      setCursorPosition(start.length + emoji.length)
     }
 
-    const handleClickTextarea = () => {
-      setCursorPosition(textRef.current.selectionEnd)
+    const handleClickTextArea = () => {
+      setCursorPosition(textRef.current.selectionStart)
     }
 
     React.useImperativeHandle(
@@ -119,6 +121,7 @@ export const PostRoot = React.forwardRef(
           <ScrollArea className="max-h-[calc(90vh-282px)]">
             <div
               ref={boxTextRef}
+              htmlFor=""
               className={cn(
                 "flex min-h-[155px] flex-col justify-between bg-cover bg-no-repeat px-4 pb-[2px]",
                 background && "h-[348px] pb-3",
@@ -130,12 +133,15 @@ export const PostRoot = React.forwardRef(
                 name="text"
                 render={({ field }) => (
                   <FormItem
-                    className={cn("pb-2 pr-5 pt-1", background && "my-auto")}
+                    className={cn(
+                      "relative space-y-0 pb-2 pr-5 pt-1",
+                      background && "my-auto"
+                    )}
                   >
                     <FormControl>
                       <TextareaAutosize
-                        value={field.value}
                         ref={textRef}
+                        value={field.value}
                         className={cn(
                           "w-full resize-none whitespace-pre-wrap break-words border-none bg-transparent text-2xl leading-[28px] outline-none placeholder:text-muted-foreground",
                           (isSmallText || showImageUpload) &&
@@ -155,9 +161,15 @@ export const PostRoot = React.forwardRef(
                           }
                         }}
                         onChange={field.onChange}
-                        onClick={handleClickTextarea}
+                        onClick={handleClickTextArea}
                       />
                     </FormControl>
+                    {showImageUpload && (
+                      <EmojiPopover
+                        onEmojiClick={handleClickEmoji}
+                        className="absolute bottom-2 -right-1 size-6"
+                      />
+                    )}
                   </FormItem>
                 )}
               />
@@ -190,7 +202,7 @@ export const PostRoot = React.forwardRef(
                     />
                   )}
                   <EmojiPopover
-                    onEmojiClick={handleEmojiClick}
+                    onEmojiClick={handleClickEmoji}
                     className="ml-auto"
                   />
                 </div>

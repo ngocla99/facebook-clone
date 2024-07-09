@@ -22,16 +22,15 @@ export const EmojiPopover = ({ onEmojiClick, className }) => {
           <TooltipContent>Emoji</TooltipContent>
         </PopoverTrigger>
       </Tooltip>
-      <PopoverContent className="w-auto overflow-auto p-0" side="top">
+      <PopoverContent className="w-auto overflow-auto p-0 shadow-2xl" side="top">
         <EmojiPicker
           skinTonesDisabled={true}
           searchDisabled={true}
           previewConfig={{ showPreview: false }}
           height={264}
-          width={324}
+          width={328}
           emojiStyle="facebook"
-          suggestedEmojisMode="none"
-          // className="[&_li:first-child]:hidden"
+          suggestedEmojisMode="recent"
           onEmojiClick={onEmojiClick}
         />
       </PopoverContent>

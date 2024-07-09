@@ -126,18 +126,23 @@
 }
 
 .EmojiPickerReact.epr-main {
-  @apply flex flex-col-reverse;
+  --epr-emoji-size: 30px;
+  --epr-horizontal-padding: 2px;
+  --epr-emoji-padding: 3px;
+  --epr-emoji-gap: 2px;
+  @apply flex flex-col-reverse border-none;
 }
 
 .EmojiPickerReact .epr-emoji-category-label {
   @apply h-auto pb-1 pl-[6px] pr-0 pt-2 text-[13px] text-muted-foreground;
 }
 
-.EmojiPickerReact .epr-header {
+.EmojiPickerReact .epr-header .epr-category-nav {
+  @apply border-border border-t py-[5px];
 }
 
-.EmojiPickerReact .epr-header .epr-category-nav {
-  @apply py-[5px];
+.EmojiPickerReact .epr-emoji-category-content {
+  @apply gap-x-1 gap-y-1;
 }
 
 .EmojiPickerReact .epr-body::-webkit-scrollbar-track {
