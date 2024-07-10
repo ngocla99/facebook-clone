@@ -167,7 +167,7 @@ export const PostRoot = React.forwardRef(
                     {showImageUpload && (
                       <EmojiPopover
                         onEmojiClick={handleClickEmoji}
-                        className="absolute bottom-2 -right-1 size-6"
+                        className="absolute -right-1 bottom-2 size-6"
                       />
                     )}
                   </FormItem>
@@ -211,6 +211,7 @@ export const PostRoot = React.forwardRef(
           </ScrollArea>
           <div className="grid gap-4 px-4">
             <AddToPost
+              setView={setView}
               background={background}
               showImageUpload={showImageUpload}
               setShowImageUpload={setShowImageUpload}

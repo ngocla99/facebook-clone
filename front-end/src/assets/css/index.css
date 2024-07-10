@@ -99,6 +99,11 @@
       hue-rotate(177deg) brightness(104%) contrast(91%);
   }
 
+  .filter-placeholder-icon {
+    filter: invert(59%) sepia(11%) saturate(200%) saturate(135%)
+      hue-rotate(176deg) brightness(96%) contrast(94%);
+  }
+
   .overlay-story {
     background: linear-gradient(
       180deg,
@@ -138,7 +143,7 @@
 }
 
 .EmojiPickerReact .epr-header .epr-category-nav {
-  @apply border-border border-t py-[5px];
+  @apply border-t border-border py-[5px];
 }
 
 .EmojiPickerReact .epr-emoji-category-content {

@@ -14,7 +14,13 @@ import { FriendsCustom } from "./views/post-audience/friends-custom"
 import { FriendsExcept } from "./views/post-audience/friends-except"
 import { FriendsSpecific } from "./views/post-audience/friends-specific"
 import { PostBackgound } from "./views/post-background"
+import { PostEvent } from "./views/post-event"
+import { PostFeeling } from "./views/post-feeling"
+import { PostGif } from "./views/post-gif"
+import { PostLocation } from "./views/post-location"
+import { PostMore } from "./views/post-more"
 import { PostRoot } from "./views/post-root"
+import { PostTag } from "./views/post-tag"
 
 export const VIEWS = {
   ROOT: "root",
@@ -26,6 +32,7 @@ export const VIEWS = {
   FEELING: "feeling",
   LOCATION: "location",
   GIF: "gif",
+  EVENTS: "events",
   MORE: "more",
   BACKGROUND: "background",
 }
@@ -63,12 +70,18 @@ export const CreatePostForm = () => {
           {view === VIEWS.FRIENDS_EXCEPT && <FriendsExcept />}
           {view === VIEWS.FRIENDS_SPECIFIC && <FriendsSpecific />}
           {view === VIEWS.FRIENDS_CUSTOM && <FriendsCustom />}
+          {view === VIEWS.FEELING && <PostFeeling />}
+          {view === VIEWS.LOCATION && <PostLocation />}
+          {view === VIEWS.GIF && <PostGif />}
+          {view === VIEWS.EVENTS && <PostEvent />}
+          {view === VIEWS.MORE && <PostMore />}
           {view === VIEWS.BACKGROUND && (
             <PostBackgound
               background={postRef.current.background}
               onChangeBg={postRef.current.changeBg}
             />
           )}
+          {view === VIEWS.TAG && <PostTag />}
         </ViewRoot>
       </form>
     </Form>

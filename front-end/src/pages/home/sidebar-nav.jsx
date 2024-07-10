@@ -1,5 +1,4 @@
 import React from "react"
-import { ArrowDown1, ArrowUp } from "@/assets/svg"
 import { Link } from "react-router-dom"
 
 import { siteConfig } from "@/config/site"
@@ -9,6 +8,7 @@ import { Button } from "@/components/ui/button"
 import { ScrollArea } from "@/components/ui/scroll-area"
 import { Separator } from "@/components/ui/separator"
 import { InfoFooter } from "@/components/layouts/info-footer"
+import { ArrowDown1, ArrowUp } from "@/assets/svg"
 
 export const SidebarNav = ({ className }) => {
   const [showMoreFeature, setShowMoreFeature] = React.useState(false)
@@ -30,7 +30,7 @@ export const SidebarNav = ({ className }) => {
           </LinkItem>
           {siteConfig.leftMenu.slice(0, 5).map((link, i) => (
             <LinkItem key={i}>
-              <img src={`/left/${link.img}.png`} alt={link.text} />
+              <img src={`icons/sidebar/${link.img}.png`} alt={link.text} />
               <p>{link.text}</p>
             </LinkItem>
           ))}
@@ -38,7 +38,7 @@ export const SidebarNav = ({ className }) => {
             <>
               {siteConfig.leftMenu.slice(5, 18).map((link, i) => (
                 <LinkItem key={i}>
-                  <img src={`/left/${link.img}.png`} alt={link.text} />
+                  <img src={`icons/sidebar/${link.img}.png`} alt={link.text} />
                   <p>{link.text}</p>
                 </LinkItem>
               ))}
@@ -89,7 +89,7 @@ export const SidebarNav = ({ className }) => {
   )
 }
 
-const LinkItem = ({ className, href, children, ...props }) => {
+export const LinkItem = ({ className, href, children, ...props }) => {
   const [left, right] = children
   return (
     <Button

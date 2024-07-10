@@ -11,7 +11,7 @@ export const AddToMobile = ({ className }) => {
     >
       <div className={cn("absolute", !addPhotoToMobile && "hidden")}>
         <img
-          src="gif/loading.gif"
+          src="images/gif/loading.gif"
           alt=""
           draggable="false"
           className="size-12"

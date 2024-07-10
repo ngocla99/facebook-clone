@@ -1,5 +1,3 @@
-import { Plus } from "@/assets/svg"
-
 import { cn } from "@/lib/utils"
 import { Card, CardContent } from "@/components/ui/card"
 import {
@@ -9,34 +7,35 @@ import {
   CarouselNext,
   CarouselPrevious,
 } from "@/components/ui/carousel"
+import { Plus } from "@/assets/svg"
 
 import { Story } from "./story"
 
 const DUMMY = [
   {
-    profilePicture: "stories/profile1.jpg",
+    profilePicture: "images/stories/profile1.jpg",
     profileName: "Elon Musk",
-    image: "stories/1.jpg",
+    image: "images/stories/1.jpg",
   },
   {
-    profilePicture: "stories/profile2.jpg",
+    profilePicture: "images/stories/profile2.jpg",
     profileName: "South park",
-    image: "stories/2.png",
+    image: "images/stories/2.png",
   },
   {
-    profilePicture: "stories/profile3.png",
+    profilePicture: "images/stories/profile3.png",
     profileName: "The Sopranos",
-    image: "stories/3.jpg",
+    image: "images/stories/3.jpg",
   },
   {
-    profilePicture: "stories/profile4.jfif",
+    profilePicture: "images/stories/profile4.jfif",
     profileName: "Football World",
-    image: "stories/4.jpg",
+    image: "images/stories/4.jpg",
   },
   {
-    profilePicture: "stories/profile5.png",
+    profilePicture: "images/stories/profile5.png",
     profileName: "The Witcher Wild Hunt",
-    image: "stories/5.jfif",
+    image: "images/stories/5.jfif",
   },
 ]
 

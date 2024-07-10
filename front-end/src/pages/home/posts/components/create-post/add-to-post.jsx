@@ -7,9 +7,12 @@ import {
 } from "@/components/ui/tooltip"
 import { Dots } from "@/assets/svg"
 
+import { VIEWS } from "./create-post-form"
+
 export const AddToPost = ({
   background,
   showImageUpload,
+  setView,
   setShowImageUpload,
 }) => {
   return (
@@ -36,7 +39,7 @@ export const AddToPost = ({
               className="size-9"
               variant="ghost"
               size="icon"
-              onClick={() => {}}
+              onClick={() => setView(VIEWS.TAG)}
             >
               <img
                 src="icons/tagFriend.png"
@@ -53,7 +56,7 @@ export const AddToPost = ({
               className="size-9"
               variant="ghost"
               size="icon"
-              onClick={() => {}}
+              onClick={() => setView(VIEWS.FEELING)}
             >
               <img src="icons/feeling.png" alt="Feeling" className="size-6" />
             </Button>
@@ -66,7 +69,7 @@ export const AddToPost = ({
               className="size-9"
               variant="ghost"
               size="icon"
-              onClick={() => {}}
+              onClick={() => setView(VIEWS.LOCATION)}
             >
               <img src="icons/map.png" alt="Map" className="size-6" />
             </Button>
@@ -80,7 +83,7 @@ export const AddToPost = ({
               variant="ghost"
               size="icon"
               disabled={showImageUpload || !!background}
-              onClick={() => {}}
+              onClick={() => setView(VIEWS.GIF)}
             >
               <img src="icons/gif.png" alt="Gif" className="size-6" />
             </Button>
@@ -93,7 +96,7 @@ export const AddToPost = ({
               className="size-9 text-muted-foreground"
               variant="ghost"
               size="icon"
-              onClick={() => {}}
+              onClick={() => setView(VIEWS.MORE)}
             >
               <Dots />
             </Button>

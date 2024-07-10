@@ -85,123 +85,123 @@ export const siteConfig = {
   allMenu: [
     {
       name: "Campus",
-      icon: "/left/campus.png",
+      icon: "icons/sidebar/campus.png",
       description:
         "A unique, exclusive space for college students on Facebook.",
     },
     {
       name: "Events",
-      icon: "/left/events.png",
+      icon: "icons/sidebar/events.png",
       description:
         "Organize or find events and other things to do online and nearby.",
     },
     {
       name: "Find Friends",
-      icon: "/left/friends.png",
+      icon: "icons/sidebar/friends.png",
       description: "Search for friends or people you may know.",
     },
     {
       name: "Groups",
-      icon: "/left/groups.png",
+      icon: "icons/sidebar/groups.png",
       description: "Connect with people who share your interests.",
     },
     {
       name: "News Feed",
-      icon: "/left/feed.png",
+      icon: "icons/sidebar/feed.png",
       description: "See relevant posts from people and Pages you follow.",
     },
     {
       name: "Pages",
-      icon: "/left/pages.png",
+      icon: "icons/sidebar/pages.png",
       description: "Discover and connect with businesses on Facebook.",
     },
     {
       name: "Gaming Video",
-      icon: "/left/gaming.png",
+      icon: "icons/sidebar/gaming.png",
       description: "Watch and connect with your favorite games and streamers.",
     },
     {
       name: "Play Games",
-      icon: "/left/play.png",
+      icon: "icons/sidebar/play.png",
       description: "Play your favorite games.",
     },
     {
       name: "Watch",
-      icon: "/left/watch.png",
+      icon: "icons/sidebar/watch.png",
       description:
         "A video destination personalized to your interests and connections.",
     },
     {
       name: "Facebook Pay",
-      icon: "/left/pay.png",
+      icon: "icons/sidebar/pay.png",
       description: "A seamless, secure way to pay on the apps you already use.",
     },
     {
       name: "Marketplace",
-      icon: "/left/marketplace.png",
+      icon: "icons/sidebar/marketplace.png",
       description: "Buy and sell in your community.",
     },
     {
       name: "Recent Ad Activity",
-      icon: "/left/recent.png",
+      icon: "icons/sidebar/recent.png",
       description: "See all the ads you interacted with on Facebook.",
     },
     {
       name: "Memories",
-      icon: "/left/memories.png",
+      icon: "icons/sidebar/memories.png",
       description: "Browse your old photos, videos and posts on Facebook.",
     },
     {
       name: "Saved",
-      icon: "/left/saved.png",
+      icon: "icons/sidebar/saved.png",
       description: "Find posts, photos and videos that you saved for later.",
     },
     {
       name: "Weather",
-      icon: "/left/weather.png",
+      icon: "icons/sidebar/weather.png",
       description:
         "Check your local forecast and sign up for daily weather notifications.",
     },
     {
       name: "Ads",
-      icon: "/left/ads.png",
+      icon: "icons/sidebar/ads.png",
       description: "Create, manage and track the performance of your ads.",
     },
     {
       name: "Jobs",
-      icon: "/left/jobs.png",
+      icon: "icons/sidebar/jobs.png",
       description: "Find a job that's right for you.",
     },
     {
       name: "Climate science center",
-      icon: "/left/climate.png",
+      icon: "icons/sidebar/climate.png",
       description: "Learn about climate change and its effects.",
     },
     {
       name: "COVID-19 Information Center",
-      icon: "/left/covid.png",
+      icon: "icons/sidebar/covid.png",
       description:
         "See the latest prevention tips, community resources and updates from health organizations.",
     },
     {
       name: "Community Help",
-      icon: "/left/community.png",
+      icon: "icons/sidebar/community.png",
       description:
         "Get involved in your community by creating a drive, requesting or offering help or volunteering.",
     },
     {
       name: "Fundraisers",
-      icon: "/left/fundraisers.png",
+      icon: "icons/sidebar/fundraisers.png",
       description: "Donate and raise money for nonprofits and personal causes.",
     },
     {
       name: "Messenger",
-      icon: "/left/messenger.png",
+      icon: "icons/sidebar/messenger.png",
       description: "Chat instantly with your friends and connections.",
     },
     {
       name: "Messenger Kids",
-      icon: "/left/messkids.png",
+      icon: "icons/sidebar/messkids.png",
       description: "Let kids message with close friends and family.",
     },
   ],

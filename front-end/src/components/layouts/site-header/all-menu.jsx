@@ -17,6 +17,8 @@ import { SearchInput } from "@/components/input/search-input"
 import { Menu } from "@/assets/svg"
 
 export const AllMenu = () => {
+  
+  console.log("🚀 ~ AllMenu ~ AllMenu:", siteConfig)
   return (
     <Popover>
       <Tooltip>
@@ -129,6 +131,7 @@ export const AllMenu = () => {
     </Popover>
   )
 }
+
 
 const MenuGroup = ({ title, srcName, items, ItemComponent }) => {
   return (
