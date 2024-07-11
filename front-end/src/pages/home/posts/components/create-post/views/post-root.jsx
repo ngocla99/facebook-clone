@@ -10,20 +10,20 @@ import { DialogClose, DialogHeader, DialogTitle } from "@/components/ui/dialog"
 import { FormControl, FormField, FormItem } from "@/components/ui/form"
 import { ScrollArea } from "@/components/ui/scroll-area"
 import LoadingButton from "@/components/button/loading-button"
+import { EmojiPopover } from "@/components/popover/emoji-popover"
 
 import { UploadImages } from "../../upload-image"
 import { AddBackground } from "../add-background"
 import { AddToPost } from "../add-to-post"
 import { VIEWS } from "../create-post-form"
-import { EmojiPopover } from "../emoji-popover"
 
 export const PostRoot = React.forwardRef(
-  ({ form, className, setView }, ref) => {
+  ({ form, className, setView, isShowUpload }, ref) => {
     const queryClient = useQueryClient()
     const { data: user } = queryClient.getQueryData(["me"])
     const [background, setBackground] = React.useState()
     const [isSmallText, setIsSmallText] = React.useState(false)
-    const [showImageUpload, setShowImageUpload] = React.useState(false)
+    const [showImageUpload, setShowImageUpload] = React.useState(isShowUpload)
     const [cursorPosition, setCursorPosition] = React.useState()
 
     const textRef = React.useRef(null)
@@ -176,7 +176,7 @@ export const PostRoot = React.forwardRef(
                     {showImageUpload && (
                       <EmojiPopover
                         onEmojiClick={handleClickEmoji}
-                        className="absolute -right-1 bottom-2 size-6"
+                        className="absolute -right-1 bottom-2 size-6 hover:bg-transparent active:bg-transparent"
                       />
                     )}
                   </FormItem>
@@ -212,7 +212,7 @@ export const PostRoot = React.forwardRef(
                   )}
                   <EmojiPopover
                     onEmojiClick={handleClickEmoji}
-                    className="ml-auto"
+                    className="ml-auto size-6 hover:bg-transparent active:bg-transparent"
                   />
                 </div>
               )}

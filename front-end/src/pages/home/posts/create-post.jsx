@@ -21,7 +21,7 @@ import { useCreatePostModal } from "./components/create-post/create-post-modal"
 export const CreatePost = () => {
   const queryClient = useQueryClient()
   const { data: user } = queryClient.getQueryData(["me"])
-  const { setShowCreatePostModal, CreatePostModal } = useCreatePostModal()
+  const { setCreatePostModal, CreatePostModal } = useCreatePostModal()
 
   return (
     <Card>
@@ -33,22 +33,32 @@ export const CreatePost = () => {
           </Avatar>
           <button
             className="min-h-10 flex-1 rounded-[20px] bg-background-comment px-3 py-2 text-left text-[17px] hover:bg-hover"
-            onClick={() => setShowCreatePostModal(true)}
+            onClick={() => setCreatePostModal({ open: true })}
           >
-            What's on your mind, Nemo?
+            What's on your mind, {user.first_name}?
           </button>
         </div>
         <Separator className="mb-2 mt-3" />
         <div className="grid grid-cols-3">
-          <Button variant="ghost" className="h-10 gap-2">
+          <Button variant="ghost" className="h-10 gap-2" disabled={true}>
             <LiveVideo className="text-[#f3425f]" />
             <p className="text-[15px] text-muted-foreground">Live video</p>
           </Button>
-          <Button variant="ghost" className="h-10 gap-2">
+          <Button
+            variant="ghost"
+            className="h-10 gap-2"
+            onClick={() => setCreatePostModal({ open: true, openBy: "photo" })}
+          >
             <Photo className="text-[#4bbf67]" />
             <p className="text-[15px] text-muted-foreground">Photo/video</p>
           </Button>
-          <Button variant="ghost" className="h-10 gap-2">
+          <Button
+            variant="ghost"
+            className="h-10 gap-2"
+            onClick={() =>
+              setCreatePostModal({ open: true, openBy: "feeling" })
+            }
+          >
             <Feeling className="text-[#f7b928]" />
             <p className="text-[15px] text-muted-foreground">
               Feeling/activity

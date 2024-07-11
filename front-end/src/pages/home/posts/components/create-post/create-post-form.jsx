@@ -40,10 +40,12 @@ export const VIEWS = {
   BACKGROUND: "background",
 }
 
-export const CreatePostForm = React.forwardRef(({ onClose }, ref) => {
+export const CreatePostForm = React.forwardRef(({ onClose, openBy }, ref) => {
   const queryClient = useQueryClient()
   const { data: user } = queryClient.getQueryData(["me"])
-  const [view, setView] = React.useState(VIEWS.ROOT)
+  const [view, setView] = React.useState(() => {
+    return openBy === "feeling" ? VIEWS.FEELING : VIEWS.ROOT
+  })
   const postRef = React.useRef(null)
 
   const form = useForm({
@@ -107,6 +109,7 @@ export const CreatePostForm = React.forwardRef(({ onClose }, ref) => {
           <PostRoot
             ref={postRef}
             form={form}
+            isShowUpload={openBy === "photo"}
             className={cn("hidden", view === VIEWS.ROOT && "block")}
           />
           {view === VIEWS.AUDIENCE && <PostAudience />}

@@ -23,7 +23,6 @@ export const LoginForm = () => {
   const navigate = useNavigate()
   const [errorRes, setErrorRes] = React.useState()
 
-  // react-hook-form
   const form = useForm({
     resolver: zodResolver(loginSchema),
     defaultValues: {
@@ -35,7 +34,6 @@ export const LoginForm = () => {
   const logInMutation = useMutation({
     mutationFn: logInApi,
     onSuccess: ({ data }) => {
-      console.log("🚀 ~ LoginForm ~ data:", data)
       setToken(data.token)
       navigate("/")
     },
@@ -52,10 +50,7 @@ export const LoginForm = () => {
 
   return (
     <Form {...form}>
-      <form
-        className="grid gap-3"
-        onSubmit={(...args) => void form.handleSubmit(onSubmit)(...args)}
-      >
+      <form className="grid gap-3" onSubmit={form.handleSubmit(onSubmit)}>
         {errorRes && (
           <div className="mt-3 overflow-hidden border border-[#dd3c10] bg-[#ffebe8] px-[3px] py-[7px] text-center">
             <p className="text-xs">{errorRes}</p>

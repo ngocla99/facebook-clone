@@ -396,74 +396,77 @@
   display: inline-block;
 }
 .like_icon {
-  background-image: url("./icons/icons5.png");
-  background-position: 0 -243px;
+  background-image: url("./icons/icons44.png");
+  background-position: 0px -718px;
   background-size: auto;
-  width: 18px;
-  height: 18px;
+  width: 20px;
+  height: 20px;
   background-repeat: no-repeat;
   display: inline-block;
   filter: invert(40%);
 }
 .comment_icon {
-  background-image: url("./icons/icons5.png");
-  background-position: 0 -205px;
+  background-image: url("./icons/icons44.png");
+  background-position: 0px -529px;
   background-size: auto;
-  width: 18px;
-  height: 18px;
+  width: 20px;
+  height: 20px;
   background-repeat: no-repeat;
   display: inline-block;
-  filter: invert(40%);
 }
 .share_icon {
-  background-image: url("./icons/icons5.png");
-  background-position: 0 -262px;
+  background-image: url("./icons/icons44.png");
+  background-position: 0px -865px;
   background-size: auto;
-  width: 18px;
-  height: 18px;
+  width: 20px;
+  height: 20px;
   background-repeat: no-repeat;
   display: inline-block;
-  filter: invert(40%);
+}
+.avatar_icon {
+  background-image: url("./icons/icons44.png");
+  background-position: 0px -1076px;
+  background-size: auto;
+  width: 16px;
+  height: 16px;
+  background-repeat: no-repeat;
+  display: inline-block;
 }
 .emoji_icon {
-  background-image: url("./icons/icons5.png");
-  background-position: 0px -434px;
+  background-image: url("./icons/icons44.png");
+  background-position: 0px -1178px;
   background-size: auto;
   width: 16px;
   height: 16px;
   background-repeat: no-repeat;
   display: inline-block;
-  filter: invert(40%);
 }
 .camera_icon {
-  background-image: url("./icons/icons5.png");
-  background-position: 0px -366px;
+  background-image: url("./icons/icons44.png");
+  background-position: 0px -1127px;
   background-size: auto;
   width: 16px;
   height: 16px;
   background-repeat: no-repeat;
   display: inline-block;
-  filter: invert(40%);
 }
 .gif_icon {
-  background-image: url("./icons/icons5.png");
-  background-position: 0px -451px;
+  background-image: url("./icons/icons44.png");
+  background-position: 0px -1212px;
   background-size: auto;
   width: 16px;
   height: 16px;
   background-repeat: no-repeat;
   display: inline-block;
-  filter: invert(40%);
 }
 .sticker_icon {
-  background-image: url("./icons/icons5.png");
-  background-position: 0px -468px;
+  background-image: url("./icons/icons44.png");
+  background-position: 0px -1331px;
   background-size: auto;
   width: 16px;
   height: 16px;
   background-repeat: no-repeat;
   display: inline-block;
-  filter: invert(40%);
 }
 .exit_icon {
   background-image: url("./icons/icons6.png");

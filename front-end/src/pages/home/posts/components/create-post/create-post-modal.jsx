@@ -4,41 +4,42 @@ import { Modal } from "@/components/ui/modal"
 
 import { CreatePostForm } from "./create-post-form"
 
-const CreatePostModalHelper = ({
-  showCreatePostModal,
-  setShowCreatePostModal,
-}) => {
+const CreatePostModalHelper = ({ createPostModal, setCreatePostModal }) => {
   const ref = React.useRef(null)
 
   return (
     <Modal
       className="w-auto p-0 sm:w-[500px]"
-      showModal={showCreatePostModal}
-      setShowModal={setShowCreatePostModal}
+      showModal={createPostModal.open}
+      setShowModal={(open) => setCreatePostModal({ open })}
       enableCloseBtn={false}
       onInteractOutside={(e) => {
         if (ref.current.isPosting) e.preventDefault()
       }}
     >
-      <CreatePostForm ref={ref} onClose={() => setShowCreatePostModal(false)} />
+      <CreatePostForm
+        ref={ref}
+        onClose={() => setCreatePostModal({ open: false })}
+        openBy={createPostModal.openBy}
+      />
     </Modal>
   )
 }
 
 export const useCreatePostModal = () => {
-  const [showCreatePostModal, setShowCreatePostModal] = React.useState(false)
+  const [createPostModal, setCreatePostModal] = React.useState(false)
 
   const CreatePostModal = useCallback(() => {
     return (
       <CreatePostModalHelper
-        showCreatePostModal={showCreatePostModal}
-        setShowCreatePostModal={setShowCreatePostModal}
+        createPostModal={createPostModal}
+        setCreatePostModal={setCreatePostModal}
       />
     )
-  }, [showCreatePostModal, setShowCreatePostModal])
+  }, [createPostModal, setCreatePostModal])
 
   return useMemo(
-    () => ({ showCreatePostModal, setShowCreatePostModal, CreatePostModal }),
-    [showCreatePostModal, setShowCreatePostModal, CreatePostModal]
+    () => ({ createPostModal, setCreatePostModal, CreatePostModal }),
+    [createPostModal, setCreatePostModal, CreatePostModal]
   )
 }

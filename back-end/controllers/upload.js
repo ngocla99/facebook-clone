@@ -1,7 +1,7 @@
 const cloudinary = require("cloudinary").v2;
 const fs = require("fs");
 const { removeTmp } = require("../middlewares/imageUpload");
-require('dotenv').config()
+require("dotenv").config();
 
 cloudinary.config({
   cloud_name: process.env.CLOUD_NAME,
@@ -53,6 +53,26 @@ exports.listImages = async (req, res) => {
       .execute()
       .then((result) => res.json(result))
       .catch((err) => console.log(err.error.message));
+  } catch (err) {
+    return res.status(500).json({ message: err.message });
+  }
+};
+
+exports.getImageInfo = async (req, res) => {
+  try {
+    const { url } = req.body;
+
+    cloudinary.uploader.explicit(
+      url,
+      { type: "fetch" },
+      function (error, result) {
+        if (error) {
+          throw error;
+        } else {
+          return res.json({ width: result.width, height: result.height });
+        }
+      }
+    );
   } catch (err) {
     return res.status(500).json({ message: err.message });
   }
