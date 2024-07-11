@@ -8,14 +8,19 @@ const CreatePostModalHelper = ({
   showCreatePostModal,
   setShowCreatePostModal,
 }) => {
+  const ref = React.useRef(null)
+
   return (
     <Modal
       className="w-auto p-0 sm:w-[500px]"
       showModal={showCreatePostModal}
       setShowModal={setShowCreatePostModal}
       enableCloseBtn={false}
+      onInteractOutside={(e) => {
+        if (ref.current.isPosting) e.preventDefault()
+      }}
     >
-      <CreatePostForm />
+      <CreatePostForm ref={ref} onClose={() => setShowCreatePostModal(false)} />
     </Modal>
   )
 }

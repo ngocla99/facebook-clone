@@ -23,3 +23,7 @@ export const validateResetCodeApi = ({ email, code }) => {
 export const changePasswordApi = (data) => {
   return axiosClient.post("/changePassword", data)
 }
+
+export const getMeApi = () => {
+  return axiosClient.get("/getMe")
+}

@@ -1,8 +1,9 @@
 import React from "react"
+import { useQueryClient } from "@tanstack/react-query"
 import { Link } from "react-router-dom"
 
 import { siteConfig } from "@/config/site"
-import { cn } from "@/lib/utils"
+import { cn, getInitialsName } from "@/lib/utils"
 import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar"
 import { Button } from "@/components/ui/button"
 import { ScrollArea } from "@/components/ui/scroll-area"
@@ -11,6 +12,8 @@ import { InfoFooter } from "@/components/layouts/info-footer"
 import { ArrowDown1, ArrowUp } from "@/assets/svg"
 
 export const SidebarNav = ({ className }) => {
+  const queryClient = useQueryClient()
+  const { data: user } = queryClient.getQueryData(["me"])
   const [showMoreFeature, setShowMoreFeature] = React.useState(false)
   const [showMoreShortcut, setShowMoreShortcut] = React.useState(false)
 
@@ -23,10 +26,10 @@ export const SidebarNav = ({ className }) => {
         <div className="mt-4 grid px-2">
           <LinkItem>
             <Avatar>
-              <AvatarImage src="https://github.com/shadcn.png" alt="@shadcn" />
-              <AvatarFallback>CN</AvatarFallback>
+              <AvatarImage src={user.picture} alt={user.username} />
+              <AvatarFallback>{getInitialsName(user)}</AvatarFallback>
             </Avatar>
-            <p>Nemo</p>
+            <p>{`${user.first_name} ${user.last_name}`}</p>
           </LinkItem>
           {siteConfig.leftMenu.slice(0, 5).map((link, i) => (
             <LinkItem key={i}>

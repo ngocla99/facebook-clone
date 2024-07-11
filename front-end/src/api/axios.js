@@ -9,9 +9,9 @@ const axiosClient = axios.create({
 // Add token (if existed) to request when reload
 axiosClient.interceptors.request.use(
   (config) => {
-    const auth = Cookies.get("auth") ? JSON.parse(Cookies.get("auth")) : null
-    if (auth?.token && !config.headers.Authorization) {
-      config.headers.Authorization = `Bearer ${auth.token}`
+    const token = Cookies.get("token") ? JSON.parse(Cookies.get("token")) : null
+    if (token && !config.headers.Authorization) {
+      config.headers.Authorization = `Bearer ${token}`
     }
     return config
   },
@@ -27,8 +27,8 @@ axiosClient.interceptors.response.use(
     // If the error status is 401 and there is no originalRequest._retry flag,
     // it means the token has expired and we need to refresh it
     if (error.response.status === 401 && !originalRequest._retry) {
-      localStorage.removeItem("token")
-      window.location.replace("/signin")
+      Cookies.set("token", "")
+      window.location.replace("/login")
     }
 
     return Promise.reject(error)

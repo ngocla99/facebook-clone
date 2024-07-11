@@ -10,6 +10,7 @@ const User = require("../models/User");
 const bcrypt = require("bcrypt");
 const { generateCode } = require("../helpers/generateCode");
 const Code = require("../models/Code");
+require("dotenv").config();
 
 exports.register = async (req, res) => {
   try {
@@ -32,7 +33,6 @@ exports.register = async (req, res) => {
     }
 
     const existedEmail = await User.findOne({ email });
-    console.log("🚀 ~ exports.register= ~ existedEmail:", existedEmail);
     if (existedEmail) {
       return res.status(400).json({
         message:
@@ -130,7 +130,7 @@ exports.activateAccount = async (req, res) => {
 exports.login = async (req, res) => {
   try {
     const { email, password } = req.body;
-    const user = await User.findOne({ email });
+    const user = await User.findOne({ email }).select("+password");
 
     if (!user) {
       return res.status(400).json({
@@ -269,6 +269,14 @@ exports.getProfile = async (req, res) => {
     const { username } = req.params;
     const user = await User.find({ username });
     res.json({ profile: user });
+  } catch (err) {
+    return res.status(500).json({ message: err.message });
+  }
+};
+
+exports.getMe = async (req, res) => {
+  try {
+    res.json({ ...req.user.toObject() });
   } catch (err) {
     return res.status(500).json({ message: err.message });
   }

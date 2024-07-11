@@ -1,5 +1,8 @@
 import React from "react"
+import { uploadImageApi } from "@/api/services/image"
+import { createPostApi } from "@/api/services/post"
 import { zodResolver } from "@hookform/resolvers/zod"
+import { useMutation, useQueryClient } from "@tanstack/react-query"
 import { useForm } from "react-hook-form"
 
 import { cn } from "@/lib/utils"
@@ -7,7 +10,7 @@ import { postSchema } from "@/lib/validations/post"
 import { Button } from "@/components/ui/button"
 import { DialogHeader, DialogTitle } from "@/components/ui/dialog"
 import { Form } from "@/components/ui/form"
-import { Return } from "@/assets/svg"
+import { Loading, Return } from "@/assets/svg"
 
 import { PostAudience } from "./views/post-audience"
 import { FriendsCustom } from "./views/post-audience/friends-custom"
@@ -37,7 +40,9 @@ export const VIEWS = {
   BACKGROUND: "background",
 }
 
-export const CreatePostForm = () => {
+export const CreatePostForm = React.forwardRef(({ onClose }, ref) => {
+  const queryClient = useQueryClient()
+  const { data: user } = queryClient.getQueryData(["me"])
   const [view, setView] = React.useState(VIEWS.ROOT)
   const postRef = React.useRef(null)
 
@@ -47,18 +52,56 @@ export const CreatePostForm = () => {
       text: "",
       audience: "EVERYONE",
       images: [],
+      background: null,
     },
   })
 
+  const createPostMutation = useMutation({
+    mutationFn: createPostApi,
+    onSuccess: () => {
+      onClose()
+      // Invalidates cache and refetch
+      queryClient.invalidateQueries("posts")
+    },
+  })
+
+  const uploadImageMutation = useMutation({
+    mutationFn: uploadImageApi,
+    onSuccess: ({ data }) => {
+      createPostMutation.mutate({ ...form.getValues(), images: data })
+      // Invalidates cache and refetch
+    },
+  })
+
+  React.useImperativeHandle(
+    ref,
+    () => ({
+      isPosting: uploadImageMutation.isPending || createPostMutation.isPending,
+    }),
+    [uploadImageMutation.isPending, createPostMutation.isPending]
+  )
+
   const onSubmit = (data) => {
-    console.log("🚀 ~ onSubmit ~ data:", data)
+    if (createPostMutation.isPending) return
+    if (data.images.length > 0) {
+      const path = `${user.username}/post_images`
+      const formData = new FormData()
+      formData.append("path", path)
+      data.images.forEach((image) => {
+        formData.append("files", image)
+      })
+      return uploadImageMutation.mutate(formData)
+    }
+    createPostMutation.mutate(data)
   }
 
   return (
     <Form {...form}>
       <form
         className="overflow-hidden"
-        onSubmit={(...args) => void form.handleSubmit(onSubmit)(...args)}
+        onSubmit={form.handleSubmit(onSubmit, (err) => {
+          console.log("🚀 ~ onSubmit={form.handleSubmit ~ err:", err)
+        })}
       >
         <ViewRoot setView={setView}>
           <PostRoot
@@ -83,10 +126,13 @@ export const CreatePostForm = () => {
           )}
           {view === VIEWS.TAG && <PostTag />}
         </ViewRoot>
+        {(createPostMutation.isPending || uploadImageMutation.isPending) && (
+          <LoadingPost />
+        )}
       </form>
     </Form>
   )
-}
+})
 
 const ViewRoot = ({ setView, children }) => {
   return (
@@ -114,5 +160,14 @@ export const HeadOnBack = ({ onBack, title }) => {
       </Button>
       <DialogTitle className="leading-9">{title}</DialogTitle>
     </DialogHeader>
+  )
+}
+
+const LoadingPost = () => {
+  return (
+    <div className="z-2 fixed inset-0 flex flex-col items-center justify-center gap-1 bg-[rgba(244,244,244,0.8)]">
+      <Loading />
+      <p className="text-xl font-normal">Posting</p>
+    </div>
   )
 }

@@ -1,6 +1,7 @@
 const cloudinary = require("cloudinary").v2;
 const fs = require("fs");
 const { removeTmp } = require("../middlewares/imageUpload");
+require('dotenv').config()
 
 cloudinary.config({
   cloud_name: process.env.CLOUD_NAME,

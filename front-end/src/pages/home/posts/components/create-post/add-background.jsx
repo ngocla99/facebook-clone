@@ -75,6 +75,7 @@ export const AddBackground = ({ background, onChangeBg, setView }) => {
           ))}
           {postBackgrounds.color.map((color) => (
             <div
+              key={color}
               className={cn(
                 `size-8 rounded-lg border-none`,
                 background === color && shadowClassName

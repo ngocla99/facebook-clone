@@ -1,3 +1,5 @@
+require('dotenv').config()
+
 exports.getGIFs = async (req, res) => {
   try {
     const { searchBy, limit = 10 } = req.query;

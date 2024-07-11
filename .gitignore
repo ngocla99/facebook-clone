@@ -23,3 +23,5 @@ back-end/config
 *.njsproj
 *.sln
 *.sw?
+
+.env

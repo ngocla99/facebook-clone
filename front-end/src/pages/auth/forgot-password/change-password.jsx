@@ -65,7 +65,7 @@ export const ChangePassword = ({ data, goBack, goNext }) => {
   }, [form.formState.errors?.password?.message])
 
   const onSubmit = ({ password }) => {
-    if (changePasswordMutation.isPending) return false
+    if (changePasswordMutation.isPending) return
     changePasswordMutation.mutate({ email: data.email, password })
   }
 

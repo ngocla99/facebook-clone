@@ -99,6 +99,11 @@
       hue-rotate(177deg) brightness(104%) contrast(91%);
   }
 
+  .filter-secondary-icon {
+    filter: invert(39%) sepia(21%) saturate(200%) saturate(109.5%)
+      hue-rotate(174deg) brightness(94%) contrast(86%);
+  }
+
   .filter-placeholder-icon {
     filter: invert(59%) sepia(11%) saturate(200%) saturate(135%)
       hue-rotate(176deg) brightness(96%) contrast(94%);

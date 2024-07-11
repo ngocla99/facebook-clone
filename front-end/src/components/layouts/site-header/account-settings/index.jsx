@@ -1,4 +1,6 @@
 import React from "react"
+import { getMeApi } from "@/api/services/auth"
+import { useQuery, useQueryClient } from "@tanstack/react-query"
 
 import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar"
 import {
@@ -70,6 +72,9 @@ const View = () => {
 }
 
 export const AccountSettings = () => {
+  const queryClient = useQueryClient()
+  const { data: user } = queryClient.getQueryData(["me"])
+
   return (
     <Popover>
       <Tooltip>
@@ -77,10 +82,7 @@ export const AccountSettings = () => {
           <div className="h-10 w-10">
             <TooltipTrigger>
               <Avatar>
-                <AvatarImage
-                  src="https://github.com/shadcn.png"
-                  alt="@shadcn"
-                />
+                <AvatarImage src={user.picture} alt="@shadcn" />
                 <AvatarFallback>CN</AvatarFallback>
               </Avatar>
             </TooltipTrigger>

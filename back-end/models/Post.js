@@ -36,6 +36,10 @@ const postSchema = mongoose.Schema(
     background: {
       type: String,
     },
+    audience: {
+      type: String,
+      enum: ["SELF", "EVERYONE", "FRIENDS"],
+    },
     user: {
       type: ObjectId,
       required: true,

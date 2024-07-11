@@ -1,4 +1,4 @@
-import { getGIFsApi } from "@/api/services/gif"
+import { getGIFsApi } from "@/api/services/image"
 import { useQuery } from "@tanstack/react-query"
 
 import { ScrollArea } from "@/components/ui/scroll-area"

@@ -1,3 +1,6 @@
+import { useQueryClient } from "@tanstack/react-query"
+
+import { getInitialsName } from "@/lib/utils"
 import { useAuth } from "@/providers/auth-provider"
 import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar"
 import { Button } from "@/components/ui/button"
@@ -9,6 +12,8 @@ import { InfoFooter } from "../../info-footer"
 import { SettingItem } from "./components"
 
 export const ViewBase = ({ setView }) => {
+  const queryClient = useQueryClient()
+  const { data: user } = queryClient.getQueryData(["me"])
   const { clearToken } = useAuth()
 
   return (
@@ -17,10 +22,10 @@ export const ViewBase = ({ setView }) => {
         <CardContent className="grid p-0">
           <div className="m-1 flex h-[60px] items-center gap-2 rounded-lg p-2 hover:bg-hover">
             <Avatar className="h-9 w-9">
-              <AvatarImage src="https://github.com/shadcn.png" alt="@shadcn" />
-              <AvatarFallback>CN</AvatarFallback>
+              <AvatarImage src={user.picture} alt={user.username} />
+              <AvatarFallback>{getInitialsName(user)}</AvatarFallback>
             </Avatar>
-            <p className="text-[17px] font-semibold">Lan Anh</p>
+            <p className="text-[17px] font-semibold">{`${user.first_name} ${user.last_name}`}</p>
           </div>
           <div className="mx-4">
             <Separator />

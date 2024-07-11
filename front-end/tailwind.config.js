@@ -112,6 +112,51 @@ module.exports = {
         xl: "1379px",
         "2xl": "1536px",
       },
+      keyframes: {
+        "spin-fb": {
+          "0%": {
+            transform: "rotate(-90deg)",
+          },
+          "25%": {
+            transform: "rotate(90deg)",
+          },
+          "50%": {
+            transform: "rotate(270deg)",
+          },
+          "75%": {
+            transform: "rotate(450deg)",
+          },
+          "100%": {
+            transform: "rotate(990deg)",
+          },
+        },
+        "spin-fb-circle": {
+          "0%": {
+            "stroke-dashoffset": "18.8px",
+            transform: "rotate(-90deg)",
+          },
+          "25%": {
+            "stroke-dashoffset": "84.4px",
+            transform: "rotate(162deg)",
+          },
+          "50%": {
+            "stroke-dashoffset": "42.4px",
+            transform: "rotate(72deg)",
+          },
+          "75%": {
+            "stroke-dashoffset": "84.8px",
+            transform: "rotate(162deg)",
+          },
+          "100%": {
+            "stroke-dashoffset": "18.8px",
+            transform: "rotate(-90deg)",
+          },
+        },
+      },
+      animation: {
+        "spin-fb": "spin-fb 2s cubic-bezier(0,0,1,1) infinite",
+        "spin-fb-circle": "spin-fb-circle 2s cubic-bezier(.33,0,.67,1) infinite",
+      },
     },
   },
   plugins: [

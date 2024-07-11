@@ -5,6 +5,6 @@ const { authUser } = require("../middlewares/auth");
 const router = express.Router();
 
 router.post("/createPost", authUser, postController.createPost);
-router.post("/createPost", authUser, postController.getAllPosts);
+router.get("/getAllPost", authUser, postController.getAllPosts);
 
 module.exports = router;

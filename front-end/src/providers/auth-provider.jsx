@@ -1,4 +1,4 @@
-import { createContext, useContext, useMemo, useReducer } from "react"
+import React, { createContext, useContext, useMemo, useReducer } from "react"
 import axiosClient from "@/api/axios"
 import Cookies from "js-cookie"
 
@@ -17,7 +17,7 @@ const authReducer = (state, action) => {
     case ACTIONS.setToken:
       // Set the authentication token in axios headers and local storage
       axiosClient.defaults.headers.common["Authorization"] =
-        "Bearer " + action.payload.token
+        "Bearer " + action.payload
       Cookies.set("token", JSON.stringify(action.payload))
 
       return {
@@ -48,8 +48,8 @@ const AuthProvider = ({ children }) => {
   // Use reducer to manage the authentication state
   const [state, dispatch] = useReducer(authReducer, initialData)
 
-  const setToken = (auth) => {
-    dispatch({ type: ACTIONS.setToken, payload: auth })
+  const setToken = (token) => {
+    dispatch({ type: ACTIONS.setToken, payload: token })
   }
 
   const clearToken = () => {

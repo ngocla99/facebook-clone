@@ -35,6 +35,7 @@ export const LoginForm = () => {
   const logInMutation = useMutation({
     mutationFn: logInApi,
     onSuccess: ({ data }) => {
+      console.log("🚀 ~ LoginForm ~ data:", data)
       setToken(data.token)
       navigate("/")
     },
@@ -45,7 +46,7 @@ export const LoginForm = () => {
   })
 
   const onSubmit = (data) => {
-    if (logInMutation.isLoading) return
+    if (logInMutation.isPending) return
     logInMutation.mutate(data)
   }
 

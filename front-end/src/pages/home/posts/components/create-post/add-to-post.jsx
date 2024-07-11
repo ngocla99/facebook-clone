@@ -17,7 +17,9 @@ export const AddToPost = ({
 }) => {
   return (
     <div className="flex items-center justify-between rounded-lg border border-separator p-2 shadow-[0_1px_2px_rgba(0,0,0,0.1)]">
-      <a className="cursor-pointer px-2">Add to your post</a>
+      <a className="cursor-pointer px-2" onClick={() => setView(VIEWS.MORE)}>
+        Add to your post
+      </a>
       <div className="flex h-10 items-center gap-1">
         <Tooltip>
           <TooltipTrigger asChild>

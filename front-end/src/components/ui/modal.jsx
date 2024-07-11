@@ -13,6 +13,7 @@ export function Modal({
   desktopOnly,
   preventDefaultClose,
   enableCloseBtn = true,
+  ...props
 }) {
   const navigate = useNavigation()
 
@@ -42,6 +43,7 @@ export function Modal({
             closeModal({ dragged: true })
           }
         }}
+        {...props}
       >
         <DrawerContent className={className}>{children}</DrawerContent>
       </Drawer>
@@ -62,6 +64,7 @@ export function Modal({
         onCloseAutoFocus={(e) => e.preventDefault()}
         className={className}
         enableCloseBtn={enableCloseBtn}
+        {...props}
       >
         {children}
       </DialogContent>

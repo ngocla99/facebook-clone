@@ -1,8 +1,9 @@
 import React from "react"
 import { Cross2Icon } from "@radix-ui/react-icons"
+import { useQueryClient } from "@tanstack/react-query"
 import TextareaAutosize from "react-textarea-autosize"
 
-import { cn } from "@/lib/utils"
+import { cn, getInitialsName } from "@/lib/utils"
 import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar"
 import { Button } from "@/components/ui/button"
 import { DialogClose, DialogHeader, DialogTitle } from "@/components/ui/dialog"
@@ -18,6 +19,8 @@ import { EmojiPopover } from "../emoji-popover"
 
 export const PostRoot = React.forwardRef(
   ({ form, className, setView }, ref) => {
+    const queryClient = useQueryClient()
+    const { data: user } = queryClient.getQueryData(["me"])
     const [background, setBackground] = React.useState()
     const [isSmallText, setIsSmallText] = React.useState(false)
     const [showImageUpload, setShowImageUpload] = React.useState(false)
@@ -32,16 +35,19 @@ export const PostRoot = React.forwardRef(
       if (!data) {
         boxTextRef.current.style.backgroundImage = "unset"
         boxTextRef.current.style.backgroundColor = "transparent"
+        form.setValue("background", null)
         return
       }
 
       if (data?.includes("url")) {
         boxTextRef.current.style.backgroundImage = data.replace(".", "xl.")
+        form.setValue("background", data.match(/\(([^)]+)\)/)[1])
         return
       }
 
       boxTextRef.current.style.backgroundImage = "unset"
       boxTextRef.current.style.backgroundColor = data
+      form.setValue("background", data)
     }
 
     const handleClickEmoji = ({ emoji }) => {
@@ -53,7 +59,7 @@ export const PostRoot = React.forwardRef(
       setCursorPosition(start.length + emoji.length)
     }
 
-    const handleClickTextArea = () => {
+    const handleChangeCursor = () => {
       setCursorPosition(textRef.current.selectionStart)
     }
 
@@ -86,11 +92,11 @@ export const PostRoot = React.forwardRef(
         <div className="grid gap-4 px-0 py-4">
           <div className="flex items-center justify-start gap-[11px] px-4">
             <Avatar>
-              <AvatarImage src="" alt="NM" />
-              <AvatarFallback>NM</AvatarFallback>
+              <AvatarImage src={user.picture} alt={user.username} />
+              <AvatarFallback>{getInitialsName(user)}</AvatarFallback>
             </Avatar>
             <div className="space-y-[2px] text-[15px] font-semibold">
-              <p>Lan anh</p>
+              <p>{`${user.first_name} ${user.last_name}`}</p>
               <Button
                 variant="secondary"
                 className="flex h-6 items-center gap-1 px-2 py-1 text-[13px]"
@@ -149,7 +155,7 @@ export const PostRoot = React.forwardRef(
                           background &&
                             "text-center text-3xl font-bold text-white"
                         )}
-                        placeholder={`What's on your mind, `}
+                        placeholder={`What's on your mind, ${user.first_name}?`}
                         onHeightChange={(height) => {
                           if (height <= 20) setIsSmallText(false)
                           if (height > 60) setIsSmallText(true)
@@ -160,8 +166,11 @@ export const PostRoot = React.forwardRef(
                               "transparent"
                           }
                         }}
-                        onChange={field.onChange}
-                        onClick={handleClickTextArea}
+                        onChange={(e) => {
+                          setCursorPosition(textRef.current.selectionStart)
+                          field.onChange(e)
+                        }}
+                        onClick={handleChangeCursor}
                       />
                     </FormControl>
                     {showImageUpload && (

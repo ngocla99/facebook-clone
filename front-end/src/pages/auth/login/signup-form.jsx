@@ -107,8 +107,7 @@ export const SignUpForm = ({ className }) => {
   }
 
   const onSubmit = (data) => {
-    console.log("🚀 ~ onSubmit ~ data:", data)
-    if (signUpMutation.isLoading) return
+    if (signUpMutation.isPending) return
     signUpMutation.mutate(data)
   }
 
