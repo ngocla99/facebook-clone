@@ -109,7 +109,7 @@ export const CommentForm = React.forwardRef(
       if (createCommentMutation.isPending || uploadImageMutation.isPending)
         return
       if (data.images.length > 0) {
-        const path = `${user.username}/post_images`
+        const path = `${user.username}/post_images/${postId}`
         const formData = new FormData()
         formData.append("path", path)
         data.images.forEach((image) => {
