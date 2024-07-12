@@ -2,24 +2,6 @@ const mongoose = require("mongoose");
 
 const { ObjectId } = mongoose.Schema;
 
-const CommentSchema = mongoose.Schema({
-  comment: {
-    type: String,
-  },
-  image: {
-    type: String,
-  },
-  commentBy: {
-    type: ObjectId,
-    required: true,
-    ref: "User",
-  },
-  commentAt: {
-    type: Date,
-    default: new Date(),
-  },
-});
-
 const postSchema = mongoose.Schema(
   {
     type: {
@@ -45,7 +27,7 @@ const postSchema = mongoose.Schema(
       required: true,
       ref: "User",
     },
-    comments: [CommentSchema],
+    comments: [{ type: ObjectId, required: true, ref: "Comment" }],
   },
   {
     timestamps: true,

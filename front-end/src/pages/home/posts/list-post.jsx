@@ -12,7 +12,6 @@ export const ListPost = ({ className }) => {
     queryFn: getAllPostApi,
     select: ({ data }) => data,
   })
-  console.log("🚀 ~ Post ~ select:", posts)
 
   return (
     <List

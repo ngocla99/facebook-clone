@@ -155,7 +155,7 @@ export const Post = ({ isDialog, post }) => {
           </div>
         </ScrollArea>
         <div className="border-t border-border px-4 py-5">
-          <CommentForm setIsUpload={setIsUpload} />
+          <CommentForm postId={post._id} setIsUpload={setIsUpload} />
         </div>
         <PostModal />
       </CardContent>

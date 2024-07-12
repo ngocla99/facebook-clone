@@ -71,7 +71,6 @@ export const CreatePostForm = React.forwardRef(({ onClose, openBy }, ref) => {
     mutationFn: uploadImageApi,
     onSuccess: ({ data }) => {
       createPostMutation.mutate({ ...form.getValues(), images: data })
-      // Invalidates cache and refetch
     },
   })
 

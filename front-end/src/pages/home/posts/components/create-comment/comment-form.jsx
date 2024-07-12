@@ -1,8 +1,10 @@
 import React from "react"
+import { createCommentApi } from "@/api/services/comment"
+import { uploadImageApi } from "@/api/services/image"
 import { useControllableState } from "@/hooks"
 import { zodResolver } from "@hookform/resolvers/zod"
 import { Cross2Icon } from "@radix-ui/react-icons"
-import { useQueryClient } from "@tanstack/react-query"
+import { useMutation, useQueryClient } from "@tanstack/react-query"
 import Dropzone from "react-dropzone"
 import { useForm } from "react-hook-form"
 import TextareaAutosize from "react-textarea-autosize"
@@ -26,7 +28,7 @@ import { AvatarStickerPopover } from "../../../../../components/popover/avatar-s
 import { PreImage } from "../upload-image/pre-image"
 
 export const CommentForm = React.forwardRef(
-  ({ setIsUpload, className }, ref) => {
+  ({ postId, setIsUpload, className }, ref) => {
     const queryClient = useQueryClient()
     const { data: user } = queryClient.getQueryData(["me"])
     const [cursorPosition, setCursorPosition] = React.useState()
@@ -36,7 +38,7 @@ export const CommentForm = React.forwardRef(
       resolver: zodResolver(commentSchema),
       defaultValues: {
         text: "",
-        images: "",
+        images: [],
       },
     })
 
@@ -45,6 +47,25 @@ export const CommentForm = React.forwardRef(
       onChange: (data) => {
         setIsUpload(true)
         form.setValue("images", data, { shouldDirty: true })
+      },
+    })
+
+    const createCommentMutation = useMutation({
+      mutationFn: createCommentApi,
+      onSuccess: ({ data }) => {
+        queryClient.invalidateQueries({ queryKey: ["posts"] })
+      },
+      onError: (err) => {},
+    })
+
+    const uploadImageMutation = useMutation({
+      mutationFn: uploadImageApi,
+      onSuccess: ({ data }) => {
+        createCommentMutation.mutate({
+          text: form.getValues("text"),
+          image: data[0].url,
+          post: postId,
+        })
       },
     })
 
@@ -84,8 +105,19 @@ export const CommentForm = React.forwardRef(
       setCursorPosition(textRef.current.selectionStart)
     }
 
-    const onSubmit = (data) => {
-      console.log("🚀 ~ onSubmit ~ data:", data)
+    const onSubmit = async (data) => {
+      if (createCommentMutation.isPending || uploadImageMutation.isPending)
+        return
+      if (data.images.length > 0) {
+        const path = `${user.username}/post_images`
+        const formData = new FormData()
+        formData.append("path", path)
+        data.images.forEach((image) => {
+          formData.append("files", image)
+        })
+        return uploadImageMutation.mutate(formData)
+      }
+      createCommentMutation.mutate({ text: data.text, post: postId })
     }
 
     return (
@@ -209,7 +241,7 @@ export const CommentForm = React.forwardRef(
                       <FormItem>
                         <FormControl>
                           <div className="mt-2 flex gap-2 py-2">
-                            <PreImage file={files[0]} className="h-20" />
+                            <PreImage file={field.value[0]} className="h-20" />
                             <Button
                               className="size-6"
                               variant="secondary"
