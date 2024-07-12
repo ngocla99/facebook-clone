@@ -573,14 +573,13 @@
   filter: invert(10%);
 }
 .upload_icon {
-  background-image: url(./icons/icons35.png);
-  background-position: 0px -126px;
+  background-image: url(./icons/icons44.png);
+  background-position: 0px -1348px;
   background-size: auto;
-  width: 20px;
-  height: 20px;
+  width: 16px;
+  height: 16px;
   background-repeat: no-repeat;
   display: inline-block;
-  filter: invert(10%);
 }
 .lifeEvent_icon {
   background-image: url(./icons/icons34.png);
@@ -845,6 +844,42 @@
   background-size: auto;
   width: 24px;
   height: 24px;
+  background-repeat: no-repeat;
+  display: inline-block;
+}
+.avatar_group_icon {
+  background-image: url(./images/avatars.png);
+  background-position: 0px 0px;
+  background-size: auto;
+  width: 360px;
+  height: 181px;
+  background-repeat: no-repeat;
+  display: inline-block;
+}
+.avatar_group_icon {
+  background-image: url(./images/avatars.png);
+  background-position: 0px 0px;
+  background-size: auto;
+  width: 360px;
+  height: 181px;
+  background-repeat: no-repeat;
+  display: inline-block;
+}
+.clock_icon {
+  background-image: url(./icons/icons45.png);
+  background-position: 0px -226px;
+  background-size: auto;
+  width: 20px;
+  height: 20px;
+  background-repeat: no-repeat;
+  display: inline-block;
+}
+.send_icon {
+  background-image: url(./icons/icons44.png);
+  background-position: 0px -1263px;
+  background-size: auto;
+  width: 16px;
+  height: 16px;
   background-repeat: no-repeat;
   display: inline-block;
 }

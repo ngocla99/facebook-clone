@@ -1,4 +1,3 @@
-import { ArrowTooltip } from "@/assets/svg"
 import { Link } from "react-router-dom"
 
 import { cn } from "@/lib/utils"
@@ -7,6 +6,7 @@ import {
   PopoverContent,
   PopoverTrigger,
 } from "@/components/ui/popover"
+import { ArrowTooltip } from "@/assets/svg"
 
 export const InfoFooter = ({ className }) => {
   return (

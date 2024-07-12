@@ -16,6 +16,8 @@ import { buttonVariants } from "../ui/button"
 
 export const EmojiPopover = ({
   size,
+  align = "center",
+  alignOffset,
   tooltipTitle = "Emoji",
   className,
   onEmojiClick,
@@ -23,12 +25,13 @@ export const EmojiPopover = ({
   return (
     <Popover modal={true}>
       <Tooltip>
-        <PopoverTrigger asChild>
-          <TooltipTrigger
-            className={cn(
-              buttonVariants({ variant: "ghost", size: "icon", className })
-            )}
-          >
+        <PopoverTrigger
+          className={cn(
+            "[&>i]:filter-secondary-icon aria-expanded:[&>i]:filter-accent",
+            buttonVariants({ variant: "ghost", size: "icon", className })
+          )}
+        >
+          <TooltipTrigger asChild>
             {size === "sm" ? (
               <i className="emoji_icon filter-secondary-icon"></i>
             ) : (
@@ -39,8 +42,11 @@ export const EmojiPopover = ({
         <TooltipContent>{tooltipTitle}</TooltipContent>
       </Tooltip>
       <PopoverContent
-        className="w-auto overflow-auto p-0 shadow-2xl"
+        className="w-auto p-0 shadow-2xl"
         side="top"
+        sideOffset={size === "sm" ? 8 : 16}
+        align={align}
+        alignOffset={alignOffset}
       >
         <EmojiPicker
           skinTonesDisabled={true}

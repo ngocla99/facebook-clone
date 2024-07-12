@@ -4,7 +4,7 @@ import {
   TooltipTrigger,
 } from "@/components/ui/tooltip"
 
-export const PostStats = () => {
+export const PostStats = ({ onComment }) => {
   return (
     <div className="grid grid-cols-[auto_1fr_auto] gap-3 py-[10px] text-[15px] leading-5 text-muted-foreground">
       <div className="flex items-center gap-1">
@@ -40,7 +40,7 @@ export const PostStats = () => {
       </div>
       <div className="flex justify-end">
         <Tooltip>
-          <TooltipTrigger className="text-right">
+          <TooltipTrigger className="text-right" onClick={onComment}>
             <p className="hover:underline hover:underline-offset-1">
               216 comments
             </p>

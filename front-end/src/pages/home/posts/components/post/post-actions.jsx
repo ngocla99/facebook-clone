@@ -1,3 +1,4 @@
+import { cn } from "@/lib/utils"
 import { Button } from "@/components/ui/button"
 import {
   Tooltip,
@@ -44,9 +45,14 @@ const reactIcons = [
   },
 ]
 
-export const PostActions = ({ onComment }) => {
+export const PostActions = ({ onComment, className }) => {
   return (
-    <div className="grid grid-cols-3 gap-1 border-b border-border py-1">
+    <div
+      className={cn(
+        "grid grid-cols-3 gap-1 border-b border-border py-1",
+        className
+      )}
+    >
       <Tooltip>
         <TooltipTrigger asChild>
           <Button className="h-8 gap-2" variant="ghost">

@@ -18,6 +18,7 @@ export const Post = ({ isDialog, post }) => {
   const { text, user, background, images, audience, createdAt } = post
   const { setShowPostModal, PostModal } = usePostModal({ post })
   const [isPortraitFirstImg, setIsPortraitFirstImg] = React.useState()
+  const [isUpload, setIsUpload] = React.useState(false)
 
   let styleBg = { background: "transparent" }
   if (background) {
@@ -31,7 +32,13 @@ export const Post = ({ isDialog, post }) => {
   return (
     <Card>
       <CardContent className="p-0">
-        <ScrollArea className={cn("h-auto", isDialog && "h-[711px]")}>
+        <ScrollArea
+          className={cn(
+            "h-auto",
+            isDialog && "h-[710px]",
+            isDialog && isUpload && "h-[606px]"
+          )}
+        >
           <div className="flex items-center gap-2 px-4 py-3">
             <Avatar>
               <AvatarImage src={user.picture} alt={user.username} />
@@ -133,14 +140,22 @@ export const Post = ({ isDialog, post }) => {
               </div>
             )}
           </div>
-          <div className="px-4 [&>div:last-child]:border-none [&>div]:border-b [&>div]:border-border">
-            <PostStats />
-            <PostActions onComment={() => setShowPostModal(true)} />
+          <div
+            className={cn(
+              "px-4 [&>div]:border-b [&>div]:border-border",
+              !isDialog && "[&>div:last-child]:border-none"
+            )}
+          >
+            <PostStats onComment={() => !isDialog && setShowPostModal(true)} />
+            <PostActions
+              onComment={() => !isDialog && setShowPostModal(true)}
+              className="mb-[5px]"
+            />
             <PostComments />
           </div>
         </ScrollArea>
-        <div className="border-t border-border px-4 pb-[17px] pt-3">
-          <CommentForm />
+        <div className="border-t border-border px-4 py-5">
+          <CommentForm setIsUpload={setIsUpload} />
         </div>
         <PostModal />
       </CardContent>

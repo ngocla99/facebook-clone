@@ -1,8 +1,6 @@
 import { ForgotPassword } from "@/pages/auth/forgot-password"
 import { PasswordChanged } from "@/pages/auth/forgot-password/password-changed"
 import Login from "@/pages/auth/login"
-import Logout from "@/pages/auth/logout"
-import Error from "@/pages/error"
 import Home from "@/pages/home"
 import Profile from "@/pages/profile"
 import { createBrowserRouter, RouterProvider } from "react-router-dom"
@@ -28,6 +26,7 @@ const Routes = () => {
     },
     {
       path: "*",
+      // TODO: page not found UI
       element: "Page not found!",
     },
   ]
@@ -41,6 +40,7 @@ const Routes = () => {
           <ProtectedRoute />
         </AppLayout>
       ),
+      errorElement: <ErrorBoundary />,
       children: [
         {
           path: "/",
@@ -75,11 +75,6 @@ const Routes = () => {
         {
           path: "/forgot-password",
           element: <ForgotPassword />,
-        },
-        {
-          path: "/error",
-          element: <Error />,
-          errorElement: <ErrorBoundary />,
         },
       ],
     },

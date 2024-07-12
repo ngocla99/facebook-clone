@@ -4,12 +4,11 @@ import { Button } from "@/components/ui/button"
 
 const ErrorBoundary = () => {
   const error = useRouteError()
-  console.log("🚀 ~ ErrorBoundary ~ error:", error)
 
   return (
-    <section>
-      <p>Something went wrong:</p>
-      <pre>{error?.message}</pre>
+    <section className="p-18 flex h-lvh flex-col items-center justify-center">
+      <h1 className="mb-6">Something went wrong 🧐</h1>
+      <pre className="mb-12">{error?.message}</pre>
       <Link
         to={"/"}
         className="bg-neutral-dark-blue text-neutral-white rounded-md p-2"

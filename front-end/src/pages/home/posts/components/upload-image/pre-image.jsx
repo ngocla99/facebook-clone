@@ -1,4 +1,6 @@
-export const PreImage = ({ file }) => {
+import { cn } from "@/lib/utils"
+
+export const PreImage = ({ file, className }) => {
   return (
     <>
       {isFileWithPreview(file) ? (
@@ -7,7 +9,7 @@ export const PreImage = ({ file }) => {
           src={file.preview}
           alt={file.name}
           draggable="false"
-          className="h-full w-full shrink-0 object-cover"
+          className={cn("h-full shrink-0 object-cover", className)}
         />
       ) : null}
     </>

@@ -2,6 +2,7 @@ import { getAllPostApi } from "@/api/services/post"
 import { useQuery } from "@tanstack/react-query"
 
 import { cn } from "@/lib/utils"
+import { List } from "@/components/list"
 
 import { Post } from "./components/post/post"
 
@@ -14,10 +15,11 @@ export const ListPost = ({ className }) => {
   console.log("🚀 ~ Post ~ select:", posts)
 
   return (
-    <div className={cn("grid gap-4", className)}>
-      {(posts ?? []).map((post, idx) => (
-        <Post key={idx} post={post} />
-      ))}
-    </div>
+    <List
+      className={cn("grid gap-4", className)}
+      items={posts ?? []}
+      propName="post"
+      Item={Post}
+    />
   )
 }

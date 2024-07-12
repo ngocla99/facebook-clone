@@ -5,13 +5,18 @@ import { cn } from "@/lib/utils"
 import { SiteHeader } from "@/components/layouts/site-header"
 
 export const AppLayout = ({ children }) => {
-  const { data: user } = useQuery({
+  const {
+    data: user,
+    isLoading,
+    isError,
+  } = useQuery({
     queryKey: ["me"],
     queryFn: getMeApi,
     select: ({ data }) => data,
   })
 
-  if (!user) return "Loading..."
+  // TODO: loading UI
+  if (isLoading) return "Loading..."
 
   return (
     <div className={cn("min-h-screen bg-background font-sans antialiased")}>
