@@ -94,6 +94,11 @@
       brightness(96%) contrast(101%);
   }
 
+  .filter-primary-accent {
+    filter: invert(27%) sepia(95%) saturate(3116%) hue-rotate(212deg)
+      brightness(99%) contrast(105%);
+  }
+
   .filter-primary-icon {
     filter: invert(8%) sepia(10%) saturate(200%) saturate(200%) saturate(166%)
       hue-rotate(177deg) brightness(104%) contrast(91%);

@@ -883,3 +883,12 @@
   background-repeat: no-repeat;
   display: inline-block;
 }
+.like_active_icon {
+  background-image: url(./icons/icons38.png);
+  background-position: 0px -637px;
+  background-size: auto;
+  width: 20px;
+  height: 20px;
+  background-repeat: no-repeat;
+  display: inline-block;
+}

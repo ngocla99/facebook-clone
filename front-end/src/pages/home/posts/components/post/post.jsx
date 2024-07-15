@@ -131,7 +131,7 @@ export const Post = ({ isDialog, post }) => {
                   alt="Post Photo"
                 />
                 {images.length > 5 && (
-                  <div className="bg-hover-media absolute inset-0 grid place-items-center">
+                  <div className="absolute inset-0 grid place-items-center bg-hover-media">
                     <p className="text-3xl font-bold text-white">
                       +{images.length - 5}
                     </p>
@@ -146,8 +146,12 @@ export const Post = ({ isDialog, post }) => {
               !isDialog && "[&>div:last-child]:border-none"
             )}
           >
-            <PostStats onComment={() => !isDialog && setShowPostModal(true)} />
+            <PostStats
+              postId={post._id}
+              onComment={() => !isDialog && setShowPostModal(true)}
+            />
             <PostActions
+              postId={post._id}
               onComment={() => !isDialog && setShowPostModal(true)}
               className="mb-[5px]"
             />
