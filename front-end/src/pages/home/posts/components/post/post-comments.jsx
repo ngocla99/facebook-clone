@@ -1,21 +1,20 @@
+import moment from "moment"
+
 import { cn, getInitialsName } from "@/lib/utils"
 import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar"
 import { Button } from "@/components/ui/button"
 import { List } from "@/components/list"
+import { TimeFromNow } from "@/components/TimeFromNow"
 import { Dots } from "@/assets/svg"
-import moment from "moment"
 
 export const PostComments = ({ comments, className }) => {
-  // console.log("🚀 ~ PostComments ~ comments:", comments)
   return (
-    <>
-      <List
-        className={cn("grid gap-1", className)}
-        items={comments}
-        Item={Comment}
-        propName="comment"
-      />
-    </>
+    <List
+      className={cn("grid gap-1", className)}
+      items={comments}
+      Item={Comment}
+      propName="comment"
+    />
   )
 }
 
@@ -55,7 +54,7 @@ const Comment = ({ comment }) => {
           />
         )}
         <div className="ml-3 flex gap-4 text-xs text-muted-foreground">
-          <p>{moment(updatedAt).fromNow()}</p>
+          <TimeFromNow type="short" time={updatedAt} />
           <button className="font-bold hover:underline hover:underline-offset-1">
             Like
           </button>

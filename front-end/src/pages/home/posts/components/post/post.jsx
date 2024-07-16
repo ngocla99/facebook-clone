@@ -13,7 +13,7 @@ import { PostActions } from "./post-actions"
 import { PostComments } from "./post-comments"
 import { PostStats } from "./post-stats"
 
-export const Post = ({ isDialog, onEdit, post }) => {
+export const Post = ({ isDialog, post }) => {
   const { text, user, background, images, audience, createdAt } = post
 
   const [isPortraitFirstImg, setIsPortraitFirstImg] = React.useState()
@@ -139,24 +139,25 @@ export const Post = ({ isDialog, onEdit, post }) => {
               </div>
             )}
           </div>
-          <div
-            className={cn("px-4 pb-2 [&>div]:border-b [&>div]:border-border")}
-          >
-            <PostStats postId={post._id} onComment={onEdit} />
+          <div className={cn("px-4 [&>div]:border-b [&>div]:border-border")}>
+            <PostStats postId={post._id} />
             <PostActions
               postId={post._id}
-              onComment={onEdit}
-              className="mb-[5px]"
+              className={cn(!isDialog && "border-none")}
             />
-            <PostComments
-              comments={post.comments}
-              className="mb-[5px] border-none"
-            />
+            {isDialog && (
+              <PostComments
+                comments={post.comments}
+                className="mt-[5px] pb-2 border-none"
+              />
+            )}
           </div>
         </ScrollArea>
-        <div className="border-t border-border px-4 py-5">
-          <CommentForm postId={post._id} setIsUpload={setIsUpload} />
-        </div>
+        {isDialog && (
+          <div className="border-t border-border px-4 py-5">
+            <CommentForm postId={post._id} setIsUpload={setIsUpload} />
+          </div>
+        )}
       </CardContent>
     </Card>
   )

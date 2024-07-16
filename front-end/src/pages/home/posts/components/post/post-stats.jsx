@@ -1,4 +1,5 @@
 import { getReactsApi } from "@/api/services/reaction"
+import { usePostModal } from "@/stores"
 import { useQuery } from "@tanstack/react-query"
 
 import { formatNumber } from "@/lib/utils"
@@ -8,7 +9,8 @@ import {
   TooltipTrigger,
 } from "@/components/ui/tooltip"
 
-export const PostStats = ({ postId, onComment }) => {
+export const PostStats = ({ postId }) => {
+  const postModal = usePostModal()
   const { data: reactions } = useQuery({
     queryKey: ["reacts", postId],
     queryFn: () => getReactsApi(postId),
@@ -30,7 +32,7 @@ export const PostStats = ({ postId, onComment }) => {
                   type={itm.reactType.toLowerCase()}
                   asChild
                 >
-                  <div className="rounded-full border-2 border-card">
+                  <div className="cursor-pointer rounded-full border-2 border-card">
                     <img
                       src={`icons/reacts/${itm.reactType.toLowerCase()}.svg`}
                       alt={itm.reactType}
@@ -53,7 +55,10 @@ export const PostStats = ({ postId, onComment }) => {
       </div>
       <div className="flex justify-end">
         <Tooltip>
-          <TooltipTrigger className="text-right" onClick={onComment}>
+          <TooltipTrigger
+            className="text-right"
+            onClick={() => postModal.onOpen(postId)}
+          >
             <p className="hover:underline hover:underline-offset-1">
               216 comments
             </p>
@@ -76,23 +81,23 @@ const ReactionText = ({ reactions }) => {
 
   if (!reactions?.ownReaction?.userId) {
     return (
-      <button className="hover:underline hover:underline-offset-1">
+      <p className="hover:underline hover:underline-offset-1">
         {formatNumber(reactions?.total)}
-      </button>
+      </p>
     )
   }
 
   if (reactions.total > 1)
     return (
-      <button className="hover:underline hover:underline-offset-1">
+      <p className="hover:underline hover:underline-offset-1">
         You and {formatNumber(reactions.total - 1)}{" "}
         {reactions.total === 2 ? "other" : "others"}
-      </button>
+      </p>
     )
   return (
-    <button className="hover:underline hover:underline-offset-1">
+    <p className="hover:underline hover:underline-offset-1">
       {reactions.ownReaction.firstName + " " + reactions.ownReaction.lastName}
-    </button>
+    </p>
   )
 }
 
@@ -108,8 +113,8 @@ const ReactTextTooltip = ({ users, count, type, children, asChild }) => {
             {type}
           </p>
         )}
-        {users.slice(0, 19).map((user) => (
-          <p key={user.userId}>{user.firstName + " " + user.lastName}</p>
+        {users.slice(0, 19).map((user, idx) => (
+          <p key={idx}>{user.firstName + " " + user.lastName}</p>
         ))}
         {count > 20 && (
           <p>

@@ -1,11 +1,14 @@
 import { getReactsApi, reactPostApi } from "@/api/services/reaction"
+import { usePostModal } from "@/stores"
 import { useMutation, useQuery, useQueryClient } from "@tanstack/react-query"
 
 import { cn } from "@/lib/utils"
 import { Button } from "@/components/ui/button"
+import { Popover, PopoverContent } from "@/components/ui/popover"
 import {
   Tooltip,
   TooltipContent,
+  TooltipProvider,
   TooltipTrigger,
 } from "@/components/ui/tooltip"
 
@@ -54,8 +57,9 @@ const reactIcons = [
   },
 ]
 
-export const PostActions = ({ postId, onComment, className }) => {
+export const PostActions = ({ postId, className }) => {
   const queryClient = useQueryClient()
+  const postModal = usePostModal()
 
   const { data: reactions } = useQuery({
     queryKey: ["reacts", postId],
@@ -89,29 +93,35 @@ export const PostActions = ({ postId, onComment, className }) => {
         className
       )}
     >
-      <Tooltip>
-        <TooltipTrigger asChild>
-          <Button
-            className="h-8 gap-2"
-            variant="ghost"
-            onClick={handleToggleReact}
-          >
-            <ReactionText type={reactions?.ownReaction?.reactType} />
-          </Button>
-        </TooltipTrigger>
-        <TooltipContent className="flex gap-2 rounded-[40px] bg-card py-[5px] shadow-md">
-          {reactIcons.map((itm) => (
-            <img
-              key={itm.key}
-              src={itm.gif}
-              alt={itm.title}
-              className="size-[39px] cursor-pointer"
-              onClick={() => handleReactPost(itm.value)}
-            />
-          ))}
-        </TooltipContent>
-      </Tooltip>
-      <Button className="h-8 gap-2" variant="ghost" onClick={onComment}>
+      <TooltipProvider>
+        <Tooltip>
+          <TooltipTrigger asChild>
+            <Button
+              className="h-8 gap-2"
+              variant="ghost"
+              onClick={handleToggleReact}
+            >
+              <ReactionText type={reactions?.ownReaction?.reactType} />
+            </Button>
+          </TooltipTrigger>
+          <TooltipContent className="flex gap-2 rounded-[40px] bg-card py-[5px] shadow-md">
+            {reactIcons.map((itm) => (
+              <img
+                key={itm.key}
+                src={itm.gif}
+                alt={itm.title}
+                className="size-[39px] cursor-pointer"
+                onClick={() => handleReactPost(itm.value)}
+              />
+            ))}
+          </TooltipContent>
+        </Tooltip>
+      </TooltipProvider>
+      <Button
+        className="h-8 gap-2"
+        variant="ghost"
+        onClick={() => postModal.onOpen(postId)}
+      >
         <i className="comment_icon filter-secondary-icon"></i>
         <p className="text-[15px] text-muted-foreground">Comment</p>
       </Button>

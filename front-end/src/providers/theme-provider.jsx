@@ -47,7 +47,9 @@ export function ThemeProvider({
 
   return (
     <ThemeProviderContext.Provider {...props} value={value}>
-      <TooltipProvider>{children}</TooltipProvider>
+      <TooltipProvider disableHoverableContent={true}>
+        {children}
+      </TooltipProvider>
     </ThemeProviderContext.Provider>
   )
 }
