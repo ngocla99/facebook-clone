@@ -108,6 +108,7 @@ export const CommentForm = React.forwardRef(
     const onSubmit = async (data) => {
       if (createCommentMutation.isPending || uploadImageMutation.isPending)
         return
+      form.reset()
       if (data.images.length > 0) {
         const path = `${user.username}/post_images/${postId}`
         const formData = new FormData()

@@ -1,11 +1,13 @@
 import React, { useCallback, useMemo } from "react"
+import { getPostApi } from "@/api/services/post"
+import { useMutation, useQuery } from "@tanstack/react-query"
 
 import { DialogHeader, DialogTitle } from "@/components/ui/dialog"
 import { Modal } from "@/components/ui/modal"
 
 import { Post } from "./post"
 
-const PostModalHelper = ({ showPostModal, setShowPostModal, props }) => {
+const PostModalHelper = ({ showPostModal, setShowPostModal, post }) => {
   return (
     <Modal
       className="w-auto p-0 sm:min-w-[700px]"
@@ -14,10 +16,10 @@ const PostModalHelper = ({ showPostModal, setShowPostModal, props }) => {
     >
       <DialogHeader className="flex h-[60px] items-center justify-center border-b border-border">
         <DialogTitle className="text-xl font-bold">
-          {props.post.user.first_name}'s Post
+          {post.user.first_name}'s Post
         </DialogTitle>
       </DialogHeader>
-      <Post post={props.post} isDialog />
+      <Post post={post} isDialog />
     </Modal>
   )
 }
@@ -25,15 +27,26 @@ const PostModalHelper = ({ showPostModal, setShowPostModal, props }) => {
 export const usePostModal = (props) => {
   const [showPostModal, setShowPostModal] = React.useState(false)
 
+  const { data: post } = useQuery({
+    queryKey: ["posts", props?.id],
+    queryFn: () => getPostApi(props?.id),
+    select: ({ data }) => data,
+    enabled: showPostModal,
+    placeholderData: (previousData) => previousData,
+  })
+
+  console.log("🚀 ~ usePostModal ~ post:", post)
   const PostModal = useCallback(() => {
+    if (!post) return null
+
     return (
       <PostModalHelper
         showPostModal={showPostModal}
         setShowPostModal={setShowPostModal}
-        props={props}
+        post={post}
       />
     )
-  }, [showPostModal, setShowPostModal])
+  }, [post, showPostModal, setShowPostModal])
 
   return useMemo(
     () => ({ showPostModal, setShowPostModal, PostModal }),

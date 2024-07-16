@@ -1,6 +1,5 @@
+import { useQueryClient } from "@tanstack/react-query"
 import React from "react"
-import { getMeApi } from "@/api/services/auth"
-import { useQuery, useQueryClient } from "@tanstack/react-query"
 
 import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar"
 import {
@@ -14,6 +13,7 @@ import {
   TooltipTrigger,
 } from "@/components/ui/tooltip"
 
+import { getInitialsName } from '@/lib/utils'
 import { ViewBase } from "./view-base"
 import { ViewDisplay } from "./view-display"
 import { ViewFbLanguage } from "./view-fb-language"
@@ -82,8 +82,8 @@ export const AccountSettings = () => {
           <div className="h-10 w-10">
             <TooltipTrigger>
               <Avatar>
-                <AvatarImage src={user.picture} alt="@shadcn" />
-                <AvatarFallback>CN</AvatarFallback>
+              <AvatarImage src={user.picture} alt={user.username} />
+              <AvatarFallback>{getInitialsName(user)}</AvatarFallback>
               </Avatar>
             </TooltipTrigger>
             <TooltipContent sideOffset={9}>Account</TooltipContent>

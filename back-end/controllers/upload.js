@@ -27,19 +27,15 @@ exports.uploadImages = async (req, res) => {
 
 const uploadToCloudinary = async (file, path) => {
   return new Promise((resolve) => {
-    cloudinary.uploader.upload(
-      file.tempFilePath,
-      { folder: path },
-      (err, res) => {
-        if (err) {
-          removeTmp(file.tempFilePath);
-          return res.status(400).json({ message: "Upload image failed." });
-        }
-        resolve({
-          url: res.secure_url,
-        });
+    cloudinary.uploader.upload(file.tempFilePath, { folder: path }, (err, res) => {
+      if (err) {
+        removeTmp(file.tempFilePath);
+        return res.status(400).json({ message: "Upload image failed." });
       }
-    );
+      resolve({
+        url: res.secure_url,
+      });
+    });
   });
 };
 
@@ -62,17 +58,13 @@ exports.getImageInfo = async (req, res) => {
   try {
     const { url } = req.body;
 
-    cloudinary.uploader.explicit(
-      url,
-      { type: "fetch" },
-      function (error, result) {
-        if (error) {
-          throw error;
-        } else {
-          return res.json({ width: result.width, height: result.height });
-        }
+    cloudinary.uploader.explicit(url, { type: "fetch" }, function (error, result) {
+      if (error) {
+        throw error;
+      } else {
+        return res.json({ width: result.width, height: result.height });
       }
-    );
+    });
   } catch (err) {
     return res.status(500).json({ message: err.message });
   }

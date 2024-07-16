@@ -11,12 +11,11 @@ import { Dots } from "@/assets/svg"
 import { CommentForm } from "../create-comment/comment-form"
 import { PostActions } from "./post-actions"
 import { PostComments } from "./post-comments"
-import { usePostModal } from "./post-modal"
 import { PostStats } from "./post-stats"
 
-export const Post = ({ isDialog, post }) => {
+export const Post = ({ isDialog, onEdit, post }) => {
   const { text, user, background, images, audience, createdAt } = post
-  const { setShowPostModal, PostModal } = usePostModal({ post })
+
   const [isPortraitFirstImg, setIsPortraitFirstImg] = React.useState()
   const [isUpload, setIsUpload] = React.useState(false)
 
@@ -35,8 +34,8 @@ export const Post = ({ isDialog, post }) => {
         <ScrollArea
           className={cn(
             "h-auto",
-            isDialog && "h-[710px]",
-            isDialog && isUpload && "h-[606px]"
+            isDialog && "h-[70vh]",
+            isDialog && isUpload && "h-[60vh]"
           )}
         >
           <div className="flex items-center gap-2 px-4 py-3">
@@ -141,27 +140,23 @@ export const Post = ({ isDialog, post }) => {
             )}
           </div>
           <div
-            className={cn(
-              "px-4 [&>div]:border-b [&>div]:border-border",
-              !isDialog && "[&>div:last-child]:border-none"
-            )}
+            className={cn("px-4 pb-2 [&>div]:border-b [&>div]:border-border")}
           >
-            <PostStats
-              postId={post._id}
-              onComment={() => !isDialog && setShowPostModal(true)}
-            />
+            <PostStats postId={post._id} onComment={onEdit} />
             <PostActions
               postId={post._id}
-              onComment={() => !isDialog && setShowPostModal(true)}
+              onComment={onEdit}
               className="mb-[5px]"
             />
-            <PostComments />
+            <PostComments
+              comments={post.comments}
+              className="mb-[5px] border-none"
+            />
           </div>
         </ScrollArea>
         <div className="border-t border-border px-4 py-5">
           <CommentForm postId={post._id} setIsUpload={setIsUpload} />
         </div>
-        <PostModal />
       </CardContent>
     </Card>
   )
