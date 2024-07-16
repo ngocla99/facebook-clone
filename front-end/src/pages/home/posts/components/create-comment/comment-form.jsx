@@ -121,6 +121,13 @@ export const CommentForm = React.forwardRef(
       createCommentMutation.mutate({ text: data.text, post: postId })
     }
 
+    const handleKeyDown = (e) => {
+      if (e.key === "Enter" && !e.shiftKey) {
+        e.preventDefault()
+        form.handleSubmit(onSubmit)()
+      }
+    }
+
     return (
       <Form {...form}>
         <form className="flex gap-2" onSubmit={form.handleSubmit(onSubmit)}>
@@ -160,6 +167,7 @@ export const CommentForm = React.forwardRef(
                               field.onChange(e)
                             }}
                             onClick={handleChangeCursor}
+                            onKeyDown={handleKeyDown}
                           />
                         </FormControl>
                       </FormItem>
