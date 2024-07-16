@@ -1,9 +1,7 @@
 const Reaction = require("../models/Reaction");
 const { ObjectId } = require("mongodb");
-const mongoose = require("mongoose");
 
 exports.getReactions = async ({ postId, userId }) => {
-  console.log("🚀 ~ exports.getReactions= ~ userId:", userId);
   const result = await Reaction.aggregate([
     { $match: { post: new ObjectId(postId) } },
     {

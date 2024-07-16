@@ -3,6 +3,7 @@ import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar"
 import { Button } from "@/components/ui/button"
 import { List } from "@/components/list"
 import { Dots } from "@/assets/svg"
+import moment from "moment"
 
 export const PostComments = ({ comments, className }) => {
   // console.log("🚀 ~ PostComments ~ comments:", comments)
@@ -54,7 +55,7 @@ const Comment = ({ comment }) => {
           />
         )}
         <div className="ml-3 flex gap-4 text-xs text-muted-foreground">
-          <p>33m</p>
+          <p>{moment(updatedAt).fromNow()}</p>
           <button className="font-bold hover:underline hover:underline-offset-1">
             Like
           </button>

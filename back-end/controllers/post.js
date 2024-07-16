@@ -17,6 +17,9 @@ exports.getAllPost = async (req, res) => {
       .populate("user", "first_name last_name username picture gender")
       .populate({
         path: "comments",
+        options: {
+          sort: { updatedAt: -1 },
+        },
         populate: {
           path: "commentBy",
           model: "User",
@@ -32,11 +35,13 @@ exports.getAllPost = async (req, res) => {
 
 exports.getPost = async (req, res) => {
   try {
-    console.log("🚀 ~ exports.getPost= ~ req.query.id:", req.params);
     const post = await Post.findById(req.params.id)
       .populate("user", "first_name last_name username picture gender")
       .populate({
         path: "comments",
+        options: {
+          sort: { updatedAt: -1 },
+        },
         populate: {
           path: "commentBy",
           model: "User",
@@ -44,6 +49,7 @@ exports.getPost = async (req, res) => {
         },
       })
       .sort([["createdAt", -1]]);
+
     return res.json(post);
   } catch (err) {
     return res.status(500).json({ message: err.message });
