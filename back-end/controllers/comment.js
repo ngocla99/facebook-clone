@@ -1,5 +1,6 @@
 const Comment = require("../models/Comment");
 const Post = require("../models/Post");
+const { ObjectId } = require("mongodb");
 
 exports.createComment = async (req, res) => {
   try {
@@ -38,7 +39,9 @@ exports.updateComment = async (req, res) => {
 
 exports.deleteComment = async (req, res) => {
   try {
-    await Comment.findByIdAndDelete(req.params.id);
+    await Comment.deleteOne({
+      _id: new ObjectId(req.params.id),
+    });
 
     return res.json({ message: "ok" });
   } catch (err) {
