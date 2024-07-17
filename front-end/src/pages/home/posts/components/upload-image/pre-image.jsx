@@ -9,7 +9,7 @@ export const PreImage = ({ file, className }) => {
           src={file.preview}
           alt={file.name}
           draggable="false"
-          className={cn("h-full shrink-0 object-cover", className)}
+          className={cn("h-full w-full shrink-0 object-cover", className)}
         />
       ) : null}
     </>

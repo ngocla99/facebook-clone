@@ -11,7 +11,7 @@ const CreatePostModalHelper = ({ createPostModal, setCreatePostModal }) => {
     <Modal
       className="w-auto p-0 sm:w-[500px]"
       showModal={createPostModal.open}
-      setShowModal={(open) => setCreatePostModal({ open })}
+      onClose={() => setCreatePostModal({ open: false })}
       enableCloseBtn={false}
       onInteractOutside={(e) => {
         if (ref.current.isPosting) e.preventDefault()

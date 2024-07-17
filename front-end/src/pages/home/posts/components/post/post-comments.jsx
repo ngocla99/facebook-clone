@@ -1,13 +1,16 @@
+import { deleteCommentApi } from "@/api/services/comment"
 import { useCommentState } from "@/stores/use-comment-state"
-import { useQueryClient } from "@tanstack/react-query"
-import moment from "moment"
+import { useMutation, useQueryClient } from "@tanstack/react-query"
 
 import { cn, getInitialsName } from "@/lib/utils"
 import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar"
 import { Button } from "@/components/ui/button"
+import { alert } from "@/components/alert"
 import { List } from "@/components/list"
-import { TimeFromNow } from "@/components/TimeFromNow"
+import { TimeFromNow } from "@/components/time-from-now"
 import { Dots } from "@/assets/svg"
+
+import { CommentActions } from "./comment-actions"
 
 export const PostComments = ({ comments, className }) => {
   return (
@@ -21,7 +24,29 @@ export const PostComments = ({ comments, className }) => {
 }
 
 const Comment = ({ comment }) => {
-  const { commentBy, image, text, updatedAt } = comment
+  const { _id, commentBy, image, text, updatedAt } = comment
+
+  const queryClient = useQueryClient()
+
+  const deleteCommentMutation = useMutation({
+    mutationFn: deleteCommentApi,
+    onSuccess: () => {
+      queryClient.invalidateQueries({ queryKey: ["posts"] })
+    },
+  })
+
+  const handleDeleteComment = () => {
+    if (deleteCommentMutation.isPending) return
+    deleteCommentMutation.mutate(_id)
+  }
+
+  const handleEditComment = () => {
+    // alert({
+    //   title: "Delete Comment?",
+    //   subtitle: "Are you sure you want to delete this comment?",
+    // })
+    console.log("🚀 ~ handleEditComment ~ handleEditComment:", "")
+  }
 
   return (
     <div className="group flex gap-2">
@@ -40,13 +65,10 @@ const Comment = ({ comment }) => {
             </p>
             <p className="text-[15px] leading-5">{text}</p>
           </div>
-          <Button
-            className="hidden size-8 self-center text-muted-foreground group-hover:flex"
-            variant="ghost"
-            size="icon"
-          >
-            <Dots className="size-4" />
-          </Button>
+          <CommentActions
+            onDelete={handleDeleteComment}
+            onEdit={handleEditComment}
+          />
         </div>
         {image && (
           <img
