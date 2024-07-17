@@ -1,5 +1,5 @@
 import React from "react"
-import { createCommentApi } from "@/api/services/comment"
+import { createCommentApi, updateCommentApi } from "@/api/services/comment"
 import { uploadImageApi } from "@/api/services/image"
 import { useControllableState } from "@/hooks"
 import { useCommentState } from "@/stores/use-comment-state"
@@ -10,9 +10,8 @@ import Dropzone from "react-dropzone"
 import { useForm } from "react-hook-form"
 import TextareaAutosize from "react-textarea-autosize"
 
-import { cn, getInitialsName } from "@/lib/utils"
+import { cn } from "@/lib/utils"
 import { commentSchema } from "@/lib/validations/comment"
-import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar"
 import { Button } from "@/components/ui/button"
 import { Form, FormControl, FormField, FormItem } from "@/components/ui/form"
 import { Label } from "@/components/ui/label"
@@ -26,15 +25,17 @@ import { GIFPopover } from "@/components/popover/gif-popover"
 import { StickerPopover } from "@/components/popover/sticker-popover"
 
 import { AvatarStickerPopover } from "../../../../../components/popover/avatar-sticker-popover"
-import { PreImage } from "../upload-image/pre-image"
+import { CommentImage } from "./comment-image"
 
 export const CommentForm = React.forwardRef(
-  ({ postId, setIsUpload, className }, ref) => {
+  (
+    { postId, comment, isEdit = false, setIsUpload, setIsEdit, className },
+    ref
+  ) => {
     const queryClient = useQueryClient()
     const { data: user } = queryClient.getQueryData(["me"])
     const textRef = React.useRef(null)
     const [cursorPosition, setCursorPosition] = React.useState()
-    const [cachedText, setCachedText] = React.useState("")
     const commentState = useCommentState()
 
     const form = useForm({
@@ -48,20 +49,38 @@ export const CommentForm = React.forwardRef(
     const [files, setFiles] = useControllableState({
       prop: form.watch("images"),
       onChange: (data) => {
-        setIsUpload(true)
+        setIsUpload?.(true)
         form.setValue("images", data, { shouldDirty: true })
       },
     })
 
+    React.useEffect(() => {
+      if (!comment) return
+      form.reset(
+        { text: comment.text, images: [comment.image] },
+        { keepDefaultValues: true }
+      )
+    }, [comment])
+
     const createCommentMutation = useMutation({
       mutationFn: createCommentApi,
       onSuccess: () => {
-        setCachedText("")
         commentState.onSuccess()
         queryClient.invalidateQueries({ queryKey: ["posts"] })
       },
       onError: (err) => {
-        setCachedText("")
+        commentState.onError()
+      },
+    })
+
+    const updateCommentMutation = useMutation({
+      mutationFn: updateCommentApi,
+      onSuccess: () => {
+        commentState.onSuccess()
+        setIsEdit(false)
+        queryClient.invalidateQueries({ queryKey: ["posts"] })
+      },
+      onError: (err) => {
         commentState.onError()
       },
     })
@@ -69,8 +88,15 @@ export const CommentForm = React.forwardRef(
     const uploadImageMutation = useMutation({
       mutationFn: uploadImageApi,
       onSuccess: ({ data }) => {
+        if (isEdit)
+          return updateCommentMutation.mutate({
+            id: comment._id,
+            text: commentState.text,
+            image: data[0].url,
+          })
+
         createCommentMutation.mutate({
-          text: cachedText,
+          text: commentState.text,
           image: data[0].url,
           post: postId,
         })
@@ -113,38 +139,63 @@ export const CommentForm = React.forwardRef(
       setCursorPosition(textRef.current.selectionStart)
     }
 
-    const onSubmit = async (data) => {
+    const onCreateComment = (data) => {
       if (createCommentMutation.isPending || uploadImageMutation.isPending)
         return
+
       commentState.mutate(data.text)
-      setCachedText(data.text)
       form.reset()
+
       if (data.images.length > 0) {
-        const path = `${user.username}/post_images/${postId}`
-        const formData = new FormData()
-        formData.append("path", path)
-        data.images.forEach((image) => {
-          formData.append("files", image)
-        })
-        return uploadImageMutation.mutate(formData)
+        createCommentWithImage(data.images)
+      } else {
+        createCommentMutation.mutate({ text: data.text, post: postId })
       }
-      createCommentMutation.mutate({ text: data.text, post: postId })
     }
 
-    const handleKeyDown = (e) => {
-      if (e.key === "Enter" && !e.shiftKey) {
-        e.preventDefault()
+    const onEditComment = (data) => {
+      if (updateCommentMutation.isPending || uploadImageMutation.isPending)
+        return
+
+      commentState.mutate(data.text)
+      form.reset()
+
+      if (data.images.length > 0 && typeof data.images[0] !== "string") {
+        createCommentWithImage(data.images)
+      } else {
+        updateCommentMutation.mutate({ id: comment._id, text: data.text })
+      }
+    }
+
+    const onSubmit = (data) => {
+      if (isEdit) return onEditComment(data)
+
+      onCreateComment(data)
+    }
+
+    const createCommentWithImage = (images) => {
+      const path = `${user.username}/post_images/${postId}`
+      const formData = new FormData()
+      formData.append("path", path)
+      images.forEach((image) => {
+        formData.append("files", image)
+      })
+      uploadImageMutation.mutate(formData)
+    }
+
+    const handleKeyDown = (event) => {
+      if (event.key === "Enter" && !event.shiftKey) {
+        event.preventDefault()
         form.handleSubmit(onSubmit)()
       }
     }
 
     return (
       <Form {...form}>
-        <form className="flex gap-2" onSubmit={form.handleSubmit(onSubmit)}>
-          <Avatar>
-            <AvatarImage src={user.picture} alt={user.username} />
-            <AvatarFallback>{getInitialsName(user)}</AvatarFallback>
-          </Avatar>
+        <form
+          className={cn("", className)}
+          onSubmit={form.handleSubmit(onSubmit)}
+        >
           <Dropzone
             onDrop={onDrop}
             accept={{ "image/*": [] }}
@@ -260,13 +311,13 @@ export const CommentForm = React.forwardRef(
                       <FormItem>
                         <FormControl>
                           <div className="mt-2 flex gap-2 py-2">
-                            <PreImage file={field.value[0]} className="h-20" />
+                            <CommentImage file={field.value[0]} />
                             <Button
                               className="size-6"
                               variant="secondary"
                               size="icon"
                               onClick={() => {
-                                setIsUpload(false)
+                                setIsUpload?.(false)
                                 field.onChange([])
                                 form.resetField("images")
                               }}

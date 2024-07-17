@@ -29,6 +29,7 @@ export const PostModal = () => {
       className="w-auto p-0 sm:min-w-[700px]"
       showModal={postModal.isOpen}
       onClose={postModal.onClose}
+      onEscapeKeyDown={(event) => event.preventDefault()}
     >
       <DialogHeader className="flex h-[60px] items-center justify-center border-b border-border">
         <DialogTitle className="text-xl font-bold">

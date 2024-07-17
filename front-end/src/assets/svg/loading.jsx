@@ -5,7 +5,7 @@ export const Loading = (props) => {
       viewBox="0 0 32 32"
       width="32"
       {...props}
-      className="animate-spin-fb origin-[50%_50%]"
+      className="origin-[50%_50%] animate-spin-fb"
     >
       <circle
         cx="16"
@@ -13,9 +13,9 @@ export const Loading = (props) => {
         fill="none"
         r="15"
         stroke="#000"
-        stroke-dasharray="94.24777960769379"
-        stroke-width="2"
-        className="animate-spin-fb-circle origin-[50%_50%]"
+        strokeDasharray="94.24777960769379"
+        strokeWidth="2"
+        className="origin-[50%_50%] animate-spin-fb-circle"
       ></circle>
     </svg>
   )

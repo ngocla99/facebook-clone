@@ -143,18 +143,20 @@ export const Post = ({ isDialog, post }) => {
             <PostStats post={post} className="border-b border-border" />
             <PostActions postId={post._id} />
             {isDialog && (
-              <>
-                <PostComments
-                  comments={post.comments}
-                  className="border-t border-border pb-2 pt-[5px]"
-                />
-                <CommentState />
-              </>
+              <PostComments
+                postId={post._id}
+                comments={post.comments}
+                className="border-t border-border pb-2 pt-[5px]"
+              />
             )}
           </div>
         </ScrollArea>
         {isDialog && (
-          <div className="border-t border-border px-4 py-5">
+          <div className="grid grid-cols-[auto_1fr] gap-1.5 border-t border-border px-4 py-5">
+            <Avatar>
+              <AvatarImage src={user.picture} alt={user.username} />
+              <AvatarFallback>{getInitialsName(user)}</AvatarFallback>
+            </Avatar>
             <CommentForm postId={post._id} setIsUpload={setIsUpload} />
           </div>
         )}

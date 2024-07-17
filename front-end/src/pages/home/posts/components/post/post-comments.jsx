@@ -1,3 +1,4 @@
+import React from "react"
 import { deleteCommentApi } from "@/api/services/comment"
 import { useCommentState } from "@/stores/use-comment-state"
 import { useMutation, useQueryClient } from "@tanstack/react-query"
@@ -10,21 +11,23 @@ import { List } from "@/components/list"
 import { TimeFromNow } from "@/components/time-from-now"
 import { Dots } from "@/assets/svg"
 
+import { CommentForm } from "../create-comment/comment-form"
 import { CommentActions } from "./comment-actions"
 
-export const PostComments = ({ comments, className }) => {
+export const PostComments = ({ postId, comments, className }) => {
   return (
-    <List
-      className={cn("grid gap-1", className)}
-      items={comments}
-      Item={Comment}
-      propName="comment"
-    />
+    <div className={cn("grid gap-1", className)}>
+      {comments.map((itm) => (
+        <Comment key={itm._id} postId={postId} comment={itm} />
+      ))}
+      <CommentState />
+    </div>
   )
 }
 
-const Comment = ({ comment }) => {
+const Comment = ({ postId, comment }) => {
   const { _id, commentBy, image, text, updatedAt } = comment
+  const [isEdit, setIsEdit] = React.useState(false)
 
   const queryClient = useQueryClient()
 
@@ -47,7 +50,7 @@ const Comment = ({ comment }) => {
   }
 
   const handleEditComment = () => {
-    console.log("🚀 ~ handleEditComment ~ handleEditComment:", "")
+    setIsEdit(true)
   }
 
   return (
@@ -59,36 +62,56 @@ const Comment = ({ comment }) => {
         />
         <AvatarFallback>{getInitialsName(commentBy)}</AvatarFallback>
       </Avatar>
-      <div className="flex flex-col items-start gap-1">
-        <div className="flex gap-1">
-          <div className="space-y-0.5 rounded-[18px] bg-background-comment px-3 py-2">
-            <p className="text-[13px] font-semibold leading-[14px]">
-              {commentBy.firstName + " " + commentBy.lastName}
-            </p>
-            <p className="text-[15px] leading-5">{text}</p>
+      {isEdit ? (
+        <div className="flex-1">
+          <CommentForm
+            postId={postId}
+            comment={comment}
+            isEdit={isEdit}
+            setIsEdit={setIsEdit}
+          />
+          <p className="my-1 text-xs leading-none text-muted-foreground">
+            Press Esc to{" "}
+            <span
+              onClick={() => setIsEdit(false)}
+              className="cursor-pointer text-primary hover:underline hover:underline-offset-1"
+            >
+              cancel.
+            </span>
+          </p>
+        </div>
+      ) : (
+        <div className="flex flex-col items-start gap-1">
+          <div className="flex gap-1">
+            <div className="space-y-0.5 rounded-[18px] bg-background-comment px-3 py-2">
+              <p className="text-[13px] font-semibold leading-[14px]">
+                {commentBy.firstName + " " + commentBy.lastName}
+              </p>
+              <p className="text-[15px] leading-5">{text}</p>
+            </div>
+            <CommentActions
+              onDelete={handleDeleteComment}
+              onEdit={handleEditComment}
+            />
           </div>
-          <CommentActions
-            onDelete={handleDeleteComment}
-            onEdit={handleEditComment}
-          />
+          {image && (
+            <img
+              className="h-[200px] rounded-[18px] border border-border object-cover"
+              src={image}
+              alt="Photo Comment"
+            />
+          )}
+          <div className="ml-3 flex gap-4 text-xs text-muted-foreground">
+            <TimeFromNow type="short" time={updatedAt} />
+            <button className="font-bold hover:underline hover:underline-offset-1">
+              Like
+            </button>
+            <button className="font-bold hover:underline hover:underline-offset-1">
+              Reply
+            </button>
+          </div>
         </div>
-        {image && (
-          <img
-            className="h-[200px] rounded-[18px] border border-border object-cover"
-            src={image}
-            alt="Photo Comment"
-          />
-        )}
-        <div className="ml-3 flex gap-4 text-xs text-muted-foreground">
-          <TimeFromNow type="short" time={updatedAt} />
-          <button className="font-bold hover:underline hover:underline-offset-1">
-            Like
-          </button>
-          <button className="font-bold hover:underline hover:underline-offset-1">
-            Reply
-          </button>
-        </div>
-      </div>
+      )}
     </div>
   )
 }
