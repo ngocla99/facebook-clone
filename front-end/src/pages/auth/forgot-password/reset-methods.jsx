@@ -8,7 +8,7 @@ import { Label } from "@/components/ui/label"
 import { RadioGroup, RadioGroupItem } from "@/components/ui/radio-group"
 
 export const ResetMethods = ({ data, goNext, goBack }) => {
-  const { picture, email, first_name, last_name } = data
+  const { picture, email, firstName, lastName } = data
 
   const sendResetPasswordCodeMutation = useMutation({
     mutationFn: sendResetPasswordCodeApi,
@@ -107,7 +107,7 @@ export const ResetMethods = ({ data, goNext, goBack }) => {
             <AvatarFallback>NM</AvatarFallback>
           </Avatar>
           <p className="text-[15px] leading-5">
-            {first_name + " " + last_name}
+            {firstName + " " + lastName}
           </p>
           <span className="text-[13px] leading-4 text-muted-foreground">
             Facebook user

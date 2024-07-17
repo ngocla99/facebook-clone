@@ -10,7 +10,7 @@ import { Dots } from "@/assets/svg"
 
 import { CommentForm } from "../create-comment/comment-form"
 import { PostActions } from "./post-actions"
-import { PostComments } from "./post-comments"
+import { CommentState, PostComments } from "./post-comments"
 import { PostStats } from "./post-stats"
 
 export const Post = ({ isDialog, post }) => {
@@ -44,7 +44,7 @@ export const Post = ({ isDialog, post }) => {
               <AvatarFallback>{getInitialsName(user)}</AvatarFallback>
             </Avatar>
             <div className="flex-1">
-              <p className="text-[15px] font-semibold leading-5">{`${user.first_name} ${user.last_name}`}</p>
+              <p className="text-[15px] font-semibold leading-5">{`${user.firstName} ${user.lastName}`}</p>
               <div className="flex items-center gap-1">
                 <p className="text-[13px] leading-4 text-muted-foreground">
                   {moment(createdAt).fromNow()}
@@ -139,17 +139,17 @@ export const Post = ({ isDialog, post }) => {
               </div>
             )}
           </div>
-          <div className={cn("px-4 [&>div]:border-b [&>div]:border-border")}>
-            <PostStats postId={post._id} />
-            <PostActions
-              postId={post._id}
-              className={cn(!isDialog && "border-none")}
-            />
+          <div className={cn("px-4")}>
+            <PostStats post={post} className="border-b border-border" />
+            <PostActions postId={post._id} />
             {isDialog && (
-              <PostComments
-                comments={post.comments}
-                className="mt-[5px] pb-2 border-none"
-              />
+              <>
+                <PostComments
+                  comments={post.comments}
+                  className="border-t border-border pb-2 pt-[5px]"
+                />
+                <CommentState />
+              </>
             )}
           </div>
         </ScrollArea>

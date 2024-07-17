@@ -21,8 +21,8 @@ exports.getReactions = async ({ postId, userId }) => {
         reactions: {
           $push: {
             userId: "$reactBy",
-            firstName: "$userDetails.first_name",
-            lastName: "$userDetails.last_name",
+            firstName: "$userDetails.firstName",
+            lastName: "$userDetails.lastName",
           },
         },
         count: { $sum: 1 },

@@ -27,7 +27,7 @@ export const PostModal = () => {
     >
       <DialogHeader className="flex h-[60px] items-center justify-center border-b border-border">
         <DialogTitle className="text-xl font-bold">
-          {post?.user?.first_name}'s Post
+          {post?.user?.firstName}'s Post
         </DialogTitle>
       </DialogHeader>
       <Post post={post} isDialog />

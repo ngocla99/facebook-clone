@@ -14,7 +14,7 @@ exports.createPost = async (req, res) => {
 exports.getAllPost = async (req, res) => {
   try {
     const posts = await Post.find()
-      .populate("user", "first_name last_name username picture gender")
+      .populate("user", "firstName lastName username picture gender")
       .populate({
         path: "comments",
         options: {
@@ -23,7 +23,7 @@ exports.getAllPost = async (req, res) => {
         populate: {
           path: "commentBy",
           model: "User",
-          select: "first_name last_name picture",
+          select: "firstName lastName picture",
         },
       })
       .sort([["createdAt", -1]]);
@@ -36,16 +36,16 @@ exports.getAllPost = async (req, res) => {
 exports.getPost = async (req, res) => {
   try {
     const post = await Post.findById(req.params.id)
-      .populate("user", "first_name last_name username picture gender")
+      .populate("user", "firstName lastName username picture gender")
       .populate({
         path: "comments",
         options: {
-          sort: { updatedAt: -1 },
+          sort: { updatedAt: 1 },
         },
         populate: {
           path: "commentBy",
           model: "User",
-          select: "first_name last_name picture",
+          select: "firstName lastName picture",
         },
       })
       .sort([["createdAt", -1]]);

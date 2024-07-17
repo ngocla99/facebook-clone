@@ -2,14 +2,15 @@ import { getReactsApi } from "@/api/services/reaction"
 import { usePostModal } from "@/stores"
 import { useQuery } from "@tanstack/react-query"
 
-import { formatNumber } from "@/lib/utils"
+import { cn, filterDuplicatesByKey, formatNumber } from "@/lib/utils"
 import {
   Tooltip,
   TooltipContent,
   TooltipTrigger,
 } from "@/components/ui/tooltip"
 
-export const PostStats = ({ postId }) => {
+export const PostStats = ({ post, className }) => {
+  const { _id: postId, comments } = post
   const postModal = usePostModal()
   const { data: reactions } = useQuery({
     queryKey: ["reacts", postId],
@@ -18,7 +19,12 @@ export const PostStats = ({ postId }) => {
   })
 
   return (
-    <div className="grid grid-cols-[auto_1fr_auto] gap-3 py-[10px] text-[15px] leading-5 text-muted-foreground">
+    <div
+      className={cn(
+        "grid grid-cols-[auto_1fr_auto] gap-3 py-[10px] text-[15px] leading-5 text-muted-foreground",
+        className
+      )}
+    >
       <div className="flex items-center gap-1.5">
         <div className="flex [&>div:nth-child(1)]:z-[3] [&>div:nth-child(2)]:z-[2] [&>div]:-m-[2px]">
           {reactions
@@ -54,17 +60,18 @@ export const PostStats = ({ postId }) => {
         </ReactTextTooltip>
       </div>
       <div className="flex justify-end">
-        <Tooltip>
-          <TooltipTrigger
-            className="text-right"
-            onClick={() => postModal.onOpen(postId)}
-          >
-            <p className="hover:underline hover:underline-offset-1">
-              216 comments
-            </p>
-          </TooltipTrigger>
-          <TooltipContent side="bottom">Dummy data</TooltipContent>
-        </Tooltip>
+        <ReactTextTooltip
+          users={filterDuplicatesByKey(
+            comments.map((itm) => itm.commentBy),
+            "_id"
+          )}
+          count={comments.length}
+          onClick={() => postModal.onOpen(postId)}
+        >
+          <p className="hover:underline hover:underline-offset-1">
+            {comments.length} comments
+          </p>
+        </ReactTextTooltip>
       </div>
       <Tooltip>
         <TooltipTrigger className="text-right">
@@ -101,13 +108,22 @@ const ReactionText = ({ reactions }) => {
   )
 }
 
-const ReactTextTooltip = ({ users, count, type, children, asChild }) => {
+const ReactTextTooltip = ({
+  users,
+  count,
+  type,
+  children,
+  asChild,
+  onClick = () => {},
+}) => {
   if (!count) return <></>
 
   return (
     <Tooltip>
-      <TooltipTrigger asChild={asChild}>{children}</TooltipTrigger>
-      <TooltipContent side="bottom" className="w-[170px]">
+      <TooltipTrigger onClick={onClick} asChild={asChild}>
+        {children}
+      </TooltipTrigger>
+      <TooltipContent side="bottom" className="max-w-[170px]">
         {type && (
           <p className="text-[15px] font-semibold capitalize leading-5">
             {type}

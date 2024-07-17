@@ -17,7 +17,7 @@ export const loginSchema = z.object({
 
 export const signUpSchema = z
   .object({
-    first_name: z
+    firstName: z
       .string({ required_error: "First name is required." })
       .trim()
       .min(1, {
@@ -32,7 +32,7 @@ export const signUpSchema = z
       .regex(/^[aA-zZ]+$/, {
         message: "Number and special characters are not allowed.",
       }),
-    last_name: z
+    lastName: z
       .string({ required_error: "Surname is required." })
       .trim()
       .min(1, {

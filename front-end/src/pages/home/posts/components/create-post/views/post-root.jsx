@@ -96,7 +96,7 @@ export const PostRoot = React.forwardRef(
               <AvatarFallback>{getInitialsName(user)}</AvatarFallback>
             </Avatar>
             <div className="space-y-[2px] text-[15px] font-semibold">
-              <p>{`${user.first_name} ${user.last_name}`}</p>
+              <p>{`${user.firstName} ${user.lastName}`}</p>
               <Button
                 variant="secondary"
                 className="flex h-6 items-center gap-1 px-2 py-1 text-[13px]"
@@ -155,7 +155,7 @@ export const PostRoot = React.forwardRef(
                           background &&
                             "text-center text-3xl font-bold text-white"
                         )}
-                        placeholder={`What's on your mind, ${user.first_name}?`}
+                        placeholder={`What's on your mind, ${user.firstName}?`}
                         onHeightChange={(height) => {
                           if (height <= 20) setIsSmallText(false)
                           if (height > 60) setIsSmallText(true)

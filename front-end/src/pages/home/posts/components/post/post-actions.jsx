@@ -87,12 +87,7 @@ export const PostActions = ({ postId, className }) => {
   }
 
   return (
-    <div
-      className={cn(
-        "grid grid-cols-3 gap-1 border-b border-border py-1",
-        className
-      )}
-    >
+    <div className={cn("grid grid-cols-3 gap-1 py-1", className)}>
       <TooltipProvider>
         <Tooltip>
           <TooltipTrigger asChild>

@@ -62,8 +62,8 @@ export const SignUpForm = ({ className }) => {
   const form = useForm({
     resolver: zodResolver(signUpSchema),
     defaultValues: {
-      first_name: "",
-      last_name: "",
+      firstName: "",
+      lastName: "",
       email: "",
       password: "",
       bYear: new Date().getFullYear().toString(),
@@ -135,7 +135,7 @@ export const SignUpForm = ({ className }) => {
         <div className="grid grid-cols-2 gap-[10px]">
           <FormField
             control={form.control}
-            name="first_name"
+            name="firstName"
             render={({ field }) => (
               <FormItem>
                 <FormControl>
@@ -152,7 +152,7 @@ export const SignUpForm = ({ className }) => {
           />
           <FormField
             control={form.control}
-            name="last_name"
+            name="lastName"
             render={({ field }) => (
               <FormItem>
                 <FormControl>

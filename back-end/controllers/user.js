@@ -15,8 +15,8 @@ require("dotenv").config();
 exports.register = async (req, res) => {
   try {
     const {
-      first_name,
-      last_name,
+      firstName,
+      lastName,
       username,
       email,
       password,
@@ -40,13 +40,13 @@ exports.register = async (req, res) => {
       });
     }
 
-    if (!validateLength(first_name, 3, 30)) {
+    if (!validateLength(firstName, 3, 30)) {
       return res.status(400).json({
         message: "first name must be between 3 and 30 characters",
       });
     }
 
-    if (!validateLength(last_name, 3, 30)) {
+    if (!validateLength(lastName, 3, 30)) {
       return res.status(400).json({
         message: "first name must be between 3 and 30 characters",
       });
@@ -59,12 +59,12 @@ exports.register = async (req, res) => {
 
     const hashedPassword = await bcrypt.hash(password, 12);
 
-    const tempUsername = first_name + last_name;
+    const tempUsername = firstName + lastName;
     let newUsername = await validateUsername(tempUsername);
 
     const user = new User({
-      first_name,
-      last_name,
+      firstName,
+      lastName,
       username: newUsername,
       email,
       password: hashedPassword,
@@ -80,15 +80,15 @@ exports.register = async (req, res) => {
       "30m"
     );
     const url = `${process.env.BASE_URL}/activate/${emailVerificationToken}`;
-    sendVerificationEmail(user.email, user.first_name, url);
+    sendVerificationEmail(user.email, user.firstName, url);
     const token = generateToken({ id: user._id.toString() }, "7d");
 
     res.send({
       id: user._id,
       username: user.username,
       picture: user.picture,
-      first_name: user.first_name,
-      last_name: user.last_name,
+      firstName: user.firstName,
+      lastName: user.lastName,
       token: token,
       verified: user.verified,
       message: "Register Success! Please activate your email to start.",
@@ -153,8 +153,8 @@ exports.login = async (req, res) => {
       id: user._id,
       username: user.username,
       picture: user.picture,
-      first_name: user.first_name,
-      last_name: user.last_name,
+      firstName: user.firstName,
+      lastName: user.lastName,
       token: token,
       verified: user.verified,
     });
@@ -178,7 +178,7 @@ exports.sendVerification = (req, res) => {
       "30m"
     );
     const url = `${process.env.BASE_URL}/activate/${emailVerificationToken}`;
-    sendVerificationEmail(user.email, user.first_name, url);
+    sendVerificationEmail(user.email, user.firstName, url);
 
     return res.json({
       message: "Email verification link has been sent to your email.",
@@ -201,8 +201,8 @@ exports.findUser = async (req, res) => {
     return res.json({
       email: user.email,
       picture: user.picture,
-      first_name: user.first_name,
-      last_name: user.last_name,
+      firstName: user.firstName,
+      lastName: user.lastName,
     });
   } catch (error) {
     res.status(500).json({ message: error.message });
@@ -219,7 +219,7 @@ exports.sendResetPasswordCode = async (req, res) => {
     const code = generateCode(6);
     const savedCode = new Code({ code, user: user._id });
     savedCode.save();
-    sendResetCode(user.email, user.first_name, code);
+    sendResetCode(user.email, user.firstName, code);
 
     return res.json({
       message: "Email reset code has been sent to your email",

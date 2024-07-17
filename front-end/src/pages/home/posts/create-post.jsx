@@ -35,7 +35,7 @@ export const CreatePost = () => {
             className="min-h-10 flex-1 rounded-[20px] bg-background-comment px-3 py-2 text-left text-[17px] hover:bg-hover"
             onClick={() => setCreatePostModal({ open: true })}
           >
-            What's on your mind, {user.first_name}?
+            What's on your mind, {user.firstName}?
           </button>
         </div>
         <Separator className="mb-2 mt-3" />

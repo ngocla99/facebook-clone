@@ -29,7 +29,7 @@ export const SidebarNav = ({ className }) => {
               <AvatarImage src={user.picture} alt={user.username} />
               <AvatarFallback>{getInitialsName(user)}</AvatarFallback>
             </Avatar>
-            <p>{`${user.first_name} ${user.last_name}`}</p>
+            <p>{`${user.firstName} ${user.lastName}`}</p>
           </LinkItem>
           {siteConfig.leftMenu.slice(0, 5).map((link, i) => (
             <LinkItem key={i}>

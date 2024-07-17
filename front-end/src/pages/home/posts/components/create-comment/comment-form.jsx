@@ -2,6 +2,7 @@ import React from "react"
 import { createCommentApi } from "@/api/services/comment"
 import { uploadImageApi } from "@/api/services/image"
 import { useControllableState } from "@/hooks"
+import { useCommentState } from "@/stores/use-comment-state"
 import { zodResolver } from "@hookform/resolvers/zod"
 import { Cross2Icon } from "@radix-ui/react-icons"
 import { useMutation, useQueryClient } from "@tanstack/react-query"
@@ -31,8 +32,10 @@ export const CommentForm = React.forwardRef(
   ({ postId, setIsUpload, className }, ref) => {
     const queryClient = useQueryClient()
     const { data: user } = queryClient.getQueryData(["me"])
-    const [cursorPosition, setCursorPosition] = React.useState()
     const textRef = React.useRef(null)
+    const [cursorPosition, setCursorPosition] = React.useState()
+    const [cachedText, setCachedText] = React.useState("")
+    const commentState = useCommentState()
 
     const form = useForm({
       resolver: zodResolver(commentSchema),
@@ -52,17 +55,22 @@ export const CommentForm = React.forwardRef(
 
     const createCommentMutation = useMutation({
       mutationFn: createCommentApi,
-      onSuccess: ({ data }) => {
+      onSuccess: () => {
+        setCachedText("")
+        commentState.onSuccess()
         queryClient.invalidateQueries({ queryKey: ["posts"] })
       },
-      onError: (err) => {},
+      onError: (err) => {
+        setCachedText("")
+        commentState.onError()
+      },
     })
 
     const uploadImageMutation = useMutation({
       mutationFn: uploadImageApi,
       onSuccess: ({ data }) => {
         createCommentMutation.mutate({
-          text: form.getValues("text"),
+          text: cachedText,
           image: data[0].url,
           post: postId,
         })
@@ -108,6 +116,8 @@ export const CommentForm = React.forwardRef(
     const onSubmit = async (data) => {
       if (createCommentMutation.isPending || uploadImageMutation.isPending)
         return
+      commentState.mutate(data.text)
+      setCachedText(data.text)
       form.reset()
       if (data.images.length > 0) {
         const path = `${user.username}/post_images/${postId}`
