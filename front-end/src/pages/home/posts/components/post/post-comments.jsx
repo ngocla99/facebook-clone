@@ -5,7 +5,7 @@ import { useMutation, useQueryClient } from "@tanstack/react-query"
 import { cn, getInitialsName } from "@/lib/utils"
 import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar"
 import { Button } from "@/components/ui/button"
-import { alert } from "@/components/alert"
+import { confirm } from "@/components/confirm"
 import { List } from "@/components/list"
 import { TimeFromNow } from "@/components/time-from-now"
 import { Dots } from "@/assets/svg"
@@ -37,14 +37,16 @@ const Comment = ({ comment }) => {
 
   const handleDeleteComment = () => {
     if (deleteCommentMutation.isPending) return
-    deleteCommentMutation.mutate(_id)
+    confirm({
+      title: "Delete Comment?",
+      subtitle: "Are you sure you want to delete this comment?",
+      confirmText: "Delete",
+      cancelText: "No",
+      onConfirm: () => deleteCommentMutation.mutate(_id),
+    })
   }
 
   const handleEditComment = () => {
-    // alert({
-    //   title: "Delete Comment?",
-    //   subtitle: "Are you sure you want to delete this comment?",
-    // })
     console.log("🚀 ~ handleEditComment ~ handleEditComment:", "")
   }
 

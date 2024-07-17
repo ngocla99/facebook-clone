@@ -8,7 +8,7 @@ import { Dots } from "@/assets/svg"
 
 export const CommentActions = ({ onDelete, onEdit }) => {
   return (
-    <Popover>
+    <Popover modal={true}>
       <PopoverTrigger asChild>
         <Button
           className="size-8 self-center text-muted-foreground opacity-0 group-hover:opacity-100"

@@ -1,29 +1,31 @@
-import ReactDOM from "react-dom"
+// https://github.com/ant-design/ant-design/blob/master/components/modal/confirm.tsx
+
+import { createRoot } from "react-dom/client"
 
 import { Alert } from "./alert"
 import AlertFactory from "./alert-factory"
 
-// Note: replacing this one with container.unmount when updating to React 18
-// function reactUnmount(container) {
-//   ReactDOM.unmountComponentAtNode(container);
-// }
+export const confirm = (config) => {
+  const domNode = document.createDocumentFragment()
+  const container = createRoot(domNode)
 
-export const alert = (config) => {
-  const container = document.createDocumentFragment()
   AlertFactory.getInstance()
 
   let currentConfig = { ...config, onClose, open: true }
 
   function render({ ...props }) {
+    clearTimeout(timeoutId)
     /**
+     * https://github.com/ant-design/ant-design/issues/23623
+     *
      * Sync render blocks React event. Let's make this async.
      */
-    setTimeout(() => {
-      ReactDOM.createRoot(container).render(<Alert {...props} />)
+    var timeoutId = setTimeout(() => {
+      // ReactDOM.createRoot(container).render(<Alert {...props} />)
+      container.render(<Alert {...props} />)
     })
   }
 
-  // Remove store dialog in global state after close
   function destroy() {
     for (let i = 0; i < AlertFactory.destroyFns.length; i++) {
       const fn = AlertFactory.destroyFns[i]
@@ -32,6 +34,8 @@ export const alert = (config) => {
         break
       }
     }
+
+    // container.unmount()
   }
 
   function onClose() {
@@ -39,8 +43,8 @@ export const alert = (config) => {
       ...currentConfig,
       open: false,
     }
-    render(currentConfig)
     destroy()
+    render(currentConfig)
   }
 
   function update(configUpdate) {

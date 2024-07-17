@@ -1,8 +1,13 @@
 import { getPostApi } from "@/api/services/post"
 import { usePostModal } from "@/stores"
+import { VisuallyHidden } from "@radix-ui/react-visually-hidden"
 import { useQuery } from "@tanstack/react-query"
 
-import { DialogHeader, DialogTitle } from "@/components/ui/dialog"
+import {
+  DialogDescription,
+  DialogHeader,
+  DialogTitle,
+} from "@/components/ui/dialog"
 import { Modal } from "@/components/ui/modal"
 
 import { Post } from "./post"
@@ -29,6 +34,9 @@ export const PostModal = () => {
         <DialogTitle className="text-xl font-bold">
           {post?.user?.firstName}'s Post
         </DialogTitle>
+        <DialogDescription className="hidden">
+          Post Description
+        </DialogDescription>
       </DialogHeader>
       <Post post={post} isDialog />
     </Modal>
