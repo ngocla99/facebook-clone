@@ -28,7 +28,7 @@ export const GIFPopover = ({ className, tooltipTitle = "GIF" }) => {
   })
 
   return (
-    <Popover modal={true}>
+    <Popover>
       <Tooltip>
         <PopoverTrigger
           className={cn(

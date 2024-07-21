@@ -4,7 +4,7 @@ import { useQuery } from "@tanstack/react-query"
 import { ScrollArea } from "@/components/ui/scroll-area"
 import { SearchInput } from "@/components/input/search-input"
 
-import { HeadOnBack, VIEWS } from "../create-post-form"
+import { HeadOnBack, VIEWS } from "../post-form"
 
 export const PostGif = ({ setView }) => {
   const { data: gifs } = useQuery({

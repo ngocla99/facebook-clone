@@ -23,7 +23,7 @@ export const EmojiPopover = ({
   onEmojiClick,
 }) => {
   return (
-    <Popover modal={true}>
+    <Popover>
       <Tooltip>
         <PopoverTrigger
           className={cn(

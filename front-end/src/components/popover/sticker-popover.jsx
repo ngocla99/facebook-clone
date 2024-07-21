@@ -75,7 +75,7 @@ const stickers = [
 
 export const StickerPopover = ({ className, tooltipTitle = "GIF" }) => {
   return (
-    <Popover modal={true}>
+    <Popover>
       <Tooltip>
         <PopoverTrigger
           className={cn(

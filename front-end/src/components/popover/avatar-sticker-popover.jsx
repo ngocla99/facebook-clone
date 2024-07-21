@@ -18,7 +18,7 @@ export const AvatarStickerPopover = ({
   tooltipTitle = "Avatar Sticker",
 }) => {
   return (
-    <Popover modal={true}>
+    <Popover>
       <Tooltip>
         <PopoverTrigger
           className={cn(

@@ -1,4 +1,4 @@
-import { useCommentState } from "@/stores/use-comment-state"
+import { useCommentState } from "@/stores"
 
 import { cn } from "@/lib/utils"
 

@@ -7,7 +7,7 @@ import {
 } from "@/components/ui/tooltip"
 import { Dots } from "@/assets/svg"
 
-import { VIEWS } from "./create-post-form"
+import { VIEWS } from "./post-form"
 
 export const AddToPost = ({
   background,

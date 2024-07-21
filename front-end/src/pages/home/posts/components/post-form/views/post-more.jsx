@@ -2,7 +2,7 @@ import { LinkItem } from "@/pages/home/sidebar-nav"
 
 import { Button } from "@/components/ui/button"
 
-import { HeadOnBack, VIEWS } from "../create-post-form"
+import { HeadOnBack, VIEWS } from "../post-form"
 
 export const PostMore = ({ setView }) => {
   return (

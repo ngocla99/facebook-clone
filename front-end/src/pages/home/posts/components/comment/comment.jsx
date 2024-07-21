@@ -1,6 +1,6 @@
 import React from "react"
 import { deleteCommentApi } from "@/api/services/comment"
-import { useCommentState } from "@/stores/use-comment-state"
+import { useCommentState } from "@/stores"
 import { useMutation, useQueryClient } from "@tanstack/react-query"
 
 import { getInitialsName } from "@/lib/utils"

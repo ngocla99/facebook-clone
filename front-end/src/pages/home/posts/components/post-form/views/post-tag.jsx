@@ -5,7 +5,7 @@ import { Button } from "@/components/ui/button"
 import { ScrollArea } from "@/components/ui/scroll-area"
 import { SearchInput } from "@/components/input/search-input"
 
-import { HeadOnBack, VIEWS } from "../create-post-form"
+import { HeadOnBack, VIEWS } from "../post-form"
 
 export const PostTag = ({ setView }) => {
   return (

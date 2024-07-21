@@ -5,7 +5,7 @@ import { ScrollArea } from "@/components/ui/scroll-area"
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs"
 import { SearchInput } from "@/components/input/search-input"
 
-import { HeadOnBack, VIEWS } from "../create-post-form"
+import { HeadOnBack, VIEWS } from "../post-form"
 
 export const PostFeeling = ({ setView }) => {
   return (

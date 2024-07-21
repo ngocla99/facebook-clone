@@ -1,21 +1,25 @@
 import React from "react"
+import { usePostEditModal } from "@/stores"
+import { useQueryClient } from "@tanstack/react-query"
 import moment from "moment"
 
 import { cn, getInitialsName } from "@/lib/utils"
 import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar"
-import { Button } from "@/components/ui/button"
 import { Card, CardContent } from "@/components/ui/card"
 import { ScrollArea } from "@/components/ui/scroll-area"
-import { Dots } from "@/assets/svg"
 
 import { CreateComment } from "../comment/create-comment"
-import { PostActions } from "./post-actions"
+import { PostActionsMe } from "./post-actions-me"
+import { PostActionsOther } from "./post-actions-other"
 import { PostComments } from "./post-comments"
 import { PostStats } from "./post-stats"
+import { PostToolbar } from "./post-toolbar"
 
 export const Post = ({ isDialog, post }) => {
   const { text, user, background, images, audience, createdAt } = post
-
+  const queryClient = useQueryClient()
+  const { data: me } = queryClient.getQueryData(["me"])
+  const postEditModal = usePostEditModal()
   const [isPortraitFirstImg, setIsPortraitFirstImg] = React.useState()
   const [isUpload, setIsUpload] = React.useState(false)
 
@@ -28,6 +32,9 @@ export const Post = ({ isDialog, post }) => {
     }
   }
 
+  const handleEditPost = () => {
+    postEditModal.onOpen(post)
+  }
   return (
     <Card>
       <CardContent className="p-0">
@@ -73,9 +80,15 @@ export const Post = ({ isDialog, post }) => {
                 )}
               </div>
             </div>
-            <Button variant="ghost" size="icon" className="size-9">
-              <Dots className="filter-secondary-icon" />
-            </Button>
+            {!isDialog && (
+              <>
+                {me._id === user._id ? (
+                  <PostActionsMe onEdit={handleEditPost} />
+                ) : (
+                  <PostActionsOther user={user} />
+                )}
+              </>
+            )}
           </div>
           <div
             className={cn(
@@ -141,7 +154,7 @@ export const Post = ({ isDialog, post }) => {
           </div>
           <div className={cn("px-4")}>
             <PostStats post={post} className="border-b border-border" />
-            <PostActions postId={post._id} />
+            <PostToolbar postId={post._id} />
             {isDialog && (
               <PostComments
                 postId={post._id}

@@ -6,7 +6,12 @@ import TextareaAutosize from "react-textarea-autosize"
 import { cn, getInitialsName } from "@/lib/utils"
 import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar"
 import { Button } from "@/components/ui/button"
-import { DialogClose, DialogHeader, DialogTitle } from "@/components/ui/dialog"
+import {
+  DialogClose,
+  DialogDescription,
+  DialogHeader,
+  DialogTitle,
+} from "@/components/ui/dialog"
 import { FormControl, FormField, FormItem } from "@/components/ui/form"
 import { ScrollArea } from "@/components/ui/scroll-area"
 import LoadingButton from "@/components/button/loading-button"
@@ -15,10 +20,10 @@ import { EmojiPopover } from "@/components/popover/emoji-popover"
 import { UploadImages } from "../../upload-image"
 import { AddBackground } from "../add-background"
 import { AddToPost } from "../add-to-post"
-import { VIEWS } from "../create-post-form"
+import { VIEWS } from "../post-form"
 
 export const PostRoot = React.forwardRef(
-  ({ form, className, setView, isShowUpload }, ref) => {
+  ({ form, className, setView, isEdit, isShowUpload }, ref) => {
     const queryClient = useQueryClient()
     const { data: user } = queryClient.getQueryData(["me"])
     const [background, setBackground] = React.useState()
@@ -77,7 +82,8 @@ export const PostRoot = React.forwardRef(
     return (
       <div className={className}>
         <DialogHeader className="relative h-[60px] items-center justify-center space-y-0 border-b border-border">
-          <DialogTitle>Create post</DialogTitle>
+          <DialogTitle>{isEdit ? "Edit post" : "Create post"}</DialogTitle>
+          <DialogDescription></DialogDescription>
           <DialogClose asChild>
             <Button
               variant="secondary"
@@ -155,6 +161,7 @@ export const PostRoot = React.forwardRef(
                           background &&
                             "text-center text-3xl font-bold text-white"
                         )}
+                        autoFocus
                         placeholder={`What's on your mind, ${user.firstName}?`}
                         onHeightChange={(height) => {
                           if (height <= 20) setIsSmallText(false)
@@ -225,12 +232,9 @@ export const PostRoot = React.forwardRef(
               showImageUpload={showImageUpload}
               setShowImageUpload={setShowImageUpload}
             />
-            <LoadingButton
-              className="text-[15px] font-semibold"
-              // loading={logInMutation.isPending}
-            >
-              Post
-              <span className="sr-only">Post</span>
+            <LoadingButton className="text-[15px] font-semibold">
+              {isEdit ? "Save" : "Post"}
+              <span className="sr-only">{isEdit ? "Save" : "Post"}</span>
             </LoadingButton>
           </div>
         </div>

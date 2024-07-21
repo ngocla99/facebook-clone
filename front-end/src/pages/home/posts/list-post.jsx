@@ -3,6 +3,8 @@ import { useQuery } from "@tanstack/react-query"
 
 import { cn } from "@/lib/utils"
 
+import { CreatePostModal } from "./components/post-form/create-post-modal"
+import { EditPostModal } from "./components/post-form/edit-post-modal"
 import { Post } from "./components/post/post"
 import { PostModal } from "./components/post/post-modal"
 
@@ -20,6 +22,8 @@ export const ListPost = ({ className }) => {
           <Post key={post._id} post={post} />
         ))}
         <PostModal />
+        <CreatePostModal />
+        <EditPostModal />
       </div>
     </>
   )

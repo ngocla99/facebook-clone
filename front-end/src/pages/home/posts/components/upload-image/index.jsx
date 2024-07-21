@@ -122,7 +122,7 @@ export const UploadImages = (props) => {
 
             {files?.length === 0 && (
               <div
-                className="bg-card-flat flex h-[220px] flex-col items-center justify-center gap-1 rounded-lg hover:bg-hover"
+                className="flex h-[220px] flex-col items-center justify-center gap-1 rounded-lg bg-card-flat hover:bg-hover"
                 onClick={open}
               >
                 <div className="grid size-10 place-items-center rounded-full bg-background-secondary">
@@ -168,21 +168,22 @@ export const UploadImages = (props) => {
                   <PreImage key={index} file={file} />
                 ))}
                 {files.length > 5 && (
-                  <div className="bg-hover-media absolute bottom-0 right-0 grid h-[154px] w-[224px] place-items-center">
+                  <div className="absolute bottom-0 right-0 grid h-[154px] w-[224px] place-items-center bg-hover-media">
                     <p className="text-3xl font-bold text-white">
                       +{files.length - 5}
                     </p>
                   </div>
                 )}
                 {files?.length ? (
-                  <div className="bg-hover-media absolute inset-0 z-10 hidden gap-3 p-2 group-hover:flex">
+                  <div className="absolute inset-0 z-10 hidden gap-3 bg-hover-media p-2 group-hover:flex">
                     <Button
                       className="gap-2 bg-white text-[15px] font-semibold hover:bg-background-comment"
                       variant="secondary"
                       onClick={() => {}}
                     >
                       {/* TODO: Click to edit images */}
-                      <i className="edit_icon filter-primary-icon"></i>Edit All
+                      <i className="edit_icon_16 filter-primary-icon"></i>Edit
+                      All
                     </Button>
                     <Button
                       className="gap-2 bg-white text-[15px] font-semibold hover:bg-background-comment"

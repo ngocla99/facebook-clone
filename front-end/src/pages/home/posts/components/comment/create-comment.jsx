@@ -1,6 +1,6 @@
 import { createCommentApi } from "@/api/services/comment"
 import { uploadImageApi } from "@/api/services/image"
-import { useCommentState } from "@/stores/use-comment-state"
+import { useCommentState } from "@/stores"
 import { zodResolver } from "@hookform/resolvers/zod"
 import { useMutation, useQueryClient } from "@tanstack/react-query"
 import { useForm } from "react-hook-form"

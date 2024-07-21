@@ -2,7 +2,7 @@ import React from "react"
 
 import { cn } from "@/lib/utils"
 
-import { VIEWS } from "./create-post-form"
+import { VIEWS } from "./post-form"
 
 const postBackgrounds = {
   avatar: [

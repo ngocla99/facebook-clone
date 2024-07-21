@@ -1,16 +1,6 @@
 const Post = require("../models/Post");
 const { ObjectId } = require("mongodb");
 
-exports.createPost = async (req, res) => {
-  try {
-    const post = new Post({ ...req.body, user: req.user.id });
-    await post.save();
-    return res.json({ message: "ok" });
-  } catch (err) {
-    return res.status(500).json({ message: err.message });
-  }
-};
-
 exports.getAllPost = async (req, res) => {
   try {
     const posts = await Post.find()
@@ -50,6 +40,31 @@ exports.getPost = async (req, res) => {
       });
 
     return res.json(post);
+  } catch (err) {
+    return res.status(500).json({ message: err.message });
+  }
+};
+
+exports.createPost = async (req, res) => {
+  try {
+    const post = new Post({ ...req.body, user: req.user.id });
+    await post.save();
+    return res.json({ message: "ok" });
+  } catch (err) {
+    return res.status(500).json({ message: err.message });
+  }
+};
+
+exports.updatePost = async (req, res) => {
+  try {
+    const { id, ...updatedData } = req.body;
+    const updatedPost = await Post.findByIdAndUpdate(id, { $set: updatedData }, { new: true, runValidators: true });
+
+    if (!updatedPost) {
+      return res.status(400).json({ message: "Post not found." });
+    }
+
+    return res.json({ message: "ok" });
   } catch (err) {
     return res.status(500).json({ message: err.message });
   }

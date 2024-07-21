@@ -22,34 +22,41 @@ const PopoverContent = React.forwardRef(
     },
     ref
   ) => (
-    <PopoverPrimitive.Portal>
-      <PopoverPrimitive.Content
-        ref={ref}
-        align={align}
-        side={side}
-        sideOffset={sideOffset}
+    // <PopoverPrimitive.Portal>
+    <PopoverPrimitive.Content
+      ref={ref}
+      align={align}
+      side={side}
+      sideOffset={sideOffset}
+      className={cn(
+        "relative z-50 w-72 overflow-y-visible rounded-md bg-popover p-4 text-popover-foreground shadow-md outline-none data-[state=open]:animate-in data-[state=closed]:animate-out data-[state=closed]:fade-out-0 data-[state=open]:fade-in-0 data-[state=closed]:zoom-out-95 data-[state=open]:zoom-in-95 data-[side=bottom]:slide-in-from-top-2 data-[side=left]:slide-in-from-right-2 data-[side=right]:slide-in-from-left-2 data-[side=top]:slide-in-from-bottom-2",
+        align === "end" && side === "top" && "rounded-br-none",
+        align === "end" && side === "bottom" && "rounded-tr-none ",
+        align === "start" && side === "top" && "rounded-bl-none",
+        align === "start" && side === "bottom" && "rounded-tl-none",
+        className
+      )}
+      {...props}
+    >
+      {children}
+      <ArrowTooltip
         className={cn(
-          "relative z-50 w-72 overflow-y-visible rounded-md bg-popover p-4 text-popover-foreground shadow-md outline-none data-[state=open]:animate-in data-[state=closed]:animate-out data-[state=closed]:fade-out-0 data-[state=open]:fade-in-0 data-[state=closed]:zoom-out-95 data-[state=open]:zoom-in-95 data-[side=bottom]:slide-in-from-top-2 data-[side=left]:slide-in-from-right-2 data-[side=right]:slide-in-from-left-2 data-[side=top]:slide-in-from-bottom-2",
-          align === "end" && "rounded-r-none",
-          align === "start" && "rounded-l-none",
-          className
+          "absolute text-background",
+          side === "top" && "-bottom-[11px] scale-x-[-1] scale-y-[1]",
+          side === "bottom" &&
+            align === "center" &&
+            "-top-[11px] scale-x-[1] scale-y-[-1]",
+          side === "bottom" &&
+            align === "end" &&
+            "-top-[11px] scale-x-[-1] scale-y-[-1]",
+          align === "center" && "right-1/2",
+          align === "center" && side === "bottom" && "translate-x-[80%]",
+          align === "end" && "-right-[1px] ",
+          align === "start" && "-left-[1px]"
         )}
-        {...props}
-      >
-        {children}
-        <ArrowTooltip
-          className={cn(
-            "absolute text-background",
-            side === "top" && "-bottom-3 scale-x-[-1] scale-y-[1]",
-            side === "bottom" && "-top-3 scale-x-[1] scale-y-[-1]",
-            align === "center" && "right-1/2",
-            align === "center" && side === "bottom" && "translate-x-[80%]",
-            align === "end" && "-right-[1px] ",
-            align === "start" && "-left-[1px]"
-          )}
-        />
-      </PopoverPrimitive.Content>
-    </PopoverPrimitive.Portal>
+      />
+    </PopoverPrimitive.Content>
+    // </PopoverPrimitive.Portal>
   )
 )
 PopoverContent.displayName = PopoverPrimitive.Content.displayName

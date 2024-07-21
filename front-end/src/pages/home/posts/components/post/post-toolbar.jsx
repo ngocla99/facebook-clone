@@ -57,7 +57,7 @@ const reactIcons = [
   },
 ]
 
-export const PostActions = ({ postId, className }) => {
+export const PostToolbar = ({ postId, className }) => {
   const queryClient = useQueryClient()
   const postModal = usePostModal()
 

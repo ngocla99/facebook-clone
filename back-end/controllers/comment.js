@@ -19,17 +19,16 @@ exports.createComment = async (req, res) => {
 
 exports.updateComment = async (req, res) => {
   try {
-    const { text, image } = req.body;
-    const comment = await Comment.findById(req.body.id);
+    const { id, ...updatedData } = req.body;
+    const updatedComment = await Comment.findByIdAndUpdate(
+      id,
+      { $set: updatedData },
+      { new: true, runValidators: true }
+    );
 
-    if (!comment) {
+    if (!updatedComment) {
       return res.status(400).json({ message: "Comment not found." });
     }
-
-    if (text) comment.text = text;
-    if (image) comment.image = image;
-
-    await comment.save();
 
     return res.json({ message: "ok" });
   } catch (err) {

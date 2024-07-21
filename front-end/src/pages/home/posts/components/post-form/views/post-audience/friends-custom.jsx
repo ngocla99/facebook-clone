@@ -3,7 +3,7 @@ import { DialogFooter } from "@/components/ui/dialog"
 import { Input } from "@/components/ui/input"
 import { Separator } from "@/components/ui/separator"
 
-import { HeadOnBack, VIEWS } from "../../create-post-form"
+import { HeadOnBack, VIEWS } from "../../post-form"
 
 export const FriendsCustom = ({ setView }) => {
   return (

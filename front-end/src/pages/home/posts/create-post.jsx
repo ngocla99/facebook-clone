@@ -1,3 +1,4 @@
+import { usePostCreateModal } from "@/stores"
 import { useQueryClient } from "@tanstack/react-query"
 
 import { getInitialsName } from "@/lib/utils"
@@ -6,8 +7,6 @@ import { Button } from "@/components/ui/button"
 import { Card, CardContent } from "@/components/ui/card"
 import { Separator } from "@/components/ui/separator"
 import { Feeling, LiveVideo, Photo } from "@/assets/svg"
-
-import { useCreatePostModal } from "./components/create-post/create-post-modal"
 
 /**
  * TODO:
@@ -21,7 +20,7 @@ import { useCreatePostModal } from "./components/create-post/create-post-modal"
 export const CreatePost = () => {
   const queryClient = useQueryClient()
   const { data: user } = queryClient.getQueryData(["me"])
-  const { setCreatePostModal, CreatePostModal } = useCreatePostModal()
+  const postCreateModal = usePostCreateModal()
 
   return (
     <Card>
@@ -33,7 +32,7 @@ export const CreatePost = () => {
           </Avatar>
           <button
             className="min-h-10 flex-1 rounded-[20px] bg-background-comment px-3 py-2 text-left text-[17px] hover:bg-hover"
-            onClick={() => setCreatePostModal({ open: true })}
+            onClick={() => postCreateModal.onOpen({ openBy: null })}
           >
             What's on your mind, {user.firstName}?
           </button>
@@ -47,7 +46,7 @@ export const CreatePost = () => {
           <Button
             variant="ghost"
             className="h-10 gap-2"
-            onClick={() => setCreatePostModal({ open: true, openBy: "photo" })}
+            onClick={() => postCreateModal.onOpen({ openBy: "photo" })}
           >
             <Photo className="text-[#4bbf67]" />
             <p className="text-[15px] text-muted-foreground">Photo/video</p>
@@ -55,9 +54,7 @@ export const CreatePost = () => {
           <Button
             variant="ghost"
             className="h-10 gap-2"
-            onClick={() =>
-              setCreatePostModal({ open: true, openBy: "feeling" })
-            }
+            onClick={() => postCreateModal.onOpen({ openBy: "feeling" })}
           >
             <Feeling className="text-[#f7b928]" />
             <p className="text-[15px] text-muted-foreground">
@@ -66,7 +63,6 @@ export const CreatePost = () => {
           </Button>
         </div>
       </CardContent>
-      <CreatePostModal />
     </Card>
   )
 }

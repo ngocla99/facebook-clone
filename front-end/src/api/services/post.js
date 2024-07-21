@@ -11,3 +11,7 @@ export const getPostApi = (id) => {
 export const createPostApi = (post) => {
   return axiosClient.post("/createPost", post)
 }
+
+export const updatePostApi = (post) => {
+  return axiosClient.post("/updatePost", post)
+}

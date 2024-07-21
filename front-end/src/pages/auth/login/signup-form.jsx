@@ -92,7 +92,7 @@ export const SignUpForm = ({ className }) => {
       setTimeout(() => {
         setToken(rest.token)
         navigate("/")
-      }, 2000)
+      }, 1000)
     },
     onError: (err) => {
       setMessageRes({

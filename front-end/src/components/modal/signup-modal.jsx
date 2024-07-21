@@ -14,7 +14,7 @@ const SignUpModalHelper = ({ showSignUpModal, setShowSignUpModal }) => {
     <Modal
       className="w-auto p-0 sm:w-[432px]"
       showModal={showSignUpModal}
-      setShowModal={setShowSignUpModal}
+      onClose={() => setShowSignUpModal(false)}
     >
       <DialogHeader className="space-y-0 px-4 py-[10px]">
         <DialogTitle className="text-[32px] text-[#1c1e21]">

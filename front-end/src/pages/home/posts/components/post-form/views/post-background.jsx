@@ -1,7 +1,7 @@
 import { cn } from "@/lib/utils"
 import { ScrollArea } from "@/components/ui/scroll-area"
 
-import { HeadOnBack, VIEWS } from "../create-post-form"
+import { HeadOnBack, VIEWS } from "../post-form"
 
 const postBackgrounds = {
   avatars: [
@@ -34,7 +34,7 @@ const postBackgrounds = {
   ],
 }
 
-export const PostBackgound = ({ background, setView, onChangeBg }) => {
+export const PostBackground = ({ background, setView, onChangeBg }) => {
   return (
     <>
       <HeadOnBack
