@@ -8,9 +8,9 @@ import { Card, CardContent } from "@/components/ui/card"
 import { ScrollArea } from "@/components/ui/scroll-area"
 import { Dots } from "@/assets/svg"
 
-import { CommentForm } from "../create-comment/comment-form"
+import { CreateComment } from "../comment/create-comment"
 import { PostActions } from "./post-actions"
-import { CommentState, PostComments } from "./post-comments"
+import { PostComments } from "./post-comments"
 import { PostStats } from "./post-stats"
 
 export const Post = ({ isDialog, post }) => {
@@ -157,7 +157,7 @@ export const Post = ({ isDialog, post }) => {
               <AvatarImage src={user.picture} alt={user.username} />
               <AvatarFallback>{getInitialsName(user)}</AvatarFallback>
             </Avatar>
-            <CommentForm postId={post._id} setIsUpload={setIsUpload} />
+            <CreateComment postId={post._id} setIsUpload={setIsUpload} />
           </div>
         )}
       </CardContent>

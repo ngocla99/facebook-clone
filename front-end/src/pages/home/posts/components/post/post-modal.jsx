@@ -1,6 +1,5 @@
 import { getPostApi } from "@/api/services/post"
 import { usePostModal } from "@/stores"
-import { VisuallyHidden } from "@radix-ui/react-visually-hidden"
 import { useQuery } from "@tanstack/react-query"
 
 import {

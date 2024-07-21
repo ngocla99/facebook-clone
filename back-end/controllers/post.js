@@ -18,7 +18,7 @@ exports.getAllPost = async (req, res) => {
       .populate({
         path: "comments",
         options: {
-          sort: { updatedAt: -1 },
+          sort: { createdAt: 1 },
         },
         populate: {
           path: "commentBy",
@@ -40,15 +40,14 @@ exports.getPost = async (req, res) => {
       .populate({
         path: "comments",
         options: {
-          sort: { updatedAt: 1 },
+          sort: { createdAt: 1 },
         },
         populate: {
           path: "commentBy",
           model: "User",
           select: "firstName lastName picture",
         },
-      })
-      .sort([["createdAt", -1]]);
+      });
 
     return res.json(post);
   } catch (err) {
