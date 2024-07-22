@@ -14,6 +14,7 @@ export const UploadImages = (props) => {
     value: valueProp,
     onValueChange,
     className,
+    storedImages,
     accept = { "image/*": [] },
     maxSize = 1024 * 1024 * 2,
     maxFiles = 1,
@@ -81,6 +82,7 @@ export const UploadImages = (props) => {
   }, [])
 
   const isDisabled = disabled || (files?.length ?? 0) >= maxFiles
+  const displayImages = [...storedImages, ...files]
 
   return (
     <div className="relative grid w-full cursor-pointer rounded-lg border border-separator p-2 transition">
@@ -120,7 +122,7 @@ export const UploadImages = (props) => {
           >
             <input {...getInputProps()} />
 
-            {files?.length === 0 && (
+            {displayImages?.length === 0 && (
               <div
                 className="flex h-[220px] flex-col items-center justify-center gap-1 rounded-lg bg-card-flat hover:bg-hover"
                 onClick={open}
@@ -137,44 +139,44 @@ export const UploadImages = (props) => {
               </div>
             )}
 
-            {files?.length ? (
+            {displayImages?.length ? (
               <div
                 className={cn(
                   "group relative grid gap-[2px] overflow-hidden rounded-lg",
-                  files.length === 1 && "grid-cols-1",
-                  files.length === 2 &&
+                  displayImages.length === 1 && "grid-cols-1",
+                  displayImages.length === 2 &&
                     isPortraitFirstImg &&
                     "max-h-[233px] grid-cols-2",
-                  files.length === 2 &&
+                  displayImages.length === 2 &&
                     !isPortraitFirstImg &&
                     "h-[466px] grid-rows-2",
-                  files.length === 3 &&
+                  displayImages.length === 3 &&
                     !isPortraitFirstImg &&
                     "h-[466px] grid-cols-2 grid-rows-3 [&>img:first-child]:col-span-2 [&>img:first-child]:row-span-2",
-                  files.length === 3 &&
+                  displayImages.length === 3 &&
                     isPortraitFirstImg &&
                     "h-[466px] grid-cols-3 grid-rows-2 [&>img:first-child]:col-span-2 [&>img:first-child]:row-span-2",
-                  files.length === 4 &&
+                  displayImages.length === 4 &&
                     !isPortraitFirstImg &&
                     "h-[466px] grid-cols-3 grid-rows-3 [&>img:first-child]:col-span-3 [&>img:first-child]:row-span-2",
-                  files.length === 4 &&
+                  displayImages.length === 4 &&
                     isPortraitFirstImg &&
                     "h-[466px] grid-cols-3 grid-rows-3 [&>img:first-child]:col-span-2 [&>img:first-child]:row-span-3",
-                  files.length >= 5 &&
+                  displayImages.length >= 5 &&
                     "h-[466px] grid-cols-2 grid-rows-6 [grid-template-areas:'img1_img3''img1_img3''img1_img4''img2_img4''img2_img5''img2_img5'] [&>img:nth-child(1)]:[grid-area:img1] [&>img:nth-child(2)]:[grid-area:img2] [&>img:nth-child(3)]:[grid-area:img3] [&>img:nth-child(4)]:[grid-area:img4] [&>img:nth-child(5)]:[grid-area:img5]"
                 )}
               >
-                {files.slice(0, 5).map((file, index) => (
+                {displayImages.slice(0, 5).map((file, index) => (
                   <PreImage key={index} file={file} />
                 ))}
-                {files.length > 5 && (
+                {displayImages.length > 5 && (
                   <div className="absolute bottom-0 right-0 grid h-[154px] w-[224px] place-items-center bg-hover-media">
                     <p className="text-3xl font-bold text-white">
-                      +{files.length - 5}
+                      +{displayImages.length - 5}
                     </p>
                   </div>
                 )}
-                {files?.length ? (
+                {displayImages?.length ? (
                   <div className="absolute inset-0 z-10 hidden gap-3 bg-hover-media p-2 group-hover:flex">
                     <Button
                       className="gap-2 bg-white text-[15px] font-semibold hover:bg-background-comment"

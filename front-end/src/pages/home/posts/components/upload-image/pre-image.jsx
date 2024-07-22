@@ -1,6 +1,17 @@
-import { cn } from "@/lib/utils"
+import { cn, isImageSrc } from "@/lib/utils"
 
 export const PreImage = ({ file, className }) => {
+  if (typeof file?.url === "string" && isImageSrc(file?.url)) {
+    return (
+      <img
+        src={file.url}
+        alt="Photo"
+        draggable="false"
+        className={cn("h-full w-full object-cover", className)}
+      />
+    )
+  }
+
   return (
     <>
       {isFileWithPreview(file) ? (
@@ -9,7 +20,7 @@ export const PreImage = ({ file, className }) => {
           src={file.preview}
           alt={file.name}
           draggable="false"
-          className={cn("h-full w-full shrink-0 object-cover", className)}
+          className={cn("h-full w-full object-cover", className)}
         />
       ) : null}
     </>

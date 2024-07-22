@@ -50,3 +50,10 @@ export const filterDuplicatesByKey = (arr, key) => {
     return !duplicate
   })
 }
+
+export const isImageSrc = (src) => {
+  const dotIndex = src.lastIndexOf(".")
+  const extension = src.substring(dotIndex)
+
+  return [".jpg", ".png", ".gif", ".webp"].includes(extension)
+}

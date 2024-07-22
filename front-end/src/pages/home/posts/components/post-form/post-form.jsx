@@ -45,7 +45,6 @@ export const PostForm = React.forwardRef(
     const [view, setView] = React.useState(() => {
       return openBy === "feeling" ? VIEWS.FEELING : VIEWS.ROOT
     })
-    const postRef = React.useRef(null)
 
     return (
       <Form {...form}>
@@ -57,7 +56,6 @@ export const PostForm = React.forwardRef(
         >
           <ViewRoot setView={setView}>
             <PostRoot
-              ref={postRef}
               form={form}
               isEdit={isEdit}
               isShowUpload={openBy === "photo"}
@@ -72,12 +70,7 @@ export const PostForm = React.forwardRef(
             {view === VIEWS.GIF && <PostGif />}
             {view === VIEWS.EVENTS && <PostEvent />}
             {view === VIEWS.MORE && <PostMore />}
-            {view === VIEWS.BACKGROUND && (
-              <PostBackground
-                background={postRef.current.background}
-                onChangeBg={postRef.current.changeBg}
-              />
-            )}
+            {view === VIEWS.BACKGROUND && <PostBackground form={form} />}
             {view === VIEWS.TAG && <PostTag />}
           </ViewRoot>
           {isLoading && <LoadingPost />}

@@ -3,7 +3,7 @@ import { Cross2Icon } from "@radix-ui/react-icons"
 import { useQueryClient } from "@tanstack/react-query"
 import TextareaAutosize from "react-textarea-autosize"
 
-import { cn, getInitialsName } from "@/lib/utils"
+import { cn, getInitialsName, isImageSrc } from "@/lib/utils"
 import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar"
 import { Button } from "@/components/ui/button"
 import {
@@ -26,34 +26,40 @@ export const PostRoot = React.forwardRef(
   ({ form, className, setView, isEdit, isShowUpload }, ref) => {
     const queryClient = useQueryClient()
     const { data: user } = queryClient.getQueryData(["me"])
-    const [background, setBackground] = React.useState()
-    const [isSmallText, setIsSmallText] = React.useState(false)
-    const [showImageUpload, setShowImageUpload] = React.useState(isShowUpload)
-    const [cursorPosition, setCursorPosition] = React.useState()
 
     const textRef = React.useRef(null)
     const boxTextRef = React.useRef(null)
-    const audience = form.watch("audience")
 
-    const handleChangeBg = (data) => {
-      setBackground(data)
-      if (!data) {
+    const audience = form.watch("audience")
+    const background = form.watch("background")
+
+    const [isSmallText, setIsSmallText] = React.useState(false)
+    const [cursorPosition, setCursorPosition] = React.useState()
+    const [showImageUpload, setShowImageUpload] = React.useState(
+      () =>
+        isShowUpload ||
+        !!form.getValues("images").length ||
+        !!form.getValues("storedImages")?.length
+    )
+
+    React.useEffect(() => {
+      if (!background) {
         boxTextRef.current.style.backgroundImage = "unset"
         boxTextRef.current.style.backgroundColor = "transparent"
-        form.setValue("background", null)
         return
       }
 
-      if (data?.includes("url")) {
-        boxTextRef.current.style.backgroundImage = data.replace(".", "xl.")
-        form.setValue("background", data.match(/\(([^)]+)\)/)[1])
+      if (isImageSrc(background)) {
+        boxTextRef.current.style.backgroundImage = `url(${background.replace(
+          ".",
+          "xl."
+        )})`
         return
       }
 
       boxTextRef.current.style.backgroundImage = "unset"
-      boxTextRef.current.style.backgroundColor = data
-      form.setValue("background", data)
-    }
+      boxTextRef.current.style.backgroundColor = background
+    }, [background])
 
     const handleClickEmoji = ({ emoji }) => {
       const text = form.getValues("text")
@@ -67,17 +73,6 @@ export const PostRoot = React.forwardRef(
     const handleChangeCursor = () => {
       setCursorPosition(textRef.current.selectionStart)
     }
-
-    React.useImperativeHandle(
-      ref,
-      () => {
-        return {
-          background,
-          changeBg: handleChangeBg,
-        }
-      },
-      [background]
-    )
 
     return (
       <div className={className}>
@@ -167,10 +162,10 @@ export const PostRoot = React.forwardRef(
                           if (height <= 20) setIsSmallText(false)
                           if (height > 60) setIsSmallText(true)
                           if (background && height > 146) {
-                            setBackground(null)
                             boxTextRef.current.style.backgroundImage = "unset"
                             boxTextRef.current.style.backgroundColor =
                               "transparent"
+                            form.setValue("background", null)
                           }
                         }}
                         onChange={(e) => {
@@ -200,6 +195,7 @@ export const PostRoot = React.forwardRef(
                           value={field.value ?? []}
                           onValueChange={field.onChange}
                           maxFiles={10}
+                          storedImages={form.getValues("storedImages") ?? []}
                           onClose={() => setShowImageUpload(false)}
                         />
                       </FormControl>
@@ -210,12 +206,7 @@ export const PostRoot = React.forwardRef(
               {!showImageUpload && (
                 <div className="flex h-10 items-center justify-between">
                   {(!isSmallText || background) && (
-                    <AddBackground
-                      background={background}
-                      setView={setView}
-                      setBackground={setBackground}
-                      onChangeBg={handleChangeBg}
-                    />
+                    <AddBackground form={form} setView={setView} />
                   )}
                   <EmojiPopover
                     onEmojiClick={handleClickEmoji}

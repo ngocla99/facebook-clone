@@ -28,6 +28,7 @@ export const CreatePostModal = () => {
   const createPostMutation = useMutation({
     mutationFn: createPostApi,
     onSuccess: () => {
+      form.reset()
       postCreateModal.onClose()
       // Invalidates cache and refetch
       queryClient.invalidateQueries({ queryKey: ["posts"] })

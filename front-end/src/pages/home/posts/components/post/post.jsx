@@ -3,7 +3,7 @@ import { usePostEditModal } from "@/stores"
 import { useQueryClient } from "@tanstack/react-query"
 import moment from "moment"
 
-import { cn, getInitialsName } from "@/lib/utils"
+import { cn, getInitialsName, isImageSrc } from "@/lib/utils"
 import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar"
 import { Card, CardContent } from "@/components/ui/card"
 import { ScrollArea } from "@/components/ui/scroll-area"
@@ -25,10 +25,10 @@ export const Post = ({ isDialog, post }) => {
 
   let styleBg = { background: "transparent" }
   if (background) {
-    if (background.includes("#")) {
-      styleBg = { background }
-    } else {
+    if (isImageSrc(background)) {
       styleBg = { backgroundImage: `url(${background.replace(".", "xl.")})` }
+    } else {
+      styleBg = { background }
     }
   }
 
@@ -95,11 +95,11 @@ export const Post = ({ isDialog, post }) => {
               "bg-cover bg-no-repeat px-4 text-2xl font-normal",
               background &&
                 "flex h-[476px] items-center justify-center text-[30px] font-bold text-white",
-              background?.includes("avatar") && "h-[500px]"
+              background?.includes("avatar") && "h-[680px]"
             )}
             style={{ ...styleBg }}
           >
-            <p className="">{text}</p>
+            <p className="whitespace-pre-line">{text}</p>
           </div>
           <div
             className={cn(

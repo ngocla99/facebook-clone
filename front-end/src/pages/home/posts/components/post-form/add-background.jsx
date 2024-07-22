@@ -1,6 +1,6 @@
 import React from "react"
 
-import { cn } from "@/lib/utils"
+import { cn, isImageSrc } from "@/lib/utils"
 
 import { VIEWS } from "./post-form"
 
@@ -35,8 +35,21 @@ const shadowClassNameDefault =
 const shadowClassName =
   "shadow-[inset_0_0_0_2px_#ffffff,0_0_4px_0_rgba(0,0,0,0.1)]"
 
-export const AddBackground = ({ background, onChangeBg, setView }) => {
-  const [showMore, setShowMore] = React.useState(false)
+export const AddBackground = ({ form, setView }) => {
+  const background = form.watch("background")
+  const [showMore, setShowMore] = React.useState(!!background)
+
+  const handleChangeBg = (data) => {
+    if (!data) {
+      return form.setValue("background", null)
+    }
+
+    if (isImageSrc(data)) {
+      return form.setValue("background", data)
+    }
+
+    form.setValue("background", data)
+  }
 
   return (
     <div className="">
@@ -60,17 +73,17 @@ export const AddBackground = ({ background, onChangeBg, setView }) => {
               "flex size-8 items-center justify-center rounded-lg bg-background-comment",
               !background && shadowClassNameDefault
             )}
-            onClick={() => onChangeBg(null)}
+            onClick={() => handleChangeBg(null)}
           ></div>
           {postBackgrounds.avatar.map((src) => (
             <div
               key={src}
               className={cn(
                 "size-8 rounded-lg border-none bg-contain",
-                background === `url(${src})` && shadowClassName
+                background === src && shadowClassName
               )}
               style={{ backgroundImage: `url(${src})` }}
-              onClick={() => onChangeBg(`url(${src})`)}
+              onClick={() => handleChangeBg(src)}
             ></div>
           ))}
           {postBackgrounds.color.map((color) => (
@@ -81,7 +94,7 @@ export const AddBackground = ({ background, onChangeBg, setView }) => {
                 background === color && shadowClassName
               )}
               style={{ backgroundColor: color }}
-              onClick={() => onChangeBg(color)}
+              onClick={() => handleChangeBg(color)}
             ></div>
           ))}
           <div

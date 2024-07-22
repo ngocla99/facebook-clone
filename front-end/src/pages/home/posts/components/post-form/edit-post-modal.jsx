@@ -29,6 +29,7 @@ export const EditPostModal = () => {
   const updatePostMutation = useMutation({
     mutationFn: updatePostApi,
     onSuccess: () => {
+      form.reset()
       postEditModal.onClose()
       // Invalidates cache and refetch
       queryClient.invalidateQueries({ queryKey: ["posts"] })
@@ -38,19 +39,28 @@ export const EditPostModal = () => {
   const uploadImageMutation = useMutation({
     mutationFn: uploadImageApi,
     onSuccess: ({ data }) => {
+      const { storedImages, ...rest } = form.getValues()
       updatePostMutation.mutate({
-        ...form.getValues(),
-        images: data,
+        ...rest,
+        images: [...form.getValues("storedImages"), ...data],
         id: postEditModal.post._id,
       })
     },
   })
 
   React.useEffect(() => {
-    form.reset(postEditModal.post, { keepDefaultValues: true })
+    if (!postEditModal?.post) return
+    form.reset(
+      {
+        ...postEditModal.post,
+        images: [],
+        storedImages: postEditModal.post.images,
+      },
+      { keepDefaultValues: true }
+    )
   }, [postEditModal.post])
 
-  const onSubmit = (data) => {
+  const onSubmit = ({ storedImages, ...data }) => {
     if (updatePostMutation.isPending || uploadImageMutation.isPending) return
     if (data.images.length > 0) {
       const path = `${user.username}/post_images`

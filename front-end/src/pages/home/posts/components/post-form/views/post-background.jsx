@@ -1,4 +1,4 @@
-import { cn } from "@/lib/utils"
+import { cn, isImageSrc } from "@/lib/utils"
 import { ScrollArea } from "@/components/ui/scroll-area"
 
 import { HeadOnBack, VIEWS } from "../post-form"
@@ -34,7 +34,21 @@ const postBackgrounds = {
   ],
 }
 
-export const PostBackground = ({ background, setView, onChangeBg }) => {
+export const PostBackground = ({ form, setView }) => {
+  const background = form.watch("background")
+
+  const handleChangeBg = (data) => {
+    if (!data) {
+      return form.setValue("background", null)
+    }
+
+    if (isImageSrc(data)) {
+      return form.setValue("background", data)
+    }
+
+    form.setValue("background", data)
+  }
+
   return (
     <>
       <HeadOnBack
@@ -55,11 +69,10 @@ export const PostBackground = ({ background, setView, onChangeBg }) => {
                     src={itm}
                     className={cn(
                       "size-20 rounded-lg",
-                      background === `url(${itm})` &&
-                        "border-[3px] border-primary"
+                      background === itm && "border-[3px] border-primary"
                     )}
                     onClick={() => {
-                      onChangeBg(`url(${itm})`)
+                      handleChangeBg(itm)
                       setView(VIEWS.ROOT)
                     }}
                   />

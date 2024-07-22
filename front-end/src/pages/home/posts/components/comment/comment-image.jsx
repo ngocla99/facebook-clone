@@ -1,7 +1,7 @@
-import { cn } from "@/lib/utils"
+import { cn, isImageSrc } from "@/lib/utils"
 
 export const CommentImage = ({ file, className }) => {
-  if (typeof file === "string") {
+  if (typeof file === "string" && isImageSrc(file)) {
     return (
       <img
         src={file}
