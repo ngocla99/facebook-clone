@@ -1,5 +1,3 @@
-import { usePostEditModal } from "@/stores"
-
 import { Button } from "@/components/ui/button"
 import {
   Popover,
@@ -9,7 +7,7 @@ import {
 import { Separator } from "@/components/ui/separator"
 import { Dots } from "@/assets/svg"
 
-export const PostActionsMe = ({ onEdit }) => {
+export const PostActionsMe = ({ onEditPost, onEditAudience, onDelete }) => {
   return (
     <Popover>
       <PopoverTrigger asChild>
@@ -41,12 +39,16 @@ export const PostActionsMe = ({ onEdit }) => {
         <Button
           variant="ghost"
           className="justify-start gap-3 px-2"
-          onClick={onEdit}
+          onClick={onEditPost}
         >
           <i className="edit_icon_20 filter-primary-icon"></i>
           <p>Edit post</p>
         </Button>
-        <Button variant="ghost" className="justify-start gap-3 px-2">
+        <Button
+          variant="ghost"
+          className="justify-start gap-3 px-2"
+          onClick={onEditAudience}
+        >
           <i className="setting_icon filter-primary-icon"></i>
           <p>Edit audience</p>
         </Button>
@@ -72,6 +74,7 @@ export const PostActionsMe = ({ onEdit }) => {
         <Button
           variant="ghost"
           className="h-auto items-start justify-start gap-3 p-2 text-left"
+          onClick={onDelete}
         >
           <i className="delete_icon filter-primary-icon"></i>
           <div className="-mt-[1px] space-y-1">

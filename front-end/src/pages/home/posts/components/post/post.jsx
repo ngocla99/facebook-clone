@@ -1,12 +1,15 @@
 import React from "react"
+import { deletePostApi } from "@/api/services/post"
 import { usePostEditModal } from "@/stores"
-import { useQueryClient } from "@tanstack/react-query"
+import { usePostEditAudienceModal } from "@/stores/use-post-edit-audience-modal"
+import { useMutation, useQueryClient } from "@tanstack/react-query"
 import moment from "moment"
 
 import { cn, getInitialsName, isImageSrc } from "@/lib/utils"
 import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar"
 import { Card, CardContent } from "@/components/ui/card"
 import { ScrollArea } from "@/components/ui/scroll-area"
+import { confirm } from "@/components/confirm"
 
 import { CreateComment } from "../comment/create-comment"
 import { PostActionsMe } from "./post-actions-me"
@@ -19,9 +22,10 @@ export const Post = ({ isDialog, post }) => {
   const { text, user, background, images, audience, createdAt } = post
   const queryClient = useQueryClient()
   const { data: me } = queryClient.getQueryData(["me"])
-  const postEditModal = usePostEditModal()
   const [isPortraitFirstImg, setIsPortraitFirstImg] = React.useState()
   const [isUpload, setIsUpload] = React.useState(false)
+  const postEditModal = usePostEditModal()
+  const postEditAudienceModal = usePostEditAudienceModal()
 
   let styleBg = { background: "transparent" }
   if (background) {
@@ -32,9 +36,26 @@ export const Post = ({ isDialog, post }) => {
     }
   }
 
-  const handleEditPost = () => {
-    postEditModal.onOpen(post)
+  const deletePostMutation = useMutation({
+    mutationFn: deletePostApi,
+    onSuccess: () => {
+      queryClient.invalidateQueries({ queryKey: ["posts"] })
+    },
+  })
+
+  const handleDeletePost = () => {
+    confirm({
+      title: "Move to your trash",
+      subtitle:
+        "Items in your trash will be automatically deleted after 30 days. You can delete them from your trash earlier by going to activity log in settings.",
+      confirmText: "Move",
+      cancelText: "Cancel",
+      onConfirm: () => {
+        deletePostMutation.mutate(post._id)
+      },
+    })
   }
+
   return (
     <Card>
       <CardContent className="p-0">
@@ -83,7 +104,11 @@ export const Post = ({ isDialog, post }) => {
             {!isDialog && (
               <>
                 {me._id === user._id ? (
-                  <PostActionsMe onEdit={handleEditPost} />
+                  <PostActionsMe
+                    onEditPost={() => postEditModal.onOpen(post)}
+                    onEditAudience={() => postEditAudienceModal.onOpen(post)}
+                    onDelete={handleDeletePost}
+                  />
                 ) : (
                   <PostActionsOther user={user} />
                 )}

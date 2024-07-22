@@ -88,7 +88,7 @@ export const UploadImages = (props) => {
     <div className="relative grid w-full cursor-pointer rounded-lg border border-separator p-2 transition">
       <Button
         variant="secondary"
-        className="absolute right-4 top-4 z-20 size-7 rounded-full border border-border bg-white text-muted-foreground hover:bg-background-comment"
+        className="absolute right-4 top-4 z-[11] size-7 rounded-full border border-border bg-white text-muted-foreground hover:bg-background-comment"
         size="icon"
         onClick={() => {
           setFiles([])

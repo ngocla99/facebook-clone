@@ -15,3 +15,7 @@ export const createPostApi = (post) => {
 export const updatePostApi = (post) => {
   return axiosClient.post("/updatePost", post)
 }
+
+export const deletePostApi = (id) => {
+  return axiosClient.delete(`/deletePost/${id}`)
+}

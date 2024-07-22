@@ -32,6 +32,7 @@ export const PostRoot = React.forwardRef(
 
     const audience = form.watch("audience")
     const background = form.watch("background")
+    const storedImages = form.watch("storedImages") ?? [] // stored images when edit post
 
     const [isSmallText, setIsSmallText] = React.useState(false)
     const [cursorPosition, setCursorPosition] = React.useState()
@@ -39,7 +40,7 @@ export const PostRoot = React.forwardRef(
       () =>
         isShowUpload ||
         !!form.getValues("images").length ||
-        !!form.getValues("storedImages")?.length
+        !!storedImages.length
     )
 
     React.useEffect(() => {
@@ -195,8 +196,13 @@ export const PostRoot = React.forwardRef(
                           value={field.value ?? []}
                           onValueChange={field.onChange}
                           maxFiles={10}
-                          storedImages={form.getValues("storedImages") ?? []}
-                          onClose={() => setShowImageUpload(false)}
+                          storedImages={storedImages}
+                          onClose={() => {
+                            setShowImageUpload(false)
+                            if (storedImages.length) {
+                              form.setValue("storedImages", [])
+                            }
+                          }}
                         />
                       </FormControl>
                     </FormItem>

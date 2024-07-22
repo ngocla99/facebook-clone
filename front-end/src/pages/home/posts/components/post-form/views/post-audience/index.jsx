@@ -11,7 +11,7 @@ import { ScrollArea } from "@/components/ui/scroll-area"
 
 import { HeadOnBack, VIEWS } from "../../post-form"
 
-const optionsAudience = [
+export const optionsAudience = [
   {
     key: "public",
     title: "Public",

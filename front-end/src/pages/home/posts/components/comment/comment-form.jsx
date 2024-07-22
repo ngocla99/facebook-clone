@@ -192,7 +192,6 @@ export const CommentForm = React.forwardRef(
                   control={form.control}
                   name="images"
                   render={({ field }) => {
-                    console.log("🚀 ~ field:", field)
                     if (field.value.length === 0) return null
                     return (
                       <FormItem>

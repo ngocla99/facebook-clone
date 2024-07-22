@@ -6,3 +6,7 @@ export const postSchema = z.object({
   background: z.string().nullable(),
   images: z.any(),
 })
+
+export const audiencePostSchema = z.object({
+  audience: z.enum(["SELF", "EVERYONE", "FRIENDS"]),
+})

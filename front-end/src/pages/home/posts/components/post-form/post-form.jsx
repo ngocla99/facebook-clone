@@ -1,14 +1,12 @@
 import React from "react"
-import { uploadImageApi } from "@/api/services/image"
-import { createPostApi } from "@/api/services/post"
-import { zodResolver } from "@hookform/resolvers/zod"
-import { useMutation, useQueryClient } from "@tanstack/react-query"
-import { useForm } from "react-hook-form"
 
 import { cn } from "@/lib/utils"
-import { postSchema } from "@/lib/validations/post"
 import { Button } from "@/components/ui/button"
-import { DialogHeader, DialogTitle } from "@/components/ui/dialog"
+import {
+  DialogDescription,
+  DialogHeader,
+  DialogTitle,
+} from "@/components/ui/dialog"
 import { Form } from "@/components/ui/form"
 import { Loading, Return } from "@/assets/svg"
 
@@ -105,6 +103,7 @@ export const HeadOnBack = ({ onBack, title }) => {
         <Return className="text-[#65676b]" />
       </Button>
       <DialogTitle className="leading-9">{title}</DialogTitle>
+      <DialogDescription></DialogDescription>
     </DialogHeader>
   )
 }

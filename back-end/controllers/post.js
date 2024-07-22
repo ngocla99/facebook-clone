@@ -1,4 +1,5 @@
 const Post = require("../models/Post");
+const Comment = require("../models/Comment");
 const { ObjectId } = require("mongodb");
 
 exports.getAllPost = async (req, res) => {
@@ -58,12 +59,36 @@ exports.createPost = async (req, res) => {
 exports.updatePost = async (req, res) => {
   try {
     const { id, ...updatedData } = req.body;
-    const updatedPost = await Post.findByIdAndUpdate(id, { $set: updatedData }, { new: true, runValidators: true });
+    const updatedPost = await Post.findByIdAndUpdate(
+      id,
+      { $set: updatedData },
+      { new: true, runValidators: true }
+    );
 
     if (!updatedPost) {
       return res.status(400).json({ message: "Post not found." });
     }
 
+    return res.json({ message: "ok" });
+  } catch (err) {
+    return res.status(500).json({ message: err.message });
+  }
+};
+
+exports.deletePost = async (req, res) => {
+  try {
+    const post = await Post.findByIdAndDelete(req.params.id);
+    if (post?.comments?.length > 0) {
+      Comment.deleteMany({
+        _id: { $in: post?.comments },
+      })
+        .then((result) => {
+          console.log(`Deleted ${result.deletedCount} comments`);
+        })
+        .catch((error) => {
+          console.error("Error deleting comments:", error);
+        });
+    }
     return res.json({ message: "ok" });
   } catch (err) {
     return res.status(500).json({ message: err.message });
