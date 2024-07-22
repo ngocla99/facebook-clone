@@ -29,7 +29,7 @@ export const Comment = ({ postId, comment }) => {
     if (deleteCommentMutation.isPending) return
     confirm({
       title: "Delete Comment?",
-      subtitle: "Are you sure you want to delete this comment?",
+      description: "Are you sure you want to delete this comment?",
       confirmText: "Delete",
       cancelText: "No",
       onConfirm: () => deleteCommentMutation.mutate(_id),

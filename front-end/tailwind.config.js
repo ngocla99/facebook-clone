@@ -69,6 +69,10 @@ module.exports = {
           foreground: "var(--card-foreground)",
           flat: "var(--card-flat)",
         },
+        toast: {
+          DEFAULT: "var(--toast)",
+          foreground: "var(--toast-foreground)",
+        },
       },
       borderRadius: {
         lg: "var(--radius)",
@@ -155,7 +159,8 @@ module.exports = {
       },
       animation: {
         "spin-fb": "spin-fb 2s cubic-bezier(0,0,1,1) infinite",
-        "spin-fb-circle": "spin-fb-circle 2s cubic-bezier(.33,0,.67,1) infinite",
+        "spin-fb-circle":
+          "spin-fb-circle 2s cubic-bezier(.33,0,.67,1) infinite",
       },
     },
   },

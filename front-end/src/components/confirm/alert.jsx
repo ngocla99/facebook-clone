@@ -16,7 +16,7 @@ import { Button } from "../ui/button"
 export const Alert = ({
   type,
   title,
-  subtitle,
+  description,
   confirmText,
   cancelText,
   onConfirm,
@@ -51,7 +51,7 @@ export const Alert = ({
         </AlertDialogHeader>
         <div className="min-h-[50px] px-4 py-3">
           <AlertDialogDescription className="leading-none">
-            {subtitle}
+            {description}
           </AlertDialogDescription>
         </div>
         <AlertDialogFooter>

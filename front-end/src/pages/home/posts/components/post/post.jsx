@@ -9,6 +9,8 @@ import { cn, getInitialsName, isImageSrc } from "@/lib/utils"
 import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar"
 import { Card, CardContent } from "@/components/ui/card"
 import { ScrollArea } from "@/components/ui/scroll-area"
+import { ToastAction } from "@/components/ui/toast"
+import { toast } from "@/components/ui/use-toast"
 import { confirm } from "@/components/confirm"
 
 import { CreateComment } from "../comment/create-comment"
@@ -40,13 +42,26 @@ export const Post = ({ isDialog, post }) => {
     mutationFn: deletePostApi,
     onSuccess: () => {
       queryClient.invalidateQueries({ queryKey: ["posts"] })
+      toast({
+        title: "Moving post to your trash",
+        action: (
+          <ToastAction
+            altText="Try again"
+            onClick={() => {
+              console.log("TODO:")
+            }}
+          >
+            Go to trash
+          </ToastAction>
+        ),
+      })
     },
   })
 
   const handleDeletePost = () => {
     confirm({
       title: "Move to your trash",
-      subtitle:
+      description:
         "Items in your trash will be automatically deleted after 30 days. You can delete them from your trash earlier by going to activity log in settings.",
       confirmText: "Move",
       cancelText: "Cancel",

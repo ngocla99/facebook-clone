@@ -1,5 +1,6 @@
 import { createContext, useContext, useEffect, useState } from "react"
 
+import { Toaster } from "@/components/ui/toaster"
 import { TooltipProvider } from "@/components/ui/tooltip"
 
 const initialState = {
@@ -50,6 +51,7 @@ export function ThemeProvider({
       <TooltipProvider disableHoverableContent={true}>
         {children}
       </TooltipProvider>
+      <Toaster />
     </ThemeProviderContext.Provider>
   )
 }
