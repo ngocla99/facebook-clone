@@ -1,6 +1,6 @@
-import { getMeApi } from "@/api/services/auth"
+import { getMeApi } from "@/api/services/user"
 import { useQuery } from "@tanstack/react-query"
-import { useNavigate } from "react-router-dom"
+import { useNavigate, useNavigation } from "react-router-dom"
 
 import { cn } from "@/lib/utils"
 import { Button } from "@/components/ui/button"
@@ -40,7 +40,7 @@ export const PageNotFound = () => {
             <Button
               variant="ghost"
               className="mt-3 h-5 text-[17px] font-semibold text-[#0064d1] hover:bg-transparent hover:text-[#0064d1] hover:underline hover:underline-offset-1"
-              disabled
+              onClick={() => navigate(-1)}
             >
               Go back
             </Button>

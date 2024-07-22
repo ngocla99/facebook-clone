@@ -4,6 +4,7 @@ import { usePostEditModal } from "@/stores"
 import { usePostEditAudienceModal } from "@/stores/use-post-edit-audience-modal"
 import { useMutation, useQueryClient } from "@tanstack/react-query"
 import moment from "moment"
+import { useNavigate } from "react-router-dom"
 
 import { cn, getInitialsName, isImageSrc } from "@/lib/utils"
 import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar"
@@ -24,6 +25,7 @@ export const Post = ({ isDialog, post }) => {
   const { text, user, background, images, audience, createdAt } = post
   const queryClient = useQueryClient()
   const { data: me } = queryClient.getQueryData(["me"])
+  const navigate = useNavigate()
   const [isPortraitFirstImg, setIsPortraitFirstImg] = React.useState()
   const [isUpload, setIsUpload] = React.useState(false)
   const postEditModal = usePostEditModal()
@@ -82,7 +84,10 @@ export const Post = ({ isDialog, post }) => {
           )}
         >
           <div className="flex items-center gap-2 px-4 py-3">
-            <Avatar>
+            <Avatar
+              className="cursor-pointer"
+              onClick={() => navigate(`/profile/${user.username}`)}
+            >
               <AvatarImage src={user.picture} alt={user.username} />
               <AvatarFallback>{getInitialsName(user)}</AvatarFallback>
             </Avatar>

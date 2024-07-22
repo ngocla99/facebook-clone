@@ -1,4 +1,4 @@
-import { getMeApi } from "@/api/services/auth"
+import { getMeApi } from "@/api/services/user"
 import { useQuery } from "@tanstack/react-query"
 
 import { cn } from "@/lib/utils"
