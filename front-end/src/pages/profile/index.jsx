@@ -1,5 +1,5 @@
 const Profile = () => {
-  return <div className="bg-primary text-primary-foreground">Profile</div>
+  return <div className="">Profile</div>
 }
 
 export default Profile

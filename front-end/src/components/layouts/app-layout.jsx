@@ -5,14 +5,9 @@ import { cn } from "@/lib/utils"
 import { SiteHeader } from "@/components/layouts/site-header"
 
 export const AppLayout = ({ children }) => {
-  const {
-    data: user,
-    isLoading,
-    isError,
-  } = useQuery({
+  const { isLoading } = useQuery({
     queryKey: ["me"],
     queryFn: getMeApi,
-    select: ({ data }) => data,
   })
 
   // TODO: loading UI
