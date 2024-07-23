@@ -7,7 +7,7 @@ import { Button } from "@/components/ui/button"
 import { SiteHeader } from "@/components/layouts/site-header"
 import { EmptyPage } from "@/assets/svg"
 
-export const PageNotFound = () => {
+const PageNotFound = () => {
   const navigate = useNavigate()
   const { isLoading } = useQuery({
     queryKey: ["me"],
@@ -57,3 +57,5 @@ export const PageNotFound = () => {
     </div>
   )
 }
+
+export default PageNotFound

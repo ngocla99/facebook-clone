@@ -36,7 +36,7 @@ const userSchema = mongoose.Schema(
     picture: {
       type: String,
       trim: true,
-      default: "https://robohash.org/NSF.png?set=set3",
+      default: "https://github.com/shadcn.png",
     },
     cover: {
       type: String,

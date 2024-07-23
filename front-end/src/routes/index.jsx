@@ -2,7 +2,7 @@ import { ForgotPassword } from "@/pages/auth/forgot-password"
 import { PasswordChanged } from "@/pages/auth/forgot-password/password-changed"
 import Login from "@/pages/auth/login"
 import Home from "@/pages/home"
-import { PageNotFound } from "@/pages/page-not-found"
+import PageNotFound from "@/pages/page-not-found"
 import Profile from "@/pages/profile"
 import { createBrowserRouter, RouterProvider } from "react-router-dom"
 
@@ -24,6 +24,10 @@ const Routes = () => {
     {
       path: "/about-us",
       element: <div>About Us</div>,
+    },
+    {
+      path: "/page-not-found",
+      element: <PageNotFound />,
     },
     {
       path: "*",
