@@ -1,16 +1,18 @@
-import { Messenger as MessengerIcon } from "@/assets/svg"
-
+import { Button } from "@/components/ui/button"
 import {
   Tooltip,
   TooltipContent,
   TooltipTrigger,
 } from "@/components/ui/tooltip"
+import { Messenger as MessengerIcon } from "@/assets/svg"
 
 export const Messenger = () => {
   return (
     <Tooltip>
-      <TooltipTrigger className="flex h-10 w-10 items-center justify-center rounded-full bg-background-secondary hover:bg-background-comment">
-        <MessengerIcon />
+      <TooltipTrigger asChild>
+        <Button variant="secondary" size="icon" className="size-10">
+          <MessengerIcon />
+        </Button>
       </TooltipTrigger>
       <TooltipContent>Messenger</TooltipContent>
     </Tooltip>

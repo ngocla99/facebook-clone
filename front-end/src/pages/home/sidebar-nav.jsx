@@ -58,7 +58,7 @@ export const SidebarNav = ({ className }) => {
           </div>
           <div className="group grid">
             <div className="mx-2 flex items-center justify-between">
-              <h3 className="text-[17px] font-semibold text-muted-foreground">
+              <h3 className="text-lg font-semibold text-muted-foreground">
                 Your shortcuts
               </h3>
               <Button

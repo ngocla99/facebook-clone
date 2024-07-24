@@ -82,7 +82,7 @@ export const ChangePassword = ({ data, goBack, goNext }) => {
               name="password"
               render={({ field }) => (
                 <FormItem>
-                  <FormDescription className="mb-5 text-[17px] leading-[20px]">
+                  <FormDescription className="mb-5 text-lg leading-[20px]">
                     Create a new password that is at least 6 characters long. A
                     strong password has a combination of letters, digits and
                     punctuation marks.
@@ -146,7 +146,7 @@ const RulePassword = () => {
         <Button
           type="button"
           variant="secondary"
-          className="h-auto text-[17px] font-bold"
+          className="h-auto text-lg font-bold"
         >
           ?
         </Button>

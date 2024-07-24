@@ -84,7 +84,7 @@ export const PostAudience = ({ setView }) => {
       <HeadOnBack title="Post Audience" onBack={() => setView(VIEWS.ROOT)} />
       <ScrollArea className="h-[470px]">
         <div className="p-4">
-          <h3 className="text-[17px] font-semibold">Who can see your post?</h3>
+          <h3 className="text-lg font-semibold">Who can see your post?</h3>
           <p className="mt-1 leading-5 text-muted-foreground">
             Your post will show up in Feed, on your profile and in search
             results.
@@ -113,7 +113,7 @@ export const PostAudience = ({ setView }) => {
                 <img src={itm.imgSrc} alt={itm.key} />
               </div>
               <div className="grid flex-1">
-                <p className="text-[17px] font-medium leading-5">{itm.title}</p>
+                <p className="text-lg font-medium leading-5">{itm.title}</p>
                 {itm.description && (
                   <span className="font-normal text-muted-foreground">
                     {itm.description}

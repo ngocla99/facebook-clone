@@ -79,7 +79,7 @@ export const FindUser = ({ goNext }) => {
               name="email"
               render={({ field }) => (
                 <FormItem>
-                  <FormDescription className="mb-4 text-[17px] leading-[20px]">
+                  <FormDescription className="mb-4 text-lg leading-[20px]">
                     Please enter your email address or mobile number to search
                     for your account.
                   </FormDescription>

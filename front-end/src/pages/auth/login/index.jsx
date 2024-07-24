@@ -43,7 +43,7 @@ const Login = () => {
               <CardFooter className="flex justify-center px-0 pt-[6px]">
                 <Button
                   size="lg"
-                  className="bg-[#42b72a] text-[17px] font-bold hover:bg-[#36a420]"
+                  className="bg-[#42b72a] text-lg font-bold hover:bg-[#36a420]"
                   onClick={() => setShowSignUpModal(true)}
                 >
                   Create new account

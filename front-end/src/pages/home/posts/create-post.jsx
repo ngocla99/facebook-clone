@@ -32,7 +32,7 @@ export const CreatePost = () => {
           </Avatar>
           <Button
             variant="secondary"
-            className="active:scale-1 min-h-10 flex-1 justify-start rounded-[20px] bg-background-comment px-3 py-2 text-[17px] font-normal text-muted-foreground after:rounded-[20px]"
+            className="active:scale-1 min-h-10 flex-1 justify-start rounded-[20px] bg-background-comment px-3 py-2 text-lg font-normal text-muted-foreground after:rounded-[20px]"
             onClick={() => postCreateModal.onOpen({ openBy: null })}
           >
             What's on your mind, {user.firstName}?

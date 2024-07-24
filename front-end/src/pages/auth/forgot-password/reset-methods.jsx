@@ -32,7 +32,7 @@ export const ResetMethods = ({ data, goNext, goBack }) => {
       </CardHeader>
       <CardContent className="flex items-center border-b border-[rgba(0,0,0,0.1)] p-[18px] pt-4">
         <div className="w-3/5">
-          <h3 className="mb-5 text-[17px] leading-5">
+          <h3 className="mb-5 text-lg leading-5">
             How do you want to receive the code to reset your password?
           </h3>
           <RadioGroup defaultValue="email" className="gap-0">

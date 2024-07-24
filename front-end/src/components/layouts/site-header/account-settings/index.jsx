@@ -1,7 +1,9 @@
-import { useQueryClient } from "@tanstack/react-query"
 import React from "react"
+import { useQueryClient } from "@tanstack/react-query"
 
+import { cn, getInitialsName } from "@/lib/utils"
 import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar"
+import { buttonVariants } from "@/components/ui/button"
 import {
   Popover,
   PopoverContent,
@@ -13,7 +15,6 @@ import {
   TooltipTrigger,
 } from "@/components/ui/tooltip"
 
-import { getInitialsName } from '@/lib/utils'
 import { ViewBase } from "./view-base"
 import { ViewDisplay } from "./view-display"
 import { ViewFbLanguage } from "./view-fb-language"
@@ -79,16 +80,19 @@ export const AccountSettings = () => {
     <Popover>
       <Tooltip>
         <PopoverTrigger asChild>
-          <div className="h-10 w-10">
-            <TooltipTrigger>
-              <Avatar>
+          <TooltipTrigger
+            className={cn(
+              buttonVariants({ variant: "secondary", size: "icon" }),
+              "size-10 bg-white active:scale-[0.96]"
+            )}
+          >
+            <Avatar>
               <AvatarImage src={user.picture} alt={user.username} />
               <AvatarFallback>{getInitialsName(user)}</AvatarFallback>
-              </Avatar>
-            </TooltipTrigger>
-            <TooltipContent sideOffset={9}>Account</TooltipContent>
-          </div>
+            </Avatar>
+          </TooltipTrigger>
         </PopoverTrigger>
+        <TooltipContent sideOffset={9}>Account</TooltipContent>
       </Tooltip>
       <PopoverContent className="w-[360px] p-0 shadow-3xl">
         <View />

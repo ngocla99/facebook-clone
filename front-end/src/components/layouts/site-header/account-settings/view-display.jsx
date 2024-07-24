@@ -21,7 +21,7 @@ export const ViewDisplay = ({ setView }) => {
           </div>
           <div className="space-y-[5px]">
             <div className="pl-[6px]">
-              <p className="text-[17px] font-semibold leading-none">
+              <p className="text-lg font-semibold leading-none">
                 Dark mode
               </p>
               <p className="text-muted-foreground">
@@ -58,7 +58,7 @@ export const ViewDisplay = ({ setView }) => {
           </div>
           <div className="space-y-[5px]">
             <div className="pl-[6px]">
-              <p className="text-[17px] font-semibold leading-none">
+              <p className="text-lg font-semibold leading-none">
                 Compact mode
               </p>
               <p className="text-muted-foreground">
@@ -85,7 +85,7 @@ export const ViewDisplay = ({ setView }) => {
           </div>
           <div className="space-y-[5px]">
             <div className="pl-[6px]">
-              <p className="text-[17px] font-semibold leading-none">
+              <p className="text-lg font-semibold leading-none">
                 Show previews of links
               </p>
               <p className="text-muted-foreground">

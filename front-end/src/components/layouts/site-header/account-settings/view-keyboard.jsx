@@ -23,7 +23,7 @@ export const ViewKeyboard = ({ setView }) => {
           </div>
           <div className="space-y-[5px]">
             <div className="pl-[6px]">
-              <p className="text-[17px] font-semibold leading-none">
+              <p className="text-lg font-semibold leading-none">
                 Use single-character keyboard shortcuts
               </p>
               <p className="text-muted-foreground">

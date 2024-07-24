@@ -98,7 +98,7 @@ export const EditPostAudienceModal = () => {
                             <img src={itm.imgSrc} alt={itm.key} />
                           </div>
                           <div className="grid flex-1">
-                            <p className="text-[17px] font-medium leading-5">
+                            <p className="text-lg font-medium leading-5">
                               {itm.title}
                             </p>
                             {itm.description && (

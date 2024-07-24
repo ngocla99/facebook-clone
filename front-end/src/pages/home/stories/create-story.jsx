@@ -14,7 +14,7 @@ export const CreateStory = () => {
             <Plus className="text-primary" />
           </div>
           <div className="flex flex-1 flex-col justify-center gap-[5px]">
-            <p className="text-[17px] font-semibold leading-none">
+            <p className="text-lg font-semibold leading-none">
               Create story
             </p>
             <span className="font-normal leading-none text-muted-foreground">

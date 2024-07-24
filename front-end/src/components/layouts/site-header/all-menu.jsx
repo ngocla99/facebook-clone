@@ -1,5 +1,6 @@
 import { siteConfig } from "@/config/site"
-import { Button } from "@/components/ui/button"
+import { cn } from "@/lib/utils"
+import { Button, buttonVariants } from "@/components/ui/button"
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card"
 import {
   Popover,
@@ -21,13 +22,16 @@ export const AllMenu = () => {
     <Popover>
       <Tooltip>
         <PopoverTrigger asChild>
-          <div className="group flex h-10 w-10 items-center justify-center rounded-full bg-background-secondary hover:bg-background-comment data-[state=open]:bg-[#EBF5FF]">
-            <TooltipTrigger>
-              <Menu className="group-data-[state=open]:text-primary" />
-            </TooltipTrigger>
-            <TooltipContent sideOffset={18}>Menu</TooltipContent>
-          </div>
+          <TooltipTrigger
+            className={cn(
+              buttonVariants({ variant: "secondary", size: "icon" }),
+              "group size-10 data-[state=open]:bg-[#EBF5FF]"
+            )}
+          >
+            <Menu className="group-data-[state=open]:text-primary" />
+          </TooltipTrigger>
         </PopoverTrigger>
+        <TooltipContent sideOffset={18}>Menu</TooltipContent>
       </Tooltip>
       <PopoverContent className="w-[608px] bg-[#f7f8fa] p-0 shadow-2xl">
         <h3 className="p-4 text-2xl font-bold">Menu</h3>
@@ -133,7 +137,7 @@ export const AllMenu = () => {
 const MenuGroup = ({ title, srcName, items, ItemComponent }) => {
   return (
     <>
-      {title && <p className="p-2 pb-1 text-[17px] font-semibold">{title}</p>}
+      {title && <p className="p-2 pb-1 text-lg font-semibold">{title}</p>}
       {items.map((itm, i) => (
         <ItemComponent key={i} {...{ [srcName]: itm }} />
       ))}

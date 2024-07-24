@@ -66,7 +66,7 @@ export const SecurityCode = ({ data, goBack, goNext }) => {
               name="code"
               render={({ field }) => (
                 <FormItem>
-                  <FormDescription className="mb-5 text-[17px] leading-[20px]">
+                  <FormDescription className="mb-5 text-lg leading-[20px]">
                     Please check your emails for a message with your code. Your
                     code is 6 numbers long.
                   </FormDescription>

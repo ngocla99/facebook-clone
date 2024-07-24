@@ -130,7 +130,7 @@ export const UploadImages = (props) => {
                 <div className="grid size-10 place-items-center rounded-full bg-background-secondary">
                   <i className="addPhoto_icon"></i>
                 </div>
-                <p className="text-[17px] font-medium leading-5">
+                <p className="text-lg font-medium leading-5">
                   Add Photos/Videos
                 </p>
                 <span className="text-xs text-muted-foreground">

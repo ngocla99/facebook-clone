@@ -14,7 +14,7 @@ export const AddFriendList = ({ className }) => {
       )}
     >
       <div className="flex justify-between">
-        <p className="text-[17px] font-semibold">People You May Know</p>
+        <p className="text-lg font-semibold">People You May Know</p>
         <Button variant="link">See all</Button>
       </div>
       <div className="flex">
@@ -40,7 +40,7 @@ const AddFriendItem = ({ user }) => {
           <X className="size-6" />
         </Button>
         <div className="mx-3 space-y-2 overflow-hidden border-t border-border pb-3 pt-2">
-          <p className="whitespace-nowrap text-[17px] font-semibold leading-none">
+          <p className="whitespace-nowrap text-lg font-semibold leading-none">
             Nemo
           </p>
           <div className="flex items-center gap-1">

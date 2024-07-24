@@ -18,7 +18,7 @@ export const FriendsSpecific = ({ setView }) => {
       </div>
       <ScrollArea className="h-[380px]">
         <div className="grid px-2">
-          <h3 className="px-2 pb-1 text-[17px] font-semibold">Friends</h3>
+          <h3 className="px-2 pb-1 text-lg font-semibold">Friends</h3>
 
           <Button
             variant="ghost"

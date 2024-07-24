@@ -5,7 +5,7 @@ export const Birthdays = ({ className }) => {
   return (
     <div className={cn("grid", className)}>
       <div className="mx-2 flex h-9 items-center justify-between">
-        <h3 className="text-[17px] font-semibold text-muted-foreground">
+        <h3 className="text-lg font-semibold text-muted-foreground">
           Birthdays
         </h3>
       </div>

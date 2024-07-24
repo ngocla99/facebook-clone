@@ -28,7 +28,7 @@ export const ViewBase = ({ setView }) => {
               <AvatarImage src={user.picture} alt={user.username} />
               <AvatarFallback>{getInitialsName(user)}</AvatarFallback>
             </Avatar>
-            <p className="text-[17px] font-semibold">{`${user.firstName} ${user.lastName}`}</p>
+            <p className="text-lg font-semibold">{`${user.firstName} ${user.lastName}`}</p>
           </Button>
           <div className="mx-4">
             <Separator />

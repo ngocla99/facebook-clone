@@ -10,7 +10,7 @@ export const ViewLanguage = ({ setView }) => {
         className="p-2"
       />
       <div className="">
-        <p className="px-2 py-3 text-[17px] font-medium">Language and region</p>
+        <p className="px-2 py-3 text-lg font-medium">Language and region</p>
         <SettingItem
           icon={<i className="fb_language_icon"></i>}
           title="Facebook Language"

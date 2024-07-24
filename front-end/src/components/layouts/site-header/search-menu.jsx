@@ -34,7 +34,7 @@ export const SearchMenu = React.forwardRef(({ onBack }, ref) => {
       </div>
       <div className="p-2">
         <div className="mb-2 flex h-[21px] items-center justify-between px-2">
-          <p className="text-[17px] font-semibold">Recent</p>
+          <p className="text-lg font-semibold">Recent</p>
           <Button
             variant="ghost"
             className="mr-[-6px] h-9 rounded-sm px-2 font-normal text-[#0064d1] hover:text-[#0064d1]"
