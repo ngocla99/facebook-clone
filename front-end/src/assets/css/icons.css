@@ -569,6 +569,15 @@
   display: inline-block;
   filter: invert(20%);
 }
+.camera_filled_icon_20 {
+  background-image: url("/icons/icons52.png");
+  background-position: 0px -21px;
+  background-size: auto;
+  width: 20px;
+  height: 20px;
+  background-repeat: no-repeat;
+  display: inline-block;
+}
 .camera_filled_icon {
   background-image: url("/icons/icons52.png");
   background-position: 0px -63px;
