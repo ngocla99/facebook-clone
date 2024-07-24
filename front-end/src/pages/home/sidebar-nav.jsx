@@ -63,7 +63,7 @@ export const SidebarNav = ({ className }) => {
               </h3>
               <Button
                 variant="ghost"
-                className="h-9 rounded-sm px-2 text-[15px] font-normal text-[#0064d1] opacity-0 hover:text-[#0064d1] group-hover:opacity-100"
+                className="h-9 rounded-sm px-2 font-normal text-[#0064d1] opacity-0 hover:text-[#0064d1] group-hover:opacity-100"
               >
                 Edit
               </Button>

@@ -20,13 +20,16 @@ export const ViewBase = ({ setView }) => {
     <div className="pt-3">
       <Card className="m-4 mt-0 shadow-xl">
         <CardContent className="grid p-0">
-          <div className="m-1 flex h-[60px] items-center gap-2 rounded-lg p-2 hover:bg-hover">
+          <Button
+            variant="ghost"
+            className="m-1 flex h-[60px] items-center justify-start gap-2 rounded-lg p-2"
+          >
             <Avatar className="h-9 w-9">
               <AvatarImage src={user.picture} alt={user.username} />
               <AvatarFallback>{getInitialsName(user)}</AvatarFallback>
             </Avatar>
             <p className="text-[17px] font-semibold">{`${user.firstName} ${user.lastName}`}</p>
-          </div>
+          </Button>
           <div className="mx-4">
             <Separator />
           </div>

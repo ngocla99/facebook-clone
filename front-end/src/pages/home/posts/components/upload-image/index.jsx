@@ -179,7 +179,7 @@ export const UploadImages = (props) => {
                 {displayImages?.length ? (
                   <div className="absolute inset-0 z-10 hidden gap-3 bg-hover-media p-2 group-hover:flex">
                     <Button
-                      className="gap-2 bg-white text-[15px] font-semibold hover:bg-background-comment"
+                      className="gap-2 bg-white font-semibold hover:bg-background-comment"
                       variant="secondary"
                       onClick={() => {}}
                     >
@@ -188,7 +188,7 @@ export const UploadImages = (props) => {
                       All
                     </Button>
                     <Button
-                      className="gap-2 bg-white text-[15px] font-semibold hover:bg-background-comment"
+                      className="gap-2 bg-white font-semibold hover:bg-background-comment"
                       variant="secondary"
                       onClick={open}
                     >

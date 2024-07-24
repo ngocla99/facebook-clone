@@ -139,7 +139,7 @@ const StickerItem = ({ sticker }) => {
       style={{ backgroundColor: bgColor }}
     >
       <img src={image} alt={title} className="size-6" />
-      <p className="text-[15px] font-semibold">{title}</p>
+      <p className="font-semibold">{title}</p>
     </Button>
   )
 }

@@ -25,14 +25,14 @@ export const CommentActions = ({ onDelete, onEdit }) => {
       >
         <Button
           variant="ghost"
-          className="justify-start px-2 text-[15px]"
+          className="justify-start px-2"
           onClick={onEdit}
         >
           Edit
         </Button>
         <Button
           variant="ghost"
-          className="justify-start px-2 text-[15px]"
+          className="justify-start px-2"
           onClick={onDelete}
         >
           Delete

@@ -24,23 +24,23 @@ export const ViewDisplay = ({ setView }) => {
               <p className="text-[17px] font-semibold leading-none">
                 Dark mode
               </p>
-              <p className="text-[15px] text-muted-foreground">
+              <p className="text-muted-foreground">
                 Adjust the appearance of Facebook to reduce glare and give your
                 eyes a break.
               </p>
             </div>
             <RadioGroup defaultValue="option-one" className="gap-0">
               <OptionItem htmlFor="option-one">
-                <p className="text-[15px] font-semibold">Off</p>
+                <p className="font-semibold">Off</p>
                 <RadioGroupItem value="option-one" id="option-one" />
               </OptionItem>
               <OptionItem htmlFor="option-two">
-                <p className="text-[15px] font-semibold">On</p>
+                <p className="font-semibold">On</p>
                 <RadioGroupItem value="option-two" id="option-two" />
               </OptionItem>
               <OptionItem htmlFor="option-3">
                 <div className="grid gap-[5px]">
-                  <p className="text-[15px] font-semibold">Automatic</p>
+                  <p className="font-semibold">Automatic</p>
                   <span className="text-xs text-muted-foreground">
                     We’ll automatically adjust the display based on your
                     device’s system settings.
@@ -61,18 +61,18 @@ export const ViewDisplay = ({ setView }) => {
               <p className="text-[17px] font-semibold leading-none">
                 Compact mode
               </p>
-              <p className="text-[15px] text-muted-foreground">
+              <p className="text-muted-foreground">
                 Make your font size smaller so more content can fit on the
                 screen.
               </p>
             </div>
             <RadioGroup defaultValue="option-one" className="gap-0">
               <OptionItem htmlFor="option-one">
-                <p className="text-[15px] font-semibold">Off</p>
+                <p className="font-semibold">Off</p>
                 <RadioGroupItem value="option-one" id="option-one" />
               </OptionItem>
               <OptionItem htmlFor="option-two">
-                <p className="text-[15px] font-semibold">On</p>
+                <p className="font-semibold">On</p>
                 <RadioGroupItem value="option-two" id="option-two" />
               </OptionItem>
             </RadioGroup>
@@ -88,21 +88,21 @@ export const ViewDisplay = ({ setView }) => {
               <p className="text-[17px] font-semibold leading-none">
                 Show previews of links
               </p>
-              <p className="text-[15px] text-muted-foreground">
+              <p className="text-muted-foreground">
                 Without opening a page to a person, event, or group, show info
                 and actions in a preview window.
               </p>
             </div>
             <RadioGroup defaultValue="option-one" className="gap-0">
               <OptionItem htmlFor="option-one">
-                <p className="text-[15px] font-semibold">
+                <p className="font-semibold">
                   Show preview when hovering pointer over link
                 </p>
                 <RadioGroupItem value="option-one" id="option-one" />
               </OptionItem>
               <OptionItem htmlFor="option-two">
                 <div className="grid gap-[5px]">
-                  <p className="text-[15px] font-semibold">
+                  <p className="font-semibold">
                     Show preview after clicking
                   </p>
                   <span className="text-xs text-muted-foreground">
@@ -113,7 +113,7 @@ export const ViewDisplay = ({ setView }) => {
                 <RadioGroupItem value="option-two" id="option-two" />
               </OptionItem>
               <OptionItem htmlFor="option-three">
-                <p className="text-[15px] font-semibold">
+                <p className="font-semibold">
                   Don&#39;t show preview
                 </p>
                 <RadioGroupItem value="option-three" id="option-three" />

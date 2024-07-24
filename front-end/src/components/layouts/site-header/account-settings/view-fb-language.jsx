@@ -75,7 +75,7 @@ const LanguageItem = ({ language, selected, onSelect }) => {
       onClick={() => onSelect(key)}
     >
       <div className="space-y-[5px] px-[6px]">
-        <p className="text-[15px] font-bold leading-none">{native}</p>
+        <p className="font-bold leading-none">{native}</p>
         <span className="text-xs leading-none text-muted-foreground">
           {translation}
         </span>

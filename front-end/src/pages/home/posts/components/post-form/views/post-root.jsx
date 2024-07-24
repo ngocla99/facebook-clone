@@ -97,11 +97,11 @@ export const PostRoot = React.forwardRef(
               <AvatarImage src={user.picture} alt={user.username} />
               <AvatarFallback>{getInitialsName(user)}</AvatarFallback>
             </Avatar>
-            <div className="space-y-[2px] text-[15px] font-semibold">
+            <div className="space-y-[2px] font-semibold">
               <p>{`${user.firstName} ${user.lastName}`}</p>
               <Button
                 variant="secondary"
-                className="flex h-6 items-center gap-1 px-2 py-1 text-[13px]"
+                className="flex h-6 items-center gap-1 px-2 py-1 text-sm"
                 onClick={() => setView(VIEWS.AUDIENCE)}
               >
                 {audience === "EVERYONE" && (
@@ -153,7 +153,7 @@ export const PostRoot = React.forwardRef(
                         className={cn(
                           "w-full resize-none whitespace-pre-wrap break-words border-none bg-transparent text-2xl leading-[28px] outline-none placeholder:text-muted-foreground",
                           (isSmallText || showImageUpload) &&
-                            "text-[15px] leading-5",
+                            "leading-5",
                           background &&
                             "text-center text-3xl font-bold text-white"
                         )}
@@ -229,7 +229,7 @@ export const PostRoot = React.forwardRef(
               showImageUpload={showImageUpload}
               setShowImageUpload={setShowImageUpload}
             />
-            <LoadingButton className="text-[15px] font-semibold">
+            <LoadingButton className="font-semibold">
               {isEdit ? "Save" : "Post"}
               <span className="sr-only">{isEdit ? "Save" : "Post"}</span>
             </LoadingButton>

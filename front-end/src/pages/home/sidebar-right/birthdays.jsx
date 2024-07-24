@@ -15,7 +15,7 @@ export const Birthdays = ({ className }) => {
         className="flex h-auto min-h-[52px] items-center justify-start gap-2 px-2"
       >
         <i className="gift_icon"></i>
-        <p className="whitespace-normal text-[15px] text-muted-foreground">
+        <p className="whitespace-normal text-muted-foreground">
           <strong>Nemo</strong> and <strong>Lanh</strong> have birthdays today.
         </p>
       </Button>

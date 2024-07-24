@@ -106,7 +106,7 @@ export const CommentForm = React.forwardRef(
                             ref={textRef}
                             value={field.value}
                             className={cn(
-                              "w-full resize-none whitespace-pre-wrap break-words border-none bg-transparent px-3 pb-1 pt-2 text-[15px] font-normal leading-5 outline-none placeholder:font-normal placeholder:text-muted-foreground"
+                              "w-full resize-none whitespace-pre-wrap break-words border-none bg-transparent px-3 pb-1 pt-2 font-normal leading-5 outline-none placeholder:font-normal placeholder:text-muted-foreground"
                             )}
                             placeholder="Write a comment..."
                             onChange={(e) => {

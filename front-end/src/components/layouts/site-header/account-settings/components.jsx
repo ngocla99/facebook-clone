@@ -1,7 +1,6 @@
-import { Return } from "@/assets/svg"
-
 import { cn } from "@/lib/utils"
 import { Button } from "@/components/ui/button"
+import { Return } from "@/assets/svg"
 
 export const SettingItem = ({
   icon,
@@ -26,8 +25,8 @@ export const SettingItem = ({
         {icon}
       </div>
       <div className="flex flex-1 flex-col justify-center gap-[5px]">
-        <p className="text-[15px] font-semibold leading-none">{title}</p>
-        <span className="text-[13px] leading-none text-muted-foreground">
+        <p className="font-semibold leading-none">{title}</p>
+        <span className="text-sm leading-none text-muted-foreground">
           {subTitle}
         </span>
       </div>
@@ -43,7 +42,12 @@ export const SettingItem = ({
 export const HeadGoBack = ({ title, onBack, className }) => {
   return (
     <div className={cn("flex items-center gap-[10px]", className)}>
-      <Button variant="ghost" className="w-9 rounded-full p-0" onClick={onBack}>
+      <Button
+        variant="ghost"
+        className="size-9 p-0"
+        size="icon"
+        onClick={onBack}
+      >
         <Return className="text-[#65676b]" />
       </Button>
       <h2 className="text-2xl font-[700] leading-[36px]">{title}</h2>

@@ -11,7 +11,7 @@ export const FriendRequests = ({ className }) => {
         </h3>
         <Button
           variant="ghost"
-          className="h-9 rounded-sm px-2 text-[15px] font-normal text-[#0064d1] hover:text-[#0064d1]"
+          className="h-9 rounded-sm px-2 font-normal text-[#0064d1] hover:text-[#0064d1]"
         >
           See all
         </Button>
@@ -29,8 +29,8 @@ export const FriendRequests = ({ className }) => {
           </Avatar>
           <div className="grid flex-1 gap-2">
             <div className="flex justify-between leading-[20px]">
-              <p className="text-[15px]">Lan Anh</p>
-              <span className="text-[13px] text-muted-foreground">5d</span>
+              <p>Lan Anh</p>
+              <span className="text-sm text-muted-foreground">5d</span>
             </div>
             <div className="grid grid-cols-2 gap-2">
               <Button>Confirm</Button>

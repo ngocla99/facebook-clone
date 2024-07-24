@@ -36,7 +36,7 @@ export const FriendsCustom = ({ setView }) => {
         >
           Cancel
         </Button>
-        <Button className="w-[170px] text-[15px]">Save Change</Button>
+        <Button className="w-[170px]">Save Change</Button>
       </DialogFooter>
     </>
   )

@@ -79,10 +79,8 @@ export const SecurityCode = ({ data, goBack, goNext }) => {
                       />
                     </FormControl>
                     <div className="space-y-[10px]">
-                      <p className="text-[15px] leading-5">
-                        We sent your code to:
-                      </p>
-                      <p className="text-[13px] leading-4">{email}</p>
+                      <p className="leading-5">We sent your code to:</p>
+                      <p className="text-sm leading-4">{email}</p>
                     </div>
                   </div>
                 </FormItem>
@@ -91,7 +89,7 @@ export const SecurityCode = ({ data, goBack, goNext }) => {
           </CardContent>
           <CardFooter className="flex justify-end gap-2 p-4">
             <a
-              className="mr-auto cursor-pointer text-[13px] text-[#1877f2] hover:underline hover:underline-offset-1"
+              className="text-sm text-[#1877f2] mr-auto cursor-pointer hover:underline hover:underline-offset-1"
               onClick={goBack}
             >
               Didn't get a code?
@@ -99,12 +97,12 @@ export const SecurityCode = ({ data, goBack, goNext }) => {
             <Button
               type="button"
               variant="secondary"
-              className="px-5 text-[15px] font-bold"
+              className="px-5 font-bold"
               onClick={() => navigate("/")}
             >
               Cancel
             </Button>
-            <Button className="px-5 text-[15px] font-bold">Continue</Button>
+            <Button className="px-5 font-bold">Continue</Button>
           </CardFooter>
         </Card>
       </form>

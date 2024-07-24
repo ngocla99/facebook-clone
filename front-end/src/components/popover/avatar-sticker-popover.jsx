@@ -41,10 +41,10 @@ export const AvatarStickerPopover = ({
       >
         <div className="flex flex-col items-center justify-center gap-3">
           <i className="avatar_group_icon"></i>
-          <Button className="text-[15px] font-semibold" disabled>
+          <Button className="font-semibold" disabled>
             Make your avatar
           </Button>
-          <p className="text-[13px] leading-4 text-muted-foreground">
+          <p className="text-sm leading-4 text-muted-foreground">
             Make your own sticker pack that represents who you are.
           </p>
         </div>

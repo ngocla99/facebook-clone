@@ -102,7 +102,7 @@ export const EditPostAudienceModal = () => {
                               {itm.title}
                             </p>
                             {itm.description && (
-                              <span className="text-[15px] font-normal text-muted-foreground">
+                              <span className="font-normal text-muted-foreground">
                                 {itm.description}
                               </span>
                             )}
@@ -129,7 +129,7 @@ export const EditPostAudienceModal = () => {
               >
                 Cancel
               </Button>
-              <Button className="w-[116px] text-[15px]">Done</Button>
+              <Button className="w-[116px]">Done</Button>
             </div>
           </DialogFooter>
         </form>

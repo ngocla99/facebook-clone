@@ -98,11 +98,11 @@ export const FindUser = ({ goNext }) => {
             <Button
               type="button"
               variant="secondary"
-              className="px-5 text-[15px] font-bold"
+              className="px-5 font-bold"
             >
               Cancel
             </Button>
-            <Button className="px-5 text-[15px] font-bold">Search</Button>
+            <Button className="px-5 font-bold">Search</Button>
           </CardFooter>
         </Card>
       </form>
@@ -118,8 +118,8 @@ const MessageBox = ({ title, subtitle, className }) => {
         className
       )}
     >
-      <p className="text-[15px] font-semibold">{title}</p>
-      <p className="text-[13px]">{subtitle}</p>
+      <p className="font-semibold">{title}</p>
+      <p className="text-sm">{subtitle}</p>
     </div3>
   )
 }

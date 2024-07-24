@@ -24,12 +24,12 @@ export const Story = ({ story, className }) => {
             />
             <AvatarFallback>CN</AvatarFallback>
           </Avatar>
-          <div className="bg-positive absolute bottom-0 right-[2px] size-3 rounded-full border-2 border-card"></div>
+          <div className="absolute bottom-0 right-[2px] size-3 rounded-full border-2 border-card bg-positive"></div>
         </div>
         <div className="absolute bottom-0 left-0 right-0 w-full">
           <div className="overlay-story aspect-[3]" />
           <div className="bg-[rgba(0,0,0,0.35)] px-3 pb-3">
-            <p className="line-clamp-2 text-[13px] font-semibold leading-none text-white">
+            <p className="line-clamp-2 text-sm font-semibold leading-none text-white">
               {story.profileName}
             </p>
           </div>

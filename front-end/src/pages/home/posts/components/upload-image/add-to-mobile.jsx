@@ -26,7 +26,7 @@ export const AddToMobile = ({ className }) => {
         <i className={cn("phone_icon", addPhotoToMobile && "invert")}></i>
       </div>
       <div className="flex-1 text-left">
-        <p className="p-1 text-[13px] leading-[14px]">
+        <p className="p-1 text-sm leading-[14px]">
           {!addPhotoToMobile
             ? "Add photos and videos from your mobile device."
             : "Tap the notification on your mobile device to add photos and videos."}

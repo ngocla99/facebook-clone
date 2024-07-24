@@ -146,8 +146,8 @@ const MenuItem = ({ menu }) => {
     <div className="flex cursor-pointer gap-3 rounded-lg px-2 py-3 hover:bg-hover active:bg-active">
       <img src={menu.icon} className="h-9 w-9" />
       <div className="space-y-[10px]">
-        <p className="text-[15px] font-medium">{menu.name}</p>
-        <span className="text-[13px] text-muted-foreground">
+        <p className="font-medium">{menu.name}</p>
+        <span className="text-sm text-muted-foreground">
           {menu.description}
         </span>
       </div>
@@ -165,7 +165,7 @@ const CreateItem = ({ create }) => {
       <div className="flex h-9 w-9 min-w-9 items-center justify-center rounded-full bg-background-secondary">
         <i className={create.icon}></i>
       </div>
-      <p className="text-[15px] font-medium">{create.name}</p>
+      <p className="font-medium">{create.name}</p>
     </Button>
   )
 }

@@ -101,22 +101,22 @@ export const ChangePassword = ({ data, goBack, goNext }) => {
               )}
             />
             {errMessage === "short" && (
-              <p className="text-[15px] font-bold text-[orange]">Too short</p>
+              <p className="font-bold text-[orange]">Too short</p>
             )}
             {errMessage === "weak" && (
-              <p className="text-[15px] text-muted-foreground">
+              <p className="text-muted-foreground">
                 Password strength:{" "}
                 <span className="font-bold text-[gray]">Weak</span>
               </p>
             )}
             {errMessage === "medium" && (
-              <p className="text-[15px] text-muted-foreground">
+              <p className="text-muted-foreground">
                 Password strength:{" "}
                 <span className="font-bold text-[#00f]">Medium</span>
               </p>
             )}
             {errMessage === "" && form.getValues("password") && (
-              <p className="text-[15px] text-muted-foreground">
+              <p className="text-muted-foreground">
                 Password strength:{" "}
                 <span className="font-bold text-[green]">Strong</span>
               </p>
@@ -126,12 +126,12 @@ export const ChangePassword = ({ data, goBack, goNext }) => {
             <Button
               type="button"
               variant="secondary"
-              className="w-[90px] px-5 text-[15px] font-bold"
+              className="w-[90px] px-5 font-bold"
               onClick={() => navigate("/")}
             >
               Skip
             </Button>
-            <Button className="px-5 text-[15px] font-bold">Continue</Button>
+            <Button className="px-5 font-bold">Continue</Button>
           </CardFooter>
         </Card>
       </form>
@@ -175,7 +175,7 @@ const RulePassword = () => {
         </div>
         <DialogFooter className="px-4 pb-3">
           <DialogClose asChild>
-            <Button className="w-[102px] text-[15px] font-bold">OK</Button>
+            <Button className="w-[102px] font-bold">OK</Button>
           </DialogClose>
         </DialogFooter>
       </DialogContent>

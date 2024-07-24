@@ -79,7 +79,7 @@ export const PostEvent = ({ setView }) => {
           className="h-[150px] w-[548px] max-w-none object-cover"
         />
         <h3 className="text-xl font-bold leading-6">Life event</h3>
-        <p className="mt-1 text-[13px] font-semibold leading-4 text-muted-foreground">
+        <p className="mt-1 text-sm font-semibold leading-4 text-muted-foreground">
           Share and remember important moments from your life.
         </p>
       </div>
@@ -87,7 +87,7 @@ export const PostEvent = ({ setView }) => {
         <Separator className="my-10" />
       </div>
       <div className="text-center">
-        <h4 className="text-[15px] font-semibold uppercase">
+        <h4 className="font-semibold uppercase">
           Select a category
         </h4>
         <div className="grid grid-cols-4 px-2 py-4">
@@ -98,7 +98,7 @@ export const PostEvent = ({ setView }) => {
               onClick={itm.onClick}
             >
               <img src={itm.icon} alt={itm.title} />
-              <p className="text-[13px] font-normal leading-4">{itm.title}</p>
+              <p className="text-sm font-normal leading-4">{itm.title}</p>
             </Button>
           ))}
         </div>

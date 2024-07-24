@@ -92,9 +92,9 @@ export const Post = ({ isDialog, post }) => {
               <AvatarFallback>{getInitialsName(user)}</AvatarFallback>
             </Avatar>
             <div className="flex-1">
-              <p className="text-[15px] font-semibold leading-5">{`${user.firstName} ${user.lastName}`}</p>
+              <p className="font-semibold leading-5">{`${user.firstName} ${user.lastName}`}</p>
               <div className="flex items-center gap-1">
-                <p className="text-[13px] leading-4 text-muted-foreground">
+                <p className="text-sm leading-4 text-muted-foreground">
                   {moment(createdAt).fromNow()}
                 </p>
                 <span className="leading-4"> · </span>

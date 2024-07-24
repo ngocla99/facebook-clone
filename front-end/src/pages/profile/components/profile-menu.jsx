@@ -6,48 +6,48 @@ export const ProfileMenu = () => {
       <div className="container bg-card">
         <TabsList className="w-full justify-start px-8">
           <TabsTrigger
-            className="h-[60px] text-[15px] hover:bg-hover"
+            className="h-[60px] hover:bg-hover"
             value="posts"
           >
             Posts
           </TabsTrigger>
           <TabsTrigger
-            className="h-[60px] text-[15px] hover:bg-hover"
+            className="h-[60px] hover:bg-hover"
             value="about"
             disabled
           >
             About
           </TabsTrigger>
           <TabsTrigger
-            className="h-[60px] text-[15px] hover:bg-hover"
+            className="h-[60px] hover:bg-hover"
             value="friends"
             disabled
           >
             Friends
           </TabsTrigger>
           <TabsTrigger
-            className="h-[60px] text-[15px] hover:bg-hover"
+            className="h-[60px] hover:bg-hover"
             value="photos"
             disabled
           >
             Photos
           </TabsTrigger>
           <TabsTrigger
-            className="h-[60px] text-[15px] hover:bg-hover"
+            className="h-[60px] hover:bg-hover"
             value="videos"
             disabled
           >
             Videos
           </TabsTrigger>
           <TabsTrigger
-            className="h-[60px] text-[15px] hover:bg-hover"
+            className="h-[60px] hover:bg-hover"
             value="reels"
             disabled
           >
             Reels
           </TabsTrigger>
           <TabsTrigger
-            className="h-[60px] text-[15px] hover:bg-hover"
+            className="h-[60px] hover:bg-hover"
             value="more"
             disabled
           >

@@ -21,7 +21,7 @@ export const PostStats = ({ post, className }) => {
   return (
     <div
       className={cn(
-        "grid grid-cols-[auto_1fr_auto] gap-3 py-[10px] text-[15px] leading-5 text-muted-foreground",
+        "grid grid-cols-[auto_1fr_auto] gap-3 py-[10px] leading-5 text-muted-foreground",
         className
       )}
     >
@@ -125,7 +125,7 @@ const ReactTextTooltip = ({
       </TooltipTrigger>
       <TooltipContent side="bottom" className="max-w-[170px]">
         {type && (
-          <p className="text-[15px] font-semibold capitalize leading-5">
+          <p className="font-semibold capitalize leading-5">
             {type}
           </p>
         )}

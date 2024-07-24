@@ -38,7 +38,7 @@ export const PasswordChanged = () => {
       <Card className="mt-[88px] w-[558px]">
         <CardHeader>
           <CardTitle className="text-xl font-bold">Password changed</CardTitle>
-          <CardDescription className="text-[15px]">
+          <CardDescription>
             If you think someone else may have known your old password, it's a
             good idea to log out of any other phones and computers and check for
             recent changes to your account.
@@ -52,10 +52,8 @@ export const PasswordChanged = () => {
           >
             <OptionItem htmlFor={optionsLogin.LOG_OUT_ALL}>
               <div className="grid gap-[5px]">
-                <p className="text-[15px] font-semibold">
-                  Log out of other devices
-                </p>
-                <span className="text-[13px] font-normal text-muted-foreground">
+                <p className="font-semibold">Log out of other devices</p>
+                <span className="text-sm font-normal text-muted-foreground">
                   We'll help you check for recent changes next.
                 </span>
               </div>
@@ -65,7 +63,7 @@ export const PasswordChanged = () => {
               />
             </OptionItem>
             <OptionItem htmlFor={optionsLogin.STAY_LOGGED_IN}>
-              <p className="text-[15px] font-semibold">Stay logged in</p>
+              <p className="font-semibold">Stay logged in</p>
               <RadioGroupItem
                 value={optionsLogin.STAY_LOGGED_IN}
                 id={optionsLogin.STAY_LOGGED_IN}

@@ -30,7 +30,7 @@ export const FriendsExcept = ({ setView }) => {
               <AvatarFallback>NM</AvatarFallback>
             </Avatar>
             <div className="flex-1 py-3">
-              <p className="text-[15px] leading-5">Lanh</p>
+              <p className="leading-5">Lanh</p>
               <p></p>
             </div>
             <i className="remove_icon group-hover:hidden"></i>
@@ -46,7 +46,7 @@ export const FriendsExcept = ({ setView }) => {
               <AvatarFallback>NM</AvatarFallback>
             </Avatar>
             <div className="flex-1 py-3">
-              <p className="text-[15px] leading-5">Nemo</p>
+              <p className="leading-5">Nemo</p>
               <p></p>
             </div>
             <i className="remove_icon group-hover:hidden"></i>
@@ -62,7 +62,7 @@ export const FriendsExcept = ({ setView }) => {
         >
           Cancel
         </Button>
-        <Button className="w-[170px] text-[15px]">Save Change</Button>
+        <Button className="w-[170px]">Save Change</Button>
       </DialogFooter>
     </>
   )

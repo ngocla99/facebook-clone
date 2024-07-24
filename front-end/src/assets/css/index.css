@@ -89,7 +89,7 @@
     @apply border-border;
   }
   body {
-    @apply bg-background text-foreground;
+    @apply bg-background text-base text-foreground;
   }
 
   .filter-accent {
@@ -157,7 +157,7 @@
 }
 
 .EmojiPickerReact .epr-emoji-category-label {
-  @apply h-auto pb-1 pl-[6px] pr-0 pt-2 text-[13px] text-muted-foreground;
+  @apply h-auto pb-1 pl-[6px] pr-0 pt-2 text-sm text-muted-foreground;
 }
 
 .EmojiPickerReact .epr-header .epr-category-nav {

@@ -63,7 +63,7 @@ export const Stories = ({ className }) => {
                 <div className="absolute right-1/2 top-0 flex h-10 w-10 translate-x-1/2 translate-y-[-50%] items-center justify-center rounded-full border-4 border-background bg-primary text-primary-foreground">
                   <Plus />
                 </div>
-                <p className="text-center text-[13px] font-semibold leading-[9px]">
+                <p className="text-center text-sm font-semibold leading-[9px]">
                   Create story
                 </p>
               </div>

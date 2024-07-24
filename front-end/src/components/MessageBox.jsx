@@ -11,7 +11,7 @@ export const MessageBox = ({ type = "error", title, subtitle, className }) => {
       )}
     >
       <p className="text-xs">{title}</p>
-      <p className="text-[13px]">{subtitle}</p>
+      <p className="text-sm">{subtitle}</p>
     </div3>
   )
 }

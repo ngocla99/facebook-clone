@@ -85,11 +85,11 @@ export const PostAudience = ({ setView }) => {
       <ScrollArea className="h-[470px]">
         <div className="p-4">
           <h3 className="text-[17px] font-semibold">Who can see your post?</h3>
-          <p className="mt-1 text-[15px] leading-5 text-muted-foreground">
+          <p className="mt-1 leading-5 text-muted-foreground">
             Your post will show up in Feed, on your profile and in search
             results.
           </p>
-          <p className="mt-3 text-[15px] leading-5 text-muted-foreground">
+          <p className="mt-3 leading-5 text-muted-foreground">
             Your default audience is set to{" "}
             <span className="font-semibold">Only me</span>, but you can change
             the audience of this specific post.
@@ -115,7 +115,7 @@ export const PostAudience = ({ setView }) => {
               <div className="grid flex-1">
                 <p className="text-[17px] font-medium leading-5">{itm.title}</p>
                 {itm.description && (
-                  <span className="text-[15px] font-normal text-muted-foreground">
+                  <span className="font-normal text-muted-foreground">
                     {itm.description}
                   </span>
                 )}
@@ -134,7 +134,7 @@ export const PostAudience = ({ setView }) => {
           <div className="grid size-10 place-items-center rounded-full hover:bg-hover">
             <Checkbox />
           </div>
-          <p className="text-[15px] font-semibold">Set as default audience.</p>
+          <p className="font-semibold">Set as default audience.</p>
         </div>
         <div className="flex justify-end gap-3 p-3">
           <Button
@@ -144,7 +144,7 @@ export const PostAudience = ({ setView }) => {
           >
             Cancel
           </Button>
-          <Button className="w-[116px] text-[15px]" onClick={handleSave}>
+          <Button className="w-[116px]" onClick={handleSave}>
             Done
           </Button>
         </div>

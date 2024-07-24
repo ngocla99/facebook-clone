@@ -215,7 +215,7 @@ export const SignUpForm = ({ className }) => {
                 align="start"
                 className="w-[356px] p-3 shadow-xl"
               >
-                <p className="text-[13px] text-[#65676B]">
+                <p className="text-sm text-[#65676B]">
                   <strong>Providing your birthday</strong> helps make sure that
                   you get the right Facebook experience for your age. If you
                   want to change who sees this, go to the About section of your
@@ -346,7 +346,7 @@ export const SignUpForm = ({ className }) => {
                     align="start"
                     className="w-[356px] p-3 shadow-xl"
                   >
-                    <p className="text-[13px] text-[#65676B]">
+                    <p className="text-sm text-[#65676B]">
                       You can change who sees your gender on your profile later.
                       Select Custom to choose another gender, or if you&#39;d
                       rather not say.
@@ -373,7 +373,7 @@ export const SignUpForm = ({ className }) => {
                         />
                       </FormControl>
                       <FormControl>
-                        <FormLabel className="h-full w-full rounded-sm border border-[#ccd0d5] pl-[10px] pr-7 text-[15px] font-normal leading-9 text-[#1c1e21] aria-invalid:border-destructive aria-invalid:focus:ring-red-100">
+                        <FormLabel className="h-full w-full rounded-sm border border-[#ccd0d5] pl-[10px] pr-7 font-normal leading-9 text-[#1c1e21] aria-invalid:border-destructive aria-invalid:focus:ring-red-100">
                           {itm.label}
                         </FormLabel>
                       </FormControl>

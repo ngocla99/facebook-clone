@@ -86,10 +86,10 @@ export const EditComment = ({ postId, comment, onHideEditComment }) => {
       {isEditing ? (
         <div className="flex flex-col items-start gap-0.5">
           <div className="space-y-0.5 rounded-[18px] bg-background-comment px-3 py-2">
-            <p className="text-[13px] font-semibold leading-[14px]">
+            <p className="text-sm font-semibold leading-[14px]">
               {user.firstName + " " + user.lastName}
             </p>
-            <p className="text-[15px] leading-5">{commentState.text}</p>
+            <p className="leading-5">{commentState.text}</p>
           </div>
 
           <p className="ml-3 text-xs leading-none text-muted-foreground">

@@ -1,3 +1,5 @@
+import { CrossIcon, X } from "lucide-react"
+
 import { cn } from "@/lib/utils"
 import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar"
 import { Button } from "@/components/ui/button"
@@ -22,15 +24,21 @@ export const AddFriendList = ({ className }) => {
   )
 }
 
-const AddFriendItem = () => {
+const AddFriendItem = ({ user }) => {
   return (
     <Card className="overflow-hidden shadow-xl">
-      <CardContent className="w-[156px] p-0">
+      <CardContent className="relative w-[160px] p-0">
         <img
           src="https://github.com/shadcn.png"
           alt=""
           className="aspect-square w-full object-cover"
         />
+        <Button
+          className="absolute right-3 top-3 size-8 bg-[rgba(0,0,0,0.4)]"
+          size="icon"
+        >
+          <X className="size-6" />
+        </Button>
         <div className="mx-3 space-y-2 overflow-hidden border-t border-border pb-3 pt-2">
           <p className="whitespace-nowrap text-[17px] font-semibold leading-none">
             Nemo
@@ -42,11 +50,14 @@ const AddFriendItem = () => {
               <AvatarImage src="https://github.com/shadcn.png" alt={"NEMO"} />
               <AvatarFallback>NM</AvatarFallback>
             </Avatar>
-            <p className="whitespace-nowrap text-[15px] leading-none text-muted-foreground">
+            <p className="whitespace-nowrap leading-none text-muted-foreground">
               42 mutual friends
             </p>
           </div>
-          <Button className="w-full">Add friend</Button>
+          <Button variant="deemphasized" className="w-full">
+            <i className="friends_suggestions_icon_16 filter-accent mr-1"></i>
+            Add friend
+          </Button>
         </div>
       </CardContent>
     </Card>

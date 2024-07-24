@@ -65,10 +65,10 @@ export const Comment = ({ postId, comment }) => {
         <div className="flex flex-col items-start gap-1">
           <div className="flex gap-1">
             <div className="space-y-0.5 rounded-[18px] bg-background-comment px-3 py-2">
-              <p className="text-[13px] font-semibold leading-[14px]">
+              <p className="text-sm font-semibold leading-[14px]">
                 {commentBy.firstName + " " + commentBy.lastName}
               </p>
-              <p className="text-[15px] leading-5">{text}</p>
+              <p className="leading-5">{text}</p>
             </div>
             <CommentActions
               onDelete={handleDeleteComment}

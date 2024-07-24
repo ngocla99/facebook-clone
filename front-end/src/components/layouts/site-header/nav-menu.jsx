@@ -1,3 +1,11 @@
+import { NavLink } from "react-router-dom"
+
+import { cn } from "@/lib/utils"
+import {
+  Tooltip,
+  TooltipContent,
+  TooltipTrigger,
+} from "@/components/ui/tooltip"
 import {
   Friends,
   FriendsActive,
@@ -8,14 +16,6 @@ import {
   More,
   Watch,
 } from "@/assets/svg"
-import { NavLink } from "react-router-dom"
-
-import { cn } from "@/lib/utils"
-import {
-  Tooltip,
-  TooltipContent,
-  TooltipTrigger,
-} from "@/components/ui/tooltip"
 
 const mainNav = [
   {
@@ -86,7 +86,7 @@ export const NavMenu = () => {
                 ) : (
                   <Icon className="text-muted-foreground" />
                 )}
-                <div className="absolute inset-x-0 inset-y-1 rounded-lg bg-hover opacity-0 transition-opacity group-hover:opacity-100" />
+                <div className="absolute inset-x-0 inset-y-1 rounded-lg bg-hover opacity-0 transition-all group-hover:opacity-100 group-active:bg-[rgba(0,0,0,0.1)]" />
               </TooltipTrigger>
               <TooltipContent sideOffset={16}>
                 <p>{title}</p>

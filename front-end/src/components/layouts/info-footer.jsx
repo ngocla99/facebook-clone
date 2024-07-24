@@ -72,7 +72,7 @@ export const InfoFooter = ({ className }) => {
           {["about", "careers", "developers", "help"].map((el) => (
             <Link
               key={el}
-              className="rounded-sm px-2 py-3 text-[15px] font-semibold capitalize hover:bg-hover"
+              className="rounded-sm px-2 py-3 font-semibold capitalize hover:bg-hover"
             >
               {el}
             </Link>

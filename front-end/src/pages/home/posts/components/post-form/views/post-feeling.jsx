@@ -16,10 +16,10 @@ export const PostFeeling = ({ setView }) => {
       />
       <Tabs defaultValue="feelings">
         <TabsList>
-          <TabsTrigger className="h-[60px] text-[15px]" value="feelings">
+          <TabsTrigger className="h-[60px]" value="feelings">
             Feelings
           </TabsTrigger>
-          <TabsTrigger className="h-[60px] text-[15px]" value="activities">
+          <TabsTrigger className="h-[60px]" value="activities">
             Activities
           </TabsTrigger>
         </TabsList>

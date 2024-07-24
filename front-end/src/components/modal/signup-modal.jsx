@@ -20,7 +20,7 @@ const SignUpModalHelper = ({ showSignUpModal, setShowSignUpModal }) => {
         <DialogTitle className="text-[32px] text-[#1c1e21]">
           Sign Up
         </DialogTitle>
-        <DialogDescription className="text-[15px] text-[#606770]">
+        <DialogDescription className="text-[#606770]">
           It&apos;s quick and easy.
         </DialogDescription>
       </DialogHeader>

@@ -11,7 +11,7 @@ export const SearchInput = React.forwardRef(({ className, ...props }, ref) => {
         ref={ref}
         type="text"
         className={cn(
-          "flex w-full border-none bg-transparent px-2 pb-[9px] pt-[7px] text-[15px] leading-5 outline-none placeholder:text-muted-foreground",
+          "flex w-full border-none bg-transparent px-2 pb-[9px] pt-[7px] leading-5 outline-none placeholder:text-muted-foreground",
           className
         )}
         {...props}

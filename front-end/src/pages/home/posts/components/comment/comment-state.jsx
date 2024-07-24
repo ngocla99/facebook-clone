@@ -25,10 +25,10 @@ export const CommentState = ({ className }) => {
         <div className="flex flex-col items-start gap-0.5">
           <div className="flex gap-1">
             <div className="space-y-0.5 rounded-[18px] bg-background-comment px-3 py-2">
-              <p className="text-[13px] font-semibold leading-[14px]">
+              <p className="text-sm font-semibold leading-[14px]">
                 {me.firstName + " " + me.lastName}
               </p>
-              <p className="text-[15px] leading-5">{commentState.text}</p>
+              <p className="leading-5">{commentState.text}</p>
             </div>
             <Button
               className="hidden size-8 self-center text-muted-foreground group-hover:flex"

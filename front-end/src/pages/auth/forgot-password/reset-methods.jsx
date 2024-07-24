@@ -46,8 +46,8 @@ export const ResetMethods = ({ data, goNext, goBack }) => {
                 disabled={true}
               />
               <div className="space-y-1">
-                <p className="text-[15px] leading-5">Use my Google account</p>
-                <p className="text-[13px] leading-4">
+                <p className="leading-5">Use my Google account</p>
+                <p className="text-sm leading-4">
                   Log in to Google (if you aren't already) to quickly reset your
                   password.
                 </p>
@@ -59,20 +59,18 @@ export const ResetMethods = ({ data, goNext, goBack }) => {
             >
               <RadioGroupItem value="email" id="email" />
               <div className="space-y-1">
-                <p className="text-[15px] leading-5">Send code via email</p>
-                <p className="text-[13px] leading-4">{email}</p>
+                <p className="leading-5">Send code via email</p>
+                <p className="text-sm leading-4">{email}</p>
               </div>
             </Label>
             <Label
               className="flex gap-3 rounded-lg p-[6px] hover:bg-hover"
-              htmlFor="facbook"
+              htmlFor="facebook"
             >
-              <RadioGroupItem value="facbook" id="facbook" disabled={true} />
+              <RadioGroupItem value="facebook" id="facebook" disabled={true} />
               <div className="space-y-1">
-                <p className="text-[15px] leading-5">
-                  Send code via Facebook notification
-                </p>
-                <p className="text-[13px] leading-4">
+                <p className="leading-5">Send code via Facebook notification</p>
+                <p className="text-sm leading-4">
                   You're logged in on another app or device. Get a notification
                   with a login code.
                 </p>
@@ -84,8 +82,8 @@ export const ResetMethods = ({ data, goNext, goBack }) => {
             >
               <RadioGroupItem value="sms" id="sms" disabled={true} />
               <div className="space-y-1">
-                <p className="text-[15px] leading-5">Send code via SMS</p>
-                <p className="text-[13px] leading-4">+*********13</p>
+                <p className="leading-5">Send code via SMS</p>
+                <p className="text-sm leading-4">+*********13</p>
               </div>
             </Label>
             <Label
@@ -94,9 +92,7 @@ export const ResetMethods = ({ data, goNext, goBack }) => {
             >
               <RadioGroupItem value="password" id="password" disabled={true} />
               <div className="space-y-1">
-                <p className="text-[15px] leading-5">
-                  Enter Password to Log In
-                </p>
+                <p className="leading-5">Enter Password to Log In</p>
               </div>
             </Label>
           </RadioGroup>
@@ -106,23 +102,17 @@ export const ResetMethods = ({ data, goNext, goBack }) => {
             <AvatarImage src={picture} alt="nm" />
             <AvatarFallback>NM</AvatarFallback>
           </Avatar>
-          <p className="text-[15px] leading-5">
-            {firstName + " " + lastName}
-          </p>
-          <span className="text-[13px] leading-4 text-muted-foreground">
+          <p className="leading-5">{firstName + " " + lastName}</p>
+          <span className="text-sm leading-4 text-muted-foreground">
             Facebook user
           </span>
         </div>
       </CardContent>
       <CardFooter className="flex justify-end gap-2 p-4">
-        <Button
-          variant="secondary"
-          className="px-5 text-[15px] font-bold"
-          onClick={goBack}
-        >
+        <Button variant="secondary" className="px-5 font-bold" onClick={goBack}>
           Not you?
         </Button>
-        <Button className="px-5 text-[15px] font-bold" onClick={handleConfirm}>
+        <Button className="px-5 font-bold" onClick={handleConfirm}>
           Continue
         </Button>
       </CardFooter>

@@ -72,7 +72,7 @@ const AlertDialogDescription = React.forwardRef(
   ({ className, ...props }, ref) => (
     <AlertDialogPrimitive.Description
       ref={ref}
-      className={cn("text-[15px] font-normal", className)}
+      className={cn("font-normal", className)}
       {...props}
     />
   )
@@ -83,7 +83,7 @@ AlertDialogDescription.displayName =
 const AlertDialogAction = React.forwardRef(({ className, ...props }, ref) => (
   <AlertDialogPrimitive.Action
     ref={ref}
-    className={cn(buttonVariants(), "min-w-[124px] text-[15px]", className)}
+    className={cn(buttonVariants(), "min-w-[124px]", className)}
     {...props}
   />
 ))
@@ -94,7 +94,7 @@ const AlertDialogCancel = React.forwardRef(({ className, ...props }, ref) => (
     ref={ref}
     className={cn(
       buttonVariants({ variant: "ghost" }),
-      "mt-2 px-3 text-[15px] text-primary hover:text-primary sm:mt-0",
+      "mt-2 px-3 text-primary hover:text-primary sm:mt-0",
       className
     )}
     {...props}

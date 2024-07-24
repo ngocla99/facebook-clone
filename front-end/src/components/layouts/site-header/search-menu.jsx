@@ -37,7 +37,7 @@ export const SearchMenu = React.forwardRef(({ onBack }, ref) => {
           <p className="text-[17px] font-semibold">Recent</p>
           <Button
             variant="ghost"
-            className="mr-[-6px] h-9 rounded-sm px-2 text-[15px] font-normal text-[#0064d1] hover:text-[#0064d1]"
+            className="mr-[-6px] h-9 rounded-sm px-2 font-normal text-[#0064d1] hover:text-[#0064d1]"
           >
             Edit
           </Button>
@@ -60,8 +60,8 @@ const RecentItem = () => {
         <AvatarFallback>CN</AvatarFallback>
       </Avatar>
       <div className="flex-1 space-y-[10px]">
-        <p className="text-[15px] font-semibold">Phan Lan Anh</p>
-        <span className="text-[13px] text-muted-foreground">Friend</span>
+        <p className="font-semibold">Phan Lan Anh</p>
+        <span className="text-sm text-muted-foreground">Friend</span>
       </div>
       <Button variant="ghost" size="icon">
         <X size={13} className="text-muted-foreground" />

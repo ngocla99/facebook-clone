@@ -26,17 +26,17 @@ export const ViewKeyboard = ({ setView }) => {
               <p className="text-[17px] font-semibold leading-none">
                 Use single-character keyboard shortcuts
               </p>
-              <p className="text-[15px] text-muted-foreground">
+              <p className="text-muted-foreground">
                 Use single-character shortcuts to perform common actions.
               </p>
             </div>
             <RadioGroup defaultValue="option-one" className="gap-0">
               <OptionItem htmlFor="option-one">
-                <p className="text-[15px] font-semibold">Off</p>
+                <p className="font-semibold">Off</p>
                 <RadioGroupItem value="option-one" id="option-one" />
               </OptionItem>
               <OptionItem htmlFor="option-two">
-                <p className="text-[15px] font-semibold">On</p>
+                <p className="font-semibold">On</p>
                 <RadioGroupItem value="option-two" id="option-two" />
               </OptionItem>
             </RadioGroup>

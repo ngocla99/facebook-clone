@@ -14,14 +14,14 @@ export const PostTag = ({ setView }) => {
       <div className="grid grid-cols-[1fr_auto] gap-3 px-4 py-2">
         <SearchInput placeholder="Search" />
         <Button
-          className="text-[15px] text-primary hover:text-primary"
+          className="text-primary hover:text-primary"
           variant="ghost"
         >
           Done
         </Button>
       </div>
       <ScrollArea className="px-2 py-4">
-        <h3 className="px-2 pb-2 text-[13px] font-semibold uppercase leading-none text-muted-foreground">
+        <h3 className="px-2 pb-2 text-sm font-semibold uppercase leading-none text-muted-foreground">
           Suggestions
         </h3>
         <div className="grid">

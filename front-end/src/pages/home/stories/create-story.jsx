@@ -17,7 +17,7 @@ export const CreateStory = () => {
             <p className="text-[17px] font-semibold leading-none">
               Create story
             </p>
-            <span className="text-[15px] font-normal leading-none text-muted-foreground">
+            <span className="font-normal leading-none text-muted-foreground">
               Share a photo or write something.
             </span>
           </div>

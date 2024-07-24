@@ -30,18 +30,19 @@ export const CreatePost = () => {
             <AvatarImage src={user.picture} alt={user.username} />
             <AvatarFallback>{getInitialsName(user)}</AvatarFallback>
           </Avatar>
-          <button
-            className="min-h-10 flex-1 rounded-[20px] bg-background-comment px-3 py-2 text-left text-[17px] hover:bg-hover"
+          <Button
+            variant="secondary"
+            className="active:scale-1 min-h-10 flex-1 justify-start rounded-[20px] bg-background-comment px-3 py-2 text-[17px] font-normal text-muted-foreground after:rounded-[20px]"
             onClick={() => postCreateModal.onOpen({ openBy: null })}
           >
             What's on your mind, {user.firstName}?
-          </button>
+          </Button>
         </div>
         <Separator className="mb-2 mt-3" />
         <div className="grid grid-cols-3">
           <Button variant="ghost" className="h-10 gap-2" disabled={true}>
             <LiveVideo className="text-[#f3425f]" />
-            <p className="text-[15px] text-muted-foreground">Live video</p>
+            <p className="text-muted-foreground">Live video</p>
           </Button>
           <Button
             variant="ghost"
@@ -49,7 +50,7 @@ export const CreatePost = () => {
             onClick={() => postCreateModal.onOpen({ openBy: "photo" })}
           >
             <Photo className="text-[#4bbf67]" />
-            <p className="text-[15px] text-muted-foreground">Photo/video</p>
+            <p className="text-muted-foreground">Photo/video</p>
           </Button>
           <Button
             variant="ghost"
@@ -57,7 +58,7 @@ export const CreatePost = () => {
             onClick={() => postCreateModal.onOpen({ openBy: "feeling" })}
           >
             <Feeling className="text-[#f7b928]" />
-            <p className="text-[15px] text-muted-foreground">
+            <p className="text-muted-foreground">
               Feeling/activity
             </p>
           </Button>

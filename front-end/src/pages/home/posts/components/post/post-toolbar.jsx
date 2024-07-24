@@ -118,11 +118,11 @@ export const PostToolbar = ({ postId, className }) => {
         onClick={() => postModal.onOpen(postId)}
       >
         <i className="comment_icon filter-secondary-icon"></i>
-        <p className="text-[15px] text-muted-foreground">Comment</p>
+        <p className="text-muted-foreground">Comment</p>
       </Button>
       <Button className="h-8 gap-2" variant="ghost">
         <i className="share_icon filter-secondary-icon"></i>
-        <p className="text-[15px] text-muted-foreground">Share</p>
+        <p className="text-muted-foreground">Share</p>
       </Button>
     </div>
   )
@@ -133,7 +133,7 @@ const ReactionText = ({ type }) => {
     return (
       <>
         <i className="like_icon filter-secondary-icon"></i>
-        <p className="text-[15px] text-muted-foreground">Like</p>
+        <p className="text-muted-foreground">Like</p>
       </>
     )
 
@@ -142,35 +142,35 @@ const ReactionText = ({ type }) => {
       return (
         <>
           <i className="like_active_icon filter-primary-accent"></i>
-          <p className="text-[15px] text-primary">Like</p>
+          <p className="text-primary">Like</p>
         </>
       )
     case "LOVE":
       return (
         <>
           <img src="icons/reacts/love.svg" alt="Love" className="size-[18px]" />
-          <p className="text-[15px] text-[#f33e58]">Love</p>
+          <p className="text-[#f33e58]">Love</p>
         </>
       )
     case "HAHA":
       return (
         <>
           <img src="icons/reacts/haha.svg" alt="HaHa" className="size-[18px]" />
-          <p className="text-[15px] text-[#f7b125]">Haha</p>
+          <p className="text-[#f7b125]">Haha</p>
         </>
       )
     case "WOW":
       return (
         <>
           <img src="icons/reacts/wow.svg" alt="Wow" className="size-[18px]" />
-          <p className="text-[15px] text-[#f7b125]">Wow</p>
+          <p className="text-[#f7b125]">Wow</p>
         </>
       )
     case "SAD":
       return (
         <>
           <img src="icons/reacts/sad.svg" alt="Sad" className="size-[18px]" />
-          <p className="text-[15px] text-[#f7b125]">Sad</p>
+          <p className="text-[#f7b125]">Sad</p>
         </>
       )
     case "ANGRY":
@@ -181,7 +181,7 @@ const ReactionText = ({ type }) => {
             alt="Angry"
             className="size-[18px]"
           />
-          <p className="text-[15px] text-[#e9710f]">Angry</p>
+          <p className="text-[#e9710f]">Angry</p>
         </>
       )
   }
