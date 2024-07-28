@@ -39,7 +39,7 @@ const uploadToCloudinary = async (file, path) => {
   });
 };
 
-exports.listImages = async (req, res) => {
+exports.getImages = async (req, res) => {
   try {
     const { path, sort, max } = req.body;
     cloudinary.search

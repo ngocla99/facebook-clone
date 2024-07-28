@@ -11,7 +11,7 @@ router.post(
   imageUpload,
   uploadController.uploadImages
 );
-router.post("/listImages", uploadController.listImages);
+router.post("/getImages", uploadController.getImages);
 router.post("/getImageInfo", uploadController.getImageInfo);
 
 module.exports = router;

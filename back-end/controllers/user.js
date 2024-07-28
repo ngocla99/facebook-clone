@@ -1,10 +1,6 @@
 const { sendVerificationEmail, sendResetCode } = require("../helpers/mailer");
 const { generateToken } = require("../helpers/tokens");
-const {
-  validateEmail,
-  validateLength,
-  validateUsername,
-} = require("../helpers/validation");
+const { validateEmail, validateLength, validateUsername } = require("../helpers/validation");
 const jwt = require("jsonwebtoken");
 const User = require("../models/User");
 const bcrypt = require("bcrypt");
@@ -14,17 +10,7 @@ require("dotenv").config();
 
 exports.register = async (req, res) => {
   try {
-    const {
-      firstName,
-      lastName,
-      username,
-      email,
-      password,
-      bYear,
-      bMonth,
-      bDay,
-      gender,
-    } = req.body;
+    const { firstName, lastName, username, email, password, bYear, bMonth, bDay, gender } = req.body;
 
     if (!validateEmail(email)) {
       return res.status(400).json({
@@ -35,8 +21,7 @@ exports.register = async (req, res) => {
     const existedEmail = await User.findOne({ email });
     if (existedEmail) {
       return res.status(400).json({
-        message:
-          "This email address already exists. Try with a different email address",
+        message: "This email address already exists. Try with a different email address",
       });
     }
 
@@ -75,10 +60,7 @@ exports.register = async (req, res) => {
     });
 
     await user.save();
-    const emailVerificationToken = generateToken(
-      { id: user._id.toString() },
-      "30m"
-    );
+    const emailVerificationToken = generateToken({ id: user._id.toString() }, "30m");
     const url = `${process.env.BASE_URL}/activate/${emailVerificationToken}`;
     sendVerificationEmail(user.email, user.firstName, url);
     const token = generateToken({ id: user._id.toString() }, "7d");
@@ -112,15 +94,11 @@ exports.activateAccount = async (req, res) => {
 
     const user = await User.findById(userData.id);
     if (user.verified === true) {
-      return res
-        .status(400)
-        .json({ message: "this email is already in activated" });
+      return res.status(400).json({ message: "this email is already in activated" });
     } else {
       user.verified = true;
       await user.save();
-      return res
-        .status(200)
-        .json({ message: "account has been activated successfully" });
+      return res.status(200).json({ message: "account has been activated successfully" });
     }
   } catch (error) {
     res.status(500).json({ message: error.message });
@@ -134,17 +112,14 @@ exports.login = async (req, res) => {
 
     if (!user) {
       return res.status(400).json({
-        message:
-          "The email address you entered is not connected to an account.",
+        message: "The email address you entered is not connected to an account.",
       });
     }
 
     const check = await bcrypt.compare(password, user.password);
 
     if (!check) {
-      return res
-        .status(400)
-        .json({ message: "Invalid credentials. Please try again." });
+      return res.status(400).json({ message: "Invalid credentials. Please try again." });
     }
 
     const token = generateToken({ id: user._id.toString() }, "7d");
@@ -168,15 +143,10 @@ exports.sendVerification = (req, res) => {
     const id = req.user.id;
     const user = User.findById(id);
     if (user.verified) {
-      return res
-        .status(400)
-        .json({ message: "This account is already activated." });
+      return res.status(400).json({ message: "This account is already activated." });
     }
 
-    const emailVerificationToken = generateToken(
-      { id: user._id.toString() },
-      "30m"
-    );
+    const emailVerificationToken = generateToken({ id: user._id.toString() }, "30m");
     const url = `${process.env.BASE_URL}/activate/${emailVerificationToken}`;
     sendVerificationEmail(user.email, user.firstName, url);
 
@@ -193,9 +163,7 @@ exports.findUser = async (req, res) => {
     const user = await User.findOne({ email: req.body.email });
 
     if (!user) {
-      return res
-        .status(400)
-        .json({ message: "User account not found", code: "USER_NOT_FOUND" });
+      return res.status(400).json({ message: "User account not found", code: "USER_NOT_FOUND" });
     }
 
     return res.json({
@@ -237,8 +205,7 @@ exports.validateResetCode = async (req, res) => {
 
     if (codeStored.code !== code) {
       return res.status(400).json({
-        message:
-          "The number that you've entered doesn't match your code. Please try again.",
+        message: "The number that you've entered doesn't match your code. Please try again.",
       });
     }
 
@@ -255,8 +222,8 @@ exports.changePassword = async (req, res) => {
       return res.status(400).json({ message: "Please enter your email" });
     }
 
-    const cryptedPassword = await bcrypt.hash(password, 12);
-    await User.findOneAndUpdate({ email }, { password: cryptedPassword });
+    const cryptPassword = await bcrypt.hash(password, 12);
+    await User.findOneAndUpdate({ email }, { password: cryptPassword });
 
     return res.status(200).json({ message: "ok" });
   } catch (err) {
