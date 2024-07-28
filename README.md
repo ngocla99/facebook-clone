@@ -1,12 +1,17 @@
 ## Introduction
 
-Money sharing is the open-source for managing team.
+Nebook is the open-source for managing team.
 
 ## Features
 
 - [x] Validation with **Zod**
-- [x] Authentication (Activate account, Reset password)
-- [x] User, group management
+- [x] User Authentication and Profiles
+- [x] Upload, crop images
+- [x] News Feeds with posts, comments, reactions
+- [] Friend Requests and Friend List Management
+- [] Notifications for Interactions and Updates
+- [] Support for Multiple Languages
+- [] Messenger
 
 ## Tech Stack
 
@@ -14,8 +19,9 @@ Money sharing is the open-source for managing team.
 
 - [Tailwind](https://tailwindcss.com) – CSS
 - [Shadcn/ui](https://ui.shadcn.com) - UI component
-- [TanStack Query v5](https://tanstack.com/query/latest) - state management
+- [TanStack Query v5](https://tanstack.com/query/latest) - cached data
 - [React hook form](https://react-hook-form.com) - state management form
+- [Zustand](https://zustand-demo.pmnd.rs) - application state management
 - [Zod](https://zod.dev) - validation input
 
 ### Backend
