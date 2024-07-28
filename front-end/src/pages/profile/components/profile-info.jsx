@@ -1,4 +1,4 @@
-import { useProfileUploadPictureModal, useProfileUser } from "@/stores"
+import { useProfilePictureModal, useProfileUser } from "@/stores"
 
 import { cn, getInitialsName } from "@/lib/utils"
 import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar"
@@ -12,11 +12,11 @@ import { Separator } from "@/components/ui/separator"
 import { Plus } from "@/assets/svg"
 
 import { AddFriendList } from "./add-friend-list"
-import { UploadProfilePictureModal } from "./upload-profile-picture-modal"
+import { ProfilePictureModal } from "./upload-profile-picture/profile-picture-modal"
 
 export const ProfileInfo = ({ className }) => {
   const { user } = useProfileUser()
-  const profileUploadPictureModal = useProfileUploadPictureModal()
+  const profilePictureModal = useProfilePictureModal()
 
   if (!user) return null
 
@@ -65,7 +65,7 @@ export const ProfileInfo = ({ className }) => {
                         size="icon"
                         onClick={(e) => {
                           e.preventDefault()
-                          profileUploadPictureModal.onOpen()
+                          profilePictureModal.onOpen()
                         }}
                       >
                         <i className="camera_filled_icon_20 filter-primary-icon"></i>
@@ -77,7 +77,7 @@ export const ProfileInfo = ({ className }) => {
                   <Button
                     variant="ghost"
                     className="justify-start px-2 leading-5"
-                    onClick={() => profileUploadPictureModal.onOpen()}
+                    onClick={() => profilePictureModal.onOpen()}
                   >
                     <i className="camera_icon_20 mr-2"></i>
                     Choose profile picture
@@ -147,7 +147,7 @@ export const ProfileInfo = ({ className }) => {
         <AddFriendList className="mt-2" />
         <Separator className="mt-4" />
       </div>
-      <UploadProfilePictureModal />
+      <ProfilePictureModal />
     </div>
   )
 }

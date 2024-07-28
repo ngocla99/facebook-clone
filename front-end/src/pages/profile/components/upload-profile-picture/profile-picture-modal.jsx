@@ -1,6 +1,5 @@
 import React from "react"
-import { useProfileUploadPictureModal } from "@/stores"
-import Cropper from "react-easy-crop"
+import { useProfilePictureModal } from "@/stores"
 
 import { Button } from "@/components/ui/button"
 import {
@@ -11,17 +10,12 @@ import {
 import { Modal } from "@/components/ui/modal"
 import { Plus } from "@/assets/svg"
 
-export const UploadProfilePictureModal = () => {
-  const profileUploadPictureModal = useProfileUploadPictureModal()
+import { CreateProfilePicture } from "./create-profile-picture"
+
+export const ProfilePictureModal = () => {
+  const profilePictureModal = useProfilePictureModal()
   const inputUploadRef = React.useRef(null)
   const [file, setFile] = React.useState()
-
-  const [crop, setCrop] = React.useState({ x: 0, y: 0 })
-  const [zoom, setZoom] = React.useState(1)
-
-  const onCropComplete = (croppedArea, croppedAreaPixels) => {
-    console.log(croppedArea, croppedAreaPixels)
-  }
 
   const handleUploadFile = (e) => {
     const fileUpload = e.target.files[0]
@@ -46,9 +40,9 @@ export const UploadProfilePictureModal = () => {
 
   return (
     <Modal
-      className="w-auto p-0 drop-shadow sm:w-[700px]"
-      showModal={profileUploadPictureModal.isOpen}
-      onClose={() => profileUploadPictureModal.onClose()}
+      className="max-h-screen w-auto overflow-y-auto p-0 drop-shadow sm:w-[700px]"
+      showModal={profilePictureModal.isOpen}
+      onClose={() => profilePictureModal.onClose()}
       //   enableCloseBtn={false}
       //   onInteractOutside={(e) => {
       //     if (createPostMutation.isPending || uploadImageMutation.isPending)
@@ -61,9 +55,9 @@ export const UploadProfilePictureModal = () => {
         </DialogTitle>
         <DialogDescription className="hidden"></DialogDescription>
       </DialogHeader>
-      <div className="p-4">
+      <div>
         {!file ? (
-          <div className="grid grid-cols-2 gap-2">
+          <div className="grid grid-cols-2 gap-2 p-4">
             <input
               ref={inputUploadRef}
               type="file"
@@ -83,19 +77,7 @@ export const UploadProfilePictureModal = () => {
             </Button>
           </div>
         ) : (
-          <div className="">
-            <div className="relative h-[400px] w-full">
-              <Cropper
-                image={file}
-                crop={crop}
-                zoom={zoom}
-                aspect={4 / 3}
-                onCropChange={setCrop}
-                onCropComplete={onCropComplete}
-                onZoomChange={setZoom}
-              />
-            </div>
-          </div>
+          <CreateProfilePicture file={file} />
         )}
       </div>
     </Modal>

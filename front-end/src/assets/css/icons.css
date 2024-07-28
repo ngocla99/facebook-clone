@@ -951,3 +951,21 @@
   background-repeat: no-repeat;
   display: inline-block;
 }
+.public_icon {
+  background-image: url(/icons/icons56.png);
+  background-position: 0px -21px;
+  background-size: auto;
+  width: 20px;
+  height: 20px;
+  background-repeat: no-repeat;
+  display: inline-block;
+}
+.drag_icon {
+  background-image: url(/icons/icons52.png);
+  background-position: 0px 0px;
+  background-size: auto;
+  width: 20px;
+  height: 20px;
+  background-repeat: no-repeat;
+  display: inline-block;
+}

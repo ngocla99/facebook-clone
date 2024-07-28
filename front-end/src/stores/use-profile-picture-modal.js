@@ -1,6 +1,6 @@
 import { create } from "zustand"
 
-export const useProfileUploadPictureModal = create((set) => ({
+export const useProfilePictureModal = create((set) => ({
   isOpen: false,
   onOpen: () => set({ isOpen: true }),
   onClose: () => set({ isOpen: false }),
