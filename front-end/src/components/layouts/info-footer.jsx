@@ -12,7 +12,7 @@ export const InfoFooter = ({ className }) => {
   return (
     <div
       className={cn(
-        "flex flex-wrap items-center gap-x-1 text-xs text-[#8a8d91]",
+        "flex flex-wrap items-center gap-x-1 text-sm text-[#8a8d91]",
         className
       )}
     >

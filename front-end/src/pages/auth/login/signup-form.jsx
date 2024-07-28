@@ -129,7 +129,7 @@ export const SignUpForm = ({ className }) => {
               messageRes.type === "error" && "border-[#dd3c10] bg-[#ffebe8]"
             )}
           >
-            <p className="text-xs">{messageRes.message}</p>
+            <p className="text-sm">{messageRes.message}</p>
           </div>
         )}
         <div className="grid grid-cols-2 gap-[10px]">
@@ -203,7 +203,7 @@ export const SignUpForm = ({ className }) => {
           />
         </div>
         <div>
-          <FormLabel className="flex items-center gap-1 text-xs leading-5 text-[#606770]">
+          <FormLabel className="flex items-center gap-1 text-sm leading-5 text-[#606770]">
             Date of birth
             <Popover>
               <PopoverTrigger className="flex">
@@ -334,7 +334,7 @@ export const SignUpForm = ({ className }) => {
           name="gender"
           render={({ field }) => (
             <FormItem className="space-y-0">
-              <FormLabel className="flex items-center gap-1 text-xs leading-5 text-[#606770]">
+              <FormLabel className="flex items-center gap-1 text-sm leading-5 text-[#606770]">
                 Gender
                 <Popover>
                   <PopoverTrigger className="flex">

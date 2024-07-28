@@ -10,7 +10,7 @@ export const MessageBox = ({ type = "error", title, subtitle, className }) => {
         className
       )}
     >
-      <p className="text-xs">{title}</p>
+      <p className="text-sm">{title}</p>
       <p className="text-sm">{subtitle}</p>
     </div3>
   )

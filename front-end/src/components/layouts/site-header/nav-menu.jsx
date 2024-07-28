@@ -64,15 +64,15 @@ const mainNav = [
 
 export const NavMenu = () => {
   return (
-    <div className="flex items-stretch justify-start gap-2 sm:justify-center">
+    <div className="flex items-stretch justify-start gap-2 min-[710px]:justify-center">
       {mainNav.map(({ key, title, href, Icon, IconActive }) => (
         <NavLink
           to={href}
           key={href}
           className={cn(
-            "group relative hidden min-w-[50px] max-w-[calc(15vw-55px)] flex-1 items-center justify-center sm:flex lg:max-w-[112px] xl:max-w-[130px]",
+            "group relative hidden min-w-[50px] max-w-[calc(15vw-55px)] flex-1 items-center justify-center min-[710px]:flex lg:max-w-[112px] xl:max-w-[130px]",
             key === "more" && "flex lg:hidden",
-            key === "gaming" && "sm:hidden lg:flex"
+            key === "gaming" && "min-[710px]:hidden lg:flex"
           )}
         >
           {({ isActive }) => (

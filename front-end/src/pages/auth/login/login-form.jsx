@@ -53,7 +53,7 @@ export const LoginForm = () => {
       <form className="grid gap-3" onSubmit={form.handleSubmit(onSubmit)}>
         {errorRes && (
           <div className="mt-3 overflow-hidden border border-[#dd3c10] bg-[#ffebe8] px-[3px] py-[7px] text-center">
-            <p className="text-xs">{errorRes}</p>
+            <p className="text-sm">{errorRes}</p>
           </div>
         )}
         <FormField

@@ -38,8 +38,8 @@ const PageNotFound = () => {
               Go to News Feed
             </Button>
             <Button
-              variant="ghost"
-              className="mt-3 h-5 text-lg font-semibold text-[#0064d1] hover:bg-transparent hover:text-[#0064d1] hover:underline hover:underline-offset-1"
+              variant="link"
+              className="mt-3 h-5 text-lg"
               onClick={() => navigate(-1)}
             >
               Go back

@@ -1,64 +1,31 @@
-import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs"
+import { Link } from "react-router-dom"
 
-export const ProfileMenu = () => {
+import { cn } from "@/lib/utils"
+import { Button } from "@/components/ui/button"
+import { tabsTriggerVariants } from "@/components/ui/tabs"
+import { Dots } from "@/assets/svg"
+
+export const ProfileMenu = ({ className }) => {
   return (
-    <Tabs defaultValue="posts">
-      <div className="container bg-card">
-        <TabsList className="w-full justify-start px-8">
-          <TabsTrigger
-            className="h-[60px] hover:bg-hover"
-            value="posts"
-          >
-            Posts
-          </TabsTrigger>
-          <TabsTrigger
-            className="h-[60px] hover:bg-hover"
-            value="about"
-            disabled
-          >
-            About
-          </TabsTrigger>
-          <TabsTrigger
-            className="h-[60px] hover:bg-hover"
-            value="friends"
-            disabled
-          >
-            Friends
-          </TabsTrigger>
-          <TabsTrigger
-            className="h-[60px] hover:bg-hover"
-            value="photos"
-            disabled
-          >
-            Photos
-          </TabsTrigger>
-          <TabsTrigger
-            className="h-[60px] hover:bg-hover"
-            value="videos"
-            disabled
-          >
-            Videos
-          </TabsTrigger>
-          <TabsTrigger
-            className="h-[60px] hover:bg-hover"
-            value="reels"
-            disabled
-          >
-            Reels
-          </TabsTrigger>
-          <TabsTrigger
-            className="h-[60px] hover:bg-hover"
-            value="more"
-            disabled
-          >
-            More
-          </TabsTrigger>
-        </TabsList>
-      </div>
-      <TabsContent value="posts" className="container">
-        <div className="mt-4 px-8">Posts</div>
-      </TabsContent>
-      <TabsContent value="about">About</TabsContent>
-    </Tabs>
+    <div className={cn("flex items-center px-16", className)}>
+      <ProfileMenuItem to="posts" title="Posts" data-state="active" />
+      <ProfileMenuItem to="" title="About" disabled={true} />
+      <ProfileMenuItem to="" title="Friends" disabled />
+      <ProfileMenuItem to="" title="Photos" disabled />
+      <ProfileMenuItem to="" title="Reels" disabled />
+      <ProfileMenuItem to="" title="More" disabled />
+      <Button variant="secondary" className="ml-auto w-12">
+        <Dots className="size-4" />
+      </Button>
+    </div>
+  )
+}
+
+const ProfileMenuItem = ({ to, title, ...props }) => {
+  return (
+    <Link to={to} className={tabsTriggerVariants({ size: "lg" })} {...props}>
+      {title}
+      <div className="absolute bottom-1 left-0 right-0 top-1 rounded-lg bg-hover opacity-0 group-hover:opacity-100 group-data-[state=active]:bg-transparent"></div>
+    </Link>
   )
 }

@@ -76,7 +76,7 @@ ToastClose.displayName = ToastPrimitives.Close.displayName
 const ToastTitle = React.forwardRef(({ className, ...props }, ref) => (
   <ToastPrimitives.Title
     ref={ref}
-    className={cn("p-1.5 font-normal [&+div]:text-xs", className)}
+    className={cn("p-1.5 font-normal [&+div]:text-sm", className)}
     {...props}
   />
 ))

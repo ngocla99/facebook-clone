@@ -9,7 +9,7 @@ import { Separator } from "../ui/separator"
 export const LoginFooter = ({ className }) => {
   return (
     <footer className={cn("", className)}>
-      <div className="flex flex-wrap items-center gap-[10px] pt-2 text-xs text-[#8a8d91]">
+      <div className="flex flex-wrap items-center gap-[10px] pt-2 text-sm text-[#8a8d91]">
         {siteConfig.footerNav.locales.map((item) => (
           <Link
             key={item.title}
@@ -24,13 +24,13 @@ export const LoginFooter = ({ className }) => {
 
         <Link
           to=""
-          className="flex h-5 items-center rounded-sm border border-[#ccd0d5] bg-[#f5f6f7] px-2 text-xs text-[#4b4f56] transition-all hover:bg-[#ebedf0]"
+          className="flex h-5 items-center rounded-sm border border-[#ccd0d5] bg-[#f5f6f7] px-2 text-sm text-[#4b4f56] transition-all hover:bg-[#ebedf0]"
         >
           <Plus className="size-3" />
         </Link>
       </div>
       <Separator className="my-2" />
-      <div className="flex flex-wrap gap-x-5 text-xs text-[#8a8d91]">
+      <div className="flex flex-wrap gap-x-5 text-sm text-[#8a8d91]">
         {siteConfig.footerNav.links.map((item) => (
           <Link
             key={item.title}
@@ -44,7 +44,7 @@ export const LoginFooter = ({ className }) => {
         ))}
       </div>
       <div className="my-5">
-        <Link to="" className="text-xs text-[#737373]">
+        <Link to="" className="text-sm text-[#737373]">
           Meta © 2024
         </Link>
       </div>

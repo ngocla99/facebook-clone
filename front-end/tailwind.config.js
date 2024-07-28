@@ -12,15 +12,13 @@ module.exports = {
   theme: {
     container: {
       center: true,
-      padding: "2rem",
       screens: {
-        "2xl": "1400px",
+        lg: "1250px",
       },
     },
-    fontSize: {
-      sm: "13px",
-      base: "15px",
-      lg: "17px",
+    fontFamily: {
+      sans: ['"Segoe UI"', "Helvetica", "Arial", "sans-serif"],
+      auth: ["Helvetica", "Arial", "sans-serif"],
     },
     extend: {
       colors: {
@@ -79,6 +77,11 @@ module.exports = {
           foreground: "var(--toast-foreground)",
         },
       },
+      fontSize: {
+        sm: "13px",
+        base: "15px",
+        lg: "17px",
+      },
       borderRadius: {
         lg: "var(--radius)",
         md: "calc(var(--radius) - 2px)",
@@ -109,17 +112,6 @@ module.exports = {
           "0 12px 12px rgba(0, 0, 0, 0.2) , inset 0 0 0 0 rgba(255, 255, 255, 0.5)",
         "3xl":
           "0 12px 28px 0 rgba(0, 0, 0, 0.2), 0 2px 4px 0 rgba(0, 0, 0, 0.1)",
-      },
-      fontFamily: {
-        sans: ['"Segoe UI"', "Helvetica", "Arial", "sans-serif"],
-        auth: ["Helvetica", "Arial", "sans-serif"],
-      },
-      screens: {
-        sm: "700px",
-        md: "768px",
-        lg: "1100px",
-        xl: "1379px",
-        "2xl": "1536px",
       },
       keyframes: {
         "spin-fb": {

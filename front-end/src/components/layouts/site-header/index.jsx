@@ -11,7 +11,7 @@ import { Search } from "./search"
 
 export const SiteHeader = () => {
   return (
-    <header className="sticky top-0 z-50 grid h-header w-full grid-cols-[112px_1fr_204px] bg-background shadow-header sm:grid-cols-[204px_1fr_204px] xl:grid-cols-[320px_1fr_320px]">
+    <header className="sticky top-0 z-50 grid h-header w-full grid-cols-[112px_1fr_204px] bg-background shadow-header min-[710px]:grid-cols-[204px_1fr_204px] xl:grid-cols-[320px_1fr_320px]">
       <div className="flex items-center gap-3 px-4">
         <Link to="/" className="">
           <Logo className="text-primary" />

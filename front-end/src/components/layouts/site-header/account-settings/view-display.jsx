@@ -41,7 +41,7 @@ export const ViewDisplay = ({ setView }) => {
               <OptionItem htmlFor="option-3">
                 <div className="grid gap-[5px]">
                   <p className="font-semibold">Automatic</p>
-                  <span className="text-xs text-muted-foreground">
+                  <span className="text-sm text-muted-foreground">
                     We’ll automatically adjust the display based on your
                     device’s system settings.
                   </span>
@@ -105,7 +105,7 @@ export const ViewDisplay = ({ setView }) => {
                   <p className="font-semibold">
                     Show preview after clicking
                   </p>
-                  <span className="text-xs text-muted-foreground">
+                  <span className="text-sm text-muted-foreground">
                     We’ll automatically adjust the display based on your
                     device’s system settings.
                   </span>

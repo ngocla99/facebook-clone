@@ -1,5 +1,6 @@
 import * as React from "react"
 import * as TabsPrimitive from "@radix-ui/react-tabs"
+import { cva } from "class-variance-authority"
 
 import { cn } from "@/lib/utils"
 
@@ -17,16 +18,35 @@ const TabsList = React.forwardRef(({ className, ...props }, ref) => (
 ))
 TabsList.displayName = TabsPrimitive.List.displayName
 
-const TabsTrigger = React.forwardRef(({ className, ...props }, ref) => (
-  <TabsPrimitive.Trigger
-    ref={ref}
-    className={cn(
-      "inline-flex items-center justify-center whitespace-nowrap px-4 py-2 text-sm font-medium ring-offset-background transition-all focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 disabled:pointer-events-none disabled:opacity-50 data-[state=active]:bg-background data-[state=active]:text-primary data-[state=active]:shadow-[inset_0_-3px_0_0_#0866ff]",
-      className
-    )}
-    {...props}
-  />
-))
+export const tabsTriggerVariants = cva(
+  "group relative inline-flex items-center justify-center whitespace-nowrap px-4 py-2 font-medium ring-offset-background text-muted-foreground transition-all focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2  disabled:pointer-events-none disabled:opacity-50 data-[state=active]:bg-background data-[state=active]:text-primary data-[state=active]:shadow-[inset_0_-3px_0_0_#0866ff]",
+  {
+    variants: {
+      variant: {},
+      size: {
+        default: "",
+        lg: "h-[60px]",
+      },
+    },
+    defaultVariants: {
+      variant: "default",
+      size: "default",
+    },
+  }
+)
+
+const TabsTrigger = React.forwardRef(
+  ({ className, children, variant, size, ...props }, ref) => (
+    <TabsPrimitive.Trigger
+      ref={ref}
+      className={cn(tabsTriggerVariants({ variant, size }), className)}
+      {...props}
+    >
+      {children}
+      <div className="absolute bottom-1 left-0 right-0 top-1 rounded-lg bg-hover opacity-0 group-hover:opacity-100 group-data-[state=active]:bg-transparent"></div>
+    </TabsPrimitive.Trigger>
+  )
+)
 TabsTrigger.displayName = TabsPrimitive.Trigger.displayName
 
 const TabsContent = React.forwardRef(({ className, ...props }, ref) => (

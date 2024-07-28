@@ -21,7 +21,6 @@ export const confirm = (config) => {
      * Sync render blocks React event. Let's make this async.
      */
     var timeoutId = setTimeout(() => {
-      // ReactDOM.createRoot(container).render(<Alert {...props} />)
       container.render(<Alert {...props} />)
     })
   }

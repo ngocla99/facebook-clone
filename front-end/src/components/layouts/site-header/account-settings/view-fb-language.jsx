@@ -76,7 +76,7 @@ const LanguageItem = ({ language, selected, onSelect }) => {
     >
       <div className="space-y-[5px] px-[6px]">
         <p className="font-bold leading-none">{native}</p>
-        <span className="text-xs leading-none text-muted-foreground">
+        <span className="text-sm leading-none text-muted-foreground">
           {translation}
         </span>
       </div>

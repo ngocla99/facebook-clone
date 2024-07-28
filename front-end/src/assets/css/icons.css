@@ -624,7 +624,6 @@
   background-repeat: no-repeat;
   display: inline-block;
 }
-
 .plus_icon {
   background-image: url(/icons/icons22.png);
   background-position: 0px -1341px;
@@ -635,8 +634,8 @@
   display: inline-block;
 }
 .frame_icon {
-  background-image: url(/icons/icons31.png);
-  background-position: 0px -130px;
+  background-image: url(/icons/icons55.png);
+  background-position: 0px -17px;
   background-size: auto;
   width: 16px;
   height: 16px;
@@ -729,7 +728,7 @@
 }
 .equalize_icon {
   background-image: url(/icons/icons26.png);
-  background-position: 0px -63px;
+  background-position: 0px -114px;
   background-size: auto;
   width: 16px;
   height: 16px;
@@ -738,7 +737,7 @@
 }
 .manage_icon {
   background-image: url(/icons/icons26.png);
-  background-position: 0px -165px;
+  background-position: 0px -199px;
   background-size: auto;
   width: 16px;
   height: 16px;
@@ -747,7 +746,7 @@
 }
 .list_icon {
   background-image: url(/icons/icons26.png);
-  background-position: 0px -131px;
+  background-position: 0px -165px;
   background-size: auto;
   width: 16px;
   height: 16px;
@@ -756,13 +755,12 @@
 }
 .grid_icon {
   background-image: url(/icons/icons26.png);
-  background-position: 0px -80px;
+  background-position: 0px -131px;
   background-size: auto;
   width: 16px;
   height: 16px;
   background-repeat: no-repeat;
   display: inline-block;
-  filter: invert(30%);
 }
 .info_icon {
   background-image: url(/icons/icons36.png);
@@ -941,6 +939,15 @@
   background-size: auto;
   width: 16px;
   height: 16px;
+  background-repeat: no-repeat;
+  display: inline-block;
+}
+.camera_icon_20 {
+  background-image: url(/icons/icons54.png);
+  background-position: 0px 0px;
+  background-size: auto;
+  width: 20px;
+  height: 20px;
   background-repeat: no-repeat;
   display: inline-block;
 }
