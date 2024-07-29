@@ -209,7 +209,7 @@ exports.validateResetCode = async (req, res) => {
       });
     }
 
-    return res.status(200).json({ message: "ok" });
+    return res.json({ message: "ok" });
   } catch (err) {
     res.status(500).json({ message: err.message });
   }
@@ -244,6 +244,17 @@ exports.getProfile = async (req, res) => {
 exports.getMe = async (req, res) => {
   try {
     res.json({ ...req.user.toObject() });
+  } catch (err) {
+    return res.status(500).json({ message: err.message });
+  }
+};
+
+exports.updateProfile = async (req, res) => {
+  try {
+    await User.findByIdAndUpdate(req.user._id, {
+      ...req.body,
+    });
+    res.json({ message: "ok" });
   } catch (err) {
     return res.status(500).json({ message: err.message });
   }

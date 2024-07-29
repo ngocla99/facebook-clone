@@ -1,5 +1,7 @@
 import React from "react"
-import { useQueryClient } from "@tanstack/react-query"
+import { getMeApi } from "@/api/services/user"
+import { useMe } from "@/hooks"
+import { useQuery, useQueryClient } from "@tanstack/react-query"
 
 import { cn, getInitialsName } from "@/lib/utils"
 import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar"
@@ -73,8 +75,7 @@ const View = () => {
 }
 
 export const AccountSettings = () => {
-  const queryClient = useQueryClient()
-  const { data: user } = queryClient.getQueryData(["me"])
+  const { data: me } = useMe()
 
   return (
     <Popover>
@@ -87,8 +88,8 @@ export const AccountSettings = () => {
             )}
           >
             <Avatar>
-              <AvatarImage src={user.picture} alt={user.username} />
-              <AvatarFallback>{getInitialsName(user)}</AvatarFallback>
+              <AvatarImage src={me.picture} alt={me.username} />
+              <AvatarFallback>{getInitialsName(me)}</AvatarFallback>
             </Avatar>
           </TooltipTrigger>
         </PopoverTrigger>

@@ -72,6 +72,8 @@ export const Post = ({ isDialog, post }) => {
     })
   }
 
+  const getAuthor = () => (user._id === me._id ? me : user)
+
   return (
     <Card>
       <CardContent className="p-0">
@@ -85,13 +87,16 @@ export const Post = ({ isDialog, post }) => {
           <div className="flex items-center gap-2 px-4 py-3">
             <Avatar
               className="cursor-pointer"
-              onClick={() => navigate(`/profile/${user.username}`)}
+              onClick={() => navigate(`/profile/${getAuthor().username}`)}
             >
-              <AvatarImage src={user.picture} alt={user.username} />
-              <AvatarFallback>{getInitialsName(user)}</AvatarFallback>
+              <AvatarImage
+                src={getAuthor().picture}
+                alt={getAuthor().username}
+              />
+              <AvatarFallback>{getInitialsName(getAuthor())}</AvatarFallback>
             </Avatar>
             <div className="flex-1">
-              <p className="font-semibold leading-5">{`${user.firstName} ${user.lastName}`}</p>
+              <p className="font-semibold leading-5">{`${getAuthor().firstName} ${getAuthor().lastName}`}</p>
               <div className="flex items-center gap-1">
                 <p className="text-sm leading-4 text-muted-foreground">
                   {moment(createdAt).fromNow()}

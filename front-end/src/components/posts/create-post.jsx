@@ -1,5 +1,7 @@
+import { getMeApi } from "@/api/services/user"
+import { useMe } from "@/hooks"
 import { usePostCreateModal } from "@/stores"
-import { useQueryClient } from "@tanstack/react-query"
+import { useQuery, useQueryClient } from "@tanstack/react-query"
 
 import { getInitialsName } from "@/lib/utils"
 import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar"
@@ -18,8 +20,7 @@ import { Feeling, LiveVideo, Photo } from "@/assets/svg"
  */
 
 export const CreatePost = () => {
-  const queryClient = useQueryClient()
-  const { data: user } = queryClient.getQueryData(["me"])
+  const { data: me } = useMe()
   const postCreateModal = usePostCreateModal()
 
   return (
@@ -27,15 +28,15 @@ export const CreatePost = () => {
       <CardContent className="px-4 pb-[10px] pt-3">
         <div className="flex gap-2">
           <Avatar>
-            <AvatarImage src={user.picture} alt={user.username} />
-            <AvatarFallback>{getInitialsName(user)}</AvatarFallback>
+            <AvatarImage src={me.picture} alt={me.username} />
+            <AvatarFallback>{getInitialsName(me)}</AvatarFallback>
           </Avatar>
           <Button
             variant="secondary"
             className="active:scale-1 min-h-10 flex-1 justify-start rounded-[20px] bg-background-comment px-3 py-2 text-lg font-normal text-muted-foreground after:rounded-[20px]"
             onClick={() => postCreateModal.onOpen({ openBy: null })}
           >
-            What's on your mind, {user.firstName}?
+            What's on your mind, {me.firstName}?
           </Button>
         </div>
         <Separator className="mb-2 mt-3" />
@@ -58,9 +59,7 @@ export const CreatePost = () => {
             onClick={() => postCreateModal.onOpen({ openBy: "feeling" })}
           >
             <Feeling className="text-[#f7b928]" />
-            <p className="text-muted-foreground">
-              Feeling/activity
-            </p>
+            <p className="text-muted-foreground">Feeling/activity</p>
           </Button>
         </div>
       </CardContent>

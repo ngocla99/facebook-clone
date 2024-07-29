@@ -15,10 +15,10 @@ const ZOOM_STEP = 0.2
 export const ProfilePictureForm = ({ form, onSubmit, className }) => {
   const [crop, setCrop] = React.useState({ x: 0, y: 0 })
   const [zoom, setZoom] = React.useState(1)
-  const [showDragHint, setShowDragHint] = React.useState(false)
-  const [showZoomHint, setShowZoomHint] = React.useState(false)
   const [croppedAreaPixels, setCroppedAreaPixels] = React.useState(null)
   const [showCropped, setShowCropped] = React.useState(false)
+  const [showDragHint, setShowDragHint] = React.useState(false)
+  const [showZoomHint, setShowZoomHint] = React.useState(false)
 
   const zoomTimeoutRef = React.useRef()
 
@@ -61,8 +61,7 @@ export const ProfilePictureForm = ({ form, onSubmit, className }) => {
           form.getValues("image"),
           croppedAreaPixels
         )
-        setZoom(1)
-        setCrop({ x: 0, y: 0 })
+
         form.setValue("image", croppedImage)
       } else {
         form.resetField("image")
@@ -145,7 +144,8 @@ export const ProfilePictureForm = ({ form, onSubmit, className }) => {
               <i className="minus_icon"></i>
             </Button>
             <Slider
-              value={[zoom]}
+              defaultValue={[1]}
+              // value={[zoom]}
               min={ZOOM_MIN}
               max={ZOOM_MAX}
               step={ZOOM_STEP}

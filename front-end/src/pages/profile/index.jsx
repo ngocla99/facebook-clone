@@ -1,15 +1,9 @@
 import React from "react"
 import { getProfileApi } from "@/api/services/user"
+import { useMe } from "@/hooks"
 import { useProfileUser } from "@/stores"
-import { useQuery, useQueryClient } from "@tanstack/react-query"
+import { useQuery } from "@tanstack/react-query"
 import { useNavigate, useParams } from "react-router-dom"
-
-import { getInitialsName } from "@/lib/utils"
-import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar"
-import { Button } from "@/components/ui/button"
-import { Separator } from "@/components/ui/separator"
-import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs"
-import { Plus } from "@/assets/svg"
 
 import { ProfileInfo } from "./components/profile-info"
 import { ProfileMenu } from "./components/profile-menu"
@@ -20,8 +14,7 @@ const Profile = () => {
   const navigate = useNavigate()
   const { mutate } = useProfileUser()
 
-  const queryClient = useQueryClient()
-  const { data: me } = queryClient.getQueryData(["me"])
+  const { data: me } = useMe()
 
   const {
     data: user,

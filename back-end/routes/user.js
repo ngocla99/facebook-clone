@@ -14,5 +14,7 @@ router.post("/validateResetCode", userController.validateResetCode);
 router.post("/changePassword", userController.changePassword);
 router.get("/getProfile/:username", userController.getProfile);
 router.get("/getMe", authUser, userController.getMe);
+router.get("/updateProfile", authUser, userController.getMe);
+router.put("/updateProfile", authUser, userController.updateProfile);
 
 module.exports = router;

@@ -7,3 +7,7 @@ export const getMeApi = () => {
 export const getProfileApi = (username) => {
   return axiosClient.get(`/getProfile/${username}`)
 }
+
+export const updateProfileApi = (data) => {
+  return axiosClient.put(`/updateProfile`, data)
+}

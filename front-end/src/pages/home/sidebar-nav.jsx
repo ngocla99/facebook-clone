@@ -1,4 +1,5 @@
 import React from "react"
+import { useMe } from "@/hooks"
 import { useQueryClient } from "@tanstack/react-query"
 import { Link } from "react-router-dom"
 
@@ -12,8 +13,7 @@ import { InfoFooter } from "@/components/layouts/info-footer"
 import { ArrowDown1, ArrowUp } from "@/assets/svg"
 
 export const SidebarNav = ({ className }) => {
-  const queryClient = useQueryClient()
-  const { data: user } = queryClient.getQueryData(["me"])
+  const { data: me } = useMe()
   const [showMoreFeature, setShowMoreFeature] = React.useState(false)
   const [showMoreShortcut, setShowMoreShortcut] = React.useState(false)
 
@@ -26,10 +26,10 @@ export const SidebarNav = ({ className }) => {
         <div className="mt-4 grid px-2">
           <LinkItem>
             <Avatar>
-              <AvatarImage src={user.picture} alt={user.username} />
-              <AvatarFallback>{getInitialsName(user)}</AvatarFallback>
+              <AvatarImage src={me.picture} alt={me.username} />
+              <AvatarFallback>{getInitialsName(me)}</AvatarFallback>
             </Avatar>
-            <p>{`${user.firstName} ${user.lastName}`}</p>
+            <p>{`${me.firstName} ${me.lastName}`}</p>
           </LinkItem>
           {siteConfig.leftMenu.slice(0, 5).map((link, i) => (
             <LinkItem key={i}>
