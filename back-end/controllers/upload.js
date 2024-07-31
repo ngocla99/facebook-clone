@@ -41,11 +41,12 @@ const uploadToCloudinary = async (file, path) => {
 
 exports.getImages = async (req, res) => {
   try {
-    const { path, sort, max } = req.body;
+    const { path, sort, max, nextCursor } = req.body;
     cloudinary.search
       .expression(path)
       .sort_by("created_at", sort)
       .max_results(max)
+      .next_cursor(nextCursor)
       .execute()
       .then((result) => res.json(result))
       .catch((err) => console.log(err.error.message));

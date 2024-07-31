@@ -96,6 +96,18 @@ export const CreateProfilePicture = React.forwardRef(
       })
     }
 
+    const onCancel = () => {
+      return confirm({
+        title: "Discard Changes",
+        description: "Are you sure you want to discard your changes?",
+        confirmText: "Discard",
+        cancelText: "Cancel",
+        onConfirm: () => {
+          setFile(null)
+        },
+      })
+    }
+
     React.useImperativeHandle(ref, () => {
       return {
         close: onClose,
@@ -108,7 +120,7 @@ export const CreateProfilePicture = React.forwardRef(
         form={form}
         isSaving={isSaving}
         onSubmit={onSubmit}
-        onClose={onClose}
+        onClose={onCancel}
       />
     )
   }

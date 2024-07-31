@@ -1,6 +1,7 @@
 import React from "react"
 import { useProfilePictureModal } from "@/stores"
 
+import { cn } from "@/lib/utils"
 import { Button } from "@/components/ui/button"
 import {
   DialogDescription,
@@ -8,9 +9,12 @@ import {
   DialogTitle,
 } from "@/components/ui/dialog"
 import { Modal } from "@/components/ui/modal"
+import { ToastAction } from "@/components/ui/toast"
+import { toast } from "@/components/ui/use-toast"
 import { Plus } from "@/assets/svg"
 
 import { CreateProfilePicture } from "./create-profile-picture"
+import { ListImage } from "./list-image"
 
 export const ProfilePictureModal = () => {
   const profilePictureModal = useProfilePictureModal()
@@ -28,8 +32,10 @@ export const ProfilePictureModal = () => {
       return
     }
 
-    if (fileUpload.size > 1024 * 1024 * 5) {
-      return
+    if (fileUpload.size > 1024 * 1024 * 12) {
+      return toast({
+        title: "File size exceeds 12MB.",
+      })
     }
 
     const reader = new FileReader()
@@ -41,7 +47,11 @@ export const ProfilePictureModal = () => {
 
   return (
     <Modal
-      className="max-h-screen w-auto overflow-y-auto p-0 drop-shadow sm:w-[700px]"
+      className={cn(
+        "max-h-screen w-auto overflow-y-auto p-0 drop-shadow sm:w-[700px]",
+        formRef.current?.isSaving &&
+          "after:absolute after:inset-0 after:bg-[rgba(244,244,244,0.3)] after:content-['']"
+      )}
       showModal={profilePictureModal.isOpen}
       onClose={() => {
         if (!file) return profilePictureModal.onClose()
@@ -65,7 +75,7 @@ export const ProfilePictureModal = () => {
               type="file"
               hidden
               onChange={handleUploadFile}
-              accept="image/jpeg,image/png,image/webp,image/gif"
+              accept="image/jpeg,image/png,image/webp,image/gif,image/jpg"
             />
             <Button
               variant="deemphasized"
@@ -81,6 +91,17 @@ export const ProfilePictureModal = () => {
         ) : (
           <CreateProfilePicture ref={formRef} file={file} setFile={setFile} />
         )}
+
+        <div className="p-4 pt-0">
+          <h3 className="text-lg font-semibold leading-5">Uploads</h3>
+        </div>
+        <div className="p-4 pt-0">
+          <h3 className="text-lg font-semibold leading-5">Profile pictures</h3>
+        </div>
+        <div className="p-4 pt-0">
+          <h3 className="text-lg font-semibold leading-5">Cover photos</h3>
+        </div>
+        <ListImage title="Profile pictures" />
       </div>
     </Modal>
   )
