@@ -4,14 +4,15 @@ import { useQuery } from "@tanstack/react-query"
 import { cn } from "@/lib/utils"
 import { SiteHeader } from "@/components/layouts/site-header"
 
+import { LoadingPage } from "../loading/loading-page"
+
 export const AppLayout = ({ children }) => {
   const { isLoading } = useQuery({
     queryKey: ["me"],
     queryFn: getMeApi,
   })
 
-  // TODO: loading UI
-  if (isLoading) return "Loading..."
+  if (isLoading) return <LoadingPage />
 
   return (
     <div className={cn("min-h-screen bg-background font-sans antialiased")}>
