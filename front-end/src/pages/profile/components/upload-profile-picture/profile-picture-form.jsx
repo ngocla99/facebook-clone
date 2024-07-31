@@ -8,11 +8,18 @@ import { DialogFooter } from "@/components/ui/dialog"
 import { Form, FormControl, FormField, FormItem } from "@/components/ui/form"
 import { Slider } from "@/components/ui/slider"
 import { Textarea } from "@/components/ui/textarea"
+import { LoadingDots } from "@/components/loading/loading-dots"
 
 const ZOOM_MIN = 1
 const ZOOM_MAX = 3
 const ZOOM_STEP = 0.2
-export const ProfilePictureForm = ({ form, onSubmit, className }) => {
+export const ProfilePictureForm = ({
+  form,
+  isSaving,
+  className,
+  onSubmit,
+  onClose,
+}) => {
   const [crop, setCrop] = React.useState({ x: 0, y: 0 })
   const [zoom, setZoom] = React.useState(1)
   const [croppedAreaPixels, setCroppedAreaPixels] = React.useState(null)
@@ -54,7 +61,6 @@ export const ProfilePictureForm = ({ form, onSubmit, className }) => {
   }
 
   const showCroppedImage = async () => {
-    setShowCropped((prev) => !prev)
     try {
       if (!showCropped) {
         const croppedImage = await getCroppedImg(
@@ -69,13 +75,20 @@ export const ProfilePictureForm = ({ form, onSubmit, className }) => {
     } catch (e) {
       console.error(e)
     }
+    setShowCropped((prev) => !prev)
   }
+
+  React.useEffect(() => {
+    setZoom(1)
+  }, [showCropped])
 
   return (
     <Form {...form}>
       <form
         className={cn("grid", className)}
-        onSubmit={form.handleSubmit(onSubmit)}
+        onSubmit={form.handleSubmit((data) =>
+          onSubmit({ ...data, isCropped: showCropped, croppedAreaPixels })
+        )}
       >
         <div className="p-4">
           <FormField
@@ -145,7 +158,7 @@ export const ProfilePictureForm = ({ form, onSubmit, className }) => {
             </Button>
             <Slider
               defaultValue={[1]}
-              // value={[zoom]}
+              value={[zoom]}
               min={ZOOM_MIN}
               max={ZOOM_MAX}
               step={ZOOM_STEP}
@@ -163,10 +176,19 @@ export const ProfilePictureForm = ({ form, onSubmit, className }) => {
             </Button>
           </div>
           <div className="mt-2 flex justify-center gap-3">
-            <Button variant="secondary" onClick={showCroppedImage}>
-              <i className="crop_icon mr-1.5"></i>Crop photo
+            <Button
+              variant={showCropped ? "deemphasized" : "secondary"}
+              onClick={showCroppedImage}
+            >
+              <i
+                className={cn(
+                  "crop_icon mr-1.5",
+                  showCropped && "filter-accent"
+                )}
+              ></i>
+              Crop photo
             </Button>
-            <Button variant="secondary">
+            <Button variant="secondary" disabled>
               <i className="temp_icon mr-1.5"></i>Make Temporary
             </Button>
           </div>
@@ -177,11 +199,21 @@ export const ProfilePictureForm = ({ form, onSubmit, className }) => {
             </p>
           </div>
         </div>
-        <DialogFooter className="border-t border-border p-4">
-          <Button variant="ghost" className="w-[70px] text-primary">
-            Cancel
+        <DialogFooter className="items-center border-t border-border p-4">
+          {isSaving ? (
+            <LoadingDots className="mr-2" />
+          ) : (
+            <Button
+              variant="ghost"
+              className="w-[70px] text-primary"
+              onClick={onClose}
+            >
+              Cancel
+            </Button>
+          )}
+          <Button className="w-[112px]" disabled={isSaving}>
+            Save
           </Button>
-          <Button className="w-[112px]">Save</Button>
         </DialogFooter>
       </form>
     </Form>

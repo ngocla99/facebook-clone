@@ -8,16 +8,14 @@ import { PostModal } from "./components/post/post-modal"
 
 export const ListPost = ({ posts, className }) => {
   return (
-    <>
-      <div className={cn("grid gap-4", className)}>
-        {(posts ?? []).map((post) => (
-          <Post key={post._id} post={post} />
-        ))}
-        <PostModal />
-        <CreatePostModal />
-        <EditPostModal />
-        <EditPostAudienceModal />
-      </div>
-    </>
+    <div className={cn("grid gap-4", className)}>
+      {(posts ?? []).map((post) => (
+        <Post key={post._id} post={post} />
+      ))}
+      <PostModal />
+      <CreatePostModal />
+      <EditPostModal />
+      <EditPostAudienceModal />
+    </div>
   )
 }

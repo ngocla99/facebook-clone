@@ -153,11 +153,33 @@ module.exports = {
             transform: "rotate(-90deg)",
           },
         },
+        "grow-fb": {
+          "0%": {
+            opacity: 0.265,
+            transform: "scale(.8, .8)",
+          },
+          "5%": {
+            opacity: 0.25,
+          },
+          "50%": {
+            transform: "scale(1,1)",
+          },
+          "55%": {
+            opacity: 1,
+          },
+          "100%": {
+            opacity: 0.265,
+            transform: "scale(.8, .8)",
+          },
+        },
       },
       animation: {
         "spin-fb": "spin-fb 2s cubic-bezier(0,0,1,1) infinite",
         "spin-fb-circle":
           "spin-fb-circle 2s cubic-bezier(.33,0,.67,1) infinite",
+        "grow-fb-2": "grow-fb 2s cubic-bezier(.5,0,.5,1) infinite",
+        "grow-fb-3": "grow-fb 2s cubic-bezier(.5,0,.5,1) 0.3s infinite",
+        "grow-fb-6": "grow-fb 2s cubic-bezier(.5,0,.5,1) 0.6s infinite",
       },
     },
   },

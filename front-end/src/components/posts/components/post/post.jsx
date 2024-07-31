@@ -176,9 +176,9 @@ export const Post = ({ isDialog, post }) => {
                 "h-[680px] grid-cols-2 grid-rows-6 [grid-template-areas:'img1_img3''img1_img3''img1_img4''img2_img4''img2_img5''img2_img5'] [&>div:nth-child(5)]:[grid-area:img5] [&>img:nth-child(1)]:[grid-area:img1] [&>img:nth-child(2)]:[grid-area:img2] [&>img:nth-child(3)]:[grid-area:img3] [&>img:nth-child(4)]:[grid-area:img4]"
             )}
           >
-            {images.slice(0, 4).map(({ url }) => (
+            {images.slice(0, 4).map(({ url }, idx) => (
               <img
-                key={url}
+                key={idx}
                 className="h-full w-full shrink-0 object-cover"
                 src={url}
                 alt="Post Photo"

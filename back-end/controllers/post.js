@@ -1,6 +1,7 @@
 const Post = require("../models/Post");
 const Comment = require("../models/Comment");
 const { ObjectId } = require("mongodb");
+const Reaction = require("../models/Reaction");
 
 exports.getAllPost = async (req, res) => {
   try {
@@ -89,6 +90,8 @@ exports.deletePost = async (req, res) => {
           console.error("Error deleting comments:", error);
         });
     }
+    // TODO: Delete reactions
+
     return res.json({ message: "ok" });
   } catch (err) {
     return res.status(500).json({ message: err.message });

@@ -16,6 +16,7 @@ export const ProfilePictureModal = () => {
   const profilePictureModal = useProfilePictureModal()
   const inputUploadRef = React.useRef(null)
   const [file, setFile] = React.useState()
+  const formRef = React.useRef(null)
 
   const handleUploadFile = (e) => {
     const fileUpload = e.target.files[0]
@@ -42,12 +43,13 @@ export const ProfilePictureModal = () => {
     <Modal
       className="max-h-screen w-auto overflow-y-auto p-0 drop-shadow sm:w-[700px]"
       showModal={profilePictureModal.isOpen}
-      onClose={() => profilePictureModal.onClose()}
-      //   enableCloseBtn={false}
-      //   onInteractOutside={(e) => {
-      //     if (createPostMutation.isPending || uploadImageMutation.isPending)
-      //       e.preventDefault()
-      //   }}
+      onClose={() => {
+        if (!file) return profilePictureModal.onClose()
+        formRef.current?.close()
+      }}
+      onInteractOutside={(e) => {
+        if (formRef.current?.isSaving) e.preventDefault()
+      }}
     >
       <DialogHeader className="grid h-[60px] place-content-center border-b border-border">
         <DialogTitle className="leading-none">
@@ -77,7 +79,7 @@ export const ProfilePictureModal = () => {
             </Button>
           </div>
         ) : (
-          <CreateProfilePicture file={file} />
+          <CreateProfilePicture ref={formRef} file={file} setFile={setFile} />
         )}
       </div>
     </Modal>

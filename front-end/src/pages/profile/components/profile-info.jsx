@@ -46,32 +46,34 @@ export const ProfileInfo = ({ className }) => {
             <div className="">
               <Popover>
                 <PopoverTrigger asChild>
-                  <Avatar
-                    className={cn(
-                      buttonVariants({ variant: "ghost", size: "icon" }),
-                      "size-[176px] cursor-pointer overflow-visible rounded-full border border-border bg-white shadow-[0_0_0_4px_white] active:scale-[0.96]"
-                    )}
-                  >
-                    <AvatarImage
-                      className="rounded-full"
-                      src={user.picture}
-                      alt={user.username}
-                    />
-                    <AvatarFallback>{getInitialsName(user)}</AvatarFallback>
-                    {!user.isVisitor && (
-                      <Button
-                        variant="secondary"
-                        className="absolute bottom-3 right-1 z-[1] size-9"
-                        size="icon"
-                        onClick={(e) => {
-                          e.preventDefault()
-                          profilePictureModal.onOpen()
-                        }}
-                      >
-                        <i className="camera_filled_icon_20 filter-primary-icon"></i>
-                      </Button>
-                    )}
-                  </Avatar>
+                  <div className="size-[178px] rounded-full bg-white shadow-[0_0_0_3px_white]">
+                    <Avatar
+                      className={cn(
+                        buttonVariants({ variant: "ghost", size: "icon" }),
+                        "size-[176px] cursor-pointer overflow-visible rounded-full border border-border active:scale-[0.96]"
+                      )}
+                    >
+                      <AvatarImage
+                        className="rounded-full"
+                        src={user.picture}
+                        alt={user.username}
+                      />
+                      <AvatarFallback>{getInitialsName(user)}</AvatarFallback>
+                      {!user.isVisitor && (
+                        <Button
+                          variant="secondary"
+                          className="absolute bottom-3 right-1 z-[1] size-9"
+                          size="icon"
+                          onClick={(e) => {
+                            e.preventDefault()
+                            profilePictureModal.onOpen()
+                          }}
+                        >
+                          <i className="camera_filled_icon_20 filter-primary-icon"></i>
+                        </Button>
+                      )}
+                    </Avatar>
+                  </div>
                 </PopoverTrigger>
                 <PopoverContent className="grid p-2 shadow-2xl drop-shadow">
                   <Button
