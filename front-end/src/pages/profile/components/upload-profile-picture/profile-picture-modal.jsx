@@ -1,5 +1,6 @@
 import React from "react"
 import { useProfilePictureModal } from "@/stores"
+import { useQueryClient } from "@tanstack/react-query"
 
 import { cn } from "@/lib/utils"
 import { Button } from "@/components/ui/button"
@@ -9,6 +10,7 @@ import {
   DialogTitle,
 } from "@/components/ui/dialog"
 import { Modal } from "@/components/ui/modal"
+import { ScrollArea } from "@/components/ui/scroll-area"
 import { ToastAction } from "@/components/ui/toast"
 import { toast } from "@/components/ui/use-toast"
 import { Plus } from "@/assets/svg"
@@ -18,6 +20,8 @@ import { ListImage } from "./list-image"
 
 export const ProfilePictureModal = () => {
   const profilePictureModal = useProfilePictureModal()
+  const queryClient = useQueryClient()
+  const { data: me } = queryClient.getQueryData(["me"])
   const inputUploadRef = React.useRef(null)
   const [file, setFile] = React.useState()
   const formRef = React.useRef(null)
@@ -45,6 +49,10 @@ export const ProfilePictureModal = () => {
     }
   }
 
+  const handleImageClick = (img) => {
+    setFile(img.secure_url)
+  }
+
   return (
     <Modal
       className={cn(
@@ -67,8 +75,8 @@ export const ProfilePictureModal = () => {
         </DialogTitle>
         <DialogDescription className="hidden"></DialogDescription>
       </DialogHeader>
-      <div>
-        {!file ? (
+      {!file ? (
+        <div>
           <div className="grid grid-cols-2 gap-2 p-4">
             <input
               ref={inputUploadRef}
@@ -88,21 +96,27 @@ export const ProfilePictureModal = () => {
               <i className="frame_icon mr-1.5"></i>Add Frame
             </Button>
           </div>
-        ) : (
-          <CreateProfilePicture ref={formRef} file={file} setFile={setFile} />
-        )}
-
-        <div className="p-4 pt-0">
-          <h3 className="text-lg font-semibold leading-5">Uploads</h3>
+          <ScrollArea className="h-[550px]">
+            <ListImage
+              title="Uploads"
+              path={`${me.username}/post_images`}
+              onImageClick={handleImageClick}
+            />
+            <ListImage
+              title="Profile pictures"
+              path={`${me.username}/profile_pictures`}
+              onImageClick={handleImageClick}
+            />
+            <ListImage
+              title="Cover photos"
+              path={`${me.username}/cover_photos`}
+              onImageClick={handleImageClick}
+            />
+          </ScrollArea>
         </div>
-        <div className="p-4 pt-0">
-          <h3 className="text-lg font-semibold leading-5">Profile pictures</h3>
-        </div>
-        <div className="p-4 pt-0">
-          <h3 className="text-lg font-semibold leading-5">Cover photos</h3>
-        </div>
-        <ListImage title="Profile pictures" />
-      </div>
+      ) : (
+        <CreateProfilePicture ref={formRef} file={file} setFile={setFile} />
+      )}
     </Modal>
   )
 }

@@ -9,6 +9,7 @@ import { useMutation, useQueryClient } from "@tanstack/react-query"
 import { useForm } from "react-hook-form"
 
 import getCroppedImg from "@/lib/crop-image"
+import { cn } from "@/lib/utils"
 import { profilePictureSchema } from "@/lib/validations/profile"
 import { confirm } from "@/components/confirm"
 
@@ -42,7 +43,7 @@ export const CreateProfilePicture = React.forwardRef(
           type: "PROFILE_PICTURE",
           text: form.getValues("description"),
           audience: "EVERYONE",
-          images: [data.profile.picture],
+          images: [{ url: data.profile.picture }],
         })
         setFile(null)
         queryClient.invalidateQueries({ queryKey: ["me"] })
@@ -121,6 +122,10 @@ export const CreateProfilePicture = React.forwardRef(
         isSaving={isSaving}
         onSubmit={onSubmit}
         onClose={onCancel}
+        className={cn(
+          isSaving &&
+            "after:absolute after:inset-0 after:bg-[rgba(244,244,244,0.3)] after:content-['']"
+        )}
       />
     )
   }

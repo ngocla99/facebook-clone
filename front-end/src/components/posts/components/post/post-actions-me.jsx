@@ -76,7 +76,7 @@ export const PostActionsMe = ({ onEditPost, onEditAudience, onDelete }) => {
           className="h-auto items-start justify-start gap-3 p-2 text-left"
           onClick={onDelete}
         >
-          <i className="delete_icon filter-primary-icon"></i>
+          <i className="trash_fill_icon_20 filter-primary-icon"></i>
           <div className="-mt-[1px] space-y-1">
             <p className="leading-none">Move to trash</p>
             <p className="text-sm font-normal leading-none text-muted-foreground">

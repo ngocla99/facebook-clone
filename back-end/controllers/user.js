@@ -284,9 +284,13 @@ exports.getMe = async (req, res) => {
 
 exports.updateProfile = async (req, res) => {
   try {
-    const profile = await User.findByIdAndUpdate(req.user._id, {
-      ...req.body,
-    });
+    const profile = await User.findByIdAndUpdate(
+      req.user._id,
+      {
+        ...req.body,
+      },
+      { new: true }
+    );
     res.json({ message: "ok", profile });
   } catch (err) {
     return res.status(500).json({ message: err.message });

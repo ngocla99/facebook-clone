@@ -96,7 +96,15 @@ export const Post = ({ isDialog, post }) => {
               <AvatarFallback>{getInitialsName(getAuthor())}</AvatarFallback>
             </Avatar>
             <div className="flex-1">
-              <p className="font-semibold leading-5">{`${getAuthor().firstName} ${getAuthor().lastName}`}</p>
+              <div className="flex leading-5">
+                <p className="font-semibold">{`${getAuthor().firstName} ${getAuthor().lastName}`}</p>
+                {post.type === "PROFILE_PICTURE" && (
+                  <span className="ml-1 text-muted-foreground">
+                    update {me.gender === "MALE" ? "his" : "her"} profile
+                    picture.
+                  </span>
+                )}
+              </div>
               <div className="flex items-center gap-1">
                 <p className="text-sm leading-4 text-muted-foreground">
                   {moment(createdAt).fromNow()}
@@ -150,57 +158,71 @@ export const Post = ({ isDialog, post }) => {
           >
             <p className="whitespace-pre-line">{text}</p>
           </div>
-          <div
-            className={cn(
-              "group grid gap-[2px]",
-              images.length === 1 && "grid-cols-1",
-              images.length === 2 &&
-                isPortraitFirstImg &&
-                "max-h-[339px] grid-cols-2",
-              images.length === 2 &&
-                !isPortraitFirstImg &&
-                "h-[680px] grid-rows-2",
-              images.length === 3 &&
-                !isPortraitFirstImg &&
-                "h-[680px] grid-cols-2 grid-rows-3 [&>img:first-child]:col-span-2 [&>img:first-child]:row-span-2",
-              images.length === 3 &&
-                isPortraitFirstImg &&
-                "h-[680px] grid-cols-3 grid-rows-2 [&>img:first-child]:col-span-2 [&>img:first-child]:row-span-2",
-              images.length === 4 &&
-                !isPortraitFirstImg &&
-                "h-[680px] grid-cols-3 grid-rows-3 [&>img:first-child]:col-span-3 [&>img:first-child]:row-span-2",
-              images.length === 4 &&
-                isPortraitFirstImg &&
-                "h-[680px] grid-cols-3 grid-rows-3 [&>img:first-child]:col-span-2 [&>img:first-child]:row-span-3",
-              images.length >= 5 &&
-                "h-[680px] grid-cols-2 grid-rows-6 [grid-template-areas:'img1_img3''img1_img3''img1_img4''img2_img4''img2_img5''img2_img5'] [&>div:nth-child(5)]:[grid-area:img5] [&>img:nth-child(1)]:[grid-area:img1] [&>img:nth-child(2)]:[grid-area:img2] [&>img:nth-child(3)]:[grid-area:img3] [&>img:nth-child(4)]:[grid-area:img4]"
-            )}
-          >
-            {images.slice(0, 4).map(({ url }, idx) => (
-              <img
-                key={idx}
-                className="h-full w-full shrink-0 object-cover"
-                src={url}
-                alt="Post Photo"
-              />
-            ))}
-            {images.length >= 5 && (
-              <div className="relative">
+          {post.type === "PROFILE_PICTURE" && (
+            <div className="relative grid">
+              <div className="absolute top-0 h-[222px] w-full bg-secondary"></div>
+              <div className="z-[1] px-[52px] pb-7 pt-6">
                 <img
+                  src={images[0].url}
+                  alt={images[0].filename}
+                  className="mx-auto size-[388px] rounded-full border-4 border-white"
+                />
+              </div>
+            </div>
+          )}
+          {!post.type && (
+            <div
+              className={cn(
+                "group grid gap-[2px]",
+                images.length === 1 && "grid-cols-1",
+                images.length === 2 &&
+                  isPortraitFirstImg &&
+                  "max-h-[339px] grid-cols-2",
+                images.length === 2 &&
+                  !isPortraitFirstImg &&
+                  "h-[680px] grid-rows-2",
+                images.length === 3 &&
+                  !isPortraitFirstImg &&
+                  "h-[680px] grid-cols-2 grid-rows-3 [&>img:first-child]:col-span-2 [&>img:first-child]:row-span-2",
+                images.length === 3 &&
+                  isPortraitFirstImg &&
+                  "h-[680px] grid-cols-3 grid-rows-2 [&>img:first-child]:col-span-2 [&>img:first-child]:row-span-2",
+                images.length === 4 &&
+                  !isPortraitFirstImg &&
+                  "h-[680px] grid-cols-3 grid-rows-3 [&>img:first-child]:col-span-3 [&>img:first-child]:row-span-2",
+                images.length === 4 &&
+                  isPortraitFirstImg &&
+                  "h-[680px] grid-cols-3 grid-rows-3 [&>img:first-child]:col-span-2 [&>img:first-child]:row-span-3",
+                images.length >= 5 &&
+                  "h-[680px] grid-cols-2 grid-rows-6 [grid-template-areas:'img1_img3''img1_img3''img1_img4''img2_img4''img2_img5''img2_img5'] [&>div:nth-child(5)]:[grid-area:img5] [&>img:nth-child(1)]:[grid-area:img1] [&>img:nth-child(2)]:[grid-area:img2] [&>img:nth-child(3)]:[grid-area:img3] [&>img:nth-child(4)]:[grid-area:img4]"
+              )}
+            >
+              {images.slice(0, 4).map(({ url }, idx) => (
+                <img
+                  key={idx}
                   className="h-full w-full shrink-0 object-cover"
-                  src={images[4].url}
+                  src={url}
                   alt="Post Photo"
                 />
-                {images.length > 5 && (
-                  <div className="absolute inset-0 grid place-items-center bg-hover-media">
-                    <p className="text-3xl font-bold text-white">
-                      +{images.length - 5}
-                    </p>
-                  </div>
-                )}
-              </div>
-            )}
-          </div>
+              ))}
+              {images.length >= 5 && (
+                <div className="relative">
+                  <img
+                    className="h-full w-full shrink-0 object-cover"
+                    src={images[4].url}
+                    alt="Post Photo"
+                  />
+                  {images.length > 5 && (
+                    <div className="absolute inset-0 grid place-items-center bg-hover-media">
+                      <p className="text-3xl font-bold text-white">
+                        +{images.length - 5}
+                      </p>
+                    </div>
+                  )}
+                </div>
+              )}
+            </div>
+          )}
           <div className={cn("px-4")}>
             <PostStats post={post} className="border-b border-border" />
             <PostToolbar postId={post._id} />

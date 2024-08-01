@@ -375,7 +375,7 @@
   background-repeat: no-repeat;
   display: inline-block;
 }
-.delete_icon {
+.trash_fill_icon_20 {
   background-image: url("/icons/icons49.png");
   background-position: 0px -403px;
   background-size: auto;
@@ -963,6 +963,24 @@
 .drag_icon {
   background-image: url(/icons/icons52.png);
   background-position: 0px 0px;
+  background-size: auto;
+  width: 20px;
+  height: 20px;
+  background-repeat: no-repeat;
+  display: inline-block;
+}
+.upload_icon_20 {
+  background-image: url(/icons/icons57.png);
+  background-position: 0px -21px;
+  background-size: auto;
+  width: 20px;
+  height: 20px;
+  background-repeat: no-repeat;
+  display: inline-block;
+}
+.trash_icon_20 {
+  background-image: url(/icons/icons58.png);
+  background-position: 0px -546px;
   background-size: auto;
   width: 20px;
   height: 20px;

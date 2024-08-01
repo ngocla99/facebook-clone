@@ -91,7 +91,15 @@
   body {
     @apply bg-background text-base text-foreground;
   }
+}
 
+@layer components {
+  .image-box {
+    @apply relative border border-[rgba(0,0,0,0.1)] after:absolute after:inset-0 after:content-[''] hover:after:bg-hover active:after:bg-[rgba(0,0,0,0.1)];
+  }
+}
+
+@layer utilities {
   .filter-accent {
     filter: invert(19%) sepia(70%) saturate(5671%) hue-rotate(203deg)
       brightness(96%) contrast(101%);
@@ -143,9 +151,6 @@
       rgba(0, 0, 0, 0.35) 100%
     );
   }
-}
-
-@layer components {
 }
 
 .EmojiPickerReact.epr-main {

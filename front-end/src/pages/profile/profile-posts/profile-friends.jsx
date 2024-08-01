@@ -15,7 +15,7 @@ export const ProfileFriends = ({ className }) => {
       getImagesApi({
         path: `${user.username}/post_images`,
         sort: "desc",
-        max: 30,
+        max: 9,
       }),
     select: ({ data }) => data.resources,
     enabled: !!user,
