@@ -1,8 +1,8 @@
-import React from "react"
 import { useProfilePictureModal } from "@/stores"
 import { useQueryClient } from "@tanstack/react-query"
+import React from "react"
 
-import { cn } from "@/lib/utils"
+import { Plus } from "@/assets/svg"
 import { Button } from "@/components/ui/button"
 import {
   DialogDescription,
@@ -11,9 +11,7 @@ import {
 } from "@/components/ui/dialog"
 import { Modal } from "@/components/ui/modal"
 import { ScrollArea } from "@/components/ui/scroll-area"
-import { ToastAction } from "@/components/ui/toast"
 import { toast } from "@/components/ui/use-toast"
-import { Plus } from "@/assets/svg"
 
 import { CreateProfilePicture } from "./create-profile-picture"
 import { ListImage } from "./list-image"
@@ -55,11 +53,7 @@ export const ProfilePictureModal = () => {
 
   return (
     <Modal
-      className={cn(
-        "max-h-screen w-auto overflow-y-auto p-0 drop-shadow sm:w-[700px]",
-        formRef.current?.isSaving &&
-          "after:absolute after:inset-0 after:bg-[rgba(244,244,244,0.3)] after:content-['']"
-      )}
+      className="max-h-screen w-auto overflow-y-auto p-0 drop-shadow sm:w-[700px]"
       showModal={profilePictureModal.isOpen}
       onClose={() => {
         if (!file) return profilePictureModal.onClose()
@@ -92,7 +86,7 @@ export const ProfilePictureModal = () => {
               <Plus className="mr-1.5 size-4" />
               Upload photo
             </Button>
-            <Button variant="secondary">
+            <Button variant="secondary" disabled>
               <i className="frame_icon mr-1.5"></i>Add Frame
             </Button>
           </div>

@@ -8,7 +8,7 @@ import { Dots } from "@/assets/svg"
 export const ProfileMenu = ({ className }) => {
   return (
     <div className={cn("flex items-center px-16", className)}>
-      <ProfileMenuItem to="posts" title="Posts" data-state="active" />
+      <ProfileMenuItem to="" title="Posts" data-state="active" />
       <ProfileMenuItem to="" title="About" disabled={true} />
       <ProfileMenuItem to="" title="Friends" disabled />
       <ProfileMenuItem to="" title="Photos" disabled />

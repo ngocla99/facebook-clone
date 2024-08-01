@@ -98,17 +98,10 @@ export const StickerPopover = ({ className, tooltipTitle = "GIF" }) => {
       >
         <Tabs defaultValue="feelings">
           <TabsList>
-            <TabsTrigger
-              className="size-10 p-0 hover:bg-hover"
-              value="feelings"
-            >
+            <TabsTrigger className="size-10 p-0" value="feelings">
               <Search className="size-5" />
             </TabsTrigger>
-            <TabsTrigger
-              className="size-10 p-0 hover:bg-hover"
-              disabled
-              value="activities"
-            >
+            <TabsTrigger className="size-10 p-0" disabled value="activities">
               <i className="clock_icon filter-secondary-icon"></i>
             </TabsTrigger>
           </TabsList>
