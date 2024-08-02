@@ -10,57 +10,57 @@ export const PostEvent = ({ setView }) => {
     return [
       {
         title: "Work",
-        icon: "icons/category-events/work.png",
+        icon: "/icons/category-events/work.png",
         onClick: () => {},
       },
       {
         title: "Education",
-        icon: "icons/category-events/education.png",
+        icon: "/icons/category-events/education.png",
         onClick: () => {},
       },
       {
         title: "Relationship",
-        icon: "icons/category-events/relationship.png",
+        icon: "/icons/category-events/relationship.png",
         onClick: () => {},
       },
       {
         title: "Home & Living",
-        icon: "icons/category-events/home.png",
+        icon: "/icons/category-events/home.png",
         onClick: () => {},
       },
       {
         title: "Family",
-        icon: "icons/category-events/family.png",
+        icon: "/icons/category-events/family.png",
         onClick: () => {},
       },
       {
         title: "Travel",
-        icon: "icons/category-events/travel.png",
+        icon: "/icons/category-events/travel.png",
         onClick: () => {},
       },
       {
         title: "Interests & Activities",
-        icon: "icons/category-events/interest.png",
+        icon: "/icons/category-events/interest.png",
         onClick: () => {},
       },
       {
         title: "Health & Wellness",
-        icon: "icons/category-events/health.png",
+        icon: "/icons/category-events/health.png",
         onClick: () => {},
       },
       {
         title: "Milestones & Achievements",
-        icon: "icons/category-events/milestone.png",
+        icon: "/icons/category-events/milestone.png",
         onClick: () => {},
       },
       {
         title: "Remembrance",
-        icon: "icons/category-events/remembrance.png",
+        icon: "/icons/category-events/remembrance.png",
         onClick: () => {},
       },
       {
         title: "Create Your Own",
-        icon: "icons/category-events/flag.png",
+        icon: "/icons/category-events/flag.png",
         onClick: () => {},
       },
     ]

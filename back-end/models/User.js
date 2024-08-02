@@ -38,9 +38,41 @@ const userSchema = mongoose.Schema(
       trim: true,
       default: "https://github.com/shadcn.png",
     },
-    cover: {
-      type: String,
-      trim: true,
+    coverPhoto: {
+      focus: {
+        x: {
+          type: Number,
+        },
+        y: {
+          type: Number,
+        },
+      },
+      photo: {
+        croppedImage: {
+          height: {
+            type: Number,
+          },
+          url: {
+            type: String,
+            trim: true,
+          },
+          width: {
+            type: Number,
+          },
+        },
+        image: {
+          height: {
+            type: Number,
+          },
+          url: {
+            type: String,
+            trim: true,
+          },
+          width: {
+            type: Number,
+          },
+        },
+      },
     },
     gender: {
       type: String,

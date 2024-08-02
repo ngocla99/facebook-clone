@@ -63,7 +63,7 @@ export const CreateProfilePicture = React.forwardRef(
     const isSaving =
       uploadImageMutation.isPending || updateProfileMutation.isPending
 
-    const createCommentWithImage = async (image) => {
+    const uploadImage = async (image) => {
       const path = `${me.username}/profile_pictures`
       const blob = await fetch(image).then((b) => b.blob())
       const formData = new FormData()
@@ -81,7 +81,7 @@ export const CreateProfilePicture = React.forwardRef(
         )
       }
 
-      createCommentWithImage(image)
+      uploadImage(image)
     }
 
     const onClose = () => {

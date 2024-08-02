@@ -15,43 +15,43 @@ import {
 const reactIcons = [
   {
     key: "like",
-    gif: "icons/reacts/like.gif",
-    img: "icons/reacts/like.svg",
+    gif: "/icons/reacts/like.gif",
+    img: "/icons/reacts/like.svg",
     title: "Like",
     value: "LIKE",
   },
   {
     key: "love",
-    gif: "icons/reacts/love.gif",
-    img: "icons/reacts/love.svg",
+    gif: "/icons/reacts/love.gif",
+    img: "/icons/reacts/love.svg",
     title: "Love",
     value: "LOVE",
   },
   {
     key: "haha",
-    gif: "icons/reacts/haha.gif",
-    img: "icons/reacts/haha.svg",
+    gif: "/icons/reacts/haha.gif",
+    img: "/icons/reacts/haha.svg",
     title: "Haha",
     value: "HAHA",
   },
   {
     key: "wow",
-    gif: "icons/reacts/wow.gif",
-    img: "icons/reacts/wow.svg",
+    gif: "/icons/reacts/wow.gif",
+    img: "/icons/reacts/wow.svg",
     title: "Wow",
     value: "WOW",
   },
   {
     key: "sad",
-    gif: "icons/reacts/sad.gif",
-    img: "icons/reacts/sad.svg",
+    gif: "/icons/reacts/sad.gif",
+    img: "/icons/reacts/sad.svg",
     title: "Sad",
     value: "SAD",
   },
   {
     key: "angry",
-    gif: "icons/reacts/angry.gif",
-    img: "icons/reacts/angry.svg",
+    gif: "/icons/reacts/angry.gif",
+    img: "/icons/reacts/angry.svg",
     title: "Angry",
     value: "ANGRY",
   },
@@ -148,28 +148,28 @@ const ReactionText = ({ type }) => {
     case "LOVE":
       return (
         <>
-          <img src="icons/reacts/love.svg" alt="Love" className="size-[18px]" />
+          <img src="/icons/reacts/love.svg" alt="Love" className="size-[18px]" />
           <p className="text-[#f33e58]">Love</p>
         </>
       )
     case "HAHA":
       return (
         <>
-          <img src="icons/reacts/haha.svg" alt="HaHa" className="size-[18px]" />
+          <img src="/icons/reacts/haha.svg" alt="HaHa" className="size-[18px]" />
           <p className="text-[#f7b125]">Haha</p>
         </>
       )
     case "WOW":
       return (
         <>
-          <img src="icons/reacts/wow.svg" alt="Wow" className="size-[18px]" />
+          <img src="/icons/reacts/wow.svg" alt="Wow" className="size-[18px]" />
           <p className="text-[#f7b125]">Wow</p>
         </>
       )
     case "SAD":
       return (
         <>
-          <img src="icons/reacts/sad.svg" alt="Sad" className="size-[18px]" />
+          <img src="/icons/reacts/sad.svg" alt="Sad" className="size-[18px]" />
           <p className="text-[#f7b125]">Sad</p>
         </>
       )
@@ -177,7 +177,7 @@ const ReactionText = ({ type }) => {
       return (
         <>
           <img
-            src="icons/reacts/angry.svg"
+            src="/icons/reacts/angry.svg"
             alt="Angry"
             className="size-[18px]"
           />

@@ -52,7 +52,7 @@ export const PostActionsOther = ({ user }) => {
           className="h-auto items-start justify-start gap-3 p-2 text-left"
           disabled
         >
-          <img src="icons/hide.png" alt="Hide" />
+          <img src="/icons/hide.png" alt="Hide" />
           <div className="-mt-[1px] space-y-1">
             <p className="leading-none">Hide post</p>
             <p className="text-sm font-normal leading-none text-muted-foreground">
@@ -65,7 +65,7 @@ export const PostActionsOther = ({ user }) => {
           className="h-auto items-start justify-start gap-3 p-2 text-left"
           disabled
         >
-          <img src="icons/time.png" alt="Hide" />
+          <img src="/icons/time.png" alt="Hide" />
           <div className="-mt-[1px] space-y-1">
             <p className="leading-none">
               Snooze {user.firstName + " " + user.lastName} for 30 days
@@ -80,7 +80,7 @@ export const PostActionsOther = ({ user }) => {
           className="h-auto items-start justify-start gap-3 p-2 text-left"
           disabled
         >
-          <img src="icons/hideAll.png" alt="Hide" />
+          <img src="/icons/hideAll.png" alt="Hide" />
           <div className="-mt-[1px] space-y-1">
             <p className="leading-none">
               Unfollow {user.firstName + " " + user.lastName}
@@ -95,7 +95,7 @@ export const PostActionsOther = ({ user }) => {
           className="h-auto items-start justify-start gap-3 p-2 text-left"
           disabled
         >
-          <img src="icons/reportFill.png" alt="Hide" />
+          <img src="/icons/reportFill.png" alt="Hide" />
           <div className="-mt-[1px] space-y-1">
             <p className="leading-none">Report post</p>
             <p className="text-sm font-normal leading-none text-muted-foreground">

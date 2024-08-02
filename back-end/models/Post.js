@@ -6,7 +6,7 @@ const postSchema = mongoose.Schema(
   {
     type: {
       type: String,
-      enum: ["PROFILE_PICTURE", "COVER", null],
+      enum: ["PROFILE_PICTURE", "COVER_PHOTO", null],
       default: null,
     },
     text: {

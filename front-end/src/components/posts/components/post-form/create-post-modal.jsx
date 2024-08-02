@@ -73,6 +73,7 @@ export const CreatePostModal = () => {
           createPostMutation.isPending || uploadImageMutation.isPending
         }
         onSubmit={onSubmit}
+        openBy={postCreateModal.openBy}
         onClose={() => postCreateModal.onClose()}
       />
     </Modal>

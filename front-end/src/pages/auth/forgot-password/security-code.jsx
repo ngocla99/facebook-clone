@@ -119,7 +119,7 @@ const MessageBox = ({ message, className }) => {
       )}
     >
       <div className="flex min-w-[42px] items-start justify-center bg-[#fa3e3e] pt-[9px]">
-        <img src="icons/warning.png" alt="Warning" width="20" height="20" />
+        <img src="/icons/warning.png" alt="Warning" width="20" height="20" />
       </div>
       <div className="px-[10px] py-[9px]">
         <p className="text-sm leading-[18px]">{message}</p>
