@@ -15,14 +15,16 @@ import { Form, FormControl, FormField, FormItem } from "@/components/ui/form"
 
 export const ProfileCoverForm = ({
   aspect,
-  file,
-  setFile,
+  uploadFile,
+  onDone,
   setIsSaving,
   className,
 }) => {
   const queryClient = useQueryClient()
   const { data: me } = queryClient.getQueryData(["me"])
-  const [crop, setCrop] = React.useState({ x: 0, y: 0 })
+  const [crop, setCrop] = React.useState(
+    uploadFile.type === "REPOSITION" ? uploadFile.focus : { x: 0, y: 0 }
+  )
   const [zoom, setZoom] = React.useState(1)
   const [croppedAreaPixels, setCroppedAreaPixels] = React.useState(null)
   const [showDragHint, setShowDragHint] = React.useState(true)
@@ -30,7 +32,7 @@ export const ProfileCoverForm = ({
   const form = useForm({
     resolver: zodResolver(profileCoverSchema),
     defaultValues: {
-      image: file,
+      image: uploadFile.file,
     },
   })
 
@@ -44,12 +46,14 @@ export const ProfileCoverForm = ({
   const updateProfileMutation = useMutation({
     mutationFn: updateProfileApi,
     onSuccess: ({ data }) => {
-      createPostMutation.mutate({
-        type: "COVER_PHOTO",
-        audience: "EVERYONE",
-        images: [{ url: data.profile.cover }],
-      })
-      setFile(null)
+      if (uploadFile.type === "CREATE") {
+        createPostMutation.mutate({
+          type: "COVER_PHOTO",
+          audience: "EVERYONE",
+          images: [{ url: data.profile.coverPhoto.photo.image.url }],
+        })
+      }
+      onDone()
       queryClient.invalidateQueries({ queryKey: ["me"] })
       queryClient.invalidateQueries({ queryKey: ["user"] })
     },
@@ -59,10 +63,9 @@ export const ProfileCoverForm = ({
   const uploadImageMutation = useMutation({
     mutationFn: uploadImageApi,
     onSuccess: ({ data }) => {
-      console.log("🚀 ~ data:", data)
       updateProfileMutation.mutate({
         coverPhoto: {
-          focus: { x: croppedAreaPixels.x, y: croppedAreaPixels.y },
+          focus: { ...crop },
           photo: {
             image: { ...data[0] },
             croppedImage: { ...data[1] },
@@ -78,7 +81,7 @@ export const ProfileCoverForm = ({
 
   const uploadImage = async (image) => {
     const path = `${me.username}/cover_photos`
-    const blob = await fetch(file).then((b) => b.blob())
+    const blob = await fetch(uploadFile.file).then((b) => b.blob())
     const croppedBlob = await fetch(image).then((b) => b.blob())
     const formData = new FormData()
 
@@ -108,7 +111,7 @@ export const ProfileCoverForm = ({
           control={form.control}
           name="image"
           render={({ field }) => (
-            <FormItem onClick={() => setShowDragHint(false)}>
+            <FormItem onMouseEnter={() => setShowDragHint(false)}>
               <FormControl>
                 <Cropper
                   image={field.value}
@@ -122,6 +125,12 @@ export const ProfileCoverForm = ({
                   onCropComplete={onCropComplete}
                   onWheelRequest={() => false}
                   objectFit="horizontal-cover"
+                  style={{
+                    cropAreaStyle: {
+                      filter: "grayscale(1) invert(1)",
+                      border: "none",
+                    },
+                  }}
                 />
               </FormControl>
               {showDragHint && (

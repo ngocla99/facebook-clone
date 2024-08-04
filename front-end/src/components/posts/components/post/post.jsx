@@ -104,6 +104,11 @@ export const Post = ({ isDialog, post }) => {
                     picture.
                   </span>
                 )}
+                {post.type === "COVER_PHOTO" && (
+                  <span className="ml-1 text-muted-foreground">
+                    update {me.gender === "MALE" ? "his" : "her"} cover photo.
+                  </span>
+                )}
               </div>
               <div className="flex items-center gap-1">
                 <p className="text-sm leading-4 text-muted-foreground">
@@ -160,7 +165,14 @@ export const Post = ({ isDialog, post }) => {
           </div>
           {post.type === "PROFILE_PICTURE" && (
             <div className="relative grid">
-              <div className="absolute top-0 h-[222px] w-full bg-secondary"></div>
+              <div
+                className="absolute top-0 h-[222px] w-full bg-secondary bg-cover bg-no-repeat"
+                style={{
+                  backgroundImage: me.coverPhoto
+                    ? `url(${me.coverPhoto.photo.croppedImage.url})`
+                    : "unset",
+                }}
+              ></div>
               <div className="z-[1] px-[52px] pb-7 pt-6">
                 <img
                   src={images[0].url}
@@ -169,6 +181,9 @@ export const Post = ({ isDialog, post }) => {
                 />
               </div>
             </div>
+          )}
+          {post.type === "COVER_PHOTO" && (
+            <img src={images[0].url} alt={images[0].filename} className="" />
           )}
           {!post.type && (
             <div

@@ -22,7 +22,7 @@ export const UploadProfileCover = ({ user, className }) => {
   const inputUploadRef = React.useRef(null)
   const coverBoxRef = React.useRef(null)
   const { width, height } = useSize(coverBoxRef)
-  const [file, setFile] = React.useState()
+  const [uploadFile, setUploadFile] = React.useState({})
   const [showProfileCover, setShowProfileCover] = React.useState(false)
   const [isSaving, setIsSaving] = React.useState(false)
 
@@ -62,7 +62,7 @@ export const UploadProfileCover = ({ user, className }) => {
     const reader = new FileReader()
     reader.readAsDataURL(fileUpload)
     reader.onload = (event) => {
-      setFile(event.target.result)
+      setUploadFile({ type: "CREATE", file: event.target.result })
     }
   }
 
@@ -72,29 +72,29 @@ export const UploadProfileCover = ({ user, className }) => {
         ref={coverBoxRef}
         className={cn(
           "relative overflow-hidden rounded-bl-lg rounded-br-lg border-none bg-background-comment bg-cover bg-no-repeat",
-          !file && "image-box",
+          !uploadFile.file && "image-box",
           className
         )}
         style={{
           backgroundImage:
-            user.coverPhoto && !file
+            user.coverPhoto && !uploadFile.file
               ? `url(${user.coverPhoto.photo.croppedImage.url})`
               : "unset",
         }}
       >
         <div className="pt-[38%]">
-          {file && (
+          {uploadFile.file && (
             <ProfileCoverForm
               aspect={width / height}
-              file={file}
-              setFile={setFile}
+              uploadFile={uploadFile}
+              onDone={() => setUploadFile({})}
               setIsSaving={setIsSaving}
               className="absolute inset-0 z-0"
             />
           )}
         </div>
 
-        {!user.isVisitor && !file && (
+        {!user.isVisitor && !uploadFile.file && (
           <div className="absolute bottom-0 left-0 right-0 z-10 flex justify-end bg-gradient-to-b from-[rgba(0,0,0,0)] to-[rgba(0,0,0,0.6)] px-5 py-[22px]">
             <Popover>
               <PopoverTrigger asChild>
@@ -138,7 +138,13 @@ export const UploadProfileCover = ({ user, className }) => {
                     <Button
                       variant="ghost"
                       className="justify-start px-2 leading-5"
-                      onClick={() => setFile(user.cover)}
+                      onClick={() =>
+                        setUploadFile({
+                          type: "REPOSITION",
+                          file: user.coverPhoto.photo.image.url,
+                          focus: user?.coverPhoto?.focus,
+                        })
+                      }
                     >
                       <i className="drag_icon mr-3"></i>
                       Reposition
@@ -169,12 +175,15 @@ export const UploadProfileCover = ({ user, className }) => {
             }}
             onUpload={(img) => {
               setShowProfileCover(false)
-              setFile(img)
+              setUploadFile({
+                type: "CREATE",
+                file: img,
+              })
             }}
           />
         )}
       </div>
-      {file && (
+      {uploadFile.file && (
         <div className="absolute left-0 right-0 top-[56px] flex items-center justify-between bg-[rgba(0,0,0,0.4)] px-4 py-3">
           <div className="flex gap-3">
             <i className="public_icon invert"></i>
@@ -189,7 +198,7 @@ export const UploadProfileCover = ({ user, className }) => {
               <Button
                 variant="secondary"
                 className="w-[116px] bg-[rgba(255,255,255,0.1)] text-white"
-                onClick={() => setFile(null)}
+                onClick={() => setUploadFile({})}
                 disabled={isSaving}
               >
                 Cancel
