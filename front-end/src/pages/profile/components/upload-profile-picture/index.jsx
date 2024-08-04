@@ -14,7 +14,7 @@ import { ProfilePictureModal } from "./profile-picture-modal"
 export const UploadProfilePicture = ({ user, className }) => {
   const profilePictureModal = useProfilePictureModal()
   return (
-    <div className={cn("", className)}>
+    <div className={cn("z-10", className)}>
       <Popover>
         <PopoverTrigger asChild>
           <div className="size-[178px] rounded-full bg-white shadow-[0_0_0_3px_white]">

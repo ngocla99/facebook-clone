@@ -19,9 +19,7 @@ const VIEWS = {
   COVER_PHOTOS: "cover_photos",
 }
 
-export const ProfileCoverModal = ({ profileCoverModal }) => {
-  if (!profileCoverModal.isOpen) return null
-
+export const ProfileCoverModal = ({ profileCoverModal, onUpload }) => {
   const queryClient = useQueryClient()
   const { data: me } = queryClient.getQueryData(["me"])
   const [tab, setTab] = React.useState("recent")
@@ -87,6 +85,7 @@ export const ProfileCoverModal = ({ profileCoverModal }) => {
                   <div
                     key={itm.asset_id}
                     className="image-box h-[100px] bg-no-repeat object-cover"
+                    onClick={() => onUpload(itm.secure_url)}
                   >
                     <img
                       src={itm.secure_url}
@@ -128,7 +127,7 @@ export const ProfileCoverModal = ({ profileCoverModal }) => {
                 <div
                   className=""
                   onClick={() => {
-                    setView(VIEWS.PROFILE_PICTURES)
+                    setView(VIEWS.COVER_PHOTOS)
                     setTab("photos")
                   }}
                 >
@@ -142,7 +141,7 @@ export const ProfileCoverModal = ({ profileCoverModal }) => {
                       className="h-full w-full object-cover"
                     />
                   </div>
-                  <p className="mt-1 font-medium leading-5">Profile pictures</p>
+                  <p className="mt-1 font-medium leading-5">Cover photos</p>
                   <span className="text-sm leading-4">
                     {imagesCover.length} uploads
                   </span>
@@ -156,19 +155,21 @@ export const ProfileCoverModal = ({ profileCoverModal }) => {
         <ViewPictures
           pictures={imagesProfile}
           onBack={() => setView(VIEWS.ROOT)}
+          onUpload={onUpload}
         />
       )}
       {view === VIEWS.COVER_PHOTOS && (
         <ViewPictures
           pictures={imagesCover}
           onBack={() => setView(VIEWS.ROOT)}
+          onUpload={onUpload}
         />
       )}
     </Modal>
   )
 }
 
-const ViewPictures = ({ pictures, onBack }) => {
+const ViewPictures = ({ pictures, onBack, onUpload }) => {
   return (
     <div className="p-4">
       <Button
@@ -185,6 +186,7 @@ const ViewPictures = ({ pictures, onBack }) => {
             <div
               key={itm.asset_id}
               className="image-box h-[100px] bg-no-repeat object-cover"
+              onClick={() => onUpload(itm.secure_url)}
             >
               <img
                 src={itm.secure_url}

@@ -18,16 +18,14 @@ export const ProfileCoverForm = ({
   file,
   setFile,
   setIsSaving,
-  showUploadFile,
   className,
 }) => {
-  if (!file) return null
   const queryClient = useQueryClient()
   const { data: me } = queryClient.getQueryData(["me"])
   const [crop, setCrop] = React.useState({ x: 0, y: 0 })
   const [zoom, setZoom] = React.useState(1)
   const [croppedAreaPixels, setCroppedAreaPixels] = React.useState(null)
-  const [showDragHint, setShowDragHint] = React.useState(!!showUploadFile)
+  const [showDragHint, setShowDragHint] = React.useState(true)
 
   const form = useForm({
     resolver: zodResolver(profileCoverSchema),
@@ -79,7 +77,7 @@ export const ProfileCoverForm = ({
   }
 
   const uploadImage = async (image) => {
-    const path = `${me.username}/profile_pictures`
+    const path = `${me.username}/cover_photos`
     const blob = await fetch(file).then((b) => b.blob())
     const croppedBlob = await fetch(image).then((b) => b.blob())
     const formData = new FormData()

@@ -12,6 +12,7 @@ import {
 } from "@/components/ui/popover"
 import { Separator } from "@/components/ui/separator"
 import { confirm } from "@/components/confirm"
+import { LoadingDots } from "@/components/loading/loading-dots"
 
 import { ProfileCoverForm } from "./profile-cover-form"
 import { ProfileCoverModal } from "./profile-cover-modal"
@@ -75,23 +76,26 @@ export const UploadProfileCover = ({ user, className }) => {
           className
         )}
         style={{
-          backgroundImage: user.coverPhoto
-            ? `url(${user.coverPhoto.photo.croppedImage.url})`
-            : "unset",
+          backgroundImage:
+            user.coverPhoto && !file
+              ? `url(${user.coverPhoto.photo.croppedImage.url})`
+              : "unset",
         }}
       >
         <div className="pt-[38%]">
-          <ProfileCoverForm
-            aspect={width / height}
-            file={file}
-            setFile={setFile}
-            setIsSaving={setIsSaving}
-            className="absolute inset-0 z-0"
-          />
+          {file && (
+            <ProfileCoverForm
+              aspect={width / height}
+              file={file}
+              setFile={setFile}
+              setIsSaving={setIsSaving}
+              className="absolute inset-0 z-0"
+            />
+          )}
         </div>
 
-        <div className="absolute bottom-0 left-0 right-0 z-10 flex justify-end bg-gradient-to-b from-[rgba(0,0,0,0)] to-[rgba(0,0,0,0.6)] px-5 py-[22px]">
-          {!user.isVisitor && !file && (
+        {!user.isVisitor && !file && (
+          <div className="absolute bottom-0 left-0 right-0 z-10 flex justify-end bg-gradient-to-b from-[rgba(0,0,0,0)] to-[rgba(0,0,0,0.6)] px-5 py-[22px]">
             <Popover>
               <PopoverTrigger asChild>
                 <Button
@@ -154,14 +158,21 @@ export const UploadProfileCover = ({ user, className }) => {
                 )}
               </PopoverContent>
             </Popover>
-          )}
-        </div>
-        <ProfileCoverModal
-          profileCoverModal={{
-            isOpen: showProfileCover,
-            onClose: () => setShowProfileCover(false),
-          }}
-        />
+          </div>
+        )}
+
+        {showProfileCover && (
+          <ProfileCoverModal
+            profileCoverModal={{
+              isOpen: showProfileCover,
+              onClose: () => setShowProfileCover(false),
+            }}
+            onUpload={(img) => {
+              setShowProfileCover(false)
+              setFile(img)
+            }}
+          />
+        )}
       </div>
       {file && (
         <div className="absolute left-0 right-0 top-[56px] flex items-center justify-between bg-[rgba(0,0,0,0.4)] px-4 py-3">
@@ -171,15 +182,19 @@ export const UploadProfileCover = ({ user, className }) => {
               Your cover photo is public.
             </p>
           </div>
-          <div className="flex gap-2">
-            <Button
-              variant="secondary"
-              className="w-[116px] bg-[rgba(255,255,255,0.1)] text-white"
-              onClick={() => setFile(null)}
-              disabled={isSaving}
-            >
-              Cancel
-            </Button>
+          <div className="flex items-center gap-2">
+            {isSaving ? (
+              <LoadingDots />
+            ) : (
+              <Button
+                variant="secondary"
+                className="w-[116px] bg-[rgba(255,255,255,0.1)] text-white"
+                onClick={() => setFile(null)}
+                disabled={isSaving}
+              >
+                Cancel
+              </Button>
+            )}
             <Button
               form="profile-cover-form"
               type="submit"
