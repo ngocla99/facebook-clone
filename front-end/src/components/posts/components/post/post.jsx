@@ -183,7 +183,7 @@ export const Post = ({ isDialog, post }) => {
             </div>
           )}
           {post.type === "COVER_PHOTO" && (
-            <img src={images[0].url} alt={images[0].filename} className="" />
+            <img src={images[0].url} alt={images[0].filename} className="object-cover w-full" />
           )}
           {!post.type && (
             <div

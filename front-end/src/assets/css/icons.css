@@ -722,9 +722,6 @@
   height: 32px;
   background-repeat: no-repeat;
   display: inline-block;
-  -webkit-filter: invert(39%) sepia(57%) saturate(200%) saturate(200%)
-    saturate(200%) saturate(200%) saturate(200%) saturate(147.75%)
-    hue-rotate(202deg) brightness(97%) contrast(96%);
 }
 .equalize_icon {
   background-image: url(/icons/icons26.png);
@@ -984,6 +981,15 @@
   background-size: auto;
   width: 20px;
   height: 20px;
+  background-repeat: no-repeat;
+  display: inline-block;
+}
+.rounded_plus_icon_24 {
+  background-image: url(/icons/icons59.png);
+  background-position: 0px -50px;
+  background-size: auto;
+  width: 24px;
+  height: 24px;
   background-repeat: no-repeat;
   display: inline-block;
 }

@@ -99,7 +99,7 @@ export const ProfilePictureForm = ({
                 <FormControl>
                   <Textarea
                     placeholder="Description"
-                    className="min-h-[82px] resize-none"
+                    className="min-h-[82px]"
                     {...field}
                   />
                 </FormControl>

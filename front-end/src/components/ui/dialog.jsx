@@ -46,7 +46,7 @@ const DialogContent = React.forwardRef(
           >
             <Button
               variant="secondary"
-              className="size-9 rounded-full"
+              className="size-9 rounded-full text-muted-foreground"
               size="icon"
             >
               <Cross2Icon className="size-6" />

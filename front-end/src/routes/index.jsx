@@ -3,7 +3,10 @@ import { PasswordChanged } from "@/pages/auth/forgot-password/password-changed"
 import Login from "@/pages/auth/login"
 import Home from "@/pages/home"
 import PageNotFound from "@/pages/page-not-found"
-import Profile from "@/pages/profile"
+import { ProfileAbout } from "@/pages/profile/profile-about"
+// import Profile from "@/pages/profile"
+import { ProfileLayout } from "@/pages/profile/profile-layout"
+import { ProfilePosts } from "@/pages/profile/profile-posts"
 import { createBrowserRouter, RouterProvider } from "react-router-dom"
 
 import { useAuth } from "@/providers/auth-provider"
@@ -52,7 +55,21 @@ const Routes = () => {
         },
         {
           path: "/profile/:username",
-          element: <Profile />,
+          element: <ProfileLayout />,
+          children: [
+            {
+              path: "",
+              element: <ProfilePosts />,
+            },
+            {
+              path: "posts",
+              element: <ProfilePosts />,
+            },
+            {
+              path: "about",
+              element: <ProfileAbout />,
+            },
+          ],
         },
         {
           path: "/password/change/reason",

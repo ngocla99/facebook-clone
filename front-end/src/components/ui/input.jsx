@@ -14,7 +14,7 @@ const inputVariants = cva(
       size: {
         default: "h-[52px] rounded-md px-4 py-[14px] text-lg leading-4",
         sm: "h-10 rounded-md px-3 text-sm",
-        lg: "h-10 rounded-md px-8",
+        lg: "h-14 rounded-md px-4 text-[16px]",
         icon: "h-9 w-9",
       },
     },

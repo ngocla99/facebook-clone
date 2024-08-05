@@ -3,13 +3,12 @@ import { getProfileApi } from "@/api/services/user"
 import { useMe } from "@/hooks"
 import { useProfileUser } from "@/stores"
 import { useQuery } from "@tanstack/react-query"
-import { useNavigate, useParams } from "react-router-dom"
+import { Outlet, useNavigate, useParams } from "react-router-dom"
 
 import { ProfileInfo } from "./components/profile-info"
 import { ProfileMenu } from "./components/profile-menu"
-import { ProfilePosts } from "./profile-posts"
 
-const Profile = () => {
+export const ProfileLayout = () => {
   const { username } = useParams()
   const navigate = useNavigate()
   const { mutate } = useProfileUser()
@@ -41,9 +40,7 @@ const Profile = () => {
         <ProfileInfo className="container px-0" user={user} />
         <ProfileMenu className="container sticky top-[56px] px-4" />
       </div>
-      <ProfilePosts className="container mt-4 px-4" />
+      <Outlet />
     </>
   )
 }
-
-export default Profile

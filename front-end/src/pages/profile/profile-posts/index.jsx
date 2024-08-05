@@ -10,7 +10,7 @@ export const ProfilePosts = ({ className }) => {
   return (
     <div
       className={cn(
-        "flex flex-col items-center gap-4 lg:flex-row lg:items-start",
+        "container mt-4 flex flex-col items-center gap-4 px-4 lg:flex-row lg:items-start",
         className
       )}
     >
