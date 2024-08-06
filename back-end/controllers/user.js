@@ -10,6 +10,7 @@ const User = require("../models/User");
 const bcrypt = require("bcrypt");
 const { generateCode } = require("../helpers/generateCode");
 const Code = require("../models/Code");
+const { ObjectId } = require("mongodb");
 require("dotenv").config();
 
 exports.register = async (req, res) => {
@@ -292,6 +293,267 @@ exports.updateProfile = async (req, res) => {
       { new: true }
     );
     res.json({ message: "ok", profile });
+  } catch (err) {
+    return res.status(500).json({ message: err.message });
+  }
+};
+
+exports.sendFriendRequest = async (req, res) => {
+  const senderId = req.user._id;
+  const { userId: recipientId } = req.body;
+
+  try {
+    if (senderId.toString() === recipientId) {
+      return res.status(400).json({
+        message: "You can't send the friend request to yourself.",
+      });
+    }
+
+    const recipient = await User.findById(recipientId);
+    if (!recipient) {
+      return res.status(404).json({
+        message: "Recipient not found.",
+      });
+    }
+
+    if (recipient.requests.includes(senderId)) {
+      return res.status(400).json({
+        message: "Friend requests is already sent.",
+      });
+    }
+
+    if (recipient.friends.includes(senderId)) {
+      return res.status(400).json({
+        message: "You are already friends.",
+      });
+    }
+
+    await req.user.updateOne({ $addToSet: { following: recipient._id } });
+
+    await recipient.updateOne({
+      $addToSet: { followers: senderId, requests: senderId },
+    });
+
+    res.json({ message: "Friend request sent successfully." });
+  } catch (err) {
+    return res.status(500).json({ message: err.message });
+  }
+};
+
+exports.cancelFriendRequest = async (req, res) => {
+  const senderId = req.user._id;
+  const { userId: recipientId } = req.body;
+
+  try {
+    if (senderId.toString() === recipientId) {
+      return res.status(400).json({
+        message: "You can't cancel the friend request to yourself.",
+      });
+    }
+
+    const recipient = await User.findById(recipientId);
+    if (!recipient) {
+      return res.status(404).json({
+        message: "Recipient not found.",
+      });
+    }
+
+    if (!recipient.requests.includes(senderId)) {
+      return res.status(400).json({
+        message: "Friend request not found.",
+      });
+    }
+
+    await req.user.updateOne({ $pull: { following: recipient._id } });
+
+    await recipient.updateOne({
+      $pull: { followers: senderId, requests: senderId },
+    });
+
+    res.json({ message: "Friend request canceled successfully." });
+  } catch (err) {
+    return res.status(500).json({ message: err.message });
+  }
+};
+
+exports.acceptFriendRequest = async (req, res) => {
+  const recipientId = req.user._id;
+  const { userId: senderId } = req.body;
+
+  try {
+    if (recipientId.toString() === senderId) {
+      return res.status(400).json({
+        message: "You can't accept the friend request to yourself.",
+      });
+    }
+
+    const sender = await User.findById(senderId);
+    if (!sender) {
+      return res.status(404).json({
+        message: "Sender not found.",
+      });
+    }
+
+    if (!req.user.requests.includes(senderId)) {
+      return res.status(400).json({
+        message: "Friend request not found.",
+      });
+    }
+
+    await req.user.updateOne({
+      $pull: { requests: sender._id },
+      $addToSet: { friends: sender._id, following: sender._id },
+    });
+
+    await sender.updateOne({
+      $addToSet: { friends: recipientId, followers: recipientId },
+    });
+
+    res.json({ message: "Friend request accepted successfully." });
+  } catch (err) {
+    return res.status(500).json({ message: err.message });
+  }
+};
+
+exports.removeFriendRequest = async (req, res) => {
+  const recipientId = req.user._id;
+  const { userId: senderId } = req.body;
+
+  try {
+    if (recipientId.toString() === senderId) {
+      return res.status(400).json({
+        message: "You can't remove the friend request to yourself.",
+      });
+    }
+
+    const sender = await User.findById(senderId);
+    if (!sender) {
+      return res.status(404).json({
+        message: "Sender not found.",
+      });
+    }
+
+    if (!req.user.requests.includes(senderId)) {
+      return res.status(400).json({
+        message: "Friend request not found.",
+      });
+    }
+
+    await req.user.updateOne({
+      $pull: { requests: sender._id },
+    });
+
+    res.json({ message: "Friend request removed successfully." });
+  } catch (err) {
+    return res.status(500).json({ message: err.message });
+  }
+};
+
+exports.unfriend = async (req, res) => {
+  const recipientId = req.user._id;
+  const { userId: senderId } = req.body;
+
+  try {
+    if (recipientId.toString() === senderId) {
+      return res.status(400).json({
+        message: "You can't unfriend yourself.",
+      });
+    }
+
+    const sender = await User.findById(senderId);
+    if (!sender) {
+      return res.status(404).json({
+        message: "Sender not found.",
+      });
+    }
+
+    if (!req.user.friends.includes(senderId)) {
+      return res.status(400).json({
+        message: "You are not friends.",
+      });
+    }
+
+    await req.user.updateOne({
+      $pull: {
+        friends: sender._id,
+        following: sender._id,
+      },
+    });
+
+    await sender.updateOne({
+      $pull: {
+        friends: recipientId,
+        followers: recipientId,
+      },
+    });
+
+    res.json({ message: "Unfriend successfully." });
+  } catch (err) {
+    return res.status(500).json({ message: err.message });
+  }
+};
+
+exports.follow = async (req, res) => {
+  const senderId = req.user._id;
+  const { userId: recipientId } = req.body;
+
+  try {
+    if (senderId.toString() === recipientId) {
+      return res.status(400).json({
+        message: "You can't follow to yourself.",
+      });
+    }
+
+    const recipient = await User.findById(recipientId);
+    if (!recipient) {
+      return res.status(404).json({
+        message: "Recipient not found.",
+      });
+    }
+
+    if (req.user.following.includes(recipientId)) {
+      return res.status(400).json({
+        message: "Friend is already followed.",
+      });
+    }
+
+    await req.user.updateOne({ $addToSet: { following: recipient._id } });
+    await recipient.updateOne({ $addToSet: { followers: senderId } });
+
+    res.json({ message: "Follow successfully." });
+  } catch (err) {
+    return res.status(500).json({ message: err.message });
+  }
+};
+
+exports.unfollow = async (req, res) => {
+  const senderId = req.user._id;
+  const { userId: recipientId } = req.body;
+
+  try {
+    if (senderId.toString() === recipientId) {
+      return res.status(400).json({
+        message: "You can't unfollow to yourself.",
+      });
+    }
+
+    const recipient = await User.findById(recipientId);
+    if (!recipient) {
+      return res.status(404).json({
+        message: "Recipient not found.",
+      });
+    }
+
+    if (!req.user.following.includes(recipientId)) {
+      return res.status(400).json({
+        message: "You are not following.",
+      });
+    }
+
+    await req.user.updateOne({ $pull: { following: recipient._id } });
+    await recipient.updateOne({ $pull: { followers: senderId } });
+
+    res.json({ message: "Unfollow successfully." });
   } catch (err) {
     return res.status(500).json({ message: err.message });
   }

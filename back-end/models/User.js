@@ -2,6 +2,40 @@ const mongoose = require("mongoose");
 
 const { ObjectId } = mongoose.Schema;
 
+const imageSchema = new mongoose.Schema({
+  height: Number,
+  url: {
+    type: String,
+    trim: true,
+  },
+  width: Number,
+});
+
+const workplaceSchema = new mongoose.Schema({
+  company: String,
+  position: String,
+  city: String,
+  startDate: Date,
+  endDate: Date,
+  description: String,
+});
+
+const highSchoolSchema = new mongoose.Schema({
+  school: String,
+  startDate: Date,
+  endDate: Date,
+  description: String,
+});
+
+const collegeSchema = new mongoose.Schema({
+  school: String,
+  degree: String,
+  fieldOfStudy: String,
+  startDate: Date,
+  endDate: Date,
+  description: String,
+});
+
 const userSchema = mongoose.Schema(
   {
     firstName: {
@@ -40,38 +74,12 @@ const userSchema = mongoose.Schema(
     },
     coverPhoto: {
       focus: {
-        x: {
-          type: Number,
-        },
-        y: {
-          type: Number,
-        },
+        x: Number,
+        y: Number,
       },
       photo: {
-        croppedImage: {
-          height: {
-            type: Number,
-          },
-          url: {
-            type: String,
-            trim: true,
-          },
-          width: {
-            type: Number,
-          },
-        },
-        image: {
-          height: {
-            type: Number,
-          },
-          url: {
-            type: String,
-            trim: true,
-          },
-          width: {
-            type: Number,
-          },
-        },
+        croppedImage: imageSchema,
+        image: imageSchema,
       },
     },
     gender: {
@@ -133,15 +141,9 @@ const userSchema = mongoose.Schema(
       job: {
         type: String,
       },
-      workplace: {
-        type: String,
-      },
-      highSchool: {
-        type: String,
-      },
-      college: {
-        type: String,
-      },
+      workplace: [workplaceSchema],
+      highSchool: [highSchoolSchema],
+      college: [collegeSchema],
       currentCity: {
         type: String,
       },
@@ -155,6 +157,7 @@ const userSchema = mongoose.Schema(
       instagram: {
         type: String,
       },
+      displayOrder: [String],
     },
     savedPosts: [
       {
