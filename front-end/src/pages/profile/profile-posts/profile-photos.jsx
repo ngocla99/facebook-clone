@@ -1,14 +1,15 @@
 import { getImagesApi } from "@/api/services/image"
-import { useProfileUser } from "@/stores"
 import { useQuery } from "@tanstack/react-query"
-import { Link } from "react-router-dom"
+import { Link, useParams } from "react-router-dom"
 
 import { cn } from "@/lib/utils"
-import { Button, buttonVariants } from "@/components/ui/button"
+import { useProfile } from "@/hooks/use-profile"
+import { buttonVariants } from "@/components/ui/button"
 import { Card, CardContent } from "@/components/ui/card"
 
 export const ProfilePhotos = ({ className }) => {
-  const { user } = useProfileUser()
+  const { username } = useParams()
+  const { data: user } = useProfile(username)
 
   const { data: photos, isLoading } = useQuery({
     queryKey: ["photos"],
@@ -45,19 +46,20 @@ export const ProfilePhotos = ({ className }) => {
           </Link>
         </div>
         <div className="mt-[22px] grid grid-cols-3 gap-1 overflow-hidden rounded-lg">
-          {photos?.length &&
-            photos.slice(0, 9).map((itm) => (
-              <div
-                key={itm.asset_id}
-                className="relative after:absolute after:inset-0 after:rounded-md after:content-[''] hover:after:bg-hover active:after:bg-[rgba(0,0,0,0.1)]"
-              >
-                <img
-                  src={itm.url}
-                  alt={itm.filename}
-                  className="aspect-square border border-border object-cover"
-                />
-              </div>
-            ))}
+          {photos?.length
+            ? photos.slice(0, 9).map((itm) => (
+                <div
+                  key={itm.asset_id}
+                  className="relative after:absolute after:inset-0 after:rounded-md after:content-[''] hover:after:bg-hover active:after:bg-[rgba(0,0,0,0.1)]"
+                >
+                  <img
+                    src={itm.url}
+                    alt={itm.filename}
+                    className="aspect-square border border-border object-cover"
+                  />
+                </div>
+              ))
+            : null}
         </div>
       </CardContent>
     </Card>

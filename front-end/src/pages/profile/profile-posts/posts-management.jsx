@@ -1,7 +1,8 @@
 import { getAllPostApi } from "@/api/services/post"
-import { useProfileUser } from "@/stores"
 import { useQuery } from "@tanstack/react-query"
+import { useParams } from "react-router-dom"
 
+import { useProfile } from "@/hooks/use-profile"
 import { Button } from "@/components/ui/button"
 import { Card, CardContent } from "@/components/ui/card"
 import { Separator } from "@/components/ui/separator"
@@ -15,7 +16,8 @@ export const PostManagement = ({ className }) => {
     queryFn: getAllPostApi,
     select: ({ data }) => data,
   })
-  const { user } = useProfileUser()
+  const { username } = useParams()
+  const { data: user } = useProfile(username)
 
   if (!user) return null
   return (

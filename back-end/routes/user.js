@@ -12,7 +12,7 @@ router.post("/findUser", userController.findUser);
 router.post("/sendResetPasswordCode", userController.sendResetPasswordCode);
 router.post("/validateResetCode", userController.validateResetCode);
 router.post("/changePassword", userController.changePassword);
-router.get("/getProfile/:username", userController.getProfile);
+router.get("/getProfile/:username", authUser, userController.getProfile);
 router.get("/getMe", authUser, userController.getMe);
 router.put("/updateProfile", authUser, userController.updateProfile);
 router.put("/sendFriendRequest", authUser, userController.sendFriendRequest);

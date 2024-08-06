@@ -268,8 +268,22 @@ exports.changePassword = async (req, res) => {
 exports.getProfile = async (req, res) => {
   try {
     const { username } = req.params;
-    const user = await User.findOne({ username });
-    res.json(user);
+    const profile = await User.findOne({ username });
+
+    if (profile._id.toString() === req.user._id.toString()) {
+      return res.json({ ...profile.toObject(), isVisitor: false });
+    }
+
+    const friendship = {
+      friends:
+        req.user.friends.includes(profile._id) &&
+        profile.friends.includes(req.user._id),
+      following: req.user.following.includes(profile._id),
+      requestSent: profile.requests.includes(req.user._id),
+      requestReceived: req.user.requests.includes(profile._id),
+    };
+
+    res.json({ ...profile.toObject(), friendship, isVisitor: true });
   } catch (err) {
     return res.status(500).json({ message: err.message });
   }

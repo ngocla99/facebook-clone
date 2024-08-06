@@ -1,17 +1,20 @@
-import { useProfileUser } from "@/stores"
+import { useParams } from "react-router-dom"
 
 import { cn, getInitialsName } from "@/lib/utils"
+import { useProfile } from "@/hooks/use-profile"
 import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar"
 import { Button } from "@/components/ui/button"
 import { Separator } from "@/components/ui/separator"
 import { Plus } from "@/assets/svg"
 
 import { AddFriendList } from "./add-friend-list"
+import { FriendshipActions } from "./friendship-actions"
 import { UploadProfileCover } from "./upload-profile-cover"
 import { UploadProfilePicture } from "./upload-profile-picture"
 
 export const ProfileInfo = ({ className }) => {
-  const { user } = useProfileUser()
+  const { username } = useParams()
+  const { data: user } = useProfile(username)
 
   if (!user) return null
 
@@ -61,16 +64,13 @@ export const ProfileInfo = ({ className }) => {
                 </>
               ) : (
                 <>
-                  <Button>
-                    <img
-                      src="/icons/addFriend.png"
-                      alt=""
-                      className="mr-1.5 invert"
-                    />
-                    Add friend
-                  </Button>
+                  <FriendshipActions />
                   <Button variant="secondary">
-                    <img src="/icons/message.png" alt="" className="mr-1.5" />
+                    <img
+                      src="/icons/message.png"
+                      alt="message"
+                      className="mr-1.5"
+                    />
                     Message
                   </Button>
                 </>

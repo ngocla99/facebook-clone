@@ -1,35 +1,19 @@
 import React from "react"
-import { getProfileApi } from "@/api/services/user"
-import { useMe } from "@/hooks"
-import { useProfileUser } from "@/stores"
-import { useQuery } from "@tanstack/react-query"
 import { Outlet, useNavigate, useParams } from "react-router-dom"
+
+import { useProfile } from "@/hooks/use-profile"
 
 import { ProfileInfo } from "./components/profile-info"
 import { ProfileMenu } from "./components/profile-menu"
 
 export const ProfileLayout = () => {
-  const { username } = useParams()
   const navigate = useNavigate()
-  const { mutate } = useProfileUser()
-
-  const { data: me } = useMe()
-
-  const {
-    data: user,
-    isLoading,
-    isSuccess,
-  } = useQuery({
-    queryKey: ["user", username],
-    queryFn: () => getProfileApi(username),
-    select: ({ data }) => data,
-  })
+  const { username } = useParams()
+  const { data: user, isLoading, isSuccess } = useProfile(username)
 
   React.useEffect(() => {
     if (!isSuccess) return
     if (!user) return navigate("/page-not-found")
-
-    mutate({ user: { ...user, isVisitor: user._id !== me?._id } })
   }, [isSuccess, user])
 
   if (isLoading) return "Loading..."
