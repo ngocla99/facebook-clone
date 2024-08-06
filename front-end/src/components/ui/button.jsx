@@ -5,7 +5,7 @@ import { cva } from "class-variance-authority"
 import { cn } from "@/lib/utils"
 
 const buttonVariants = cva(
-  "relative inline-flex items-center justify-center whitespace-nowrap rounded-md transition-colors focus-visible:outline-none focus-visible:ring-1 focus-visible:ring-ring disabled:pointer-events-none disabled:opacity-50 active:scale-[0.96] after:content-[''] after:rounded-md after:inset-0 after:absolute",
+  "relative inline-flex items-center justify-center whitespace-nowrap rounded-md transition-colors focus-visible:outline-none focus-visible:ring-1 focus-visible:ring-ring disabled:bg-secondary disabled:text-[#BCC4C0] disabled:pointer-events-none active:scale-[0.96] after:content-[''] after:rounded-md after:inset-0 after:absolute",
   {
     variants: {
       variant: {
@@ -22,7 +22,7 @@ const buttonVariants = cva(
         white:
           "bg-white text-primary-foreground hover:after:bg-hover active:after:bg-[rgba(0,0,0,0.1)]",
         ghost:
-          "bg-transparent text-secondary-foreground hover:after:bg-hover active:after:bg-[rgba(0,0,0,0.1)] active:scale-1",
+          "bg-transparent text-secondary-foreground hover:after:bg-hover active:after:bg-[rgba(0,0,0,0.1)] active:scale-1 disabled:bg-transparent disabled:opacity-50",
         link: "text-primary underline-offset-2 hover:underline active:scale-1 hover:after:bg-transparent",
       },
       size: {

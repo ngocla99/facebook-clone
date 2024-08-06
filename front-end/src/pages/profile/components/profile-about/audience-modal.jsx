@@ -19,13 +19,9 @@ import { Label } from "@/components/ui/label"
 import { Modal } from "@/components/ui/modal"
 import { RadioGroup, RadioGroupItem } from "@/components/ui/radio-group"
 import { ScrollArea } from "@/components/ui/scroll-area"
+import { optionsAudience } from "@/components/posts/components/post-form/views/post-audience"
 
-import { optionsAudience } from "./views/post-audience"
-
-export const EditPostAudienceModal = () => {
-  const queryClient = useQueryClient()
-  const postEditAudienceModal = usePostEditAudienceModal()
-
+export const AudienceModal = ({ audienceModal, onSave }) => {
   const form = useForm({
     resolver: zodResolver(audiencePostSchema),
     defaultValues: {
@@ -33,39 +29,13 @@ export const EditPostAudienceModal = () => {
     },
   })
 
-  const updatePostMutation = useMutation({
-    mutationFn: updatePostApi,
-    onSuccess: () => {
-      form.reset()
-      postEditAudienceModal.onClose()
-      // Invalidates cache and refetch
-      queryClient.invalidateQueries({ queryKey: ["posts"] })
-    },
-  })
-
-  React.useEffect(() => {
-    if (!postEditAudienceModal?.post) return
-    form.reset(
-      {
-        audience: postEditAudienceModal.post.audience,
-      },
-      { keepDefaultValues: true }
-    )
-  }, [postEditAudienceModal.post])
-
-  const onSubmit = (data) => {
-    if (updatePostMutation.isPending) return
-    updatePostMutation.mutate({ ...data, id: postEditAudienceModal.post._id })
-  }
+  const onSubmit = (data) => {}
 
   return (
     <Modal
       className="w-auto max-w-none overflow-hidden p-0 sm:w-[548px]"
-      showModal={postEditAudienceModal.isOpen}
-      onClose={() => postEditAudienceModal.onClose()}
-      onInteractOutside={(e) => {
-        if (updatePostMutation.isPending) e.preventDefault()
-      }}
+      showModal={audienceModal.isOpen}
+      onClose={() => audienceModal.onClose()}
     >
       <DialogHeader className="flex-rows relative items-center space-y-0 border-b border-border px-4 py-3 text-center">
         <DialogTitle className="leading-9">Select audience</DialogTitle>
@@ -125,11 +95,19 @@ export const EditPostAudienceModal = () => {
               <Button
                 variant="ghost"
                 className="text-primary hover:text-primary"
-                onClick={() => postEditAudienceModal.onClose()}
+                onClick={() => audienceModal.onClose()}
               >
                 Cancel
               </Button>
-              <Button className="w-[116px]">Done</Button>
+              <Button
+                className="w-[116px]"
+                onClick={() => {
+                  onSave(form.getValues("audience"))
+                  audienceModal.onClose()
+                }}
+              >
+                Done
+              </Button>
             </div>
           </DialogFooter>
         </form>

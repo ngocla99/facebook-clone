@@ -9,6 +9,7 @@ import { Form, FormControl, FormField, FormItem } from "@/components/ui/form"
 import { Slider } from "@/components/ui/slider"
 import { Textarea } from "@/components/ui/textarea"
 import { LoadingDots } from "@/components/loading/loading-dots"
+import { MuiTextarea } from '@/components/textarea/mui-textarea'
 
 const ZOOM_MIN = 1
 const ZOOM_MAX = 3
@@ -97,8 +98,8 @@ export const ProfilePictureForm = ({
             render={({ field }) => (
               <FormItem>
                 <FormControl>
-                  <Textarea
-                    placeholder="Description"
+                  <MuiTextarea
+                    label="Description"
                     className="min-h-[82px]"
                     {...field}
                   />

@@ -74,7 +74,7 @@ export const PostEvent = ({ setView }) => {
       />
       <div className="mt-4 text-center">
         <img
-          src="images/life-event.png"
+          src="/images/life-event.png"
           alt="Life event"
           className="h-[150px] w-[548px] max-w-none object-cover"
         />

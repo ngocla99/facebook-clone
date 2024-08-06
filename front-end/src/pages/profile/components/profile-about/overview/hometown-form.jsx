@@ -9,7 +9,7 @@ import { Form, FormControl, FormField, FormItem } from "@/components/ui/form"
 import { Separator } from "@/components/ui/separator"
 import { MuiInput } from "@/components/input/mui-input"
 
-export const CollegeForm = ({ className }) => {
+export const HometownForm = ({ className }) => {
   const [showForm, setShowForm] = React.useState(false)
 
   const form = useForm({
@@ -29,7 +29,7 @@ export const CollegeForm = ({ className }) => {
       >
         <i className="rounded_plus_icon_24 filter-accent"></i>
         <p className="font-medium text-primary group-hover:underline group-hover:underline-offset-2">
-          Add college
+          Add hometown
         </p>
       </button>
     )

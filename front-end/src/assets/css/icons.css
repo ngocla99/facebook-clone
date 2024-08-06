@@ -993,3 +993,30 @@
   background-repeat: no-repeat;
   display: inline-block;
 }
+.checkbox_icon_24 {
+  background-image: url(/icons/icons51.png);
+  background-position: 0px 0px;
+  background-size: auto;
+  width: 24px;
+  height: 24px;
+  background-repeat: no-repeat;
+  display: inline-block;
+}
+.arrow_select_icon {
+  background-image: url(/icons/icons60.png);
+  background-position: 0px -828px;
+  background-size: auto;
+  width: 16px;
+  height: 16px;
+  background-repeat: no-repeat;
+  display: inline-block;
+}
+.check_icon_20 {
+  background-image: url(/icons/icons60.png);
+  background-position: 0px -301px;
+  background-size: auto;
+  width: 20px;
+  height: 20px;
+  background-repeat: no-repeat;
+  display: inline-block;
+}

@@ -130,10 +130,8 @@ export const PostAudience = ({ setView }) => {
         </RadioGroup>
       </ScrollArea>
       <DialogFooter className="shadow-[0_2px_5px_rgba(0,0,0,0.5)] sm:flex-col sm:space-x-0">
-        <div className="flex items-center pt-2">
-          <div className="grid size-10 place-items-center rounded-full hover:bg-hover">
-            <Checkbox />
-          </div>
+        <div className="flex items-center pt-2 pl-2 gap-2 ">
+          <Checkbox />
           <p className="font-semibold">Set as default audience.</p>
         </div>
         <div className="flex justify-end gap-3 p-3">

@@ -7,8 +7,7 @@ import { profileBioSchema } from "@/lib/validations/profile"
 import { Button } from "@/components/ui/button"
 import { Form, FormControl, FormField, FormItem } from "@/components/ui/form"
 import { Separator } from "@/components/ui/separator"
-import { Textarea } from "@/components/ui/textarea"
-import { LoadingDots } from "@/components/loading/loading-dots"
+import { MuiInput } from "@/components/input/mui-input"
 
 export const HighSchoolForm = ({ className }) => {
   const [showForm, setShowForm] = React.useState(false)
@@ -48,13 +47,7 @@ export const HighSchoolForm = ({ className }) => {
           render={({ field }) => (
             <FormItem>
               <FormControl>
-                <Textarea
-                  variant="secondary"
-                  placeholder="Describe who you are"
-                  className="h-[78px] text-center"
-                  autoFocus
-                  {...field}
-                />
+                <MuiInput label="Input" {...field} />
               </FormControl>
             </FormItem>
           )}
@@ -69,7 +62,7 @@ export const HighSchoolForm = ({ className }) => {
             />
             Public
           </Button>
-          <div className="flex gap-1">
+          <div className="flex gap-2">
             <Button
               variant="secondary"
               onClick={() => {

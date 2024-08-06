@@ -1,12 +1,17 @@
+import { cn } from "@/lib/utils"
+
 import { Input } from "../ui/input"
 import { Label } from "../ui/label"
 
-export const MuiInput = ({ label }) => {
+export const MuiInput = ({ label, className }) => {
   return (
     <Label className="relative">
       <Input
         size="lg"
-        className="peer font-normal focus:border-border focus:ring-2 focus:ring-primary focus:ring-offset-2"
+        className={cn(
+          "peer pt-2 font-normal focus:border-border focus:ring-2 focus:ring-primary focus:ring-offset-2 hover:border-muted-foreground",
+          className
+        )}
         placeholder=" "
       ></Input>
       <span
