@@ -7,6 +7,7 @@ import {
   unfollowApi,
   unfriendApi,
 } from "@/api/services/user"
+import { PopoverClose } from "@radix-ui/react-popover"
 import { useMutation, useQueryClient } from "@tanstack/react-query"
 import { useParams } from "react-router-dom"
 
@@ -17,6 +18,7 @@ import {
   PopoverContent,
   PopoverTrigger,
 } from "@/components/ui/popover"
+import { Loading } from "@/assets/svg"
 
 export const FriendshipActions = () => {
   const queryClient = useQueryClient()
@@ -30,11 +32,35 @@ export const FriendshipActions = () => {
   const sendFriendRequestMutation = useMutation({
     mutationFn: sendFriendRequestApi,
     onSuccess: invalidateQueries,
+    onMutate: async () => {
+      await queryClient.cancelQueries({ queryKey: ["user", username] })
+      const prevProfile = queryClient.getQueryData(["user", username])
+
+      prevProfile.data.friendship = {
+        friends: false,
+        following: true,
+        requestSent: true,
+        requestReceived: false,
+      }
+      queryClient.setQueryData(["user", username], prevProfile)
+    },
   })
 
   const cancelFriendRequestMutation = useMutation({
     mutationFn: cancelFriendRequestApi,
     onSuccess: invalidateQueries,
+    onMutate: async () => {
+      await queryClient.cancelQueries({ queryKey: ["user", username] })
+      const prevProfile = queryClient.getQueryData(["user", username])
+
+      prevProfile.data.friendship = {
+        friends: false,
+        following: false,
+        requestSent: false,
+        requestReceived: false,
+      }
+      queryClient.setQueryData(["user", username], prevProfile)
+    },
   })
 
   const removeFriendRequestMutation = useMutation({
@@ -63,12 +89,20 @@ export const FriendshipActions = () => {
   })
 
   const sendFriendRequest = () => {
-    if (sendFriendRequestMutation.isPending) return
+    if (
+      sendFriendRequestMutation.isPending ||
+      cancelFriendRequestMutation.isPending
+    )
+      return
     sendFriendRequestMutation.mutate(user._id)
   }
 
   const cancelFriendRequest = () => {
-    if (cancelFriendRequestMutation.isPending) return
+    if (
+      cancelFriendRequestMutation.isPending ||
+      sendFriendRequestMutation.isPending
+    )
+      return
     cancelFriendRequestMutation.mutate(user._id)
   }
 
@@ -133,18 +167,33 @@ export const FriendshipActions = () => {
             />
             Edit Friend List
           </Button>
-          <Button
-            variant="ghost"
-            className="justify-start px-2"
-            onClick={unfollow}
-          >
-            <img
-              src="/icons/friendship/unfollow.png"
-              alt="unfollow"
-              className="mr-3"
-            />
-            Unfollow
-          </Button>
+          {friendship.follow ? (
+            <Button
+              variant="ghost"
+              className="justify-start px-2"
+              onClick={follow}
+            >
+              <img
+                src="/icons/friendship/follow.png"
+                alt="follow"
+                className="mr-3"
+              />
+              Follow
+            </Button>
+          ) : (
+            <Button
+              variant="ghost"
+              className="justify-start px-2"
+              onClick={unfollow}
+            >
+              <img
+                src="/icons/friendship/unfollow.png"
+                alt="unfollow"
+                className="mr-3"
+              />
+              Unfollow
+            </Button>
+          )}
           <Button
             variant="ghost"
             className="justify-start px-2"
@@ -162,11 +211,11 @@ export const FriendshipActions = () => {
     return (
       <Popover>
         <PopoverTrigger asChild>
-          <Button>
+          <Button className="gap-1.5">
             <img
               src="/icons/friendship/friends.png"
               alt="add friend"
-              className="mr-1.5 invert"
+              className="invert"
             />
             Respond
           </Button>
@@ -176,20 +225,24 @@ export const FriendshipActions = () => {
           alignOffset={48}
           className="grid p-2 shadow-3xl drop-shadow"
         >
-          <Button
-            variant="ghost"
-            className="justify-start px-2"
-            onClick={acceptFriendRequest}
-          >
-            Confirm
-          </Button>
-          <Button
-            variant="ghost"
-            className="justify-start px-2"
-            onClick={removeFriendRequest}
-          >
-            Delete request
-          </Button>
+          <PopoverClose asChild>
+            <Button
+              variant="ghost"
+              className="justify-start px-2"
+              onClick={acceptFriendRequest}
+            >
+              Confirm
+            </Button>
+          </PopoverClose>
+          <PopoverClose asChild>
+            <Button
+              variant="ghost"
+              className="justify-start px-2"
+              onClick={removeFriendRequest}
+            >
+              Delete request
+            </Button>
+          </PopoverClose>
         </PopoverContent>
       </Popover>
     )
@@ -197,24 +250,32 @@ export const FriendshipActions = () => {
 
   if (friendship.requestSent) {
     return (
-      <Button onClick={cancelFriendRequest}>
-        <img
-          src="/icons/friendship/cancelRequest.png"
-          alt="cancel request"
-          className="mr-1.5 invert"
-        />
+      <Button onClick={cancelFriendRequest} className="w-[146px] gap-1.5">
+        {sendFriendRequestMutation.isPending ? (
+          <Loading className="size-4" />
+        ) : (
+          <img
+            src="/icons/friendship/cancelRequest.png"
+            alt="cancel request"
+            className="invert"
+          />
+        )}
         Cancel request
       </Button>
     )
   }
 
   return (
-    <Button onClick={sendFriendRequest}>
-      <img
-        src="/icons/friendship/addFriend.png"
-        alt="add friend"
-        className="mr-1.5 invert"
-      />
+    <Button onClick={sendFriendRequest} className="w-[120px] gap-1.5">
+      {cancelFriendRequestMutation.isPending ? (
+        <Loading className="size-4" />
+      ) : (
+        <img
+          src="/icons/friendship/addFriend.png"
+          alt="add friend"
+          className="invert"
+        />
+      )}
       Add friend
     </Button>
   )

@@ -7,9 +7,7 @@ import { Dots } from "@/assets/svg"
 
 export const ProfileMenu = ({ className }) => {
   const { pathname } = useLocation()
-  console.log("🚀 ~ ProfileMenu ~ location:", pathname)
   const activePath = pathname.split("/")[3]
-  console.log("🚀 ~ ProfileMenu ~ activePath:", activePath)
 
   return (
     <div className={cn("flex items-center px-16", className)}>

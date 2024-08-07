@@ -12,12 +12,27 @@ export const updateProfileApi = (data) => {
   return axiosClient.put(`/updateProfile`, data)
 }
 
-export const sendFriendRequestApi = (userId) => {
-  return axiosClient.put(`/sendFriendRequest`, { userId })
+export const sendFriendRequestApi = async (userId) => {
+  //https://github.com/TanStack/query/discussions/6905
+  const startTime = Date.now()
+  const response = await axiosClient.put(`/sendFriendRequest`, { userId })
+  const endTime = Date.now()
+  const delay = 1000 - (endTime - startTime)
+  if (delay > 0) {
+    await new Promise((resolve) => setTimeout(resolve, delay))
+  }
+  return response
 }
 
-export const cancelFriendRequestApi = (userId) => {
-  return axiosClient.put(`/cancelFriendRequest`, { userId })
+export const cancelFriendRequestApi = async (userId) => {
+  const startTime = Date.now()
+  const response = await axiosClient.put(`/cancelFriendRequest`, { userId })
+  const endTime = Date.now()
+  const delay = 1000 - (endTime - startTime)
+  if (delay > 0) {
+    await new Promise((resolve) => setTimeout(resolve, delay))
+  }
+  return response
 }
 
 export const acceptFriendRequestApi = (userId) => {

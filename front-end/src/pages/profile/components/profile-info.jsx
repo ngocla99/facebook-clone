@@ -65,11 +65,16 @@ export const ProfileInfo = ({ className }) => {
               ) : (
                 <>
                   <FriendshipActions />
-                  <Button variant="secondary">
+                  <Button
+                    variant={user.friendship.friends ? "default" : "secondary"}
+                  >
                     <img
                       src="/icons/message.png"
                       alt="message"
-                      className="mr-1.5"
+                      className={cn(
+                        "mr-1.5",
+                        user.friendship.friends && "invert"
+                      )}
                     />
                     Message
                   </Button>
