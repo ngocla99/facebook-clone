@@ -1,4 +1,4 @@
-import { LinkItem } from "@/pages/home/sidebar-nav"
+import { LinkItem } from "@/pages/home/components/sidebar-nav"
 
 import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar"
 import { Button } from "@/components/ui/button"

@@ -1,6 +1,6 @@
-import { HomePosts } from "./home-posts"
-import { SidebarNav } from "./sidebar-nav"
-import { SidebarRight } from "./sidebar-right"
+import { HomePosts } from "./components/home-posts"
+import { SidebarNav } from "./components/sidebar-nav"
+import { SidebarRight } from "./components/sidebar-right"
 import { Stories } from "./stories"
 import { CreateStory } from "./stories/create-story"
 

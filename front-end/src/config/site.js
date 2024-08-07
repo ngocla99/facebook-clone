@@ -248,6 +248,7 @@ export const siteConfig = {
     {
       text: "Friends",
       img: "friends",
+      href: "friends",
     },
     {
       text: "Memories",

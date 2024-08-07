@@ -1,3 +1,12 @@
+.friends_home_icon {
+  background-image: url(/icons/icons61.png);
+  background-position: 0px -134px;
+  background-size: auto;
+  width: 20px;
+  height: 20px;
+  background-repeat: no-repeat;
+  display: inline-block;
+}
 .friends_requests_icon {
   background-image: url(/icons/icons11.png);
   background-position: 0px -117px;

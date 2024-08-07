@@ -1,10 +1,10 @@
 import { ForgotPassword } from "@/pages/auth/forgot-password"
 import { PasswordChanged } from "@/pages/auth/forgot-password/password-changed"
 import Login from "@/pages/auth/login"
+import { FriendHome } from "@/pages/friends/friend-home"
 import Home from "@/pages/home"
 import PageNotFound from "@/pages/page-not-found"
 import { ProfileAbout } from "@/pages/profile/profile-about"
-// import Profile from "@/pages/profile"
 import { ProfileLayout } from "@/pages/profile/profile-layout"
 import { ProfilePosts } from "@/pages/profile/profile-posts"
 import { createBrowserRouter, RouterProvider } from "react-router-dom"
@@ -68,6 +68,19 @@ const Routes = () => {
             {
               path: "about",
               element: <ProfileAbout />,
+            },
+          ],
+        },
+        {
+          path: "/friends",
+          children: [
+            {
+              path: "",
+              element: <FriendHome />,
+            },
+            {
+              path: "posts",
+              element: <ProfilePosts />,
             },
           ],
         },

@@ -1,4 +1,4 @@
-import { LinkItem } from "@/pages/home/sidebar-nav"
+import { LinkItem } from "@/pages/home/components/sidebar-nav"
 
 import { ScrollArea } from "@/components/ui/scroll-area"
 import { SearchInput } from "@/components/input/search-input"

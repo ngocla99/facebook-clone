@@ -32,7 +32,7 @@ export const SidebarNav = ({ className }) => {
             <p>{`${me.firstName} ${me.lastName}`}</p>
           </LinkItem>
           {siteConfig.leftMenu.slice(0, 5).map((link, i) => (
-            <LinkItem key={i}>
+            <LinkItem key={i} href={link?.href ?? ""}>
               <img src={`icons/sidebar/${link.img}.png`} alt={link.text} />
               <p>{link.text}</p>
             </LinkItem>
