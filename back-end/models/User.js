@@ -12,12 +12,30 @@ const imageSchema = new mongoose.Schema({
 });
 
 const workplaceSchema = new mongoose.Schema({
-  company: String,
+  company: {
+    type: String,
+    required: [true, "first name is required"],
+    trim: true,
+    text: true,
+  },
   position: String,
   city: String,
-  startDate: Date,
-  endDate: Date,
+  startDate: {
+    year: String,
+    month: String,
+    day: String,
+  },
+  endDate: {
+    year: String,
+    month: String,
+    day: String,
+  },
   description: String,
+  isCurrent: Boolean,
+  privacy: {
+    type: String,
+    enum: ["SELF", "EVERYONE", "FRIENDS"],
+  },
 });
 
 const highSchoolSchema = new mongoose.Schema({
@@ -107,22 +125,30 @@ const userSchema = mongoose.Schema(
       type: Boolean,
       default: false,
     },
-    friends: {
-      type: Array,
-      default: [],
-    },
-    following: {
-      type: Array,
-      default: [],
-    },
-    followers: {
-      type: Array,
-      default: [],
-    },
-    requests: {
-      type: Array,
-      default: [],
-    },
+    friends: [
+      {
+        type: ObjectId,
+        ref: "User",
+      },
+    ],
+    following: [
+      {
+        type: ObjectId,
+        ref: "User",
+      },
+    ],
+    followers: [
+      {
+        type: ObjectId,
+        ref: "User",
+      },
+    ],
+    requests: [
+      {
+        type: ObjectId,
+        ref: "User",
+      },
+    ],
     search: [
       {
         user: {

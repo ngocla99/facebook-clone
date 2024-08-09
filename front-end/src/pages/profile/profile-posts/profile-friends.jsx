@@ -10,20 +10,6 @@ export const ProfileFriends = ({ className }) => {
   const { username } = useParams()
   const { data: user } = useProfile(username)
 
-  const { data: photos, isLoading } = useQuery({
-    queryKey: ["photos"],
-    queryFn: () =>
-      getImagesApi({
-        path: `${user.username}/post_images`,
-        sort: "desc",
-        max: 9,
-      }),
-    select: ({ data }) => data.resources,
-    enabled: !!user,
-  })
-
-  if (isLoading) return "Loading.."
-
   return (
     <Card className={className}>
       <CardContent className="p-4">
@@ -41,22 +27,32 @@ export const ProfileFriends = ({ className }) => {
             See all friends
           </Button>
         </div>
-        <div className="mt-[22px] grid grid-cols-3 gap-3">
-          {photos?.length
-            ? photos.slice(0, 9).map((itm) => (
-                <div key={itm.asset_id}>
+
+        {user.friends?.length ? (
+          <>
+            <p className="mt-2 text-lg leading-none text-muted-foreground">
+              {user.totalFriends}{" "}
+              {user.totalFriends === 1 ? "friend" : "friends"}
+            </p>
+            <div className="mt-4 grid grid-cols-3 gap-3">
+              {user.friends.map((friend) => (
+                <div key={friend._id}>
                   <div className="relative after:absolute after:inset-0 after:rounded-md after:content-[''] hover:after:bg-hover active:after:bg-[rgba(0,0,0,0.1)]">
                     <img
-                      src={itm.url}
-                      alt={itm.filename}
+                      src={friend.picture}
+                      alt={friend.username}
                       className="aspect-square rounded-lg border border-border object-cover"
                     />
                   </div>
                   <p className="mt-1 text-sm font-semibold">Nemo</p>
+                  <p className="text-sm leading-none text-muted-foreground">
+                    1 mutual friends
+                  </p>
                 </div>
-              ))
-            : null}
-        </div>
+              ))}
+            </div>
+          </>
+        ) : null}
       </CardContent>
     </Card>
   )

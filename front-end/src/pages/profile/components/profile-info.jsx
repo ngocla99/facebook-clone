@@ -1,4 +1,5 @@
-import { useParams } from "react-router-dom"
+import { Fragment } from "react"
+import { Link, useParams } from "react-router-dom"
 
 import { cn, getInitialsName } from "@/lib/utils"
 import { useProfile } from "@/hooks/use-profile"
@@ -34,21 +35,30 @@ export const ProfileInfo = ({ className }) => {
                 {user.firstName + " " + user.lastName}
                 <span className="ml-4 font-normal">(Nemo)</span>
               </h3>
-              <p className="font-semibold leading-none text-muted-foreground">{`${754} friends`}</p>
-              <div className="flex -space-x-1">
-                <Avatar className="z-[2] size-8 cursor-pointer shadow-[0_0_0_2px_white]">
-                  <AvatarImage src={user.picture} alt={user.username} />
-                  <AvatarFallback>{getInitialsName(user)}</AvatarFallback>
-                </Avatar>
-                <Avatar className="z-[1] size-8 cursor-pointer shadow-[0_0_0_2px_white]">
-                  <AvatarImage src={user.picture} alt={user.username} />
-                  <AvatarFallback>{getInitialsName(user)}</AvatarFallback>
-                </Avatar>
-                <Avatar className="size-8 cursor-pointer shadow-[0_0_0_2px_white]">
-                  <AvatarImage src={user.picture} alt={user.username} />
-                  <AvatarFallback>{getInitialsName(user)}</AvatarFallback>
-                </Avatar>
-              </div>
+              {user.friends.length ? (
+                <>
+                  <Link
+                    to=""
+                    className="font-semibold leading-none text-muted-foreground hover:underline hover:underline-offset-1"
+                  >{`${user.friends.length} friends`}</Link>
+                  <div className="flex -space-x-2 rtl:space-x-reverse">
+                    {user.friends.map((friend) => (
+                      <Avatar
+                        key={friend._id}
+                        className="z-[2] size-8 cursor-pointer border border-[rbga(0,0,0,0.1)] bg-background shadow-[0_0_0_1px_white]"
+                      >
+                        <AvatarImage
+                          src={friend.picture}
+                          alt={friend.username}
+                        />
+                        <AvatarFallback>
+                          {getInitialsName(friend)}
+                        </AvatarFallback>
+                      </Avatar>
+                    ))}
+                  </div>
+                </>
+              ) : null}
             </div>
             <div className="flex items-end justify-end gap-2">
               {!user.isVisitor ? (

@@ -125,6 +125,7 @@ export const FriendshipActions = () => {
     if (followMutation.isPending) return
     followMutation.mutate(user._id)
   }
+
   const unfollow = () => {
     if (unfollowMutation.isPending) return
     unfollowMutation.mutate(user._id)
@@ -151,14 +152,16 @@ export const FriendshipActions = () => {
           alignOffset={48}
           className="grid p-2 shadow-3xl drop-shadow"
         >
-          <Button variant="ghost" className="justify-start px-2">
-            <img
-              src="/icons/friendship/favorites.png"
-              alt="favorites"
-              className="mr-3"
-            />
-            Favorites
-          </Button>
+          {friendship.following && (
+            <Button variant="ghost" className="justify-start px-2">
+              <img
+                src="/icons/friendship/favorites.png"
+                alt="favorites"
+                className="mr-3"
+              />
+              Favorites
+            </Button>
+          )}
           <Button variant="ghost" className="justify-start px-2">
             <img
               src="/icons/friendship/editFriends.png"
@@ -167,32 +170,36 @@ export const FriendshipActions = () => {
             />
             Edit Friend List
           </Button>
-          {friendship.follow ? (
-            <Button
-              variant="ghost"
-              className="justify-start px-2"
-              onClick={follow}
-            >
-              <img
-                src="/icons/friendship/follow.png"
-                alt="follow"
-                className="mr-3"
-              />
-              Follow
-            </Button>
+          {!friendship.following ? (
+            <PopoverClose asChild>
+              <Button
+                variant="ghost"
+                className="justify-start px-2"
+                onClick={follow}
+              >
+                <img
+                  src="/icons/friendship/follow.png"
+                  alt="follow"
+                  className="mr-3"
+                />
+                Follow
+              </Button>
+            </PopoverClose>
           ) : (
-            <Button
-              variant="ghost"
-              className="justify-start px-2"
-              onClick={unfollow}
-            >
-              <img
-                src="/icons/friendship/unfollow.png"
-                alt="unfollow"
-                className="mr-3"
-              />
-              Unfollow
-            </Button>
+            <PopoverClose asChild>
+              <Button
+                variant="ghost"
+                className="justify-start px-2"
+                onClick={unfollow}
+              >
+                <img
+                  src="/icons/friendship/unfollow.png"
+                  alt="unfollow"
+                  className="mr-3"
+                />
+                Unfollow
+              </Button>
+            </PopoverClose>
           )}
           <Button
             variant="ghost"

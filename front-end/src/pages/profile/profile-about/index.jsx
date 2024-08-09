@@ -1,10 +1,45 @@
+import { useLocation, useNavigate, useSearchParams } from "react-router-dom"
+
 import { cn } from "@/lib/utils"
 import { Button } from "@/components/ui/button"
 import { Card, CardContent } from "@/components/ui/card"
 
 import { Overview } from "../components/profile-about/overview"
 
+const overviewTabs = [
+  {
+    params: "about_overview",
+    title: "Overview",
+  },
+  {
+    params: "about_work_and_education",
+    title: "Work and education",
+  },
+  {
+    params: "about_places",
+    title: "Places lived",
+  },
+  {
+    params: "about_contact_and_basic_info",
+    title: "Contact and basic info",
+  },
+  {
+    params: "about_family_and_relationships",
+    title: "Family and relationships",
+  },
+  {
+    params: "about_details",
+    title: "Details about you",
+  },
+  {
+    params: "about_life_events",
+    title: "Life events",
+  },
+]
+
 export const ProfileAbout = ({ className }) => {
+  const [searchParams, setSearchParams] = useSearchParams()
+
   return (
     <div className={cn("container mb-[22px] mt-4 px-4", className)}>
       <div className="mx-2 grid gap-4">
@@ -15,30 +50,25 @@ export const ProfileAbout = ({ className }) => {
                 About
               </h3>
               <div className="grid gap-2">
-                <Button variant="ghost" className="justify-start">
-                  Overview
-                </Button>
-                <Button variant="ghost" className="justify-start">
-                  Work and education
-                </Button>
-                <Button variant="ghost" className="justify-start">
-                  Places lived
-                </Button>
-                <Button variant="ghost" className="justify-start">
-                  Contact and basic info
-                </Button>
-                <Button variant="ghost" className="justify-start">
-                  Family and relationships
-                </Button>
-                <Button variant="ghost" className="justify-start">
-                  Details about you
-                </Button>
-                <Button variant="ghost" className="justify-start">
-                  Life events
-                </Button>
+                {overviewTabs.map((itm) => (
+                  <Button
+                    key={itm.params}
+                    variant={
+                      searchParams.get("sk") === itm.params ||
+                      (itm.params === "about_overview" &&
+                        !searchParams.get("sk"))
+                        ? "deemphasized"
+                        : "ghost"
+                    }
+                    className={cn("active:scale-1 justify-start")}
+                    onClick={() => setSearchParams(`sk=${itm.params}`)}
+                  >
+                    {itm.title}
+                  </Button>
+                ))}
               </div>
             </div>
-            <div className="px-4 py-8">
+            <div className="p-[16px_32px_32px_16px]">
               <Overview />
             </div>
           </CardContent>

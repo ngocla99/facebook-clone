@@ -10,6 +10,7 @@ const User = require("../models/User");
 const bcrypt = require("bcrypt");
 const { generateCode } = require("../helpers/generateCode");
 const Code = require("../models/Code");
+const userService = require("../services/user");
 const { ObjectId } = require("mongodb");
 require("dotenv").config();
 
@@ -268,10 +269,11 @@ exports.changePassword = async (req, res) => {
 exports.getProfile = async (req, res) => {
   try {
     const { username } = req.params;
-    const profile = await User.findOne({ username });
+
+    const profile = await userService.getProfile({ username, user: req.user });
 
     if (profile._id.toString() === req.user._id.toString()) {
-      return res.json({ ...profile.toObject(), isVisitor: false });
+      return res.json({ ...profile, isVisitor: false });
     }
 
     const friendship = {
@@ -283,7 +285,7 @@ exports.getProfile = async (req, res) => {
       requestReceived: req.user.requests.includes(profile._id),
     };
 
-    res.json({ ...profile.toObject(), friendship, isVisitor: true });
+    res.json({ ...profile, friendship, isVisitor: true });
   } catch (err) {
     return res.status(500).json({ message: err.message });
   }
