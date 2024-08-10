@@ -122,13 +122,11 @@ export const WorkplaceForm = ({ className }) => {
   }
 
   const onSubmit = (data) => {
-    console.log("🚀 ~ onSubmit ~ data:", data)
     if (updateProfileMutation.isPending) return
     updateProfileMutation.mutate({ "details.workplace": data })
   }
 
-  const workplace = user.details.workplace[0]
-  console.log("🚀 ~ WorkplaceForm ~ workplace:", workplace)
+  const workplace = user.details.workplace?.[0]
 
   if (!showForm && workplace) {
     return (

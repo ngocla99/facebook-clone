@@ -1,4 +1,3 @@
-import { Fragment } from "react"
 import { Link, useParams } from "react-router-dom"
 
 import { cn, getInitialsName } from "@/lib/utils"
@@ -9,6 +8,7 @@ import { Separator } from "@/components/ui/separator"
 import { Plus } from "@/assets/svg"
 
 import { AddFriendList } from "./add-friend-list"
+import { FriendRequestActions } from "./friend-request-actions"
 import { FriendshipActions } from "./friendship-actions"
 import { UploadProfileCover } from "./upload-profile-cover"
 import { UploadProfilePicture } from "./upload-profile-picture"
@@ -98,6 +98,7 @@ export const ProfileInfo = ({ className }) => {
           </div>
         </div>
         <AddFriendList className="mt-2" />
+        <FriendRequestActions className="mt-4" />
         <Separator className="mt-4" />
       </div>
     </div>
