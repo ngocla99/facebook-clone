@@ -57,3 +57,22 @@ export const isImageSrc = (src) => {
 
   return [".jpg", ".png", ".gif", ".webp"].includes(extension)
 }
+
+/**
+ * Recursively converts string "null" to actual null in an object.
+ *
+ * @param {Object} obj - The object to be processed.
+ * @returns {Object} - The object with "null" strings converted to null.
+ */
+export const convertNullStrings = (obj) => {
+  if (obj && typeof obj === "object") {
+    for (let key in obj) {
+      if (obj[key] === "null") {
+        obj[key] = null
+      } else if (typeof obj[key] === "object") {
+        convertNullStrings(obj[key])
+      }
+    }
+  }
+  return obj
+}

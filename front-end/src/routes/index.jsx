@@ -2,6 +2,7 @@ import { ForgotPassword } from "@/pages/auth/forgot-password"
 import { PasswordChanged } from "@/pages/auth/forgot-password/password-changed"
 import Login from "@/pages/auth/login"
 import { FriendHome } from "@/pages/friends/friend-home"
+import { FriendRequests } from "@/pages/friends/friend-requests"
 import Home from "@/pages/home"
 import PageNotFound from "@/pages/page-not-found"
 import { ProfileAbout } from "@/pages/profile/profile-about"
@@ -79,8 +80,8 @@ const Routes = () => {
               element: <FriendHome />,
             },
             {
-              path: "posts",
-              element: <ProfilePosts />,
+              path: "requests",
+              element: <FriendRequests />,
             },
           ],
         },

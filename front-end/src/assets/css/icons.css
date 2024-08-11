@@ -357,6 +357,15 @@
   background-repeat: no-repeat;
   display: inline-block;
 }
+.edit_outline_icon_20 {
+  background-image: url("/icons/icons62.png");
+  background-position: 0px -294px;
+  background-size: auto;
+  width: 20px;
+  height: 20px;
+  background-repeat: no-repeat;
+  display: inline-block;
+}
 .turnOnNotifications_icon {
   background-image: url("/icons/icons49.png");
   background-position: 0px -88px;
@@ -627,6 +636,15 @@
 .lifeEvent_icon {
   background-image: url(/icons/icons34.png);
   background-position: -25px -250px;
+  background-size: auto;
+  width: 20px;
+  height: 20px;
+  background-repeat: no-repeat;
+  display: inline-block;
+}
+.lifeEvent_2_icon {
+  background-image: url(/icons/life-event.png);
+  background-position: 0px 0px;
   background-size: auto;
   width: 20px;
   height: 20px;

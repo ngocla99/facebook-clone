@@ -5,12 +5,19 @@ import { useMutation, useQueryClient } from "@tanstack/react-query"
 import { useForm } from "react-hook-form"
 import { useParams } from "react-router-dom"
 
-import { cn } from "@/lib/utils"
+import { cn, convertNullStrings } from "@/lib/utils"
 import { workPlaceSchema } from "@/lib/validations/about"
 import { useProfile } from "@/hooks/use-profile"
 import { Button } from "@/components/ui/button"
 import { Form, FormField } from "@/components/ui/form"
+import {
+  Popover,
+  PopoverContent,
+  PopoverTrigger,
+} from "@/components/ui/popover"
 import { Separator } from "@/components/ui/separator"
+import { confirm } from "@/components/confirm"
+import { LoadingDot } from "@/components/loading/loading-dot"
 import { Dots } from "@/assets/svg"
 
 import { FormCheckbox } from "../form-checkbox"
@@ -43,31 +50,42 @@ function getDays(year, month) {
   return new Date(year, month, 0).getDate()
 }
 
+const initWorkplace = {
+  company: "",
+  position: "",
+  city: "",
+  startDate: null,
+  endDate: null,
+  description: "",
+  isCurrent: true,
+  privacy: "EVERYONE",
+}
+
 export const WorkplaceForm = ({ className }) => {
   const queryClient = useQueryClient()
   const [showForm, setShowForm] = React.useState(false)
+  const [showPrivacyModal, setShowPrivacyModal] = React.useState(false)
   const { username } = useParams()
   const { data: user } = useProfile(username)
+  const workplace = user.details.workplace?.[0]
 
   const form = useForm({
     resolver: zodResolver(workPlaceSchema),
-    defaultValues: {
-      company: "",
-      position: "",
-      city: "",
-      startDate: null,
-      endDate: null,
-      description: "",
-      isCurrent: true,
-      privacy: "EVERYONE",
-    },
+    defaultValues: initWorkplace,
   })
+  const privacy = form.watch("privacy")
+
+  React.useEffect(() => {
+    if (!workplace) return form.reset(initWorkplace)
+    form.reset(workplace)
+  }, [showForm])
 
   const updateProfileMutation = useMutation({
     mutationFn: updateProfileApi,
     onSuccess: () => {
       queryClient.invalidateQueries({ queryKey: ["me"] })
       queryClient.invalidateQueries({ queryKey: ["user"] })
+      form.reset()
       setShowForm(false)
     },
   })
@@ -123,10 +141,50 @@ export const WorkplaceForm = ({ className }) => {
 
   const onSubmit = (data) => {
     if (updateProfileMutation.isPending) return
-    updateProfileMutation.mutate({ "details.workplace": data })
+    let workplace = { ...data }
+    if (data.isCurrent && data.endDate) workplace = { ...data, endDate: null }
+
+    updateProfileMutation.mutate({
+      "details.workplace": convertNullStrings(workplace),
+    })
   }
 
-  const workplace = user.details.workplace?.[0]
+  const onError = (error) => {
+    if (error.company) {
+      return confirm({
+        title: "Invalid Employer",
+        description: error.company.message,
+        confirmText: "OK",
+      })
+    }
+
+    if (error.timeRange) {
+      return confirm({
+        title: "Invalid End Date",
+        description: error.timeRange.message,
+        confirmText: "OK",
+      })
+    }
+  }
+
+  const handleDeleteWorkplace = () => {
+    confirm({
+      title: "Are you sure?",
+      description:
+        "Are you sure you want to remove this workplace from your profile?",
+      confirmText: "Confirm",
+      cancelText: "Cancel",
+      onConfirm: () => {
+        if (updateProfileMutation.isPending) return
+        updateProfileMutation.mutate({ "details.workplace": [] })
+      },
+    })
+  }
+
+  const handleChangePrivacy = (privacy) => {
+    if (updateProfileMutation.isPending) return
+    updateProfileMutation.mutate({ "details.workplace.0.privacy": privacy })
+  }
 
   if (!showForm && workplace) {
     return (
@@ -138,43 +196,95 @@ export const WorkplaceForm = ({ className }) => {
         />
         <div className="flex-1 ">
           <p className="">
-            {workplace.position} at <strong>{workplace.company}</strong>
+            {!workplace.isCurrent && workplace.position && "Former "}
+            {workplace.position ||
+              (workplace.isCurrent ? "Works" : "Worked")}{" "}
+            at <strong>{workplace.company}</strong>
           </p>
-          <p className="text-sm leading-none text-muted-foreground">
-            Starting on {workplace.startDate.day} {workplace.startDate.month},{" "}
-            {workplace.startDate.year}
-          </p>
+          {workplace.startDate.year && (
+            <TextDate start={workplace.startDate} end={workplace.endDate} />
+          )}
         </div>
-        <Button variant="ghost" size="icon" className="">
-          {workplace.privacy === "EVERYONE" && (
-            <img
-              src="/icons/16x16/public.png"
-              alt="Public"
-              className="filter-secondary-icon"
-            />
-          )}
-          {workplace.privacy === "FRIENDS" && (
-            <img
-              src="/icons/16x16/friends.png"
-              alt="Friends"
-              className="filter-secondary-icon"
-            />
-          )}
-          {workplace.privacy === "SELF" && (
-            <img
-              src="/icons/16x16/private.png"
-              alt="Only me"
-              className="filter-secondary-icon"
-            />
-          )}
-        </Button>
-        <Button
-          variant="secondary"
-          size="icon"
-          className="size-9 text-muted-foreground"
-        >
-          <Dots />
-        </Button>
+
+        {updateProfileMutation.isPending ? (
+          <LoadingDot className="mx-[10px]" />
+        ) : (
+          <Button
+            variant="ghost"
+            size="icon"
+            onClick={() => setShowPrivacyModal(true)}
+          >
+            {workplace.privacy === "EVERYONE" && (
+              <img
+                src="/icons/16x16/public.png"
+                alt="Public"
+                className="filter-secondary-icon"
+              />
+            )}
+            {workplace.privacy === "FRIENDS" && (
+              <img
+                src="/icons/16x16/friends.png"
+                alt="Friends"
+                className="filter-secondary-icon"
+              />
+            )}
+            {workplace.privacy === "SELF" && (
+              <img
+                src="/icons/16x16/private.png"
+                alt="Only me"
+                className="filter-secondary-icon"
+              />
+            )}
+          </Button>
+        )}
+        <PrivacyModal
+          privacyModal={{
+            data: workplace.privacy,
+            isOpen: showPrivacyModal,
+            onClose: () => setShowPrivacyModal(false),
+          }}
+          onSave={handleChangePrivacy}
+        />
+        <Popover>
+          <PopoverTrigger asChild>
+            <Button
+              variant="secondary"
+              size="icon"
+              className="size-9 text-muted-foreground"
+            >
+              <Dots />
+            </Button>
+          </PopoverTrigger>
+          <PopoverContent
+            align="end"
+            className="grid p-2 shadow-2xl drop-shadow"
+          >
+            <Button
+              className="justify-start gap-3 px-2"
+              variant="ghost"
+              disabled
+            >
+              <i className="lifeEvent_2_icon"></i>
+              See life event
+            </Button>
+            <Button
+              className="justify-start gap-3 px-2"
+              variant="ghost"
+              onClick={() => setShowForm(true)}
+            >
+              <i className="edit_outline_icon_20"></i>
+              Edit Workplace
+            </Button>
+            <Button
+              className="justify-start gap-3 px-2"
+              variant="ghost"
+              onClick={handleDeleteWorkplace}
+            >
+              <i className="trash_icon_20"></i>
+              Delete Workplace
+            </Button>
+          </PopoverContent>
+        </Popover>
       </div>
     )
   }
@@ -197,9 +307,7 @@ export const WorkplaceForm = ({ className }) => {
     <Form {...form}>
       <form
         className={cn("grid gap-3", className)}
-        onSubmit={form.handleSubmit(onSubmit, (err) => {
-          console.log(err)
-        })}
+        onSubmit={form.handleSubmit(onSubmit, onError)}
       >
         <FormInput control={form.control} name="company" label="Company" />
         <FormInput control={form.control} name="position" label="Position" />
@@ -289,11 +397,54 @@ export const WorkplaceForm = ({ className }) => {
         </div>
         <Separator />
         <div className="flex items-center justify-between">
+          <Button
+            variant="secondary"
+            className="gap-1.5"
+            onClick={() => setShowPrivacyModal(true)}
+          >
+            {privacy === "EVERYONE" && (
+              <>
+                <img
+                  src="/icons/12x12/public.png"
+                  alt="Public"
+                  className="filter-secondary-icon"
+                />
+                Public
+              </>
+            )}
+            {privacy === "FRIENDS" && (
+              <>
+                <img
+                  src="/icons/12x12/friends.png"
+                  alt="Friends"
+                  className="filter-secondary-icon"
+                />
+                Friends
+              </>
+            )}
+            {privacy === "SELF" && (
+              <>
+                <img
+                  src="/icons/12x12/private.png"
+                  alt="Only me"
+                  className="filter-secondary-icon"
+                />
+                Only me
+              </>
+            )}
+          </Button>
           <FormField
             control={form.control}
             name="privacy"
             render={({ field }) => (
-              <PrivacyModal data={field.value} onSave={field.onChange} />
+              <PrivacyModal
+                privacyModal={{
+                  isOpen: showPrivacyModal,
+                  data: field.value,
+                  onClose: () => setShowPrivacyModal(false),
+                }}
+                onSave={field.onChange}
+              />
             )}
           />
 
@@ -319,5 +470,52 @@ export const WorkplaceForm = ({ className }) => {
         )} */}
       </form>
     </Form>
+  )
+}
+
+const TextDate = ({ start, end, className }) => {
+  const { year: yearStart, month: monthStart, day: dayStart } = start
+
+  if (end && end?.year) {
+    const { year: yearEnd, month: monthEnd, day: dayEnd } = end
+    return (
+      <p
+        className={cn("text-sm leading-none text-muted-foreground", className)}
+      >
+        {yearStart && !monthStart && !dayStart && `${yearStart}`}
+        {yearStart &&
+          monthStart &&
+          !dayStart &&
+          `${monthOptions[monthStart]} ${yearStart}`}
+        {yearStart &&
+          monthStart &&
+          dayStart &&
+          `${monthOptions[monthStart]} ${dayStart}, ${yearStart}`}
+        {" to "}
+        {yearEnd && !monthEnd && !dayEnd && `${yearEnd}`}
+        {yearEnd &&
+          monthEnd &&
+          !dayEnd &&
+          `${monthOptions[monthEnd]} ${yearEnd}`}
+        {yearEnd &&
+          monthEnd &&
+          dayEnd &&
+          `${monthOptions[monthEnd]} ${dayEnd}, ${yearEnd}`}
+      </p>
+    )
+  }
+
+  return (
+    <p className={cn("text-sm leading-none text-muted-foreground", className)}>
+      {yearStart && !monthStart && !dayStart && `Starting in ${yearStart}`}
+      {yearStart &&
+        monthStart &&
+        !dayStart &&
+        `Starting in ${monthOptions[monthStart]} ${yearStart}`}
+      {yearStart &&
+        monthStart &&
+        dayStart &&
+        `Starting on ${monthOptions[monthStart]} ${dayStart}, ${yearStart}`}
+    </p>
   )
 }
