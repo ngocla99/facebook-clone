@@ -41,7 +41,7 @@ export const EditComment = ({ postId, comment, onHideEditComment }) => {
 
   const uploadImageMutation = useMutation({
     mutationFn: uploadImageApi,
-    onSuccess: ({ data }) => {
+    onSuccess: (data) => {
       updateCommentMutation.mutate({
         id: comment._id,
         text: commentState.text,

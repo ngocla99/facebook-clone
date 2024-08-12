@@ -36,7 +36,7 @@ export const FriendshipActions = () => {
       await queryClient.cancelQueries({ queryKey: ["user", username] })
       const prevProfile = queryClient.getQueryData(["user", username])
 
-      prevProfile.data.friendship = {
+      prevProfile.friendship = {
         friends: false,
         following: true,
         requestSent: true,
@@ -53,7 +53,7 @@ export const FriendshipActions = () => {
       await queryClient.cancelQueries({ queryKey: ["user", username] })
       const prevProfile = queryClient.getQueryData(["user", username])
 
-      prevProfile.data.friendship = {
+      prevProfile.friendship = {
         friends: false,
         following: false,
         requestSent: false,

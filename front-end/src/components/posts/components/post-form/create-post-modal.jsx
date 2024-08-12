@@ -37,7 +37,7 @@ export const CreatePostModal = () => {
 
   const uploadImageMutation = useMutation({
     mutationFn: uploadImageApi,
-    onSuccess: ({ data }) => {
+    onSuccess: (data) => {
       createPostMutation.mutate({ ...form.getValues(), images: data })
     },
   })

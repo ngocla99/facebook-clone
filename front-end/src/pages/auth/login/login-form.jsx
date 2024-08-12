@@ -33,7 +33,7 @@ export const LoginForm = () => {
 
   const logInMutation = useMutation({
     mutationFn: logInApi,
-    onSuccess: ({ data }) => {
+    onSuccess: (data) => {
       setToken(data.token)
       navigate("/")
     },

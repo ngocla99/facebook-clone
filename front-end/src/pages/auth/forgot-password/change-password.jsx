@@ -42,7 +42,7 @@ export const ChangePassword = ({ data, goBack, goNext }) => {
 
   const logInMutation = useMutation({
     mutationFn: logInApi,
-    onSuccess: ({ data }) => {
+    onSuccess: (data) => {
       setToken(data.token)
       navigate("/password/change/reason")
     },

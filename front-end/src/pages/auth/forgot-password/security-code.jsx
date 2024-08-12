@@ -33,7 +33,7 @@ export const SecurityCode = ({ data, goBack, goNext }) => {
 
   const validateResetCodeMutation = useMutation({
     mutationFn: validateResetCodeApi,
-    onSuccess: ({ data }) => {
+    onSuccess: (data) => {
       setErrMessage(null)
       goNext({ ...data })
     },

@@ -35,7 +35,7 @@ export const CreateComment = ({ postId, setIsUpload }) => {
 
   const uploadImageMutation = useMutation({
     mutationFn: uploadImageApi,
-    onSuccess: ({ data }) => {
+    onSuccess: (data) => {
       createCommentMutation.mutate({
         text: commentState.text,
         image: data[0].url,

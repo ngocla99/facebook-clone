@@ -45,7 +45,7 @@ export const ProfileCoverForm = ({
 
   const updateProfileMutation = useMutation({
     mutationFn: updateProfileApi,
-    onSuccess: ({ data }) => {
+    onSuccess: (data) => {
       if (uploadFile.type === "CREATE") {
         createPostMutation.mutate({
           type: "COVER_PHOTO",
@@ -62,7 +62,7 @@ export const ProfileCoverForm = ({
 
   const uploadImageMutation = useMutation({
     mutationFn: uploadImageApi,
-    onSuccess: ({ data }) => {
+    onSuccess: (data) => {
       updateProfileMutation.mutate({
         coverPhoto: {
           focus: { ...crop },

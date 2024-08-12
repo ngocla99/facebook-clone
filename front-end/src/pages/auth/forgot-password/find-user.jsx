@@ -29,7 +29,7 @@ export const FindUser = ({ goNext }) => {
 
   const findUserMutation = useMutation({
     mutationFn: findUserApi,
-    onSuccess: ({ data }) => {
+    onSuccess: (data) => {
       setErrMessage(null)
       goNext({ ...data })
     },

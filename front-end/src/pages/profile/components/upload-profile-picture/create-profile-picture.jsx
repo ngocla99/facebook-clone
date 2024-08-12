@@ -38,7 +38,7 @@ export const CreateProfilePicture = React.forwardRef(
 
     const updateProfileMutation = useMutation({
       mutationFn: updateProfileApi,
-      onSuccess: ({ data }) => {
+      onSuccess: (data) => {
         createPostMutation.mutate({
           type: "PROFILE_PICTURE",
           text: form.getValues("description"),
@@ -55,7 +55,7 @@ export const CreateProfilePicture = React.forwardRef(
 
     const uploadImageMutation = useMutation({
       mutationFn: uploadImageApi,
-      onSuccess: ({ data }) => {
+      onSuccess: (data) => {
         updateProfileMutation.mutate({ picture: data[0].url })
       },
     })

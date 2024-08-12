@@ -83,7 +83,7 @@ export const SignUpForm = ({ className }) => {
 
   const signUpMutation = useMutation({
     mutationFn: signUpApi,
-    onSuccess: ({ data }) => {
+    onSuccess: (data) => {
       const { message, ...rest } = data
       setMessageRes({
         type: "success",

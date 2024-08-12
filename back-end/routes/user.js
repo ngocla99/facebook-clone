@@ -14,6 +14,7 @@ router.post("/validateResetCode", userController.validateResetCode);
 router.post("/changePassword", userController.changePassword);
 router.get("/getProfile/:username", authUser, userController.getProfile);
 router.get("/getMe", authUser, userController.getMe);
+router.get("/getFriendsPageInfo", authUser, userController.getFriendsPageInfo);
 router.put("/updateProfile", authUser, userController.updateProfile);
 router.put("/sendFriendRequest", authUser, userController.sendFriendRequest);
 router.put("/cancelFriendRequest", authUser, userController.cancelFriendRequest);
