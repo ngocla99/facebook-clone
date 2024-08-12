@@ -54,3 +54,7 @@ export const followApi = (userId) => {
 export const unfollowApi = (userId) => {
   return axiosClient.put(`/unfollow`, { userId })
 }
+
+export const getFriendsPageInfo = () => {
+  return axiosClient.get("/getFriendsPageInfo")
+}

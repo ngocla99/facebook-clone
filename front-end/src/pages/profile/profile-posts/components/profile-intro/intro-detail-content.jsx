@@ -11,11 +11,11 @@ export const IntroDetailContent = ({ className }) => {
 
   const { workplace, currentCity, hometown, hiddenDetails } = user.details
 
-  const isShowing = (key) => !hiddenDetails.includes(key)
+  const isShowing = (key) => !(hiddenDetails ?? []).includes(key)
 
   return (
     <div className={cn("grid gap-4 [&>div:last-child]:pb-1", className)}>
-      {isShowing("workplace") && (
+      {isShowing("workplace") && workplace.length > 0 && (
         <div className="flex items-center justify-center gap-3">
           <img
             src="/icons/profile/workplace_20.png"
@@ -33,7 +33,7 @@ export const IntroDetailContent = ({ className }) => {
           </div>
         </div>
       )}
-      {isShowing("currentCity") && (
+      {isShowing("currentCity") && currentCity && (
         <div className="flex items-center justify-center gap-3">
           <img
             src="/icons/profile/mark_20.png"
@@ -48,7 +48,7 @@ export const IntroDetailContent = ({ className }) => {
           </div>
         </div>
       )}
-      {isShowing("hometown") && (
+      {isShowing("hometown") && hometown && (
         <div className="flex items-center justify-center gap-3">
           <img
             src="/icons/profile/mark_20.png"
@@ -62,7 +62,7 @@ export const IntroDetailContent = ({ className }) => {
           </div>
         </div>
       )}
-      {isShowing("createdDate") && (
+      {isShowing("createdDate") && user.createdAt && (
         <div className="flex items-center justify-center gap-3">
           <img
             src="/icons/profile/date_20.png"
