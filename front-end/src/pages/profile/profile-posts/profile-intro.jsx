@@ -1,4 +1,3 @@
-import React from "react"
 import { useMe } from "@/hooks"
 
 import { Button } from "@/components/ui/button"

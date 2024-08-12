@@ -56,7 +56,7 @@ export const ProfileCoverModal = ({ profileCoverModal, onUpload }) => {
 
   return (
     <Modal
-      className="max-h-screen w-auto overflow-y-auto p-0 drop-shadow sm:w-[548px]"
+      className="max-h-screen w-auto overflow-y-auto p-0 sm:w-[548px]"
       showModal={profileCoverModal.isOpen}
       onClose={profileCoverModal.onClose}
     >

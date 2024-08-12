@@ -6,9 +6,13 @@ const axiosClient = axios.create({
   baseURL: import.meta.env.VITE_API_URL,
 })
 
+let startTime
+let endTime
+
 // Add token (if existed) to request when reload
 axiosClient.interceptors.request.use(
   (config) => {
+    startTime = Date.now()
     const token = Cookies.get("token") ? JSON.parse(Cookies.get("token")) : null
     if (token && !config.headers.Authorization) {
       config.headers.Authorization = `Bearer ${token}`
@@ -20,7 +24,14 @@ axiosClient.interceptors.request.use(
 
 // Add a response interceptor
 axiosClient.interceptors.response.use(
-  (response) => response,
+  async (response) => {
+    endTime = Date.now()
+    const delay = 1000 - (endTime - startTime)
+    if (delay > 0) {
+      await new Promise((resolve) => setTimeout(resolve, delay))
+    }
+    return response.data
+  },
   async (error) => {
     const originalRequest = error.config
 

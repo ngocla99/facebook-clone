@@ -53,7 +53,7 @@ export const ProfilePictureModal = () => {
 
   return (
     <Modal
-      className="max-h-screen w-auto overflow-y-auto p-0 drop-shadow sm:w-[700px]"
+      className="max-h-screen w-auto overflow-y-auto p-0 sm:w-[700px]"
       showModal={profilePictureModal.isOpen}
       onClose={() => {
         if (!file) return profilePictureModal.onClose()

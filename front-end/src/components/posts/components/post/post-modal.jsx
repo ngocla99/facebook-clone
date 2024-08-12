@@ -25,7 +25,7 @@ export const PostModal = () => {
 
   return (
     <Modal
-      className="w-auto p-0 drop-shadow sm:min-w-[700px]"
+      className="w-auto p-0 sm:min-w-[700px]"
       showModal={postModal.isOpen}
       onClose={postModal.onClose}
       onEscapeKeyDown={(event) => event.preventDefault()}
