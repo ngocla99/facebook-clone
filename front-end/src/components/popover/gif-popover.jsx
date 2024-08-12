@@ -21,7 +21,7 @@ export const GIFPopover = ({ className, tooltipTitle = "GIF" }) => {
   const { data: gifs } = useQuery({
     queryKey: ["gifs", "thanks"],
     queryFn: () => getGIFsApi({ searchBy: "thanks", limit: 25 }),
-    select: ({ data }) => {
+    select: (data) => {
       return data.results.map((itm) => itm.media[0].gif)
     },
     initialData: [],

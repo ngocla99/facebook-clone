@@ -13,7 +13,7 @@ import { SettingItem } from "./components"
 
 export const ViewBase = ({ setView }) => {
   const queryClient = useQueryClient()
-  const { data: user } = queryClient.getQueryData(["me"])
+  const user = queryClient.getQueryData(["me"])
   const { clearToken } = useAuth()
 
   return (

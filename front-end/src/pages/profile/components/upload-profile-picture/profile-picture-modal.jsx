@@ -19,7 +19,7 @@ import { ListImage } from "./list-image"
 export const ProfilePictureModal = () => {
   const profilePictureModal = useProfilePictureModal()
   const queryClient = useQueryClient()
-  const { data: me } = queryClient.getQueryData(["me"])
+  const me = queryClient.getQueryData(["me"])
   const inputUploadRef = React.useRef(null)
   const [file, setFile] = React.useState()
   const formRef = React.useRef(null)

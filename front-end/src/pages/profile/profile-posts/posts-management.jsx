@@ -14,7 +14,6 @@ export const PostManagement = ({ className }) => {
   const { data: posts } = useQuery({
     queryKey: ["posts"],
     queryFn: getAllPostApi,
-    select: ({ data }) => data,
   })
   const { username } = useParams()
   const { data: user } = useProfile(username)

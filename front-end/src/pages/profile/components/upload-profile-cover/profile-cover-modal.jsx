@@ -21,7 +21,7 @@ const VIEWS = {
 
 export const ProfileCoverModal = ({ profileCoverModal, onUpload }) => {
   const queryClient = useQueryClient()
-  const { data: me } = queryClient.getQueryData(["me"])
+  const me = queryClient.getQueryData(["me"])
   const [tab, setTab] = React.useState("recent")
   const [view, setView] = React.useState(VIEWS.ROOT)
 
@@ -29,7 +29,7 @@ export const ProfileCoverModal = ({ profileCoverModal, onUpload }) => {
     queryKey: ["images", "recent"],
     queryFn: () =>
       getImagesApi({ path: `${me.username}/*`, sort: "desc", max: 9 }),
-    select: ({ data }) => data.resources,
+    select: (data) => data.resources,
   })
 
   const { data: imagesProfile } = useQuery({
@@ -40,7 +40,7 @@ export const ProfileCoverModal = ({ profileCoverModal, onUpload }) => {
         sort: "desc",
         max: 30,
       }),
-    select: ({ data }) => data.resources,
+    select: (data) => data.resources,
   })
 
   const { data: imagesCover } = useQuery({
@@ -51,7 +51,7 @@ export const ProfileCoverModal = ({ profileCoverModal, onUpload }) => {
         sort: "desc",
         max: 30,
       }),
-    select: ({ data }) => data.resources,
+    select: (data) => data.resources,
   })
 
   return (

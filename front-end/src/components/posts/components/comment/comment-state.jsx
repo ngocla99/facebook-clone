@@ -8,7 +8,7 @@ import { Dots } from "@/assets/svg"
 
 export const CommentState = ({ className }) => {
   const queryClient = useQueryClient()
-  const { data: me } = queryClient.getQueryData(["me"])
+  const me = queryClient.getQueryData(["me"])
   const commentState = useCommentState()
 
   if (commentState.isError) return <p>Something went wrong...</p>

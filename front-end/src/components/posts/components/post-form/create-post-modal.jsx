@@ -12,7 +12,7 @@ import { PostForm } from "./post-form"
 
 export const CreatePostModal = () => {
   const queryClient = useQueryClient()
-  const { data: user } = queryClient.getQueryData(["me"])
+  const user = queryClient.getQueryData(["me"])
   const postCreateModal = usePostCreateModal()
 
   const form = useForm({

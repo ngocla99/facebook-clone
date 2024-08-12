@@ -23,7 +23,7 @@ import { PostToolbar } from "./post-toolbar"
 export const Post = ({ isDialog, post }) => {
   const { text, user, background, images, audience, createdAt } = post
   const queryClient = useQueryClient()
-  const { data: me } = queryClient.getQueryData(["me"])
+  const me = queryClient.getQueryData(["me"])
   const navigate = useNavigate()
   const [isPortraitFirstImg, setIsPortraitFirstImg] = React.useState()
   const [isUpload, setIsUpload] = React.useState(false)

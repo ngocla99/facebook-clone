@@ -19,7 +19,7 @@ export const ProfilePhotos = ({ className }) => {
         sort: "desc",
         max: 30,
       }),
-    select: ({ data }) => data.resources,
+    select: (data) => data.resources,
     enabled: !!user,
   })
 

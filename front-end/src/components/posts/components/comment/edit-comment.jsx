@@ -13,7 +13,7 @@ import { CommentForm } from "./comment-form"
 export const EditComment = ({ postId, comment, onHideEditComment }) => {
   const queryClient = useQueryClient()
   const commentState = useCommentState()
-  const { data: user } = queryClient.getQueryData(["me"])
+  const user = queryClient.getQueryData(["me"])
   const [isEditing, setIsEditing] = React.useState(false)
 
   const form = useForm({

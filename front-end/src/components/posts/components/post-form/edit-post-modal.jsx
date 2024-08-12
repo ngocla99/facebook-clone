@@ -13,7 +13,7 @@ import { PostForm } from "./post-form"
 
 export const EditPostModal = () => {
   const queryClient = useQueryClient()
-  const { data: user } = queryClient.getQueryData(["me"])
+  const user = queryClient.getQueryData(["me"])
   const postEditModal = usePostEditModal()
 
   const form = useForm({

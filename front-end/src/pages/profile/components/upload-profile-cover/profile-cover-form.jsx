@@ -21,7 +21,7 @@ export const ProfileCoverForm = ({
   className,
 }) => {
   const queryClient = useQueryClient()
-  const { data: me } = queryClient.getQueryData(["me"])
+  const me = queryClient.getQueryData(["me"])
   const [crop, setCrop] = React.useState(
     uploadFile.type === "REPOSITION" ? uploadFile.focus : { x: 0, y: 0 }
   )

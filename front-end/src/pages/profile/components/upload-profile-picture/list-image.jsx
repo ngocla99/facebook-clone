@@ -22,8 +22,8 @@ export const ListImage = ({ title, path, onImageClick }) => {
         nextCursor: pageParam,
       }),
     initialPageParam: null,
-    getNextPageParam: ({ data }) => data.next_cursor,
-    select: ({ pages }) => pages.map((itm) => itm.data.resources).flat(1),
+    getNextPageParam: (data) => data.next_cursor,
+    select: ({ pages }) => pages.map((itm) => itm.resources).flat(1),
   })
 
   if (isLoading) {

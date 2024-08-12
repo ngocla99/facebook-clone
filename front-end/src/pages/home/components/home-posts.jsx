@@ -8,7 +8,6 @@ export const HomePosts = () => {
   const { data: posts } = useQuery({
     queryKey: ["posts"],
     queryFn: getAllPostApi,
-    select: ({ data }) => data,
   })
 
   return (

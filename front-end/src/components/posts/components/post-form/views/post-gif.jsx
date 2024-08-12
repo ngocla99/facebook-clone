@@ -10,7 +10,7 @@ export const PostGif = ({ setView }) => {
   const { data: gifs } = useQuery({
     queryKey: ["gifs"],
     queryFn: () => getGIFsApi({ searchBy: "nemo", limit: 25 }),
-    select: ({ data }) => {
+    select: (data) => {
       return data.results.map((itm) => itm.media[0].gif)
     },
     initialData: [],

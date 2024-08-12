@@ -6,5 +6,4 @@ export const useMe = () =>
     queryKey: ["me"],
     queryFn: getMeApi,
     staleTime: Infinity,
-    select: ({ data }) => data,
   })

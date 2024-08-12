@@ -48,9 +48,7 @@ export const PostForm = React.forwardRef(
       <Form {...form}>
         <form
           className="overflow-hidden"
-          onSubmit={form.handleSubmit(onSubmit, (err) => {
-            console.log("🚀 ~ onSubmit={form.handleSubmit ~ err:", err)
-          })}
+          onSubmit={form.handleSubmit(onSubmit)}
         >
           <ViewRoot setView={setView}>
             <PostRoot

@@ -15,9 +15,6 @@ export const ResetMethods = ({ data, goNext, goBack }) => {
     onSuccess: () => {
       goNext()
     },
-    onError: (err) => {
-      console.log("🚀 ~ ResetMethods ~ err:", err)
-    },
   })
 
   const handleConfirm = () => {

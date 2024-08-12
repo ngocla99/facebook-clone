@@ -12,7 +12,7 @@ import { CommentForm } from "./comment-form"
 export const CreateComment = ({ postId, setIsUpload }) => {
   const queryClient = useQueryClient()
   const commentState = useCommentState()
-  const { data: user } = queryClient.getQueryData(["me"])
+  const user = queryClient.getQueryData(["me"])
 
   const form = useForm({
     resolver: zodResolver(commentSchema),

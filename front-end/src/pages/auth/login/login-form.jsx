@@ -38,7 +38,6 @@ export const LoginForm = () => {
       navigate("/")
     },
     onError: (err) => {
-      console.log("🚀 ~ SignInForm ~ err:", err)
       setErrorRes(err.response.data.message)
     },
   })

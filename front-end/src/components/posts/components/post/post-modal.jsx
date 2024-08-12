@@ -17,7 +17,6 @@ export const PostModal = () => {
   const { data: post } = useQuery({
     queryKey: ["posts", postModal.postId],
     queryFn: () => getPostApi(postModal.postId),
-    select: ({ data }) => data,
     enabled: postModal.isOpen,
   })
 

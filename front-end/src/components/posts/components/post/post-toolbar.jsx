@@ -64,7 +64,6 @@ export const PostToolbar = ({ postId, className }) => {
   const { data: reactions } = useQuery({
     queryKey: ["reacts", postId],
     queryFn: () => getReactsApi(postId),
-    select: ({ data }) => data,
   })
 
   const reactPostMutation = useMutation({

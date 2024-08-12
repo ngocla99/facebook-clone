@@ -25,7 +25,7 @@ import { VIEWS } from "../post-form"
 export const PostRoot = React.forwardRef(
   ({ form, className, setView, isEdit, isShowUpload }, ref) => {
     const queryClient = useQueryClient()
-    const { data: user } = queryClient.getQueryData(["me"])
+    const user = queryClient.getQueryData(["me"])
 
     const textRef = React.useRef(null)
     const boxTextRef = React.useRef(null)
