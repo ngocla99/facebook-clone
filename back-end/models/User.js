@@ -171,18 +171,31 @@ const userSchema = mongoose.Schema(
       highSchool: [highSchoolSchema],
       college: [collegeSchema],
       currentCity: {
-        type: String,
+        name: String,
+        privacy: {
+          type: String,
+          enum: ["SELF", "EVERYONE", "FRIENDS"],
+        },
+      },
+      city: {
+        name: String,
+        privacy: {
+          type: String,
+          enum: ["SELF", "EVERYONE", "FRIENDS"],
+        },
       },
       hometown: {
-        type: String,
+        name: String,
+        privacy: {
+          type: String,
+          enum: ["SELF", "EVERYONE", "FRIENDS"],
+        },
       },
       relationship: {
         type: String,
         enum: ["Single", "In a relationship", "Married", "Divorced"],
       },
-      instagram: {
-        type: String,
-      },
+      instagram: String,
       displayOrder: [String],
     },
     savedPosts: [

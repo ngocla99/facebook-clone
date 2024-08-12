@@ -1,4 +1,5 @@
 import React from "react"
+import { useMe } from "@/hooks"
 import { Link } from "react-router-dom"
 
 import { cn } from "@/lib/utils"
@@ -13,7 +14,9 @@ import { Modal } from "@/components/ui/modal"
 import { ScrollArea } from "@/components/ui/scroll-area"
 
 export const IntroDetailModal = () => {
+  const { data: me } = useMe()
   const [showIntroDetailModal, setShowIntroDetailModal] = React.useState(false)
+  const { workplace, currentCity, hometown } = me.details
 
   return (
     <>
@@ -29,7 +32,7 @@ export const IntroDetailModal = () => {
           <DialogTitle>Edit details</DialogTitle>
           <DialogDescription></DialogDescription>
         </DialogHeader>
-        <ScrollArea className="h-[676px] px-7 py-5">
+        <ScrollArea className="h-[676px] px-7 pt-5">
           <p className="text-muted-foreground">
             Details you select will be{" "}
             <strong className="font-semibold">Public</strong> and appear at the
@@ -49,7 +52,16 @@ export const IntroDetailModal = () => {
           <h3 className="mt-[30px] text-lg font-semibold leading-none">
             Current city
           </h3>
-          <IntroLink to="" title="Add current city" className="mt-5" />
+          {currentCity ? (
+            <div className="mt-5 flex items-center gap-3">
+              <p className="">Lives in {currentCity.name}</p>
+              <Link to="" className="ml-auto">
+                <i className="edit_icon_20 filter-primary-icon"></i>
+              </Link>
+            </div>
+          ) : (
+            <IntroLink to="" title="Add current city" className="mt-5" />
+          )}
           <h3 className="mt-[30px] text-lg font-semibold leading-none">
             Hometown
           </h3>

@@ -48,3 +48,19 @@ export const workPlaceSchema = z
       path: ["timeRange"],
     }
   )
+
+export const currentCitySchema = z.object({
+  name: z
+    .string()
+    .trim()
+    .min(1, { message: "Required." }),
+  privacy: z.enum(["SELF", "EVERYONE", "FRIENDS"]),
+})
+
+export const hometownSchema = z.object({
+  name: z
+    .string()
+    .trim()
+    .min(1, { message: "Required." }),
+  privacy: z.enum(["SELF", "EVERYONE", "FRIENDS"]),
+})

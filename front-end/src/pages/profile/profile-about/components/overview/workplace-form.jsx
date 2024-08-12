@@ -199,7 +199,7 @@ export const WorkplaceForm = ({ className }) => {
             {!workplace.isCurrent && workplace.position && "Former "}
             {workplace.position ||
               (workplace.isCurrent ? "Works" : "Worked")}{" "}
-            at <strong>{workplace.company}</strong>
+            at <strong className="font-semibold">{workplace.company}</strong>
           </p>
           {workplace.startDate.year && (
             <TextDate start={workplace.startDate} end={workplace.endDate} />
@@ -458,11 +458,7 @@ export const WorkplaceForm = ({ className }) => {
             >
               Cancel
             </Button>
-            <Button
-            // disabled={!form.formState.isDirty || !form.formState.isValid}
-            >
-              Save
-            </Button>
+            <Button disabled={!form.formState.isValid}>Save</Button>
           </div>
         </div>
         {/* {updateProfileMutation.isPending && (
