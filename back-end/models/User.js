@@ -196,7 +196,10 @@ const userSchema = mongoose.Schema(
         enum: ["Single", "In a relationship", "Married", "Divorced"],
       },
       instagram: String,
-      displayOrder: [String],
+      hiddenDetails: {
+        type: [String],
+        default: ["createdDate"],
+      },
     },
     savedPosts: [
       {

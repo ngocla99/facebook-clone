@@ -52,7 +52,6 @@ export const BioForm = ({ bio, className }) => {
   if (!showForm && bio) {
     return (
       <div className="grid gap-4">
-        <p className="text-center leading-none">{bio}</p>
         <Button variant="secondary" onClick={() => setShowForm(true)}>
           Edit bio
         </Button>

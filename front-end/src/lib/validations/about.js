@@ -50,17 +50,15 @@ export const workPlaceSchema = z
   )
 
 export const currentCitySchema = z.object({
-  name: z
-    .string()
-    .trim()
-    .min(1, { message: "Required." }),
+  name: z.string().trim().min(1, { message: "Required." }),
   privacy: z.enum(["SELF", "EVERYONE", "FRIENDS"]),
 })
 
 export const hometownSchema = z.object({
-  name: z
-    .string()
-    .trim()
-    .min(1, { message: "Required." }),
+  name: z.string().trim().min(1, { message: "Required." }),
   privacy: z.enum(["SELF", "EVERYONE", "FRIENDS"]),
+})
+
+export const hiddenDetailsSchema = z.object({
+  hiddenDetails: z.array(z.string()),
 })

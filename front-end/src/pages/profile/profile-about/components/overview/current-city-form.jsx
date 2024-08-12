@@ -93,8 +93,7 @@ export const CurrentCityForm = ({ className }) => {
         />
         <div className="flex-1">
           <p className="">
-            Lives {" "}
-            <strong className="font-semibold">{currentCity.name}</strong>
+            Lives <strong className="font-semibold">{currentCity.name}</strong>
           </p>
         </div>
 

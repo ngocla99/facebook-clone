@@ -6,49 +6,80 @@ import { useProfile } from "@/hooks/use-profile"
 export const IntroDetailContent = ({ className }) => {
   const { username } = useParams()
   const { data: user } = useProfile(username)
-  const { workplace, currentCity, hometown } = user.details
+
+  if (!user.details) return null
+
+  const { workplace, currentCity, hometown, hiddenDetails } = user.details
+
+  const isShowing = (key) => !hiddenDetails.includes(key)
 
   return (
-    <div className={cn("grid gap-4", className)}>
-      <div className="flex items-center justify-center gap-3">
-        <img
-          src="/icons/profile/workplace.png"
-          alt="Work place"
-          className="filter-secondary-icon self-start pt-1"
-        />
-        <div className="flex-1 ">
-          <p className="">
-            {!workplace[0].isCurrent && workplace[0].position && "Former "}
-            {workplace[0].position ||
-              (workplace[0].isCurrent ? "Works" : "Worked")}{" "}
-            at <strong className="font-semibold">{workplace[0].company}</strong>
-          </p>
+    <div className={cn("grid gap-4 [&>div:last-child]:pb-1", className)}>
+      {isShowing("workplace") && (
+        <div className="flex items-center justify-center gap-3">
+          <img
+            src="/icons/profile/workplace_20.png"
+            alt="Work place"
+            className="filter-placeholder-icon self-start py-1.5"
+          />
+          <div className="flex-1 ">
+            <p className="">
+              {!workplace[0].isCurrent && workplace[0].position && "Former "}
+              {workplace[0].position ||
+                (workplace[0].isCurrent ? "Works" : "Worked")}{" "}
+              at{" "}
+              <strong className="font-semibold">{workplace[0].company}</strong>
+            </p>
+          </div>
         </div>
-      </div>
-      <div className="flex items-center justify-center gap-3">
-        <img
-          src="/icons/profile/mark.png"
-          alt="Work place"
-          className="filter-secondary-icon"
-        />
-        <div className="flex-1 ">
-          <p className="">
-            Lives <strong className="font-semibold">{currentCity.name}</strong>
-          </p>
+      )}
+      {isShowing("currentCity") && (
+        <div className="flex items-center justify-center gap-3">
+          <img
+            src="/icons/profile/mark_20.png"
+            alt="Work place"
+            className="filter-placeholder-icon py-1.5"
+          />
+          <div className="flex-1 ">
+            <p className="">
+              Lives{" "}
+              <strong className="font-semibold">{currentCity.name}</strong>
+            </p>
+          </div>
         </div>
-      </div>
-      <div className="flex items-center justify-center gap-3">
-        <img
-          src="/icons/profile/mark.png"
-          alt="Work place"
-          className="filter-secondary-icon"
-        />
-        <div className="flex-1 ">
-          <p className="">
-            From <strong className="font-semibold">{hometown.name}</strong>
-          </p>
+      )}
+      {isShowing("hometown") && (
+        <div className="flex items-center justify-center gap-3">
+          <img
+            src="/icons/profile/mark_20.png"
+            alt="Work place"
+            className="filter-placeholder-icon py-1.5"
+          />
+          <div className="flex-1 ">
+            <p className="">
+              From <strong className="font-semibold">{hometown.name}</strong>
+            </p>
+          </div>
         </div>
-      </div>
+      )}
+      {isShowing("createdDate") && (
+        <div className="flex items-center justify-center gap-3">
+          <img
+            src="/icons/profile/date_20.png"
+            alt="Work place"
+            className="filter-placeholder-icon py-1.5"
+          />
+          <div className="flex-1 ">
+            <p className="">
+              Joined{" "}
+              {new Date(user.createdAt).toLocaleDateString("en-US", {
+                year: "numeric",
+                month: "long",
+              })}
+            </p>
+          </div>
+        </div>
+      )}
     </div>
   )
 }
