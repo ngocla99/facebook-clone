@@ -7,9 +7,11 @@ import {
   TooltipTrigger,
 } from "@/components/ui/tooltip"
 import {
-  Friends,
-  FriendsActive,
+  Friend,
+  FriendActive,
   Gaming,
+  Group,
+  GroupActive,
   Home,
   HomeActive,
   Market,
@@ -24,6 +26,13 @@ const mainNav = [
     href: "/",
     Icon: Home,
     IconActive: HomeActive,
+  },
+  {
+    key: "friends",
+    title: "friend",
+    href: "/friends",
+    Icon: Friend,
+    IconActive: FriendActive,
   },
   {
     key: "video",
@@ -43,16 +52,16 @@ const mainNav = [
     key: "group",
     title: "Group",
     href: "/group",
-    Icon: Friends,
-    IconActive: FriendsActive,
+    Icon: Group,
+    IconActive: GroupActive,
   },
-  {
-    key: "gaming",
-    title: "Gaming",
-    href: "/gaming",
-    Icon: Gaming,
-    IconActive: Gaming,
-  },
+  // {
+  //   key: "gaming",
+  //   title: "Gaming",
+  //   href: "/gaming",
+  //   Icon: Gaming,
+  //   IconActive: Gaming,
+  // },
   {
     key: "more",
     title: "More",

@@ -12,7 +12,7 @@ import {
 import { Modal } from "@/components/ui/modal"
 import { ScrollArea } from "@/components/ui/scroll-area"
 
-export const SendRequestModal = () => {
+export const SendRequestModal = ({ friends }) => {
   const [showRequestModal, setShowRequestModal] = React.useState(false)
 
   return (
@@ -29,43 +29,52 @@ export const SendRequestModal = () => {
         onClose={() => setShowRequestModal(false)}
       >
         <DialogHeader className="flex-rows relative items-center space-y-0 border-b border-border px-4 py-3 text-center">
-          <DialogTitle className="leading-9">Select audience</DialogTitle>
+          <DialogTitle className="leading-9">Sent Requests</DialogTitle>
           <DialogDescription></DialogDescription>
         </DialogHeader>
 
-        <div className="py-10 text-center">
-          <p className="text-xs leading-none text-muted-foreground">When you send someone a friend request, it will appear here.</p>
-        </div>
-
-        {/* <ScrollArea className="h-[380px] px-2">
-          <p className="mt-3 px-2 text-lg font-semibold">1 Sent Request</p>
-          <div className="mt-3 grid">
-            <Link
-              to="ro"
-              className={cn(
-                buttonVariants({
-                  variant: "ghost",
-                  className: "h-auto justify-start gap-3 p-2",
-                })
-              )}
-            >
-              <Avatar className="size-[60px]">
-                <AvatarImage src="" />
-                <AvatarFallback></AvatarFallback>
-              </Avatar>
-              <p className="font-semibold">Ngoclias</p>
-              <Button
-                className="z-[1] ml-auto w-[174px]"
-                variant="secondary"
-                onClick={(e) => {
-                  e.preventDefault()
-                }}
-              >
-                Cancel request
-              </Button>
-            </Link>
+        {friends.length === 0 ? (
+          <div className="py-10 text-center">
+            <p className="text-xs leading-none text-muted-foreground">
+              When you send someone a friend request, it will appear here.
+            </p>
           </div>
-        </ScrollArea> */}
+        ) : (
+          <ScrollArea className="h-[380px] px-2">
+            <p className="mt-3 px-2 text-lg font-semibold">1 Sent Request</p>
+            <div className="mt-3 grid">
+              {friends.map((friend) => (
+                <Link
+                  key={friend._id}
+                  to=""
+                  className={cn(
+                    buttonVariants({
+                      variant: "ghost",
+                      className: "h-auto justify-start gap-3 p-2",
+                    })
+                  )}
+                >
+                  <Avatar className="size-[60px]">
+                    <AvatarImage src={friend.picture} alt={friend.username} />
+                    <AvatarFallback></AvatarFallback>
+                  </Avatar>
+                  <p className="font-semibold">
+                    {friend.firstName} {friend.lastName}
+                  </p>
+                  <Button
+                    className="z-[1] ml-auto w-[174px]"
+                    variant="secondary"
+                    onClick={(e) => {
+                      e.preventDefault()
+                    }}
+                  >
+                    Cancel request
+                  </Button>
+                </Link>
+              ))}
+            </div>
+          </ScrollArea>
+        )}
       </Modal>
     </>
   )

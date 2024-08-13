@@ -1047,3 +1047,12 @@
   background-repeat: no-repeat;
   display: inline-block;
 }
+.show_dots {
+  background-image: url(/icons/icons63.png);
+  background-position: 0px -21px;
+  background-size: auto;
+  width: 20px;
+  height: 20px;
+  background-repeat: no-repeat;
+  display: inline-block;
+}

@@ -2,6 +2,14 @@ import { Link, useLocation } from "react-router-dom"
 
 import { cn } from "@/lib/utils"
 import { Button, buttonVariants } from "@/components/ui/button"
+import { Label } from "@/components/ui/label"
+import {
+  Popover,
+  PopoverContent,
+  PopoverTrigger,
+} from "@/components/ui/popover"
+import { Separator } from "@/components/ui/separator"
+import { Switch } from "@/components/ui/switch"
 
 export const Left = ({ className }) => {
   const { pathname } = useLocation()
@@ -11,9 +19,41 @@ export const Left = ({ className }) => {
     <div className={cn("grid p-2", className)}>
       <div className="flex justify-between px-2 pt-1">
         <h3 className="text-[24px] font-bold">Friends</h3>
-        <Button variant="secondary" size="icon" className="size-9">
-          <i className="settings_filled_icon"></i>
-        </Button>
+        <Popover>
+          <PopoverTrigger asChild>
+            <Button variant="secondary" size="icon" className="size-9">
+              <i className="settings_filled_icon"></i>
+            </Button>
+          </PopoverTrigger>
+          <PopoverContent
+            align="end"
+            alignOffset={-12}
+            className="grid w-[344px] p-2 shadow-2xl"
+          >
+            <div className="mt-2 px-2">
+              <h3 className="text-lg font-medium">Notification settings</h3>
+              <p className="text-sm text-muted-foreground">
+                You can manage how you are notified about Friends updates.
+              </p>
+              <Separator className="my-3" />
+            </div>
+            <Label
+              className={cn(
+                buttonVariants({
+                  variant: "ghost",
+                  size: "xl",
+                  className: "justify-start gap-3 px-2 text-base",
+                })
+              )}
+            >
+              <div className="grid size-9 place-content-center rounded-full bg-secondary">
+                <i className="show_dots"></i>
+              </div>
+              <p className="">Show notification dots</p>
+              <Switch className="ml-auto" disabled />
+            </Label>
+          </PopoverContent>
+        </Popover>
       </div>
       <div className="mt-2 grid">
         <Button
@@ -50,28 +90,38 @@ export const Left = ({ className }) => {
           Friend Requests
           <i className="right_icon ml-auto"></i>
         </Link>
-        <Button
-          variant="ghost"
-          size="xl"
-          className="flex justify-start gap-3 px-2 text-lg"
+        <Link
+          to="suggestions"
+          className={cn(
+            buttonVariants({
+              variant: "ghost",
+              size: "xl",
+              className: "flex justify-start gap-3 px-2 text-lg",
+            })
+          )}
         >
           <div className="grid size-9 place-items-center rounded-full bg-background-secondary">
             <i className="friends_suggestions_icon"></i>
           </div>
           Suggestions
           <i className="right_icon ml-auto"></i>
-        </Button>
-        <Button
-          variant="ghost"
-          size="xl"
-          className="flex justify-start gap-3 px-2 text-lg"
+        </Link>
+        <Link
+          to="list"
+          className={cn(
+            buttonVariants({
+              variant: "ghost",
+              size: "xl",
+              className: "flex justify-start gap-3 px-2 text-lg",
+            })
+          )}
         >
           <div className="grid size-9 place-items-center rounded-full bg-background-secondary">
             <i className="all_friends_icon"></i>
           </div>
           All friends
           <i className="right_icon ml-auto"></i>
-        </Button>
+        </Link>
         <Button
           variant="ghost"
           size="xl"
@@ -79,6 +129,7 @@ export const Left = ({ className }) => {
             "flex justify-start gap-3 px-2 text-lg",
             activePath === "birth_days" && "bg-hover after:content-none"
           )}
+          disabled
         >
           <div
             className={cn(
@@ -94,6 +145,7 @@ export const Left = ({ className }) => {
           variant="ghost"
           size="xl"
           className="flex justify-start gap-3 px-2 text-lg"
+          disabled
         >
           <div className="grid size-9 place-items-center rounded-full bg-background-secondary">
             <i className="all_friends_icon"></i>

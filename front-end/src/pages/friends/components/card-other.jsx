@@ -2,7 +2,7 @@ import { cn } from "@/lib/utils"
 import { Button } from "@/components/ui/button"
 import { Card, CardContent } from "@/components/ui/card"
 
-export const CardFriend = ({ className, friend, onConfirm, onDelete }) => {
+export const CardOther = ({ className, friend, onConfirm, onDelete }) => {
   return (
     <Card className={cn("overflow-hidden shadow", className)}>
       <CardContent className="relative p-0">
@@ -13,18 +13,18 @@ export const CardFriend = ({ className, friend, onConfirm, onDelete }) => {
         />
         <div className="mx-3 space-y-2 overflow-hidden border-t border-border pb-3 pt-2">
           <p className="whitespace-nowrap text-lg font-semibold leading-none">
-          {friend.firstName} {friend.lastName}
+            {friend.firstName} {friend.lastName}
           </p>
           <div className="flex items-center gap-1">
             <p className="h-[15px] whitespace-nowrap leading-none text-muted-foreground">
               {/* 42 mutual friends */}
             </p>
           </div>
-          <Button className="w-full" onClick={onConfirm}>
-            Confirm
+          <Button variant="deemphasized" className="w-full" onClick={onConfirm}>
+            Add friend
           </Button>
           <Button variant="secondary" className="w-full" onClick={onDelete}>
-            Delete
+            Remove
           </Button>
         </div>
       </CardContent>

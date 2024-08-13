@@ -5,9 +5,9 @@ import { Link, useNavigate } from "react-router-dom"
 import { cn, getInitialsName } from "@/lib/utils"
 import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar"
 import { Button, buttonVariants } from "@/components/ui/button"
-import { Return } from "@/assets/svg"
-
-import { SendRequestModal } from "../components/send-request-modal"
+import { Separator } from "@/components/ui/separator"
+import { SearchInput } from "@/components/input/search-input"
+import { Dots, Return } from "@/assets/svg"
 
 export const Left = ({ className }) => {
   const navigate = useNavigate()
@@ -32,47 +32,49 @@ export const Left = ({ className }) => {
         </Button>
         <div className="">
           <p className="text-sm text-muted-foreground">Friends</p>
-          <h3 className="text-[24px] font-bold leading-none">Friend Requests</h3>
+          <h3 className="text-[24px] font-bold leading-none">All Friends</h3>
         </div>
       </div>
+      <div className="mt-4 px-4">
+        <SearchInput placeholder="Search friends" disabled/>
+        <Separator className="my-4" />
+      </div>
       <div className="mt-2 px-2">
-        <div className="px-2">
-          <p className="text-lg font-semibold">
-            {friendsInfo.requests.length || ""} Friend Requests
-          </p>
-          <SendRequestModal friends={friendsInfo.sentRequests} />
-        </div>
-        {friendsInfo.requests.length ? (
-          <div className="mt-3 grid">
-            {friendsInfo.requests.map((friend) => (
+        {friendsInfo.friends.length ? (
+          <div className="grid">
+            <p className='px-2 text-lg font-semibold'>{friendsInfo.friends.length} friends</p>
+            {friendsInfo.friends.map((other) => (
               <Link
-                key={friend._id}
+                key={other._id}
                 to=""
                 className={cn(
                   buttonVariants({
                     variant: "ghost",
-                    className: "flex h-auto justify-start gap-3 px-2 py-[10px]",
+                    className: "flex h-auto justify-start gap-3 p-2",
                   })
                 )}
               >
                 <Avatar className="size-[60px]">
-                  <AvatarImage src={friend.picture} alt={friend.username} />
-                  <AvatarFallback>{getInitialsName(friend)}</AvatarFallback>
+                  <AvatarImage src={other.picture} alt={other.username} />
+                  <AvatarFallback>{getInitialsName(other)}</AvatarFallback>
                 </Avatar>
                 <div className="flex-1">
-                  <p className="">{`${friend.firstName} ${friend.lastName}`}</p>
-                  <div className="mt-1.5 grid grid-cols-2 gap-2">
-                    <Button>Confirm</Button>
-                    <Button variant="secondary">Delete</Button>
-                  </div>
+                  <p className="">{`${other.firstName} ${other.lastName}`}</p>
                 </div>
+                <Button
+                  variant="ghost"
+                  size="icon"
+                  className="text-muted-foreground z-10"
+                >
+                  <Dots />
+                </Button>
               </Link>
             ))}
           </div>
         ) : (
           <div className="mt-5">
             <p className="text-sm leading-none text-muted-foreground">
-              No new requests
+              No suggestions
             </p>
           </div>
         )}

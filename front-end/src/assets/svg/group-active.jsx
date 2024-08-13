@@ -1,4 +1,4 @@
-export const FriendsActive = (props) => {
+export const GroupActive = (props) => {
   return (
     <svg
       viewBox="0 0 24 24"
