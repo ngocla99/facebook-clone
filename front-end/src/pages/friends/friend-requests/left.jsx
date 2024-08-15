@@ -1,6 +1,10 @@
-import { getFriendsPageInfoApi } from "@/api/services/user"
-import { useQuery } from "@tanstack/react-query"
-import { Link, useNavigate } from "react-router-dom"
+import {
+  acceptFriendRequestApi,
+  getFriendsPageInfoApi,
+  removeFriendRequestApi,
+} from "@/api/services/user"
+import { useMutation, useQuery, useQueryClient } from "@tanstack/react-query"
+import { Link, useNavigate, useParams, useSearchParams } from "react-router-dom"
 
 import { cn, getInitialsName } from "@/lib/utils"
 import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar"
@@ -10,7 +14,34 @@ import { Return } from "@/assets/svg"
 import { SendRequestModal } from "../components/send-request-modal"
 
 export const Left = ({ className }) => {
+  const { username } = useParams()
   const navigate = useNavigate()
+  const queryClient = useQueryClient()
+
+  const acceptFriendRequestMutation = useMutation({
+    mutationFn: acceptFriendRequestApi,
+    onSuccess: () => {
+      queryClient.invalidateQueries({ queryKey: ["friends-page-info"] })
+      queryClient.invalidateQueries({ queryKey: ["user", username] })
+    },
+  })
+
+  const removeFriendRequestMutation = useMutation({
+    mutationFn: removeFriendRequestApi,
+    onSuccess: () => {
+      queryClient.invalidateQueries({ queryKey: ["friends-page-info"] })
+    },
+  })
+
+  const acceptFriendRequest = (id) => {
+    if (acceptFriendRequestMutation.isPending) return
+    acceptFriendRequestMutation.mutate(id)
+  }
+
+  const removeFriendRequest = (id) => {
+    if (removeFriendRequestMutation.isPending) return
+    removeFriendRequestMutation.mutate(id)
+  }
 
   const { data: friendsInfo, isLoading } = useQuery({
     queryKey: ["friends-page-info"],
@@ -26,13 +57,15 @@ export const Left = ({ className }) => {
           variant="ghost"
           size="icon"
           className="size-9 text-muted-foreground"
-          onClick={() => navigate(-1)}
+          onClick={() => navigate("/friends")}
         >
           <Return />
         </Button>
         <div className="">
           <p className="text-sm text-muted-foreground">Friends</p>
-          <h3 className="text-[24px] font-bold leading-none">Friend Requests</h3>
+          <h3 className="text-[24px] font-bold leading-none">
+            Friend Requests
+          </h3>
         </div>
       </div>
       <div className="mt-2 px-2">
@@ -47,10 +80,11 @@ export const Left = ({ className }) => {
             {friendsInfo.requests.map((friend) => (
               <Link
                 key={friend._id}
-                to=""
+                to={`/friends/requests/${friend.username}`}
                 className={cn(
                   buttonVariants({
-                    variant: "ghost",
+                    variant:
+                      username === friend.username ? "secondary" : "ghost",
                     className: "flex h-auto justify-start gap-3 px-2 py-[10px]",
                   })
                 )}
@@ -62,8 +96,25 @@ export const Left = ({ className }) => {
                 <div className="flex-1">
                   <p className="">{`${friend.firstName} ${friend.lastName}`}</p>
                   <div className="mt-1.5 grid grid-cols-2 gap-2">
-                    <Button>Confirm</Button>
-                    <Button variant="secondary">Delete</Button>
+                    <Button
+                      onClick={(e) => {
+                        e.preventDefault()
+                        acceptFriendRequest(friend._id)
+                      }}
+                      className="z-10"
+                    >
+                      Confirm
+                    </Button>
+                    <Button
+                      variant="secondary"
+                      onClick={(e) => {
+                        e.preventDefault()
+                        removeFriendRequest(friend._id)
+                      }}
+                      className="z-10"
+                    >
+                      Delete
+                    </Button>
                   </div>
                 </div>
               </Link>

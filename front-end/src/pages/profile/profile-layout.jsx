@@ -21,7 +21,7 @@ export const ProfileLayout = () => {
   return (
     <>
       <div className="bg-card">
-        <ProfileInfo className="container px-0" user={user} />
+        <ProfileInfo className="container px-0" />
         <ProfileMenu className="container sticky top-[56px] px-4" />
       </div>
       <Outlet />

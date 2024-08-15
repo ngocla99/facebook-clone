@@ -82,6 +82,24 @@ const Routes = () => {
               element: <FriendHome />,
             },
             {
+              path: "requests/:username",
+              element: <FriendRequests />,
+              children: [
+                {
+                  path: "",
+                  element: <ProfilePosts />,
+                },
+                {
+                  path: "posts",
+                  element: <ProfilePosts />,
+                },
+                {
+                  path: "about",
+                  element: <ProfileAbout />,
+                },
+              ],
+            },
+            {
               path: "requests",
               element: <FriendRequests />,
             },

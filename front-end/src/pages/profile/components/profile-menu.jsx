@@ -1,4 +1,4 @@
-import { Link, useLocation, useResolvedPath } from "react-router-dom"
+import { Link, useLocation, useParams, useResolvedPath } from "react-router-dom"
 
 import { cn } from "@/lib/utils"
 import { Button } from "@/components/ui/button"
@@ -6,15 +6,19 @@ import { tabsTriggerVariants } from "@/components/ui/tabs"
 import { Dots } from "@/assets/svg"
 
 export const ProfileMenu = ({ className }) => {
+  const { username } = useParams()
   const { pathname } = useLocation()
-  const activePath = pathname.split("/")[3]
+  const paths = pathname.split("/")
+  const activePath = paths[paths.length - 1]
 
   return (
     <div className={cn("flex items-center px-16", className)}>
       <ProfileMenuItem
         to="posts"
         title="Posts"
-        data-state={activePath === "posts" || !activePath ? "active" : null}
+        data-state={
+          activePath === "posts" || activePath === username ? "active" : null
+        }
       />
       <ProfileMenuItem
         to="about"
