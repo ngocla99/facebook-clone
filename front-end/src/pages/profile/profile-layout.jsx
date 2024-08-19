@@ -20,10 +20,10 @@ export const ProfileLayout = () => {
 
   return (
     <>
-      <div className="bg-card">
+      <div className="relative z-20 bg-card">
         <ProfileInfo className="container px-0" />
-        <ProfileMenu className="container sticky top-[56px] px-4" />
       </div>
+      <ProfileMenu />
       <Outlet />
     </>
   )

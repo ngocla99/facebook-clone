@@ -88,6 +88,9 @@
   * {
     @apply border-border;
   }
+  html {
+    @apply scroll-smooth;
+  }
   body {
     @apply bg-background text-base text-foreground;
   }
@@ -100,6 +103,10 @@
 }
 
 @layer utilities {
+  .hover-btn {
+    @apply relative after:absolute after:inset-0 after:rounded-md after:content-[''] hover:after:bg-hover active:after:bg-[rgba(0,0,0,0.1)];
+  }
+
   .filter-accent {
     filter: invert(19%) sepia(70%) saturate(5671%) hue-rotate(203deg)
       brightness(96%) contrast(101%);
