@@ -1,5 +1,3 @@
-import { getImagesApi } from "@/api/services/image"
-import { useQuery } from "@tanstack/react-query"
 import { Link, useParams } from "react-router-dom"
 
 import { useProfile } from "@/hooks/use-profile"
@@ -28,7 +26,7 @@ export const ProfileFriends = ({ className }) => {
           </Button>
         </div>
 
-        {user.friends?.length ? (
+        {user?.friends?.length ? (
           <>
             <p className="mt-2 text-lg leading-none text-muted-foreground">
               {user.totalFriends}{" "}

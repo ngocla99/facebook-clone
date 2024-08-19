@@ -33,10 +33,10 @@ export const AllMenu = () => {
         </PopoverTrigger>
         <TooltipContent sideOffset={18}>Menu</TooltipContent>
       </Tooltip>
-      <PopoverContent className="w-[608px] bg-[#f7f8fa] p-0 shadow-2xl">
+      <PopoverContent className="sm:w-[608px] bg-[#f7f8fa] p-0 shadow-2xl">
         <h3 className="p-4 text-2xl font-bold">Menu</h3>
         <ScrollArea className="h-[calc(100vh-150px)] px-4">
-          <div className="grid grid-cols-[1fr_200px] items-start gap-4 pb-4">
+          <div className="grid sm:grid-cols-[1fr_200px] items-start gap-4 pb-4">
             <Card>
               <CardHeader>
                 <SearchInput placeholder="Search menu" />
@@ -107,7 +107,7 @@ export const AllMenu = () => {
                 </div>
               </CardContent>
             </Card>
-            <Card className="sticky right-0 top-0">
+            <Card className="sm:sticky sm:right-0 sm:top-0">
               <CardHeader className="p-3">
                 <CardTitle className="text-xl font-bold">Create</CardTitle>
               </CardHeader>

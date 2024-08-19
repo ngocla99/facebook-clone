@@ -53,9 +53,24 @@ export const ProfileMenu = ({ className }) => {
               title="About"
               data-state={activePath === "about" ? "active" : null}
             />
-            <ProfileMenuItem to="" title="Friends" disabled />
-            <ProfileMenuItem to="" title="Photos" disabled />
-            <ProfileMenuItem to="" title="Reels" disabled />
+            <ProfileMenuItem
+              to=""
+              className="hidden min-[400px]:flex"
+              title="Friends"
+              disabled
+            />
+            <ProfileMenuItem
+              to=""
+              className="hidden min-[480px]:flex"
+              title="Photos"
+              disabled
+            />
+            <ProfileMenuItem
+              className="hidden sm:flex"
+              to=""
+              title="Reels"
+              disabled
+            />
             <ProfileMenuItem to="" title="More" disabled />
           </>
         )}
@@ -68,9 +83,13 @@ export const ProfileMenu = ({ className }) => {
   )
 }
 
-const ProfileMenuItem = ({ to, title, ...props }) => {
+const ProfileMenuItem = ({ to, title, className, ...props }) => {
   return (
-    <Link to={to} className={tabsTriggerVariants({ size: "lg" })} {...props}>
+    <Link
+      to={to}
+      className={tabsTriggerVariants({ size: "lg", className })}
+      {...props}
+    >
       {title}
       <div className="absolute bottom-1 left-0 right-0 top-1 rounded-lg bg-hover opacity-0 group-hover:opacity-100 group-data-[state=active]:bg-transparent"></div>
     </Link>

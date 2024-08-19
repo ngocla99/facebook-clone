@@ -1,6 +1,6 @@
 import { getFriendsPageInfoApi } from "@/api/services/user"
 import { useQuery } from "@tanstack/react-query"
-import { Link, useNavigate } from "react-router-dom"
+import { Link, useNavigate, useParams } from "react-router-dom"
 
 import { cn, getInitialsName } from "@/lib/utils"
 import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar"
@@ -10,6 +10,7 @@ import { SearchInput } from "@/components/input/search-input"
 import { Dots, Return } from "@/assets/svg"
 
 export const Left = ({ className }) => {
+  const { username } = useParams()
   const navigate = useNavigate()
 
   const { data: friendsInfo, isLoading } = useQuery({
@@ -26,7 +27,7 @@ export const Left = ({ className }) => {
           variant="ghost"
           size="icon"
           className="size-9 text-muted-foreground"
-          onClick={() => navigate(-1)}
+          onClick={() => navigate("/friends")}
         >
           <Return />
         </Button>
@@ -36,20 +37,23 @@ export const Left = ({ className }) => {
         </div>
       </div>
       <div className="mt-4 px-4">
-        <SearchInput placeholder="Search friends" disabled/>
+        <SearchInput placeholder="Search friends" disabled />
         <Separator className="my-4" />
       </div>
       <div className="mt-2 px-2">
         {friendsInfo.friends.length ? (
           <div className="grid">
-            <p className='px-2 text-lg font-semibold'>{friendsInfo.friends.length} friends</p>
+            <p className="px-2 text-lg font-semibold">
+              {friendsInfo.friends.length} friends
+            </p>
             {friendsInfo.friends.map((other) => (
               <Link
                 key={other._id}
-                to=""
+                to={`/friends/list/${other.username}`}
                 className={cn(
                   buttonVariants({
-                    variant: "ghost",
+                    variant:
+                      username === other.username ? "secondary" : "ghost",
                     className: "flex h-auto justify-start gap-3 p-2",
                   })
                 )}
@@ -64,7 +68,7 @@ export const Left = ({ className }) => {
                 <Button
                   variant="ghost"
                   size="icon"
-                  className="text-muted-foreground z-10"
+                  className="z-10 text-muted-foreground"
                 >
                   <Dots />
                 </Button>

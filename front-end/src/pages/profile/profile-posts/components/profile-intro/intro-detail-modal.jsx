@@ -260,11 +260,11 @@ export const IntroDetailModal = () => {
               }}
             />
             <DialogFooter className="border-t border-border p-4">
-              <div className="flex w-full justify-between">
+              <div className="flex w-full justify-between flex-wrap gap-2">
                 <Button variant="deemphasized" className="bg-transparent">
                   Update Your Information
                 </Button>
-                <div className="flex gap-2">
+                <div className="flex gap-2 ml-auto">
                   <Button
                     variant="secondary"
                     onClick={() => setShowIntroDetailModal(false)}

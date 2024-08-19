@@ -6,4 +6,5 @@ export const useProfile = (username) =>
     queryKey: ["user", username],
     queryFn: () => getProfileApi(username),
     staleTime: Infinity,
+    enabled: !!username,
   })

@@ -1,6 +1,6 @@
-import { getOthersApi } from "@/api/services/user"
-import { useQuery } from "@tanstack/react-query"
-import { Link, useNavigate } from "react-router-dom"
+import { getOthersApi, sendFriendRequestApi } from "@/api/services/user"
+import { useMutation, useQuery, useQueryClient } from "@tanstack/react-query"
+import { Link, useNavigate, useParams } from "react-router-dom"
 
 import { cn, getInitialsName } from "@/lib/utils"
 import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar"
@@ -8,12 +8,27 @@ import { Button, buttonVariants } from "@/components/ui/button"
 import { Return } from "@/assets/svg"
 
 export const Left = ({ className }) => {
+  const queryClient = useQueryClient()
   const navigate = useNavigate()
+  const { username } = useParams()
 
   const { data: othersInfo, isLoading } = useQuery({
     queryKey: ["others"],
     queryFn: getOthersApi,
   })
+
+  const sendFriendRequestMutation = useMutation({
+    mutationFn: sendFriendRequestApi,
+    onSuccess: () => {
+      queryClient.invalidateQueries({ queryKey: ["others"] })
+      queryClient.invalidateQueries({ queryKey: ["user", username] })
+    },
+  })
+
+  const sendFriendRequest = (id) => {
+    if (sendFriendRequestMutation.isPending) return
+    sendFriendRequestMutation.mutate(id)
+  }
 
   if (isLoading) return "Loading..."
 
@@ -24,7 +39,7 @@ export const Left = ({ className }) => {
           variant="ghost"
           size="icon"
           className="size-9 text-muted-foreground"
-          onClick={() => navigate(-1)}
+          onClick={() => navigate("/friends")}
         >
           <Return />
         </Button>
@@ -42,10 +57,11 @@ export const Left = ({ className }) => {
             {othersInfo.others.map((other) => (
               <Link
                 key={other._id}
-                to=""
+                to={`/friends/suggestions/${other.username}`}
                 className={cn(
                   buttonVariants({
-                    variant: "ghost",
+                    variant:
+                      username === other.username ? "secondary" : "ghost",
                     className: "flex h-auto justify-start gap-3 px-2 py-[10px]",
                   })
                 )}
@@ -57,8 +73,16 @@ export const Left = ({ className }) => {
                 <div className="flex-1">
                   <p className="">{`${other.firstName} ${other.lastName}`}</p>
                   <div className="mt-1.5 grid grid-cols-2 gap-2">
-                    <Button>Add friend</Button>
-                    <Button variant="secondary" disabled>
+                    <Button
+                      onClick={(e) => {
+                        e.preventDefault()
+                        sendFriendRequest(other._id)
+                      }}
+                      className="z-10"
+                    >
+                      Add friend
+                    </Button>
+                    <Button variant="secondary" disabled className="z-10">
                       Remove
                     </Button>
                   </div>

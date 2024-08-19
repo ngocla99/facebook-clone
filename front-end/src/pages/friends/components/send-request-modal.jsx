@@ -1,4 +1,6 @@
 import React from "react"
+import { cancelFriendRequestApi } from "@/api/services/user"
+import { useMutation, useQueryClient } from "@tanstack/react-query"
 import { Link } from "react-router-dom"
 
 import { cn } from "@/lib/utils"
@@ -13,7 +15,20 @@ import { Modal } from "@/components/ui/modal"
 import { ScrollArea } from "@/components/ui/scroll-area"
 
 export const SendRequestModal = ({ friends }) => {
+  const queryClient = useQueryClient()
   const [showRequestModal, setShowRequestModal] = React.useState(false)
+
+  const cancelFriendRequestMutation = useMutation({
+    mutationFn: cancelFriendRequestApi,
+    onSuccess: () => {
+      queryClient.invalidateQueries({ queryKey: ["friends-page-info"] })
+    },
+  })
+
+  const cancelFriendRequest = (id) => {
+    if (cancelFriendRequestMutation.isPending) return
+    cancelFriendRequestMutation.mutate(id)
+  }
 
   return (
     <>
@@ -46,7 +61,7 @@ export const SendRequestModal = ({ friends }) => {
               {friends.map((friend) => (
                 <Link
                   key={friend._id}
-                  to=""
+                  to={`/profile/${friend.username}`}
                   className={cn(
                     buttonVariants({
                       variant: "ghost",
@@ -66,6 +81,7 @@ export const SendRequestModal = ({ friends }) => {
                     variant="secondary"
                     onClick={(e) => {
                       e.preventDefault()
+                      cancelFriendRequest(friend._id)
                     }}
                   >
                     Cancel request

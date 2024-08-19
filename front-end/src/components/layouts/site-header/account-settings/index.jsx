@@ -95,7 +95,7 @@ export const AccountSettings = () => {
         </PopoverTrigger>
         <TooltipContent sideOffset={9}>Account</TooltipContent>
       </Tooltip>
-      <PopoverContent className="w-[360px] p-0 shadow-3xl">
+      <PopoverContent className="min-[375px]:w-[360px] p-0 shadow-3xl">
         <View />
       </PopoverContent>
     </Popover>

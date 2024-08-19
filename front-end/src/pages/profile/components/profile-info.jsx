@@ -60,7 +60,7 @@ export const ProfileInfo = ({ className }) => {
                 </>
               ) : null}
             </div>
-            <div className="flex items-end justify-end gap-2">
+            <div className="min-[375px]-items-end flex gap-2 min-[375px]:justify-end flex-wrap justify-center">
               {!user.isVisitor ? (
                 <>
                   <Button>
@@ -91,14 +91,14 @@ export const ProfileInfo = ({ className }) => {
                 </>
               )}
 
-              <Button variant="secondary" className="w-[48px]">
+              <Button variant="secondary" className="w-[48px] flex-1">
                 <i className="arrow_up_icon filter-primary-icon"></i>
               </Button>
             </div>
           </div>
         </div>
         <AddFriendList className="mt-2" />
-        <FriendRequestActions className="mt-4" />
+        <FriendRequestActions className="relative z-20 mt-4" />
         <Separator className="mt-4" />
       </div>
     </div>

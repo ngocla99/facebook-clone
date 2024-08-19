@@ -73,7 +73,7 @@ const mainNav = [
 
 export const NavMenu = () => {
   return (
-    <div className="flex items-stretch justify-start gap-2 min-[710px]:justify-center">
+    <div className="min-[400px]:flex hidden items-stretch justify-start gap-2 min-[710px]:justify-center">
       {mainNav.map(({ key, title, href, Icon, IconActive }) => (
         <NavLink
           to={href}
