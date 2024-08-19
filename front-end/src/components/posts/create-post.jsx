@@ -36,11 +36,12 @@ export const CreatePost = () => {
             className="active:scale-1 min-h-10 flex-1 justify-start rounded-[20px] bg-background-comment px-3 py-2 text-lg font-normal text-muted-foreground after:rounded-[20px]"
             onClick={() => postCreateModal.onOpen({ openBy: null })}
           >
-            What's on your mind, {me.firstName}?
+            What's on your mind
+            <span className="hidden sm:inline">, {me.firstName}</span>?
           </Button>
         </div>
         <Separator className="mb-2 mt-3" />
-        <div className="grid grid-cols-3">
+        <div className="grid grid-cols-2 sm:grid-cols-3">
           <Button variant="ghost" className="h-10 gap-2" disabled={true}>
             <LiveVideo className="text-[#f3425f]" />
             <p className="text-muted-foreground">Live video</p>
@@ -55,7 +56,7 @@ export const CreatePost = () => {
           </Button>
           <Button
             variant="ghost"
-            className="h-10 gap-2"
+            className="hidden h-10 gap-2 sm:flex"
             onClick={() => postCreateModal.onOpen({ openBy: "feeling" })}
           >
             <Feeling className="text-[#f7b928]" />

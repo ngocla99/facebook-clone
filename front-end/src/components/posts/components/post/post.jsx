@@ -97,18 +97,20 @@ export const Post = ({ isDialog, post }) => {
             </Avatar>
             <div className="flex-1">
               <div className="flex leading-5">
-                <p className="font-semibold">{`${getAuthor().firstName} ${getAuthor().lastName}`}</p>
-                {post.type === "PROFILE_PICTURE" && (
-                  <span className="ml-1 text-muted-foreground">
-                    update {me.gender === "MALE" ? "his" : "her"} profile
-                    picture.
-                  </span>
-                )}
-                {post.type === "COVER_PHOTO" && (
-                  <span className="ml-1 text-muted-foreground">
-                    update {me.gender === "MALE" ? "his" : "her"} cover photo.
-                  </span>
-                )}
+                <p className="font-semibold">
+                  {`${getAuthor().firstName} ${getAuthor().lastName}`}
+                  {post.type === "PROFILE_PICTURE" && (
+                    <span className="ml-1 font-normal text-muted-foreground">
+                      update {me.gender === "MALE" ? "his" : "her"} profile
+                      picture.
+                    </span>
+                  )}
+                  {post.type === "COVER_PHOTO" && (
+                    <span className="ml-1 font-normal text-muted-foreground">
+                      update {me.gender === "MALE" ? "his" : "her"} cover photo.
+                    </span>
+                  )}
+                </p>
               </div>
               <div className="flex items-center gap-1">
                 <p className="text-sm leading-4 text-muted-foreground">
@@ -173,17 +175,21 @@ export const Post = ({ isDialog, post }) => {
                     : "unset",
                 }}
               ></div>
-              <div className="z-[1] px-[52px] pb-7 pt-6">
+              <div className="z-[1] px-[52px] pb-7 pt-20 sm:pt-6">
                 <img
                   src={images[0].url}
                   alt={images[0].filename}
-                  className="mx-auto size-[388px] rounded-full border-4 border-white"
+                  className="mx-auto size-[200px] rounded-full border-4 border-white min-[460px]:size-[300px] sm:size-[388px]"
                 />
               </div>
             </div>
           )}
           {post.type === "COVER_PHOTO" && (
-            <img src={images[0].url} alt={images[0].filename} className="object-cover w-full" />
+            <img
+              src={images[0].url}
+              alt={images[0].filename}
+              className="w-full object-cover"
+            />
           )}
           {!post.type && (
             <div

@@ -24,7 +24,7 @@ export const PostManagement = ({ className }) => {
       {!user?.isVisitor && <CreatePost />}
       <Card>
         <CardContent className="p-0">
-          <div className="flex items-center justify-between px-4 py-2">
+          <div className="flex items-center justify-between gap-2 px-4 py-2 flex-wrap">
             <h3 className="text-xl font-bold">Posts</h3>
             <div className="space-x-2">
               <Button variant="secondary">

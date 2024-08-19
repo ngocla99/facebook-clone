@@ -12,7 +12,6 @@ export const ProfileMenu = ({ className }) => {
   const { ref, isSticky } = useSticky()
   const { username } = useParams()
   const { data: user } = useProfile(username)
-  console.log("🚀 ~ ProfileMenu ~ user:", user)
   const { pathname } = useLocation()
   const paths = pathname.split("/")
   const activePath = paths[paths.length - 1]

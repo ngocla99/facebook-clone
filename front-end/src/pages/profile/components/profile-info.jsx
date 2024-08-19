@@ -31,10 +31,13 @@ export const ProfileInfo = ({ className }) => {
           <div className="mr-4 w-[174px]"></div>
           <div className="grid flex-1 grid-cols-1 gap-4 lg:grid-cols-2 lg:pb-4 lg:pt-8">
             <div className="flex flex-col items-center gap-3 lg:items-start">
-              <h3 className="text-[32px] font-bold leading-none">
-                {user.firstName + " " + user.lastName}
+              <div className="flex justify-center flex-wrap text-[32px] leading-none">
+                <h3 className="font-bold">
+                  {user.firstName + " " + user.lastName}
+                </h3>
                 <span className="ml-4 font-normal">(Nemo)</span>
-              </h3>
+              </div>
+
               {user.friends.length ? (
                 <>
                   <Link
@@ -60,7 +63,7 @@ export const ProfileInfo = ({ className }) => {
                 </>
               ) : null}
             </div>
-            <div className="min-[375px]-items-end flex gap-2 min-[375px]:justify-end flex-wrap justify-center">
+            <div className="min-[375px]-items-end flex flex-wrap justify-center gap-2 min-[375px]:justify-end">
               {!user.isVisitor ? (
                 <>
                   <Button>

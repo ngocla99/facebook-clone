@@ -27,7 +27,7 @@ export const ProfileIntro = ({ className }) => {
             {!user.isVisitor && <IntroDetailModal />}
           </div>
           {!user.isVisitor && (
-            <Button variant="secondary" className="mt-[22px]">
+            <Button variant="secondary" className="mt-[22px]" disabled>
               Add featured
             </Button>
           )}
