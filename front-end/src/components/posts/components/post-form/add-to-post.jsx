@@ -16,11 +16,14 @@ export const AddToPost = ({
   setShowImageUpload,
 }) => {
   return (
-    <div className="flex items-center justify-between rounded-lg border border-separator p-2 shadow-[0_1px_2px_rgba(0,0,0,0.1)]">
-      <a className="cursor-pointer px-2" onClick={() => setView(VIEWS.MORE)}>
+    <div className="flex flex-wrap items-center justify-between rounded-lg border border-separator p-2 shadow-[0_1px_2px_rgba(0,0,0,0.1)]">
+      <a
+        className="flex-1 cursor-pointer whitespace-nowrap px-2 text-center min-[400px]:flex-initial"
+        onClick={() => setView(VIEWS.MORE)}
+      >
         Add to your post
       </a>
-      <div className="flex h-10 items-center gap-1">
+      <div className="flex h-10 flex-1 items-center justify-center gap-1 min-[400px]:flex-initial">
         <Tooltip>
           <TooltipTrigger asChild>
             <Button

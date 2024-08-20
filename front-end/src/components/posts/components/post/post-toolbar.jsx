@@ -91,7 +91,7 @@ export const PostToolbar = ({ postId, className }) => {
         <Tooltip>
           <TooltipTrigger asChild>
             <Button
-              className="h-8 gap-2"
+              className="[min-400px]:gap-2 h-8 gap-1 px-0"
               variant="ghost"
               onClick={handleToggleReact}
             >
@@ -112,14 +112,14 @@ export const PostToolbar = ({ postId, className }) => {
         </Tooltip>
       </TooltipProvider>
       <Button
-        className="h-8 gap-2"
+        className="[min-400px]:gap-2 h-8 gap-1 px-0"
         variant="ghost"
         onClick={() => postModal.onOpen(postId)}
       >
         <i className="comment_icon filter-secondary-icon"></i>
         <p className="text-muted-foreground">Comment</p>
       </Button>
-      <Button className="h-8 gap-2" variant="ghost">
+      <Button className="[min-400px]:gap-2 h-8 gap-1 px-0" variant="ghost">
         <i className="share_icon filter-secondary-icon"></i>
         <p className="text-muted-foreground">Share</p>
       </Button>
@@ -147,14 +147,22 @@ const ReactionText = ({ type }) => {
     case "LOVE":
       return (
         <>
-          <img src="/icons/reacts/love.svg" alt="Love" className="size-[18px]" />
+          <img
+            src="/icons/reacts/love.svg"
+            alt="Love"
+            className="size-[18px]"
+          />
           <p className="text-[#f33e58]">Love</p>
         </>
       )
     case "HAHA":
       return (
         <>
-          <img src="/icons/reacts/haha.svg" alt="HaHa" className="size-[18px]" />
+          <img
+            src="/icons/reacts/haha.svg"
+            alt="HaHa"
+            className="size-[18px]"
+          />
           <p className="text-[#f7b125]">Haha</p>
         </>
       )

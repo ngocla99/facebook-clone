@@ -8,10 +8,10 @@ const Home = () => {
   return (
     <div className="flex">
       <SidebarNav className="sticky top-[56px] hidden max-h-0 min-w-[280px] max-w-[360px] basis-[360px] min-[1100px]:block" />
-      <section className="flex flex-1 basis-[744px] flex-col items-center justify-start px-8 py-4">
-        <div className="flex max-w-[590px] flex-col gap-4 min-[1100px]:max-w-[460px] xl:max-w-2xl">
+      <section className="flex flex-1 basis-[744px] flex-col items-center justify-start py-4 sm:px-8">
+        <div className="w-full flex flex-col gap-4 sm:w-[590px] min-[1100px]:w-[460px] xl:w-2xl">
           <CreateStory />
-          <Stories />
+          <Stories className="" />
           <HomePosts />
         </div>
       </section>

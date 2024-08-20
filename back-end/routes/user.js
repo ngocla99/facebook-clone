@@ -16,13 +16,26 @@ router.get("/getProfile/:username", authUser, userController.getProfile);
 router.get("/getMe", authUser, userController.getMe);
 router.get("/getFriendsPageInfo", authUser, userController.getFriendsPageInfo);
 router.get("/getOthers", authUser, userController.getOthers);
-router.put("/updateProfile", authUser, userController.updateProfile);
-router.put("/sendFriendRequest", authUser, userController.sendFriendRequest);
-router.put("/cancelFriendRequest", authUser, userController.cancelFriendRequest);
-router.put("/acceptFriendRequest", authUser, userController.acceptFriendRequest);
-router.put("/removeFriendRequest", authUser, userController.removeFriendRequest);
-router.put("/unfriend", authUser, userController.unfriend);
-router.put("/follow", authUser, userController.follow);
-router.put("/unfollow", authUser, userController.unfollow);
+router.patch("/updateProfile", authUser, userController.updateProfile);
+router.patch("/sendFriendRequest", authUser, userController.sendFriendRequest);
+router.patch(
+  "/cancelFriendRequest",
+  authUser,
+  userController.cancelFriendRequest
+);
+router.patch(
+  "/acceptFriendRequest",
+  authUser,
+  userController.acceptFriendRequest
+);
+router.patch(
+  "/removeFriendRequest",
+  authUser,
+  userController.removeFriendRequest
+);
+router.patch("/unfriend", authUser, userController.unfriend);
+router.patch("/follow", authUser, userController.follow);
+router.patch("/unfollow", authUser, userController.unfollow);
+router.patch("/savePost", authUser, userController.savePost);
 
 module.exports = router;

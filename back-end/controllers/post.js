@@ -4,8 +4,12 @@ const { ObjectId } = require("mongodb");
 const Reaction = require("../models/Reaction");
 
 exports.getAllPost = async (req, res) => {
+  const authors = [req.user._id, ...req.user.friends, ...req.user.following];
+
   try {
-    const posts = await Post.find()
+    const posts = await Post.find({
+      user: { $in: authors },
+    })
       .populate("user", "firstName lastName username picture gender")
       .populate({
         path: "comments",
@@ -19,6 +23,7 @@ exports.getAllPost = async (req, res) => {
         },
       })
       .sort([["createdAt", -1]]);
+
     return res.json(posts);
   } catch (err) {
     return res.status(500).json({ message: err.message });

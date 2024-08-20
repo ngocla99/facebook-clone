@@ -203,16 +203,18 @@ const userSchema = mongoose.Schema(
     },
     savedPosts: [
       {
+        _id: false,
         post: {
           type: ObjectId,
           ref: "Post",
         },
         savedAt: {
           type: Date,
-          default: new Date(),
+          default: Date.now,
         },
       },
     ],
+    collections: [{ type: ObjectId, ref: "Collection" }],
   },
   {
     timestamps: true,

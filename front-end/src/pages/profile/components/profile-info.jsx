@@ -31,7 +31,7 @@ export const ProfileInfo = ({ className }) => {
           <div className="mr-4 w-[174px]"></div>
           <div className="grid flex-1 grid-cols-1 gap-4 lg:grid-cols-2 lg:pb-4 lg:pt-8">
             <div className="flex flex-col items-center gap-3 lg:items-start">
-              <div className="flex justify-center flex-wrap text-[32px] leading-none">
+              <div className="flex flex-wrap justify-center text-[32px] leading-none">
                 <h3 className="font-bold">
                   {user.firstName + " " + user.lastName}
                 </h3>
@@ -94,13 +94,16 @@ export const ProfileInfo = ({ className }) => {
                 </>
               )}
 
-              <Button variant="secondary" className="w-[48px] flex-1">
+              <Button
+                variant="secondary"
+                className="w-[48px] max-[400px]:flex-1"
+              >
                 <i className="arrow_up_icon filter-primary-icon"></i>
               </Button>
             </div>
           </div>
         </div>
-        <AddFriendList className="mt-2" />
+        <AddFriendList className="relative z-20 mt-2" />
         <FriendRequestActions className="relative z-20 mt-4" />
         <Separator className="mt-4" />
       </div>

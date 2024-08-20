@@ -10,10 +10,15 @@ import { PostModal } from "./components/post/post-modal"
 export const ListPost = ({ posts, className }) => {
   return (
     <div className={cn("grid gap-4", className)}>
-      {/* <EmptyPost /> */}
-      {(posts ?? []).map((post) => (
-        <Post key={post._id} post={post} />
-      ))}
+      {(posts ?? []).length === 0 ? (
+        <EmptyPost />
+      ) : (
+        <>
+          {(posts ?? []).map((post) => (
+            <Post key={post._id} post={post} />
+          ))}
+        </>
+      )}
       <PostModal />
       <CreatePostModal />
       <EditPostModal />

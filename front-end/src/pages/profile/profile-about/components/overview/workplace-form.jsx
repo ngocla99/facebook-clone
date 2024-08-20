@@ -67,7 +67,7 @@ export const WorkplaceForm = ({ className }) => {
   const [showPrivacyModal, setShowPrivacyModal] = React.useState(false)
   const { username } = useParams()
   const { data: user } = useProfile(username)
-  const workplace = user.details.workplace?.[0]
+  const workplace = user.details?.workplace?.[0]
 
   const form = useForm({
     resolver: zodResolver(workPlaceSchema),

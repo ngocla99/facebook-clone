@@ -34,7 +34,7 @@ export const CurrentCityForm = ({ className }) => {
   const { data: user } = useProfile(username)
   const [showForm, setShowForm] = React.useState(false)
   const [showPrivacyModal, setShowPrivacyModal] = React.useState(false)
-  const currentCity = user.details.currentCity
+  const currentCity = user.details?.currentCity
 
   const form = useForm({
     resolver: zodResolver(currentCitySchema),

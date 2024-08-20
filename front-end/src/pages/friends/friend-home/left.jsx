@@ -17,8 +17,8 @@ export const Left = ({ className }) => {
 
   return (
     <div className={cn("grid p-2", className)}>
-      <div className="flex justify-between px-2 pt-1">
-        <h3 className="text-[24px] font-bold">Friends</h3>
+      <div className="flex justify-between px-2 pt-1 flex-wrap">
+        <h3 className="text-[20px] sm:text-[24px] font-bold">Friends</h3>
         <Popover>
           <PopoverTrigger asChild>
             <Button variant="secondary" size="icon" className="size-9">
@@ -28,7 +28,7 @@ export const Left = ({ className }) => {
           <PopoverContent
             align="end"
             alignOffset={-12}
-            className="grid w-[344px] p-2 shadow-2xl"
+            className="grid w-[344px] p-2 shadow-2xl z-20"
           >
             <div className="mt-2 px-2">
               <h3 className="text-lg font-medium">Notification settings</h3>
@@ -72,7 +72,7 @@ export const Left = ({ className }) => {
           >
             <i className="friends_home_icon"></i>
           </div>
-          Home
+          <span className="hidden sm:inline">Home</span>
         </Button>
         <Link
           to="requests"
@@ -87,7 +87,7 @@ export const Left = ({ className }) => {
           <div className="grid size-9 place-items-center rounded-full bg-background-secondary">
             <i className="friends_requests_icon"></i>
           </div>
-          Friend Requests
+          <span className="hidden sm:inline">Friend Requests</span>
           <i className="right_icon ml-auto"></i>
         </Link>
         <Link
@@ -103,7 +103,7 @@ export const Left = ({ className }) => {
           <div className="grid size-9 place-items-center rounded-full bg-background-secondary">
             <i className="friends_suggestions_icon"></i>
           </div>
-          Suggestions
+          <span className="hidden sm:inline">Suggestions</span>
           <i className="right_icon ml-auto"></i>
         </Link>
         <Link
@@ -119,7 +119,7 @@ export const Left = ({ className }) => {
           <div className="grid size-9 place-items-center rounded-full bg-background-secondary">
             <i className="all_friends_icon"></i>
           </div>
-          All friends
+          <span className="hidden sm:inline">All friends</span>
           <i className="right_icon ml-auto"></i>
         </Link>
         <Button
@@ -139,7 +139,7 @@ export const Left = ({ className }) => {
           >
             <i className="birthdays_icon"></i>
           </div>
-          Birth days
+          <span className="hidden sm:inline">Birth days</span>
         </Button>
         <Button
           variant="ghost"
@@ -150,7 +150,7 @@ export const Left = ({ className }) => {
           <div className="grid size-9 place-items-center rounded-full bg-background-secondary">
             <i className="all_friends_icon"></i>
           </div>
-          Custom Lists
+          <span className="hidden sm:inline">Custom Lists</span>
           <i className="right_icon ml-auto"></i>
         </Button>
       </div>

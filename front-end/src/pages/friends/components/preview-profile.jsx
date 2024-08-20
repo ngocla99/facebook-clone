@@ -7,7 +7,7 @@ import { useProfile } from "@/hooks/use-profile"
 
 import { EmptyFriend } from "../components/empty-friend"
 
-export const Right = ({ className }) => {
+export const PreviewProfile = ({ className }) => {
   const { username } = useParams()
   const { data: user } = useProfile(username)
 

@@ -34,7 +34,7 @@ export const HometownForm = ({ className }) => {
   const { data: user } = useProfile(username)
   const [showForm, setShowForm] = React.useState(false)
   const [showPrivacyModal, setShowPrivacyModal] = React.useState(false)
-  const hometown = user.details.hometown
+  const hometown = user.details?.hometown
 
   const form = useForm({
     resolver: zodResolver(hometownSchema),
