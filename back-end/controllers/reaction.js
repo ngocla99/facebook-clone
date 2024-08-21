@@ -6,8 +6,8 @@ exports.reactPost = async (req, res) => {
   try {
     const { postId, reactType } = req.body;
     const existedReact = await Reaction.findOne({
-      post: new ObjectId(postId),
-      reactBy: new ObjectId(req.user._id),
+      post: ObjectId.createFromHexString(postId),
+      reactBy: ObjectId.createFromHexString(req.user._id),
     });
 
     if (existedReact) {
@@ -19,8 +19,8 @@ exports.reactPost = async (req, res) => {
       }
     } else {
       const newReact = new Reaction({
-        post: new ObjectId(postId),
-        reactBy: new ObjectId(req.user._id),
+        post: ObjectId.createFromHexString(postId),
+        reactBy: ObjectId.createFromHexString(req.user._id),
         reactType,
       });
 

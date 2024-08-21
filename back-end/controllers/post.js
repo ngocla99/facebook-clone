@@ -1,7 +1,8 @@
 const Post = require("../models/Post");
 const Comment = require("../models/Comment");
+const Collection = require("../models/Collection");
+const User = require("../models/User");
 const { ObjectId } = require("mongodb");
-const Reaction = require("../models/Reaction");
 
 exports.getAllPost = async (req, res) => {
   const authors = [req.user._id, ...req.user.friends, ...req.user.following];
@@ -98,6 +99,84 @@ exports.deletePost = async (req, res) => {
     // TODO: Delete reactions
 
     return res.json({ message: "ok" });
+  } catch (err) {
+    return res.status(500).json({ message: err.message });
+  }
+};
+
+exports.savePost = async (req, res) => {
+  try {
+    const { postId, collectionId, collectionName } = req.body;
+
+    req.user.savedPosts = [
+      ...(req.user.savedPosts ?? []),
+      { post: ObjectId.createFromHexString(postId) },
+    ];
+
+    if (collectionId) {
+      const collection = await Collection.findById(collectionId);
+
+      if (!collection) {
+        return res.status(404).json({ message: "Collection not found" });
+      }
+
+      if (
+        req.user.collections.findIndex(
+          (itm) => itm.toString() === collectionId
+        ) === -1
+      ) {
+        req.user.collections = [
+          ...(req.user.collections ?? []),
+          ObjectId.createFromHexString(collectionId),
+        ];
+      }
+
+      await req.user.save();
+
+      if (
+        collection.posts.findIndex((itm) => itm.post.toString() === postId) ===
+        -1
+      ) {
+        collection.posts = [...collection.posts, { post: postId }];
+        await collection.save();
+      }
+    } else {
+      const collection = new Collection({
+        name: collectionName,
+        posts: [{ post: postId }],
+        user: req.user._id,
+      });
+      await collection.save();
+
+      req.user.collections = [...(req.user.collections ?? []), collection._id];
+      await req.user.save();
+    }
+
+    res.json({ message: "ok" });
+  } catch (err) {
+    return res.status(500).json({ message: err.message });
+  }
+};
+
+exports.unSavePost = async (req, res) => {
+  try {
+    const { postId } = req.body;
+
+    await User.findByIdAndUpdate(req.user._id, {
+      $pull: { savedPosts: { post: ObjectId.createFromHexString(postId) } },
+    });
+
+    await Collection.findOneAndUpdate(
+      {
+        user: req.user._id,
+        "posts.post": ObjectId.createFromHexString(postId),
+      },
+      {
+        $pull: { posts: { post: ObjectId.createFromHexString(postId) } },
+      }
+    );
+
+    res.json({ message: "ok" });
   } catch (err) {
     return res.status(500).json({ message: err.message });
   }

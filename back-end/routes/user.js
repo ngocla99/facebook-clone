@@ -36,6 +36,5 @@ router.patch(
 router.patch("/unfriend", authUser, userController.unfriend);
 router.patch("/follow", authUser, userController.follow);
 router.patch("/unfollow", authUser, userController.unfollow);
-router.patch("/savePost", authUser, userController.savePost);
 
 module.exports = router;

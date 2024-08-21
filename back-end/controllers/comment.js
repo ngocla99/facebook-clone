@@ -39,7 +39,7 @@ exports.updateComment = async (req, res) => {
 exports.deleteComment = async (req, res) => {
   try {
     await Comment.deleteOne({
-      _id: new ObjectId(req.params.id),
+      _id: ObjectId.createFromHexString(req.params.id),
     });
 
     return res.json({ message: "ok" });

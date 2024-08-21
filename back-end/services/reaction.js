@@ -3,7 +3,7 @@ const { ObjectId } = require("mongodb");
 
 exports.getReactions = async ({ postId, userId }) => {
   const result = await Reaction.aggregate([
-    { $match: { post: new ObjectId(postId) } },
+    { $match: { post: ObjectId.createFromHexString(postId) } },
     {
       $lookup: {
         from: "users",
@@ -65,7 +65,7 @@ exports.getReactions = async ({ postId, userId }) => {
                   },
                 },
                 as: "reaction",
-                cond: { $eq: ["$$reaction.userId", new ObjectId(userId)] },
+                cond: { $eq: ["$$reaction.userId", ObjectId.createFromHexString(userId)] },
               },
             },
             0,

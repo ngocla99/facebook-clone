@@ -5,7 +5,7 @@ const { ObjectId } = mongoose.Schema;
 const collectionSchema = mongoose.Schema(
   {
     name: { type: String, unique: true },
-    user: [{ type: ObjectId, required: true, ref: "User" }],
+    user: { type: ObjectId, required: true, ref: "User" },
     posts: [
       {
         _id: false,
