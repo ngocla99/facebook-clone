@@ -9,7 +9,7 @@ const Home = () => {
     <div className="flex">
       <SidebarNav className="sticky top-[56px] hidden max-h-0 min-w-[280px] max-w-[360px] basis-[360px] min-[1100px]:block" />
       <section className="flex flex-1 basis-[744px] flex-col items-center justify-start py-4 sm:px-8">
-        <div className="w-full flex flex-col gap-4 sm:w-[590px] min-[1100px]:w-[460px] xl:w-2xl">
+        <div className="xl:w-[672px] flex w-full flex-col gap-4 sm:w-[590px] min-[1100px]:w-[460px]">
           <CreateStory />
           <Stories className="" />
           <HomePosts />

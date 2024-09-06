@@ -5,7 +5,12 @@ const { ObjectId } = require("mongodb");
 
 exports.getCollections = async (req, res) => {
   try {
-  } catch (err) {}
+    const collections = await Collection.find({ user: req.user._id });
+
+    return res.json(collections);
+  } catch (err) {
+    return res.status(500).json({ message: err.message });
+  }
 };
 
 exports.createCollection = async (req, res) => {

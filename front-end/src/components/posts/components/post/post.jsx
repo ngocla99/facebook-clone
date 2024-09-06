@@ -144,6 +144,7 @@ export const Post = ({ isDialog, post }) => {
               <>
                 {me._id === user._id ? (
                   <PostActionsMe
+                    postId={post._id}
                     onEditPost={() => postEditModal.onOpen(post)}
                     onEditAudience={() => postEditAudienceModal.onOpen(post)}
                     onDelete={handleDeletePost}

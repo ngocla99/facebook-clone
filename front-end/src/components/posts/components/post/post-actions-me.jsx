@@ -1,3 +1,6 @@
+import React from "react"
+import { PopoverClose } from "@radix-ui/react-popover"
+
 import { Button } from "@/components/ui/button"
 import {
   Popover,
@@ -7,10 +10,19 @@ import {
 import { Separator } from "@/components/ui/separator"
 import { Dots } from "@/assets/svg"
 
-export const PostActionsMe = ({ onEditPost, onEditAudience, onDelete }) => {
+import { SavePost } from "./save-post"
+
+export const PostActionsMe = ({
+  postId,
+  onEditPost,
+  onEditAudience,
+  onDelete,
+}) => {
+  const [open, setOpen] = React.useState(false)
+
   return (
-    <Popover>
-      <PopoverTrigger asChild>
+    <Popover open={open} onOpenChange={setOpen}>
+      <PopoverTrigger>
         <Button variant="ghost" size="icon" className="size-9">
           <Dots className="filter-secondary-icon" />
         </Button>
@@ -20,19 +32,7 @@ export const PostActionsMe = ({ onEditPost, onEditAudience, onDelete }) => {
         alignOffset={12}
         className="grid w-[344px] p-2 shadow-xl drop-shadow"
       >
-        <Button
-          variant="ghost"
-          disabled
-          className="h-auto items-start justify-start gap-3 p-2 text-left"
-        >
-          <i className="save_icon filter-primary-icon pt-2"></i>
-          <div className="-mt-[1px] space-y-1">
-            <p className="leading-none">Save post</p>
-            <p className="text-sm font-normal leading-none text-muted-foreground">
-              Add this to your saved items.
-            </p>
-          </div>
-        </Button>
+        <SavePost postId={postId} setOpen={setOpen} />
         <div className="mx-2">
           <Separator className="my-2"></Separator>
         </div>
@@ -79,7 +79,7 @@ export const PostActionsMe = ({ onEditPost, onEditAudience, onDelete }) => {
           <i className="trash_fill_icon_20 filter-primary-icon"></i>
           <div className="-mt-[1px] space-y-1">
             <p className="leading-none">Move to trash</p>
-            <p className="text-sm font-normal leading-none text-muted-foreground">
+            <p className="text-xs font-normal leading-none text-muted-foreground">
               Items in your trash are deleted after 30 days.
             </p>
           </div>

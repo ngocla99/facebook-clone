@@ -19,3 +19,11 @@ export const updatePostApi = (post) => {
 export const deletePostApi = (id) => {
   return axiosClient.delete(`/deletePost/${id}`)
 }
+
+export const savePostApi = (data) => {
+  return axiosClient.post(`/savePost`, data)
+}
+
+export const unSavePostApi = (data) => {
+  return axiosClient.post(`/unSavePost`, data)
+}

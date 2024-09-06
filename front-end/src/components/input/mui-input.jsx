@@ -13,7 +13,8 @@ export const MuiInput = React.forwardRef(
           ref={ref}
           size="lg"
           className={cn(
-            "peer pt-2 font-normal hover:border-muted-foreground focus:border-border focus:ring-2 focus:ring-primary focus:ring-offset-2",
+            "peer pt-2 font-normal hover:border-muted-foreground focus:border-border focus:ring-2 focus:ring-primary  focus:ring-offset-2",
+            label && props.placeholder && "placeholder:text-white",
             className
           )}
           placeholder=" "

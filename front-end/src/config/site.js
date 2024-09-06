@@ -257,6 +257,7 @@ export const siteConfig = {
     {
       text: "Saved",
       img: "saved",
+      href: "saved",
     },
     {
       text: "Groups",

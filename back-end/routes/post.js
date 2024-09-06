@@ -13,8 +13,8 @@ router.get("/getPost/:id", postController.getPost);
 router.post("/createPost", authUser, postController.createPost);
 router.post("/updatePost", authUser, postController.updatePost);
 router.delete("/deletePost/:id", authUser, postController.deletePost);
-router.patch("/savePost", authUser, validateSavedPost, postController.savePost);
-router.patch(
+router.post("/savePost", authUser, validateSavedPost, postController.savePost);
+router.post(
   "/unSavePost",
   authUser,
   validateUnSavedPost,

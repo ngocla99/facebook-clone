@@ -65,7 +65,7 @@ exports.getReactions = async ({ postId, userId }) => {
                   },
                 },
                 as: "reaction",
-                cond: { $eq: ["$$reaction.userId", ObjectId.createFromHexString(userId)] },
+                cond: { $eq: ["$$reaction.userId", userId] },
               },
             },
             0,
