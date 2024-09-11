@@ -2,6 +2,7 @@ import React from "react"
 import { updateProfileApi } from "@/api/services/user"
 import { useSize } from "@/hooks"
 import { useMutation, useQueryClient } from "@tanstack/react-query"
+import Cropper from "react-easy-crop"
 
 import { cn } from "@/lib/utils"
 import { Button } from "@/components/ui/button"
@@ -75,14 +76,27 @@ export const UploadProfileCover = ({ user, className }) => {
           !uploadFile.file && "image-box",
           className
         )}
-        style={{
-          backgroundImage:
-            user.coverPhoto && !uploadFile.file
-              ? `url(${user.coverPhoto.photo.croppedImage.url})`
-              : "unset",
-        }}
+        // style={{
+        //   backgroundImage:
+        //     user.coverPhoto && !uploadFile.file
+        //       ? `url(${user.coverPhoto.photo.croppedImage.url})`
+        //       : "unset",
+        // }}
       >
         <div className="pt-[38%]">
+          {user.coverPhoto && (
+            <Cropper
+              image={user.coverPhoto.photo.image.url}
+              crop={user.coverPhoto.focus}
+              zoom={1}
+              aspect={width / height}
+              cropShape="rect"
+              showGrid={false}
+              onWheelRequest={() => false}
+              onCropChange={() => {}}
+              objectFit="horizontal-cover"
+            />
+          )}
           {uploadFile.file && (
             <ProfileCoverForm
               aspect={width / height}
@@ -184,7 +198,7 @@ export const UploadProfileCover = ({ user, className }) => {
         )}
       </div>
       {uploadFile.file && (
-        <div className="absolute left-0 right-0 top-[56px] flex items-center justify-between bg-[rgba(0,0,0,0.4)] px-4 py-3">
+        <div className="absolute left-0 right-0 top-0 flex items-center justify-between bg-[rgba(0,0,0,0.4)] px-4 py-3">
           <div className="flex gap-3">
             <i className="public_icon invert"></i>
             <p className="font-medium text-white">
