@@ -15,27 +15,27 @@ const DUMMY = [
   {
     profilePicture: "images/stories/profile1.jpg",
     profileName: "Elon Musk",
-    image: "images/stories/1.jpg",
+    image: "images/stories/1.gif",
   },
   {
     profilePicture: "images/stories/profile2.jpg",
     profileName: "South park",
-    image: "images/stories/2.png",
+    image: "images/stories/2.gif",
   },
   {
-    profilePicture: "images/stories/profile3.png",
+    profilePicture: "images/stories/profile6.jpg",
     profileName: "The Sopranos",
-    image: "images/stories/3.jpg",
+    image: "images/stories/3.gif",
   },
   {
-    profilePicture: "images/stories/profile4.jfif",
+    profilePicture: "images/stories/profile3.jpg",
     profileName: "Football World",
-    image: "images/stories/4.jpg",
+    image: "images/stories/4.gif",
   },
   {
-    profilePicture: "images/stories/profile5.png",
+    profilePicture: "images/stories/profile4.jpg",
     profileName: "The Witcher Wild Hunt",
-    image: "images/stories/5.jfif",
+    image: "images/stories/5.gif",
   },
 ]
 

@@ -3,8 +3,8 @@
 import React from "react"
 
 export const useSize = (ref) => {
-  const [width, setWidth] = React.useState()
-  const [height, setHeight] = React.useState()
+  const [width, setWidth] = React.useState(1)
+  const [height, setHeight] = React.useState(1)
 
   React.useEffect(
     () => {

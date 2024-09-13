@@ -22,7 +22,7 @@ export const PostActionsMe = ({
 
   return (
     <Popover open={open} onOpenChange={setOpen}>
-      <PopoverTrigger>
+      <PopoverTrigger asChild>
         <Button variant="ghost" size="icon" className="size-9">
           <Dots className="filter-secondary-icon" />
         </Button>
