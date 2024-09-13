@@ -11,46 +11,41 @@ import {
   TooltipProvider,
   TooltipTrigger,
 } from "@/components/ui/tooltip"
+import { Emoji } from "@/components/emoji"
 
 const reactIcons = [
   {
-    key: "like",
-    gif: "/icons/reacts/like.gif",
+    icon: "Bullseye",
     img: "/icons/reacts/like.svg",
     title: "Like",
     value: "LIKE",
   },
   {
-    key: "love",
-    gif: "/icons/reacts/love.gif",
+    icon: "love",
     img: "/icons/reacts/love.svg",
     title: "Love",
     value: "LOVE",
   },
   {
-    key: "haha",
-    gif: "/icons/reacts/haha.gif",
+    icon: "joy",
     img: "/icons/reacts/haha.svg",
     title: "Haha",
     value: "HAHA",
   },
   {
-    key: "wow",
-    gif: "/icons/reacts/wow.gif",
+    icon: "Mindblown",
     img: "/icons/reacts/wow.svg",
     title: "Wow",
     value: "WOW",
   },
   {
-    key: "sad",
-    gif: "/icons/reacts/sad.gif",
+    icon: "Tada",
     img: "/icons/reacts/sad.svg",
     title: "Sad",
     value: "SAD",
   },
   {
-    key: "angry",
-    gif: "/icons/reacts/angry.gif",
+    icon: "Onfire",
     img: "/icons/reacts/angry.svg",
     title: "Angry",
     value: "ANGRY",
@@ -98,13 +93,11 @@ export const PostToolbar = ({ postId, className }) => {
               <ReactionText type={reactions?.ownReaction?.reactType} />
             </Button>
           </TooltipTrigger>
-          <TooltipContent className="flex gap-2 rounded-[40px] bg-card py-[5px] shadow-md">
+          <TooltipContent className="flex h-[52px] items-end overflow-visible rounded-[40px] bg-card py-[5px] shadow-md">
             {reactIcons.map((itm) => (
-              <img
-                key={itm.key}
-                src={itm.gif}
-                alt={itm.title}
-                className="size-[39px] cursor-pointer"
+              <Emoji
+                className="h-[60px] w-[52px]"
+                icon={itm.icon}
                 onClick={() => handleReactPost(itm.value)}
               />
             ))}
