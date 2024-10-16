@@ -82,7 +82,7 @@ export const ProfileInfo = ({ className }) => {
                     variant={user.friendship.friends ? "default" : "secondary"}
                   >
                     <img
-                      src="/icons/message.png"
+                      src="/icons/single/message.png"
                       alt="message"
                       className={cn(
                         "mr-1.5",

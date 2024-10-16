@@ -1,12 +1,13 @@
-import { FriendsLayout } from "../friends-layout"
+import { DivideLayout } from "@/components/layouts/divide-layout"
+
 import { Left } from "./left"
 import { Right } from "./right"
 
 export const FriendHome = () => {
   return (
-    <FriendsLayout>
+    <DivideLayout>
       <Left />
       <Right />
-    </FriendsLayout>
+    </DivideLayout>
   )
 }

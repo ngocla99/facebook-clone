@@ -150,7 +150,7 @@ export const SavePost = ({ postId, setOpen }) => {
                   <p className="text-lg font-medium leading-none">{itm.name}</p>
                   <div className="flex items-center gap-2">
                     <img
-                      src="/icons/12x12/private.png"
+                      src="/icons/size/12/private.png"
                       alt="private"
                       className="filter-secondary-icon"
                     />

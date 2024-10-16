@@ -1,0 +1,67 @@
+import React from "react"
+
+import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar"
+import { Button } from "@/components/ui/button"
+import { Card, CardContent } from "@/components/ui/card"
+import { Dots } from "@/assets/svg"
+
+export const SavedItem = ({ item }) => (
+  <Card className="overflow-hidden">
+    <CardContent className="flex p-4">
+      {item.image && (
+        <img
+          src={item.image}
+          alt={item.title}
+          className="mr-4 size-[144px] rounded-md object-cover"
+        />
+      )}
+      {item.video && (
+        <div className="relative mr-4 h-20 w-20">
+          <img
+            src={item.thumbnail}
+            alt={item.title}
+            className="h-full w-full rounded-md object-cover"
+          />
+          <div className="absolute inset-0 flex items-center justify-center">
+            <div className="border-l-12 h-0 w-0 border-b-8 border-t-8 border-b-transparent border-l-white border-t-transparent"></div>
+          </div>
+          <span className="absolute bottom-1 right-1 rounded bg-black bg-opacity-70 px-1 py-0.5 text-xs text-white">
+            {item.duration}
+          </span>
+        </div>
+      )}
+      <div className="flex-1">
+        <h3 className="mb-0.5 line-clamp-2 overflow-hidden text-xl font-bold underline-offset-1 hover:underline">
+          {item.title}
+        </h3>
+        {item.type && <p className="mb-1 text-sm text-gray-600">{item.type}</p>}
+        <div className="flex items-center gap-[2px]">
+          <p className="text-sm text-muted-foreground">
+            Post • Saved to <span className="text-foreground">For later</span>
+          </p>
+        </div>
+        <div className="mt-3 flex items-center gap-2">
+          <Avatar className="size-6">
+            <AvatarImage src={item.avatarSrc} alt={item.savedFrom} />
+            <AvatarFallback>{item.savedFrom}</AvatarFallback>
+          </Avatar>
+          <p className="text-xs text-muted-foreground">
+            Saved to{" "}
+            <span className="text-foreground">{item.savedFrom}'s post</span>
+          </p>
+        </div>
+        <div className="flex flex-wrap gap-2 px-3 py-4">
+          <Button variant="secondary" className="px-10">
+            Add to Collection
+          </Button>
+          <Button variant="secondary" className="w-12">
+            <i className="share-icon"></i>
+          </Button>
+          <Button variant="secondary" className="w-12">
+            <Dots className="size-4" />
+          </Button>
+        </div>
+      </div>
+    </CardContent>
+  </Card>
+)

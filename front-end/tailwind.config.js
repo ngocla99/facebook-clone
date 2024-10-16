@@ -78,9 +78,10 @@ module.exports = {
         },
       },
       fontSize: {
-        sm: "13px",
-        base: "15px",
-        lg: "17px",
+        sm: ["13px", "16px"],
+        base: ["15px", "20px"],
+        lg: ["17px", "20px"],
+        xl: ["20px", "24px"],
       },
       borderRadius: {
         lg: "var(--radius)",

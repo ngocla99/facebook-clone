@@ -119,21 +119,21 @@ export const Post = ({ isDialog, post }) => {
                 <span className="leading-4"> · </span>
                 {audience === "EVERYONE" && (
                   <img
-                    src="/icons/12x12/public.png"
+                    src="/icons/size/12/public.png"
                     alt="Public"
                     className="filter-secondary-icon"
                   />
                 )}
                 {audience === "FRIENDS" && (
                   <img
-                    src="/icons/12x12/friends.png"
+                    src="/icons/size/12/friends.png"
                     alt="Friends"
                     className="filter-secondary-icon"
                   />
                 )}
                 {audience === "SELF" && (
                   <img
-                    src="/icons/12x12/private.png"
+                    src="/icons/size/12/private.png"
                     alt="Only me"
                     className="filter-secondary-icon"
                   />

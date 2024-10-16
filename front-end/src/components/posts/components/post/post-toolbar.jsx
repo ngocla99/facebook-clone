@@ -16,37 +16,37 @@ import { Emoji } from "@/components/emoji"
 const reactIcons = [
   {
     icon: "Bullseye",
-    img: "/icons/reacts/like.svg",
+    img: "/icons/category/reactions/like.svg",
     title: "Like",
     value: "LIKE",
   },
   {
     icon: "love",
-    img: "/icons/reacts/love.svg",
+    img: "/icons/category/reactions/love.svg",
     title: "Love",
     value: "LOVE",
   },
   {
     icon: "joy",
-    img: "/icons/reacts/haha.svg",
+    img: "/icons/category/reactions/haha.svg",
     title: "Haha",
     value: "HAHA",
   },
   {
     icon: "Mindblown",
-    img: "/icons/reacts/wow.svg",
+    img: "/icons/category/reactions/wow.svg",
     title: "Wow",
     value: "WOW",
   },
   {
     icon: "Tada",
-    img: "/icons/reacts/sad.svg",
+    img: "/icons/category/reactions/sad.svg",
     title: "Sad",
     value: "SAD",
   },
   {
     icon: "Onfire",
-    img: "/icons/reacts/angry.svg",
+    img: "/icons/category/reactions/angry.svg",
     title: "Angry",
     value: "ANGRY",
   },
@@ -141,7 +141,7 @@ const ReactionText = ({ type }) => {
       return (
         <>
           <img
-            src="/icons/reacts/love.svg"
+            src="/icons/category/reactions/love.svg"
             alt="Love"
             className="size-[18px]"
           />
@@ -152,7 +152,7 @@ const ReactionText = ({ type }) => {
       return (
         <>
           <img
-            src="/icons/reacts/haha.svg"
+            src="/icons/category/reactions/haha.svg"
             alt="HaHa"
             className="size-[18px]"
           />
@@ -162,14 +162,14 @@ const ReactionText = ({ type }) => {
     case "WOW":
       return (
         <>
-          <img src="/icons/reacts/wow.svg" alt="Wow" className="size-[18px]" />
+          <img src="/icons/category/reactions/wow.svg" alt="Wow" className="size-[18px]" />
           <p className="text-[#f7b125]">Wow</p>
         </>
       )
     case "SAD":
       return (
         <>
-          <img src="/icons/reacts/sad.svg" alt="Sad" className="size-[18px]" />
+          <img src="/icons/category/reactions/sad.svg" alt="Sad" className="size-[18px]" />
           <p className="text-[#f7b125]">Sad</p>
         </>
       )
@@ -177,7 +177,7 @@ const ReactionText = ({ type }) => {
       return (
         <>
           <img
-            src="/icons/reacts/angry.svg"
+            src="/icons/category/reactions/angry.svg"
             alt="Angry"
             className="size-[18px]"
           />

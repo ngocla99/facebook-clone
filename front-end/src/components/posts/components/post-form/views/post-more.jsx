@@ -11,7 +11,7 @@ export const PostMore = ({ setView }) => {
           className="h-[44px] justify-start gap-3 px-2 text-left"
           variant="ghost"
         >
-          <img src="/icons/photo.png" alt="Photo" className="size-6" />
+          <img src="/icons/single/photo.png" alt="Photo" className="size-6" />
           <p className="text-lg">Photo/video</p>
         </Button>
         <Button
@@ -19,7 +19,7 @@ export const PostMore = ({ setView }) => {
           variant="ghost"
           onClick={() => setView(VIEWS.TAG)}
         >
-          <img src="/icons/tagFriend.png" alt="Tag Friend" className="size-6" />
+          <img src="/icons/single/tagFriend.png" alt="Tag Friend" className="size-6" />
           <p className="text-lg">Tag people</p>
         </Button>
         <Button
@@ -27,7 +27,7 @@ export const PostMore = ({ setView }) => {
           variant="ghost"
           onClick={() => setView(VIEWS.FEELING)}
         >
-          <img src="/icons/feeling.png" alt="Feeling" className="size-6" />
+          <img src="/icons/single/feeling.png" alt="Feeling" className="size-6" />
           <p className="text-lg">Feeling/activity</p>
         </Button>
         <Button
@@ -35,7 +35,7 @@ export const PostMore = ({ setView }) => {
           variant="ghost"
           onClick={() => setView(VIEWS.LOCATION)}
         >
-          <img src="/icons/map.png" alt="Map" className="size-6" />
+          <img src="/icons/single/map.png" alt="Map" className="size-6" />
           <p className="text-lg">Check in</p>
         </Button>
         <Button
@@ -43,7 +43,7 @@ export const PostMore = ({ setView }) => {
           variant="ghost"
           onClick={() => setView(VIEWS.GIF)}
         >
-          <img src="/icons/gif.png" alt="Gif" className="size-6" />
+          <img src="/icons/single/gif.png" alt="Gif" className="size-6" />
           <p className="text-lg">GIF</p>
         </Button>
         <Button
@@ -64,7 +64,7 @@ export const PostMore = ({ setView }) => {
           variant="ghost"
           onClick={() => setView(VIEWS.EVENTS)}
         >
-          <img src="/icons/flag.png" alt="Life event" className="size-6" />
+          <img src="/icons/single/flag.png" alt="Life event" className="size-6" />
           <p className="text-lg">Life event</p>
         </Button>
       </div>

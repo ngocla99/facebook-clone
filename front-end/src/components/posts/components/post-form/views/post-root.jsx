@@ -106,19 +106,19 @@ export const PostRoot = React.forwardRef(
               >
                 {audience === "EVERYONE" && (
                   <>
-                    <img src="/icons/12x12/public.png" alt="Public" />
+                    <img src="/icons/size/12/public.png" alt="Public" />
                     Public
                   </>
                 )}
                 {audience === "FRIENDS" && (
                   <>
-                    <img src="/icons/12x12/friends.png" alt="Friends" />
+                    <img src="/icons/size/12/friends.png" alt="Friends" />
                     Friends
                   </>
                 )}
                 {audience === "SELF" && (
                   <>
-                    <img src="/icons/12x12/private.png" alt="Only me" />
+                    <img src="/icons/size/12/private.png" alt="Only me" />
                     Only me
                   </>
                 )}

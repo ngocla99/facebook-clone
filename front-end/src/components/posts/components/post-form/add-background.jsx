@@ -55,7 +55,7 @@ export const AddBackground = ({ form, setView }) => {
     <div className="">
       {!showMore ? (
         <img
-          src="/icons/colorful.png"
+          src="/icons/single/colorful.png"
           alt="Post Background"
           className="size-[38px]"
           onClick={() => setShowMore(true)}

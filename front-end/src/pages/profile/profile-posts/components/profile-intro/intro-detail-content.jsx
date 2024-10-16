@@ -18,7 +18,7 @@ export const IntroDetailContent = ({ className }) => {
       {isShowing("workplace") && workplace.length > 0 && (
         <div className="flex items-center justify-center gap-3">
           <img
-            src="/icons/profile/workplace_20.png"
+            src="/icons/category/profile/workplace_20.png"
             alt="Work place"
             className="filter-placeholder-icon self-start py-1.5"
           />
@@ -36,7 +36,7 @@ export const IntroDetailContent = ({ className }) => {
       {isShowing("currentCity") && currentCity && (
         <div className="flex items-center justify-center gap-3">
           <img
-            src="/icons/profile/mark_20.png"
+            src="/icons/category/profile/mark_20.png"
             alt="Work place"
             className="filter-placeholder-icon py-1.5"
           />
@@ -51,7 +51,7 @@ export const IntroDetailContent = ({ className }) => {
       {isShowing("hometown") && hometown && (
         <div className="flex items-center justify-center gap-3">
           <img
-            src="/icons/profile/mark_20.png"
+            src="/icons/category/profile/mark_20.png"
             alt="Work place"
             className="filter-placeholder-icon py-1.5"
           />
@@ -65,7 +65,7 @@ export const IntroDetailContent = ({ className }) => {
       {isShowing("createdDate") && user.createdAt && (
         <div className="flex items-center justify-center gap-3">
           <img
-            src="/icons/profile/date_20.png"
+            src="/icons/category/profile/date_20.png"
             alt="Work place"
             className="filter-placeholder-icon py-1.5"
           />

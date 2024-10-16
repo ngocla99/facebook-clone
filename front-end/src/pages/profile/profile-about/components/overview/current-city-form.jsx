@@ -87,7 +87,7 @@ export const CurrentCityForm = ({ className }) => {
     return (
       <div className="flex items-center justify-center gap-3">
         <img
-          src="/icons/profile/home.png"
+          src="/icons/category/profile/home.png"
           alt="Work place"
           className="filter-secondary-icon"
         />
@@ -107,21 +107,21 @@ export const CurrentCityForm = ({ className }) => {
           >
             {currentCity.privacy === "EVERYONE" && (
               <img
-                src="/icons/16x16/public.png"
+                src="/icons/size/16/public.png"
                 alt="Public"
                 className="filter-secondary-icon"
               />
             )}
             {currentCity.privacy === "FRIENDS" && (
               <img
-                src="/icons/16x16/friends.png"
+                src="/icons/size/16/friends.png"
                 alt="Friends"
                 className="filter-secondary-icon"
               />
             )}
             {currentCity.privacy === "SELF" && (
               <img
-                src="/icons/16x16/private.png"
+                src="/icons/size/16/private.png"
                 alt="Only me"
                 className="filter-secondary-icon"
               />
@@ -208,7 +208,7 @@ export const CurrentCityForm = ({ className }) => {
             {privacy === "EVERYONE" && (
               <>
                 <img
-                  src="/icons/12x12/public.png"
+                  src="/icons/size/12/public.png"
                   alt="Public"
                   className="filter-secondary-icon"
                 />
@@ -218,7 +218,7 @@ export const CurrentCityForm = ({ className }) => {
             {privacy === "FRIENDS" && (
               <>
                 <img
-                  src="/icons/12x12/friends.png"
+                  src="/icons/size/12/friends.png"
                   alt="Friends"
                   className="filter-secondary-icon"
                 />
@@ -228,7 +228,7 @@ export const CurrentCityForm = ({ className }) => {
             {privacy === "SELF" && (
               <>
                 <img
-                  src="/icons/12x12/private.png"
+                  src="/icons/size/12/private.png"
                   alt="Only me"
                   className="filter-secondary-icon"
                 />

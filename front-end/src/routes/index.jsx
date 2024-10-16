@@ -10,6 +10,7 @@ import PageNotFound from "@/pages/page-not-found"
 import { ProfileAbout } from "@/pages/profile/profile-about"
 import { ProfileLayout } from "@/pages/profile/profile-layout"
 import { ProfilePosts } from "@/pages/profile/profile-posts"
+import { Saved } from "@/pages/saved"
 import { createBrowserRouter, RouterProvider } from "react-router-dom"
 
 import { useAuth } from "@/providers/auth-provider"
@@ -148,6 +149,10 @@ const Routes = () => {
               element: <FriendList />,
             },
           ],
+        },
+        {
+          path: "/saved",
+          element: <Saved />,
         },
         {
           path: "/password/change/reason",

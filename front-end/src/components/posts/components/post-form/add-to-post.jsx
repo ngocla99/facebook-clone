@@ -33,7 +33,7 @@ export const AddToPost = ({
               disabled={!!background}
               onClick={() => setShowImageUpload(true)}
             >
-              <img src="/icons/photo.png" alt="Photo" className="size-6" />
+              <img src="/icons/single/photo.png" alt="Photo" className="size-6" />
             </Button>
           </TooltipTrigger>
           <TooltipContent>Photo/Video</TooltipContent>
@@ -47,7 +47,7 @@ export const AddToPost = ({
               onClick={() => setView(VIEWS.TAG)}
             >
               <img
-                src="/icons/tagFriend.png"
+                src="/icons/single/tagFriend.png"
                 alt="Tag Friend"
                 className="size-6"
               />
@@ -63,7 +63,7 @@ export const AddToPost = ({
               size="icon"
               onClick={() => setView(VIEWS.FEELING)}
             >
-              <img src="/icons/feeling.png" alt="Feeling" className="size-6" />
+              <img src="/icons/single/feeling.png" alt="Feeling" className="size-6" />
             </Button>
           </TooltipTrigger>
           <TooltipContent>Feeling/activity</TooltipContent>
@@ -76,7 +76,7 @@ export const AddToPost = ({
               size="icon"
               onClick={() => setView(VIEWS.LOCATION)}
             >
-              <img src="/icons/map.png" alt="Map" className="size-6" />
+              <img src="/icons/single/map.png" alt="Map" className="size-6" />
             </Button>
           </TooltipTrigger>
           <TooltipContent>Check in</TooltipContent>
@@ -90,7 +90,7 @@ export const AddToPost = ({
               disabled={showImageUpload || !!background}
               onClick={() => setView(VIEWS.GIF)}
             >
-              <img src="/icons/gif.png" alt="Gif" className="size-6" />
+              <img src="/icons/single/gif.png" alt="Gif" className="size-6" />
             </Button>
           </TooltipTrigger>
           <TooltipContent>GIF</TooltipContent>

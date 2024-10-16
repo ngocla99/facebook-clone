@@ -140,7 +140,7 @@ export const FriendshipActions = () => {
         <PopoverTrigger asChild>
           <Button variant="secondary">
             <img
-              src="/icons/friendship/friends.png"
+              src="/icons/category/friendship/friends.png"
               alt="add friend"
               className="mr-1.5"
             />
@@ -155,7 +155,7 @@ export const FriendshipActions = () => {
           {friendship.following && (
             <Button variant="ghost" className="justify-start px-2">
               <img
-                src="/icons/friendship/favorites.png"
+                src="/icons/category/friendship/favorites.png"
                 alt="favorites"
                 className="mr-3"
               />
@@ -164,7 +164,7 @@ export const FriendshipActions = () => {
           )}
           <Button variant="ghost" className="justify-start px-2">
             <img
-              src="/icons/friendship/editFriends.png"
+              src="/icons/category/friendship/editFriends.png"
               alt="edit friends"
               className="mr-3"
             />
@@ -178,7 +178,7 @@ export const FriendshipActions = () => {
                 onClick={follow}
               >
                 <img
-                  src="/icons/friendship/follow.png"
+                  src="/icons/category/friendship/follow.png"
                   alt="follow"
                   className="mr-3"
                 />
@@ -193,7 +193,7 @@ export const FriendshipActions = () => {
                 onClick={unfollow}
               >
                 <img
-                  src="/icons/friendship/unfollow.png"
+                  src="/icons/category/friendship/unfollow.png"
                   alt="unfollow"
                   className="mr-3"
                 />
@@ -220,7 +220,7 @@ export const FriendshipActions = () => {
         <PopoverTrigger asChild>
           <Button className="gap-1.5">
             <img
-              src="/icons/friendship/friends.png"
+              src="/icons/category/friendship/friends.png"
               alt="add friend"
               className="invert"
             />
@@ -262,7 +262,7 @@ export const FriendshipActions = () => {
           <Loading className="size-4" />
         ) : (
           <img
-            src="/icons/friendship/cancelRequest.png"
+            src="/icons/category/friendship/cancelRequest.png"
             alt="cancel request"
             className="invert"
           />
@@ -278,7 +278,7 @@ export const FriendshipActions = () => {
         <Loading className="size-4" />
       ) : (
         <img
-          src="/icons/friendship/addFriend.png"
+          src="/icons/category/friendship/addFriend.png"
           alt="add friend"
           className="invert"
         />

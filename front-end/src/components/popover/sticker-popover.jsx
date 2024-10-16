@@ -21,52 +21,52 @@ const stickers = [
   {
     title: "Happy",
     bgColor: "rgb(255, 204, 0)",
-    image: "/icons/stickers/happy.png",
+    image: "/icons/category/stickers/happy.png",
   },
   {
     title: "In love",
     bgColor: "rgb(246, 78, 136)",
-    image: "/icons/stickers/love.png",
+    image: "/icons/category/stickers/love.png",
   },
   {
     title: "Sad",
     bgColor: "rgb(169, 161, 146)",
-    image: "/icons/stickers/sad.png",
+    image: "/icons/category/stickers/sad.png",
   },
   {
     title: "Eating",
     bgColor: "rgb(252, 138, 15)",
-    image: "/icons/stickers/eat.png",
+    image: "/icons/category/stickers/eat.png",
   },
   {
     title: "Celebratin",
     bgColor: "rgb(149, 198, 63)",
-    image: "/icons/stickers/celebrate.png",
+    image: "/icons/category/stickers/celebrate.png",
   },
   {
     title: "Active",
     bgColor: "rgb(84, 198, 227)",
-    image: "/icons/stickers/active.png",
+    image: "/icons/category/stickers/active.png",
   },
   {
     title: "Working",
     bgColor: "rgb(25, 181, 150)",
-    image: "/icons/stickers/work.png",
+    image: "/icons/category/stickers/work.png",
   },
   {
     title: "Sleepy",
     bgColor: "rgb(149, 113, 169)",
-    image: "/icons/stickers/sleep.png",
+    image: "/icons/category/stickers/sleep.png",
   },
   {
     title: "Angry",
     bgColor: "rgb(237, 81, 62)",
-    image: "/icons/stickers/angry.png",
+    image: "/icons/category/stickers/angry.png",
   },
   {
     title: "Confused",
     bgColor: "rgb(179, 119, 54)",
-    image: "/icons/stickers/confuse.png",
+    image: "/icons/category/stickers/confuse.png",
   },
 ]
 

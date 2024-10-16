@@ -39,7 +39,7 @@ export const PostStats = ({ post, className }) => {
                 >
                   <div className="cursor-pointer rounded-full border-2 border-card">
                     <img
-                      src={`/icons/reacts/${itm.reactType.toLowerCase()}.svg`}
+                      src={`/icons/category/reactions/${itm.reactType.toLowerCase()}.svg`}
                       alt={itm.reactType}
                       className="size-[18px]"
                     />

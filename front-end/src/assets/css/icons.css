@@ -1,5 +1,5 @@
 .friends_home_icon {
-  background-image: url(/icons/icons61.png);
+  background-image: url(/icons/sprite/icons61.png);
   background-position: 0px -134px;
   background-size: auto;
   width: 20px;
@@ -8,7 +8,7 @@
   display: inline-block;
 }
 .friends_requests_icon {
-  background-image: url(/icons/icons11.png);
+  background-image: url(/icons/sprite/icons11.png);
   background-position: 0px -117px;
   background-size: auto;
   width: 20px;
@@ -18,7 +18,7 @@
   -webkit-filter: invert(10%);
 }
 .friends_suggestions_icon {
-  background-image: url(/icons/icons11.png);
+  background-image: url(/icons/sprite/icons11.png);
   background-position: 0px -75px;
   background-size: auto;
   width: 20px;
@@ -28,7 +28,7 @@
   display: inline-block;
 }
 .friends_suggestions_icon_16 {
-  background-image: url(/icons/icons53.png);
+  background-image: url(/icons/sprite/icons53.png);
   background-position: 0px -513px;
   background-size: auto;
   width: 16px;
@@ -37,7 +37,7 @@
   display: inline-block;
 }
 .all_friends_icon {
-  background-image: url(/icons/icons11.png);
+  background-image: url(/icons/sprite/icons11.png);
   background-position: 0px -96px;
   background-size: auto;
   width: 20px;
@@ -47,7 +47,7 @@
   display: inline-block;
 }
 .birthdays_icon {
-  background-image: url(/icons/icons11.png);
+  background-image: url(/icons/sprite/icons11.png);
   background-position: 0px -138px;
   background-size: auto;
   width: 20px;
@@ -57,7 +57,7 @@
   display: inline-block;
 }
 .m_post_icon {
-  background-image: url(/icons/icons12.png);
+  background-image: url(/icons/sprite/icons12.png);
   background-position: 0px -132px;
   background-size: auto;
   width: 20px;
@@ -66,7 +66,7 @@
   display: inline-block;
 }
 .m_story_icon {
-  background-image: url(/icons/icons13.png);
+  background-image: url(/icons/sprite/icons13.png);
   background-position: 0px -387px;
   background-size: auto;
   width: 20px;
@@ -75,7 +75,7 @@
   display: inline-block;
 }
 .m_room_icon {
-  background-image: url(/icons/icons14.png);
+  background-image: url(/icons/sprite/icons14.png);
   background-position: 0px -542px;
   background-size: auto;
   width: 20px;
@@ -84,7 +84,7 @@
   display: inline-block;
 }
 .m_page_icon {
-  background-image: url(/icons/icons14.png);
+  background-image: url(/icons/sprite/icons14.png);
   background-position: 0px -521px;
   background-size: auto;
   width: 20px;
@@ -93,7 +93,7 @@
   display: inline-block;
 }
 .m_ad_icon {
-  background-image: url(/icons/icons14.png);
+  background-image: url(/icons/sprite/icons14.png);
   background-position: 0px -1004px;
   background-size: auto;
   width: 20px;
@@ -102,7 +102,7 @@
   display: inline-block;
 }
 .m_group_icon {
-  background-image: url(/icons/icons14.png);
+  background-image: url(/icons/sprite/icons14.png);
   background-position: 0px -479px;
   background-size: auto;
   width: 20px;
@@ -111,7 +111,7 @@
   display: inline-block;
 }
 .m_event_icon {
-  background-image: url(/icons/icons14.png);
+  background-image: url(/icons/sprite/icons14.png);
   background-position: 0px -647px;
   background-size: auto;
   width: 20px;
@@ -120,7 +120,7 @@
   display: inline-block;
 }
 .m_post_mar {
-  background-image: url(/icons/icons13.png);
+  background-image: url(/icons/sprite/icons13.png);
   background-position: 0px -366px;
   background-size: auto;
   width: 20px;
@@ -129,7 +129,7 @@
   display: inline-block;
 }
 .m_post_job {
-  background-image: url(/icons/icons14.png);
+  background-image: url(/icons/sprite/icons14.png);
   background-position: 0px -626px;
   background-size: auto;
   width: 20px;
@@ -138,7 +138,7 @@
   display: inline-block;
 }
 .report_filled_icon {
-  background-image: url(/icons/icons15.png);
+  background-image: url(/icons/sprite/icons15.png);
   background-position: 0px -25px;
   background-size: auto;
   width: 20px;
@@ -147,7 +147,7 @@
   display: inline-block;
 }
 .settings_filled_icon {
-  background-image: url(/icons/icons16.png);
+  background-image: url(/icons/sprite/icons16.png);
   background-position: -21px -228px;
   background-size: auto;
   width: 20px;
@@ -156,7 +156,7 @@
   display: inline-block;
 }
 .help_filled_icon {
-  background-image: url(/icons/icons17.png);
+  background-image: url(/icons/sprite/icons17.png);
   background-position: 0px -487px;
   background-size: auto;
   width: 20px;
@@ -165,7 +165,7 @@
   display: inline-block;
 }
 .dark_filled_icon {
-  background-image: url(/icons/icons17.png);
+  background-image: url(/icons/sprite/icons17.png);
   background-position: 0px -340px;
   background-size: auto;
   width: 20px;
@@ -174,7 +174,7 @@
   display: inline-block;
 }
 .logout_filled_icon {
-  background-image: url(/icons/icons15.png);
+  background-image: url(/icons/sprite/icons15.png);
   background-position: 0px -46px;
   background-size: auto;
   width: 20px;
@@ -183,7 +183,7 @@
   display: inline-block;
 }
 .right_icon {
-  background-image: url(/icons/icons18.png);
+  background-image: url(/icons/sprite/icons18.png);
   background-position: -83px -13px;
   background-size: auto;
   width: 24px;
@@ -193,7 +193,7 @@
   filter: invert(50%);
 }
 .right_icon_20 {
-  background-image: url(/icons/icons38.png);
+  background-image: url(/icons/sprite/icons38.png);
   background-position: 0px -364px;
   background-size: auto;
   width: 20px;
@@ -202,7 +202,7 @@
   display: inline-block;
 }
 .privacy_checkup_icon {
-  background-image: url(/icons/icons15.png);
+  background-image: url(/icons/sprite/icons15.png);
   background-position: 0px -67px;
   background-size: auto;
   width: 20px;
@@ -211,7 +211,7 @@
   display: inline-block;
 }
 .privacy_shortcuts_icon {
-  background-image: url(/icons/icons19.png);
+  background-image: url(/icons/sprite/icons19.png);
   background-position: 0px -495px;
   background-size: auto;
   width: 20px;
@@ -220,7 +220,7 @@
   display: inline-block;
 }
 .activity_log_icon {
-  background-image: url(/icons/icons20.png);
+  background-image: url(/icons/sprite/icons20.png);
   background-position: -25px -250px;
   background-size: auto;
   width: 20px;
@@ -229,7 +229,7 @@
   display: inline-block;
 }
 .news_icon {
-  background-image: url(/icons/icons21.png);
+  background-image: url(/icons/sprite/icons21.png);
   background-position: 0px -239px;
   background-size: auto;
   width: 20px;
@@ -238,7 +238,7 @@
   display: inline-block;
 }
 .language_icon {
-  background-image: url(/icons/icons22.png);
+  background-image: url(/icons/sprite/icons22.png);
   background-position: 0px -658px;
   background-size: auto;
   width: 20px;
@@ -247,7 +247,7 @@
   display: inline-block;
 }
 .arrow_back_icon {
-  background-image: url(/icons/icons18.png);
+  background-image: url(/icons/sprite/icons18.png);
   background-position: 0px -46px;
   background-size: auto;
   width: 20px;
@@ -256,7 +256,7 @@
   display: inline-block;
 }
 .help_center_icon {
-  background-image: url(/icons/icons17.png);
+  background-image: url(/icons/sprite/icons17.png);
   background-position: 0px -487px;
   background-size: auto;
   width: 20px;
@@ -265,7 +265,7 @@
   display: inline-block;
 }
 .email_icon {
-  background-image: url(/icons/icons22.png);
+  background-image: url(/icons/sprite/icons22.png);
   background-position: 0px -532px;
   background-size: auto;
   width: 20px;
@@ -274,7 +274,7 @@
   display: inline-block;
 }
 .info_filled_icon {
-  background-image: url(/icons/icons23.png);
+  background-image: url(/icons/sprite/icons23.png);
   background-position: 0px -355px;
   background-size: auto;
   width: 20px;
@@ -283,7 +283,7 @@
   display: inline-block;
 }
 .keyboard_icon {
-  background-image: url(/icons/icons24.png);
+  background-image: url(/icons/sprite/icons24.png);
   background-position: 0px -242px;
   background-size: auto;
   width: 20px;
@@ -292,7 +292,7 @@
   display: inline-block;
 }
 .amm_s_ic {
-  background-image: url(/icons/icons12.png);
+  background-image: url(/icons/sprite/icons12.png);
   background-position: -34px -174px;
   background-size: auto;
   width: 16px;
@@ -302,7 +302,7 @@
   -webkit-filter: invert(40%);
 }
 .ad_choices_icon {
-  background-image: url(/icons/icons38.png);
+  background-image: url(/icons/sprite/icons38.png);
   background-position: 0px -811px;
   background-size: auto;
   width: 12px;
@@ -313,7 +313,7 @@
 }
 
 .pin_icon {
-  background-image: url("/icons/icons1.png");
+  background-image: url("/icons/sprite/icons1.png");
   background-position: 0px -378px;
   background-size: auto;
   width: 20px;
@@ -322,7 +322,7 @@
   display: inline-block;
 }
 .save_icon {
-  background-image: url("/icons/icons46.png");
+  background-image: url("/icons/sprite/icons46.png");
   background-position: 0px -87px;
   background-size: auto;
   width: 20px;
@@ -331,7 +331,7 @@
   display: inline-block;
 }
 .embed_icon {
-  background-image: url("/icons/icons1.png");
+  background-image: url("/icons/sprite/icons1.png");
   background-position: 0px -126px;
   background-size: auto;
   width: 20px;
@@ -340,7 +340,7 @@
   display: inline-block;
 }
 .copy_icon {
-  background-image: url("/icons/icons2.png");
+  background-image: url("/icons/sprite/icons2.png");
   background-position: 0px -568px;
   background-size: auto;
   width: 20px;
@@ -349,7 +349,7 @@
   display: inline-block;
 }
 .edit_icon_20 {
-  background-image: url("/icons/icons47.png");
+  background-image: url("/icons/sprite/icons47.png");
   background-position: 0px -168px;
   background-size: auto;
   width: 20px;
@@ -358,7 +358,7 @@
   display: inline-block;
 }
 .edit_outline_icon_20 {
-  background-image: url("/icons/icons62.png");
+  background-image: url("/icons/sprite/icons62.png");
   background-position: 0px -294px;
   background-size: auto;
   width: 20px;
@@ -367,7 +367,7 @@
   display: inline-block;
 }
 .turnOnNotifications_icon {
-  background-image: url("/icons/icons49.png");
+  background-image: url("/icons/sprite/icons49.png");
   background-position: 0px -88px;
   background-size: auto;
   width: 20px;
@@ -376,7 +376,7 @@
   display: inline-block;
 }
 .turnOffNotifications_icon {
-  background-image: url("/icons/icons49.png");
+  background-image: url("/icons/sprite/icons49.png");
   background-position: 0px -46px;
   background-size: auto;
   width: 20px;
@@ -385,7 +385,7 @@
   display: inline-block;
 }
 .embed_icon {
-  background-image: url("/icons/icons49.png");
+  background-image: url("/icons/sprite/icons49.png");
   background-position: 0px -151px;
   background-size: auto;
   width: 20px;
@@ -394,7 +394,7 @@
   display: inline-block;
 }
 .trash_fill_icon_20 {
-  background-image: url("/icons/icons49.png");
+  background-image: url("/icons/sprite/icons49.png");
   background-position: 0px -403px;
   background-size: auto;
   width: 20px;
@@ -403,7 +403,7 @@
   display: inline-block;
 }
 .date_icon {
-  background-image: url("/icons/icons50.png");
+  background-image: url("/icons/sprite/icons50.png");
   background-position: -21px -181px;
   background-size: auto;
   width: 20px;
@@ -412,7 +412,7 @@
   display: inline-block;
 }
 .refresh_icon {
-  background-image: url("/icons/refresh.png");
+  background-image: url("/icons/sprite/refresh.png");
   background-position: 0px 0px;
   background-size: auto;
   width: 20px;
@@ -421,7 +421,7 @@
   display: inline-block;
 }
 .archive_icon {
-  background-image: url("/icons/icons51.png");
+  background-image: url("/icons/sprite/icons51.png");
   background-position: 0px -100px;
   background-size: auto;
   width: 20px;
@@ -430,7 +430,7 @@
   display: inline-block;
 }
 .trash_icon {
-  background-image: url("/icons/icons2.png");
+  background-image: url("/icons/sprite/icons2.png");
   background-position: 0px -799px;
   background-size: auto;
   width: 20px;
@@ -439,7 +439,7 @@
   display: inline-block;
 }
 .like_icon {
-  background-image: url("/icons/icons44.png");
+  background-image: url("/icons/sprite/icons44.png");
   background-position: 0px -718px;
   background-size: auto;
   width: 20px;
@@ -449,7 +449,7 @@
   filter: invert(40%);
 }
 .comment_icon {
-  background-image: url("/icons/icons44.png");
+  background-image: url("/icons/sprite/icons44.png");
   background-position: 0px -529px;
   background-size: auto;
   width: 20px;
@@ -458,7 +458,7 @@
   display: inline-block;
 }
 .share_icon {
-  background-image: url("/icons/icons44.png");
+  background-image: url("/icons/sprite/icons44.png");
   background-position: 0px -865px;
   background-size: auto;
   width: 20px;
@@ -467,7 +467,7 @@
   display: inline-block;
 }
 .avatar_icon {
-  background-image: url("/icons/icons44.png");
+  background-image: url("/icons/sprite/icons44.png");
   background-position: 0px -1076px;
   background-size: auto;
   width: 16px;
@@ -476,7 +476,7 @@
   display: inline-block;
 }
 .emoji_icon {
-  background-image: url("/icons/icons44.png");
+  background-image: url("/icons/sprite/icons44.png");
   background-position: 0px -1178px;
   background-size: auto;
   width: 16px;
@@ -485,7 +485,7 @@
   display: inline-block;
 }
 .camera_icon {
-  background-image: url("/icons/icons44.png");
+  background-image: url("/icons/sprite/icons44.png");
   background-position: 0px -1127px;
   background-size: auto;
   width: 16px;
@@ -494,7 +494,7 @@
   display: inline-block;
 }
 .gif_icon {
-  background-image: url("/icons/icons44.png");
+  background-image: url("/icons/sprite/icons44.png");
   background-position: 0px -1212px;
   background-size: auto;
   width: 16px;
@@ -503,7 +503,7 @@
   display: inline-block;
 }
 .sticker_icon {
-  background-image: url("/icons/icons44.png");
+  background-image: url("/icons/sprite/icons44.png");
   background-position: 0px -1331px;
   background-size: auto;
   width: 16px;
@@ -512,7 +512,7 @@
   display: inline-block;
 }
 .exit_icon {
-  background-image: url("/icons/icons6.png");
+  background-image: url("/icons/sprite/icons6.png");
   background-position: -126px -71px;
   background-size: auto;
   width: 20px;
@@ -522,7 +522,7 @@
   filter: invert(40%);
 }
 .edit_icon_16 {
-  background-image: url("/icons/icons18.png");
+  background-image: url("/icons/sprite/icons18.png");
   background-position: -34px -109px;
   background-size: auto;
   width: 16px;
@@ -531,7 +531,7 @@
   display: inline-block;
 }
 .arrowDown_icon {
-  background-image: url("/icons/icons6.png");
+  background-image: url("/icons/sprite/icons6.png");
   background-position: -117px -130px;
   background-size: auto;
   width: 12px;
@@ -542,7 +542,7 @@
 .emoji_icon_large {
   height: 24px;
   width: 24px;
-  background-image: url("/icons/icons7.png");
+  background-image: url("/icons/sprite/icons7.png");
   background-position: 0px -207px;
   background-size: auto;
   background-repeat: no-repeat;
@@ -553,7 +553,7 @@
 .tag_icon {
   height: 24px;
   width: 24px;
-  background-image: url("/icons/icons7.png");
+  background-image: url("/icons/sprite/icons7.png");
   background-position: 0px -257px;
   background-size: auto;
   background-repeat: no-repeat;
@@ -562,7 +562,7 @@
 .maps_icon {
   height: 24px;
   width: 24px;
-  background-image: url("/icons/icons8.png");
+  background-image: url("/icons/sprite/icons8.png");
   background-position: 0px -225px;
   background-size: auto;
   background-repeat: no-repeat;
@@ -571,14 +571,14 @@
 .microphone_icon {
   height: 24px;
   width: 24px;
-  background-image: url("/icons/icons9.png");
+  background-image: url("/icons/sprite/icons9.png");
   background-position: 0px -100px;
   background-size: auto;
   background-repeat: no-repeat;
   display: inline-block;
 }
 .addPhoto_icon {
-  background-image: url("/icons/icons7.png");
+  background-image: url("/icons/sprite/icons7.png");
   background-position: -25px -292px;
   background-size: auto;
   width: 20px;
@@ -587,7 +587,7 @@
   display: inline-block;
 }
 .phone_icon {
-  background-image: url("/icons/icons7.png");
+  background-image: url("/icons/sprite/icons7.png");
   background-position: -25px -271px;
   background-size: auto;
   width: 20px;
@@ -597,7 +597,7 @@
   filter: invert(20%);
 }
 .camera_filled_icon_20 {
-  background-image: url("/icons/icons52.png");
+  background-image: url("/icons/sprite/icons52.png");
   background-position: 0px -21px;
   background-size: auto;
   width: 20px;
@@ -606,7 +606,7 @@
   display: inline-block;
 }
 .camera_filled_icon {
-  background-image: url("/icons/icons52.png");
+  background-image: url("/icons/sprite/icons52.png");
   background-position: 0px -63px;
   background-size: auto;
   width: 16px;
@@ -615,7 +615,7 @@
   display: inline-block;
 }
 .photo_icon {
-  background-image: url(/icons/icons35.png);
+  background-image: url(/icons/sprite/icons35.png);
   background-position: 0px -63px;
   background-size: auto;
   width: 20px;
@@ -625,7 +625,7 @@
   filter: invert(10%);
 }
 .upload_icon {
-  background-image: url(/icons/icons44.png);
+  background-image: url(/icons/sprite/icons44.png);
   background-position: 0px -1348px;
   background-size: auto;
   width: 16px;
@@ -634,7 +634,7 @@
   display: inline-block;
 }
 .lifeEvent_icon {
-  background-image: url(/icons/icons34.png);
+  background-image: url(/icons/sprite/icons34.png);
   background-position: -25px -250px;
   background-size: auto;
   width: 20px;
@@ -643,7 +643,7 @@
   display: inline-block;
 }
 .lifeEvent_2_icon {
-  background-image: url(/icons/life-event.png);
+  background-image: url(/icons/sprite/life-event.png);
   background-position: 0px 0px;
   background-size: auto;
   width: 20px;
@@ -652,7 +652,7 @@
   display: inline-block;
 }
 .plus_icon {
-  background-image: url(/icons/icons22.png);
+  background-image: url(/icons/sprite/icons22.png);
   background-position: 0px -1341px;
   background-size: auto;
   width: 16px;
@@ -661,7 +661,7 @@
   display: inline-block;
 }
 .frame_icon {
-  background-image: url(/icons/icons55.png);
+  background-image: url(/icons/sprite/icons55.png);
   background-position: 0px -17px;
   background-size: auto;
   width: 16px;
@@ -670,7 +670,7 @@
   display: inline-block;
 }
 .minus_icon {
-  background-image: url(/icons/icons33.png);
+  background-image: url(/icons/sprite/icons33.png);
   background-position: 0px -50px;
   background-size: auto;
   width: 20px;
@@ -679,7 +679,7 @@
   display: inline-block;
 }
 .plus_icon {
-  background-image: url(/icons/icons32.png);
+  background-image: url(/icons/sprite/icons32.png);
   background-position: 0px -25px;
   background-size: auto;
   width: 20px;
@@ -688,7 +688,7 @@
   display: inline-block;
 }
 .crop_icon {
-  background-image: url(/icons/icons31.png);
+  background-image: url(/icons/sprite/icons31.png);
   background-position: 0px -113px;
   background-size: auto;
   width: 16px;
@@ -697,7 +697,7 @@
   display: inline-block;
 }
 .temp_icon {
-  background-image: url(/icons/icons31.png);
+  background-image: url(/icons/sprite/icons31.png);
   background-position: 0px -96px;
   background-size: auto;
   width: 16px;
@@ -706,7 +706,7 @@
   display: inline-block;
 }
 .unfriend_outlined_icon {
-  background-image: url(/icons/icons30.png);
+  background-image: url(/icons/sprite/icons30.png);
   background-position: 0px -105px;
   background-size: auto;
   width: 20px;
@@ -715,7 +715,7 @@
   display: inline-block;
 }
 .turnOnNotification_icon {
-  background-image: url(/icons/icons29.png);
+  background-image: url(/icons/sprite/icons29.png);
   background-position: 0px -324px;
   background-size: auto;
   width: 20px;
@@ -724,7 +724,7 @@
   display: inline-block;
 }
 .download_icon {
-  background-image: url(/icons/icons28.png);
+  background-image: url(/icons/sprite/icons28.png);
   background-position: 0px -42px;
   background-size: auto;
   width: 20px;
@@ -733,7 +733,7 @@
   display: inline-block;
 }
 .fullscreen_icon {
-  background-image: url(/icons/icons28.png);
+  background-image: url(/icons/sprite/icons28.png);
   background-position: 0px -210px;
   background-size: auto;
   width: 20px;
@@ -742,7 +742,7 @@
   display: inline-block;
 }
 .rounded_plus_icon {
-  background-image: url(/icons/icons27.png);
+  background-image: url(/icons/sprite/icons27.png);
   background-position: 0px 0px;
   background-size: auto;
   width: 32px;
@@ -751,7 +751,7 @@
   display: inline-block;
 }
 .equalize_icon {
-  background-image: url(/icons/icons26.png);
+  background-image: url(/icons/sprite/icons26.png);
   background-position: 0px -114px;
   background-size: auto;
   width: 16px;
@@ -760,7 +760,7 @@
   display: inline-block;
 }
 .manage_icon {
-  background-image: url(/icons/icons26.png);
+  background-image: url(/icons/sprite/icons26.png);
   background-position: 0px -199px;
   background-size: auto;
   width: 16px;
@@ -769,7 +769,7 @@
   display: inline-block;
 }
 .list_icon {
-  background-image: url(/icons/icons26.png);
+  background-image: url(/icons/sprite/icons26.png);
   background-position: 0px -165px;
   background-size: auto;
   width: 16px;
@@ -778,7 +778,7 @@
   display: inline-block;
 }
 .grid_icon {
-  background-image: url(/icons/icons26.png);
+  background-image: url(/icons/sprite/icons26.png);
   background-position: 0px -131px;
   background-size: auto;
   width: 16px;
@@ -787,7 +787,7 @@
   display: inline-block;
 }
 .info_icon {
-  background-image: url(/icons/icons36.png);
+  background-image: url(/icons/sprite/icons36.png);
   background-size: auto;
   background-repeat: no-repeat;
   display: inline-block;
@@ -796,7 +796,7 @@
   background-position: 0 -60px;
 }
 .adChoices_icon {
-  background-image: url(/icons/icons37.png);
+  background-image: url(/icons/sprite/icons37.png);
   background-size: auto;
   background-repeat: no-repeat;
   display: inline-block;
@@ -805,7 +805,7 @@
   background-position: 0 -60px;
 }
 .check_icon {
-  background-image: url(/icons/icons39.png);
+  background-image: url(/icons/sprite/icons39.png);
   background-position: 0px -117px;
   background-size: auto;
   width: 20px;
@@ -814,7 +814,7 @@
   display: inline-block;
 }
 .fb_language_icon {
-  background-image: url(/icons/icons40.png);
+  background-image: url(/icons/sprite/icons40.png);
   background-position: 0px -277px;
   background-size: auto;
   width: 20px;
@@ -823,7 +823,7 @@
   display: inline-block;
 }
 .feed_icon {
-  background-image: url(/icons/icons40.png);
+  background-image: url(/icons/sprite/icons40.png);
   background-position: 0px -88px;
   background-size: auto;
   width: 20px;
@@ -832,7 +832,7 @@
   display: inline-block;
 }
 .compact_mode_icon {
-  background-image: url(/icons/icons40.png);
+  background-image: url(/icons/sprite/icons40.png);
   background-position: 0px -256px;
   background-size: auto;
   width: 20px;
@@ -841,7 +841,7 @@
   display: inline-block;
 }
 .pointer_icon {
-  background-image: url(/icons/icons41.png);
+  background-image: url(/icons/sprite/icons41.png);
   background-position: 0px -356px;
   background-size: auto;
   width: 20px;
@@ -850,7 +850,7 @@
   display: inline-block;
 }
 .star_icon {
-  background-image: url(/icons/icons41.png);
+  background-image: url(/icons/sprite/icons41.png);
   background-position: 0px -671px;
   background-size: auto;
   width: 20px;
@@ -861,14 +861,14 @@
 .gift_icon {
   height: 36px;
   width: 36px;
-  background-image: url(/icons/gift.png);
+  background-image: url(/icons/sprite/gift.png);
   background-position: 0px 0px;
   background-size: auto;
   background-repeat: no-repeat;
   display: inline-block;
 }
 .arrow_left_icon {
-  background-image: url(/icons/icons38.png);
+  background-image: url(/icons/sprite/icons38.png);
   background-position: 0px -675px;
   background-size: auto;
   width: 16px;
@@ -877,7 +877,7 @@
   display: inline-block;
 }
 .more_icon {
-  background-image: url(/icons/icons42.png);
+  background-image: url(/icons/sprite/icons42.png);
   background-position: 0px -260px;
   background-size: auto;
   width: 16px;
@@ -886,7 +886,7 @@
   display: inline-block;
 }
 .remove_icon {
-  background-image: url(/icons/icons43.png);
+  background-image: url(/icons/sprite/icons43.png);
   background-position: 0px -100px;
   background-size: auto;
   width: 24px;
@@ -895,7 +895,7 @@
   display: inline-block;
 }
 .remove_icon_active {
-  background-image: url(/icons/icons43.png);
+  background-image: url(/icons/sprite/icons43.png);
   background-position: 0px -125px;
   background-size: auto;
   width: 24px;
@@ -922,7 +922,7 @@
   display: inline-block;
 }
 .clock_icon {
-  background-image: url(/icons/icons45.png);
+  background-image: url(/icons/sprite/icons45.png);
   background-position: 0px -226px;
   background-size: auto;
   width: 20px;
@@ -931,7 +931,7 @@
   display: inline-block;
 }
 .send_icon {
-  background-image: url(/icons/icons44.png);
+  background-image: url(/icons/sprite/icons44.png);
   background-position: 0px -1263px;
   background-size: auto;
   width: 16px;
@@ -940,7 +940,7 @@
   display: inline-block;
 }
 .like_active_icon {
-  background-image: url(/icons/icons38.png);
+  background-image: url(/icons/sprite/icons38.png);
   background-position: 0px -637px;
   background-size: auto;
   width: 20px;
@@ -949,7 +949,7 @@
   display: inline-block;
 }
 .setting_icon {
-  background-image: url(/icons/icons48.png);
+  background-image: url(/icons/sprite/icons48.png);
   background-position: 0px -42px;
   background-size: auto;
   width: 20px;
@@ -958,7 +958,7 @@
   display: inline-block;
 }
 .arrow_up_icon {
-  background-image: url(/icons/icons52.png);
+  background-image: url(/icons/sprite/icons52.png);
   background-position: 0px -97px;
   background-size: auto;
   width: 16px;
@@ -967,7 +967,7 @@
   display: inline-block;
 }
 .camera_icon_20 {
-  background-image: url(/icons/icons54.png);
+  background-image: url(/icons/sprite/icons54.png);
   background-position: 0px 0px;
   background-size: auto;
   width: 20px;
@@ -976,7 +976,7 @@
   display: inline-block;
 }
 .public_icon {
-  background-image: url(/icons/icons56.png);
+  background-image: url(/icons/sprite/icons56.png);
   background-position: 0px -21px;
   background-size: auto;
   width: 20px;
@@ -985,7 +985,7 @@
   display: inline-block;
 }
 .drag_icon {
-  background-image: url(/icons/icons52.png);
+  background-image: url(/icons/sprite/icons52.png);
   background-position: 0px 0px;
   background-size: auto;
   width: 20px;
@@ -994,7 +994,7 @@
   display: inline-block;
 }
 .upload_icon_20 {
-  background-image: url(/icons/icons57.png);
+  background-image: url(/icons/sprite/icons57.png);
   background-position: 0px -21px;
   background-size: auto;
   width: 20px;
@@ -1003,7 +1003,7 @@
   display: inline-block;
 }
 .trash_icon_20 {
-  background-image: url(/icons/icons58.png);
+  background-image: url(/icons/sprite/icons58.png);
   background-position: 0px -546px;
   background-size: auto;
   width: 20px;
@@ -1012,7 +1012,7 @@
   display: inline-block;
 }
 .rounded_plus_icon_24 {
-  background-image: url(/icons/icons59.png);
+  background-image: url(/icons/sprite/icons59.png);
   background-position: 0px -50px;
   background-size: auto;
   width: 24px;
@@ -1021,7 +1021,7 @@
   display: inline-block;
 }
 .checkbox_icon_24 {
-  background-image: url(/icons/icons51.png);
+  background-image: url(/icons/sprite/icons51.png);
   background-position: 0px 0px;
   background-size: auto;
   width: 24px;
@@ -1030,7 +1030,7 @@
   display: inline-block;
 }
 .arrow_select_icon {
-  background-image: url(/icons/icons60.png);
+  background-image: url(/icons/sprite/icons60.png);
   background-position: 0px -828px;
   background-size: auto;
   width: 16px;
@@ -1039,7 +1039,7 @@
   display: inline-block;
 }
 .check_icon_20 {
-  background-image: url(/icons/icons60.png);
+  background-image: url(/icons/sprite/icons60.png);
   background-position: 0px -301px;
   background-size: auto;
   width: 20px;
@@ -1048,11 +1048,38 @@
   display: inline-block;
 }
 .show_dots {
-  background-image: url(/icons/icons63.png);
+  background-image: url(/icons/sprite/icons63.png);
   background-position: 0px -21px;
   background-size: auto;
   width: 20px;
   height: 20px;
+  background-repeat: no-repeat;
+  display: inline-block;
+}
+.saved_items_icon {
+  background-image: url(/icons/sprite/icons64.png);
+  background-position: 0px -100px;
+  background-size: auto;
+  width: 20px;
+  height: 20px;
+  background-repeat: no-repeat;
+  display: inline-block;
+}
+.filter-category-icon {
+  background-image: url(/icons/sprite/icons65.png);
+  background-position: 0px -131px;
+  background-size: auto;
+  width: 16px;
+  height: 16px;
+  background-repeat: no-repeat;
+  display: inline-block;
+}
+.share-icon {
+  background-image: url(/icons/sprite/icons66.png);
+  background-position: 0px -710px;
+  background-size: auto;
+  width: 16px;
+  height: 16px;
   background-repeat: no-repeat;
   display: inline-block;
 }

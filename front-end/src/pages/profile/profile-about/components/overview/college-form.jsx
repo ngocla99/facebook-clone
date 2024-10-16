@@ -56,7 +56,7 @@ export const CollegeForm = ({ className }) => {
         <div className="flex items-center justify-between">
           <Button variant="secondary" className="gap-1.5">
             <img
-              src="/icons/12x12/public.png"
+              src="/icons/size/12/public.png"
               alt=""
               className="filter-secondary-icon"
             />
