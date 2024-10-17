@@ -7,7 +7,7 @@ export const SavedSideBar = () => {
   return (
     <aside className="grid p-2">
       {/* Header */}
-      <div className="mx-2 mb-3 mt-1 flex items-center justify-between">
+      <div className="mx-2 mb-3 mt-1 flex flex-wrap items-center justify-between">
         <h1 className="text-2xl font-bold">Saved</h1>
         <Button size="icon" variant="secondary" className="size-9">
           <i className="settings_filled_icon"></i>
@@ -19,7 +19,7 @@ export const SavedSideBar = () => {
         <div className="flex size-9 items-center justify-center rounded-full bg-[#1877F2] text-white">
           <i className="saved_items_icon invert"></i>
         </div>
-        <span className="ml-3 font-medium text-muted-foreground">
+        <span className="ml-3 hidden font-medium text-muted-foreground sm:inline">
           Saved Items
         </span>
       </Button>
@@ -29,20 +29,22 @@ export const SavedSideBar = () => {
 
       {/* My Collections Section */}
       <div className="mb-6">
-        <h2 className="mx-2 mb-2 text-lg font-semibold">My collections</h2>
+        <h2 className="mx-2 mb-2 sm:text-lg font-semibold">My collections</h2>
         <Button variant="ghost" size="xl" className="w-full justify-start px-2">
           <img
-            src="https://via.placeholder.com/24"
+            src="https://picsum.photos/200/200?random=4"
             alt="collection"
             className="size-9 rounded-lg"
           />
-          <span className="ml-3 text-gray-700">For later</span>
+          <span className="ml-3 hidden text-gray-700 sm:inline">For later</span>
         </Button>
       </div>
 
       {/* Create New Collection */}
       <div className="grid px-2">
-        <Button variant="deemphasized">+ Create new collection</Button>
+        <Button variant="deemphasized">
+          + <span className="hidden sm:inline">Create new collection</span>
+        </Button>
       </div>
     </aside>
   )

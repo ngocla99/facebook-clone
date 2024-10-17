@@ -31,7 +31,7 @@ export const SavedItem = ({ item }) => (
         </div>
       )}
       <div className="flex-1">
-        <h3 className="mb-0.5 line-clamp-2 overflow-hidden text-xl font-bold underline-offset-1 hover:underline">
+        <h3 className="mb-0.5 line-clamp-2 cursor-pointer overflow-hidden text-xl font-bold underline-offset-1 hover:underline">
           {item.title}
         </h3>
         {item.type && <p className="mb-1 text-sm text-gray-600">{item.type}</p>}

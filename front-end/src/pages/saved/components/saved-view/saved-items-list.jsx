@@ -31,7 +31,7 @@ export const SavedItemsList = () => {
   ]
 
   return (
-    <div className="mx-auto max-w-[1080px] px-8 py-4">
+    <div className="mx-auto max-w-[1080px] px-2 py-4 sm:px-8">
       <div className="mb-3 flex items-center justify-between">
         <h2 className="text-2xl font-bold">All</h2>
         <Tooltip>
