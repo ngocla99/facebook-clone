@@ -33,7 +33,7 @@ export const SidebarNav = ({ className }) => {
           </LinkItem>
           {siteConfig.leftMenu.slice(0, 5).map((link, i) => (
             <LinkItem key={i} href={link?.href ?? ""}>
-              <img src={`icons/sidebar/${link.img}.png`} alt={link.text} />
+              <img src={`icons/category/sidebar/${link.img}.png`} alt={link.text} />
               <p>{link.text}</p>
             </LinkItem>
           ))}
@@ -41,7 +41,7 @@ export const SidebarNav = ({ className }) => {
             <>
               {siteConfig.leftMenu.slice(5, 18).map((link, i) => (
                 <LinkItem key={i}>
-                  <img src={`icons/sidebar/${link.img}.png`} alt={link.text} />
+                  <img src={`icons/category/sidebar/${link.img}.png`} alt={link.text} />
                   <p>{link.text}</p>
                 </LinkItem>
               ))}

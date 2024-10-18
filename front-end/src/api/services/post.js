@@ -27,3 +27,7 @@ export const savePostApi = (data) => {
 export const unSavePostApi = (data) => {
   return axiosClient.post(`/unSavePost`, data)
 }
+
+export const getSavedPostsApi = () => {
+  return axiosClient.get(`/getSavedPosts`)
+}

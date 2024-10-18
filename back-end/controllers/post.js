@@ -66,11 +66,7 @@ exports.createPost = async (req, res) => {
 exports.updatePost = async (req, res) => {
   try {
     const { id, ...updatedData } = req.body;
-    const updatedPost = await Post.findByIdAndUpdate(
-      id,
-      { $set: updatedData },
-      { new: true, runValidators: true }
-    );
+    const updatedPost = await Post.findByIdAndUpdate(id, { $set: updatedData }, { new: true, runValidators: true });
 
     if (!updatedPost) {
       return res.status(400).json({ message: "Post not found." });
@@ -108,10 +104,7 @@ exports.savePost = async (req, res) => {
   try {
     const { postId, collectionId, collectionName } = req.body;
 
-    req.user.savedPosts = [
-      ...(req.user.savedPosts ?? []),
-      { post: ObjectId.createFromHexString(postId) },
-    ];
+    req.user.savedPosts = [...(req.user.savedPosts ?? []), { post: ObjectId.createFromHexString(postId) }];
 
     if (collectionId) {
       const collection = await Collection.findById(collectionId);
@@ -120,23 +113,13 @@ exports.savePost = async (req, res) => {
         return res.status(404).json({ message: "Collection not found" });
       }
 
-      if (
-        req.user.collections.findIndex(
-          (itm) => itm.toString() === collectionId
-        ) === -1
-      ) {
-        req.user.collections = [
-          ...(req.user.collections ?? []),
-          ObjectId.createFromHexString(collectionId),
-        ];
+      if (req.user.collections.findIndex((itm) => itm.toString() === collectionId) === -1) {
+        req.user.collections = [...(req.user.collections ?? []), ObjectId.createFromHexString(collectionId)];
       }
 
       await req.user.save();
 
-      if (
-        collection.posts.findIndex((itm) => itm.post.toString() === postId) ===
-        -1
-      ) {
+      if (collection.posts.findIndex((itm) => itm.post.toString() === postId) === -1) {
         collection.posts = [...collection.posts, { post: postId }];
         await collection.save();
       }
@@ -177,6 +160,15 @@ exports.unSavePost = async (req, res) => {
     );
 
     res.json({ message: "ok" });
+  } catch (err) {
+    return res.status(500).json({ message: err.message });
+  }
+};
+
+exports.getSavedPosts = async (req, res) => {
+  try {
+    const { savedPosts } = await User.findById(req.user._id).populate("savedPosts.post");
+    res.json({ savedPosts });
   } catch (err) {
     return res.status(500).json({ message: err.message });
   }

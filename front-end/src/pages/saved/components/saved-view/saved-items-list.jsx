@@ -1,4 +1,6 @@
 import React from "react"
+import { getSavedPostsApi } from "@/api/services/post"
+import { useQuery } from "@tanstack/react-query"
 
 import { Button } from "@/components/ui/button"
 import {
@@ -10,6 +12,13 @@ import {
 import { SavedItem } from "./saved-item"
 
 export const SavedItemsList = () => {
+  const { data: savedPosts, isLoading } = useQuery({
+    queryKey: ["savedPosts"],
+    queryFn: getSavedPostsApi,
+  })
+
+  console.log("🚀 ~ SavedItemsList ~ savedPosts:", savedPosts)
+
   const savedItems = [
     {
       title:
