@@ -37,7 +37,7 @@ export const SavePost = ({ postId, setOpen }) => {
   })
 
   React.useEffect(() => {
-    setSelectedCollection(collections?.[0]?._id)
+    setSelectedCollection(collections?.[0]?.name)
   }, [collections])
 
   const savePostMutation = useMutation({
@@ -62,16 +62,11 @@ export const SavePost = ({ postId, setOpen }) => {
 
   const handleSavePost = () => {
     if (savePostMutation.isPending) return
-    if (isNewCollection) {
-      return savePostMutation.mutate({
-        postId,
-        collectionName: inputRef.current.value,
-      })
-    }
-
-    savePostMutation.mutate({
+    return savePostMutation.mutate({
       postId,
-      collectionId: selectedCollection,
+      collectionName: isNewCollection
+        ? inputRef.current.value
+        : selectedCollection,
     })
   }
 
@@ -161,8 +156,8 @@ export const SavePost = ({ postId, setOpen }) => {
                 </div>
                 <RadioGroupItem
                   className="my-1 self-start"
-                  value={itm._id}
-                  id={itm._id}
+                  value={itm.name}
+                  id={itm.name}
                 />
               </Label>
             ))}

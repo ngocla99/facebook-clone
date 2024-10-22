@@ -12,7 +12,10 @@ import {
 import { SavedItem } from "./saved-item"
 
 export const SavedItemsList = () => {
-  const { data: savedPosts, isLoading } = useQuery({
+  const {
+    data: { savedPosts },
+    isLoading,
+  } = useQuery({
     queryKey: ["savedPosts"],
     queryFn: getSavedPostsApi,
   })
@@ -53,8 +56,8 @@ export const SavedItemsList = () => {
         </Tooltip>
       </div>
       <div className="space-y-4">
-        {savedItems.map((item, index) => (
-          <SavedItem key={index} item={item} />
+        {savedPosts.map((item, index) => (
+          <SavedItem key={index} item={item.post} />
         ))}
       </div>
     </div>

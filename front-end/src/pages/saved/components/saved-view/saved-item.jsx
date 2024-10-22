@@ -8,31 +8,20 @@ import { Dots } from "@/assets/svg"
 export const SavedItem = ({ item }) => (
   <Card className="overflow-hidden">
     <CardContent className="flex p-4">
-      {item.image && (
+      {item.type === "COVER_PHOTO" && item.images.length > 0 ? (
         <img
-          src={item.image}
-          alt={item.title}
+          src={item.images[0].url}
+          alt={item.text}
           className="mr-4 size-[144px] rounded-md object-cover"
         />
-      )}
-      {item.video && (
-        <div className="relative mr-4 h-20 w-20">
-          <img
-            src={item.thumbnail}
-            alt={item.title}
-            className="h-full w-full rounded-md object-cover"
-          />
-          <div className="absolute inset-0 flex items-center justify-center">
-            <div className="border-l-12 h-0 w-0 border-b-8 border-t-8 border-b-transparent border-l-white border-t-transparent"></div>
-          </div>
-          <span className="absolute bottom-1 right-1 rounded bg-black bg-opacity-70 px-1 py-0.5 text-xs text-white">
-            {item.duration}
-          </span>
+      ) : item.type === null && item.text ? (
+        <div className="rounded-md bg-yellow-200 p-4">
+          <p>{item.text}</p>
         </div>
-      )}
+      ) : null}
       <div className="flex-1">
         <h3 className="mb-0.5 line-clamp-2 cursor-pointer overflow-hidden text-xl font-bold underline-offset-1 hover:underline">
-          {item.title}
+          {item.type === "COVER_PHOTO" ? item.text : "1 Photo"}
         </h3>
         {item.type && <p className="mb-1 text-sm text-gray-600">{item.type}</p>}
         <div className="flex items-center gap-[2px]">

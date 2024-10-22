@@ -102,38 +102,22 @@ exports.deletePost = async (req, res) => {
 
 exports.savePost = async (req, res) => {
   try {
-    const { postId, collectionId, collectionName } = req.body;
+    const { postId, collectionName } = req.body; // Removed collectionId
 
     req.user.savedPosts = [...(req.user.savedPosts ?? []), { post: ObjectId.createFromHexString(postId) }];
 
-    if (collectionId) {
-      const collection = await Collection.findById(collectionId);
+    // Update the collection or create a new one if it doesn't exist
+    const collection = await Collection.findOneAndUpdate(
+      { name: collectionName, user: req.user._id },
+      { $addToSet: { posts: { post: postId } } }, // Add post to posts array if it doesn't already exist
+      { new: true, upsert: true } // Return the updated document and create if it doesn't exist
+    );
 
-      if (!collection) {
-        return res.status(404).json({ message: "Collection not found" });
-      }
-
-      if (req.user.collections.findIndex((itm) => itm.toString() === collectionId) === -1) {
-        req.user.collections = [...(req.user.collections ?? []), ObjectId.createFromHexString(collectionId)];
-      }
-
-      await req.user.save();
-
-      if (collection.posts.findIndex((itm) => itm.post.toString() === postId) === -1) {
-        collection.posts = [...collection.posts, { post: postId }];
-        await collection.save();
-      }
-    } else {
-      const collection = new Collection({
-        name: collectionName,
-        posts: [{ post: postId }],
-        user: req.user._id,
-      });
-      await collection.save();
-
+    // Ensure the user's collections array is updated
+    if (req.user.collections.findIndex((itm) => itm.toString() === collection._id.toString()) === -1) {
       req.user.collections = [...(req.user.collections ?? []), collection._id];
-      await req.user.save();
     }
+    await req.user.save();
 
     res.json({ message: "ok" });
   } catch (err) {
