@@ -5,7 +5,9 @@ const { ObjectId } = require("mongodb");
 
 exports.getCollections = async (req, res) => {
   try {
-    const collections = await Collection.find({ user: req.user._id });
+    const collections = await Collection.find({ user: req.user._id }).populate(
+      "posts.post",
+    );
 
     return res.json(collections);
   } catch (err) {
@@ -55,7 +57,7 @@ exports.deleteCollection = async (req, res) => {
     await Collection.findByIdAndDelete(req.params.id);
 
     req.user.collections = (req.user.collections ?? []).filter(
-      (itm) => itm.toString() !== req.params.id
+      (itm) => itm.toString() !== req.params.id,
     );
 
     await req.user.save();
@@ -82,9 +84,23 @@ exports.unSavePostInCollection = async (req, res) => {
 
 exports.savePostInCollection = async (req, res) => {
   try {
-    const { postId, collectionId } = req.body;
+    const { postId, collectionName } = req.body;
 
-    const collection = await Collection.findById(collectionId);
+    let collection = await Collection.findOne({
+      name: collectionName,
+      user: req.user._id,
+    });
+
+    if (!collection) {
+      await Collection.create({
+        name: collectionName,
+        user: req.user._id,
+        posts: [{ post: ObjectId.createFromHexString(postId) }],
+      });
+
+      return res.json({ message: "ok" });
+    }
+
     if (collection.posts.some((itm) => itm.post.toString() === postId)) {
       return res.status(404).json({ message: "Post is already exist" });
     }

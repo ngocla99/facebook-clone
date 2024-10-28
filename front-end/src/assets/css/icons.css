@@ -1083,3 +1083,12 @@
   background-repeat: no-repeat;
   display: inline-block;
 }
+.unsave_icon {
+  background-image: url(/icons/sprite/icons67.png);
+  background-position: 0px -42px;
+  background-size: auto;
+  width: 20px;
+  height: 20px;
+  background-repeat: no-repeat;
+  display: inline-block;
+}

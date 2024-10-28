@@ -91,21 +91,26 @@ export const SavePost = ({ postId, setOpen }) => {
           setShowModal(true)
         }}
       >
-        <i className="save_icon filter-primary-icon pt-2"></i>
         {isPostSaved ? (
-          <div className="-mt-[1px] space-y-1">
-            <p className="leading-none">Unsave post</p>
-            <p className="text-xs font-normal leading-none text-muted-foreground">
-              Remove this from your saved items
-            </p>
-          </div>
+          <>
+            <i className="unsave_icon filter-primary-icon pt-2"></i>
+            <div className="-mt-[1px] space-y-1">
+              <p className="leading-none">Unsave post</p>
+              <p className="text-xs font-normal leading-none text-muted-foreground">
+                Remove this from your saved items
+              </p>
+            </div>
+          </>
         ) : (
-          <div className="-mt-[1px] space-y-1">
-            <p className="leading-none">Save post</p>
-            <p className="text-xs font-normal leading-none text-muted-foreground">
-              Add this to your saved items.
-            </p>
-          </div>
+          <>
+            <i className="save_icon filter-primary-icon pt-2"></i>
+            <div className="-mt-[1px] space-y-1">
+              <p className="leading-none">Save post</p>
+              <p className="text-xs font-normal leading-none text-muted-foreground">
+                Add this to your saved items.
+              </p>
+            </div>
+          </>
         )}
       </Button>
       <Modal
@@ -127,12 +132,12 @@ export const SavePost = ({ postId, setOpen }) => {
           >
             {(collections ?? []).map((itm) => (
               <Label
-                key={itm._id}
+                key={itm.name}
                 className={cn(
                   buttonVariants({ variant: "ghost" }),
                   "h-[64px] justify-start gap-3 p-2"
                 )}
-                htmlFor={itm._id}
+                htmlFor={itm.name}
               >
                 <div className="grid size-12 place-items-center overflow-hidden rounded-lg border border-border bg-primary">
                   {itm._id === "forLater" ? (

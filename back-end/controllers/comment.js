@@ -23,7 +23,7 @@ exports.updateComment = async (req, res) => {
     const updatedComment = await Comment.findByIdAndUpdate(
       id,
       { $set: updatedData },
-      { new: true, runValidators: true }
+      { new: true, runValidators: true },
     );
 
     if (!updatedComment) {

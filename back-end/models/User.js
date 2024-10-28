@@ -212,13 +212,17 @@ const userSchema = mongoose.Schema(
           type: Date,
           default: Date.now,
         },
+        collection: {
+          type: ObjectId,
+          ref: "Collection",
+        },
       },
     ],
     collections: [{ type: ObjectId, ref: "Collection" }],
   },
   {
     timestamps: true,
-  }
+  },
 );
 
 module.exports = mongoose.model("User", userSchema);

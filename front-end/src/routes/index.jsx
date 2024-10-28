@@ -11,6 +11,8 @@ import { ProfileAbout } from "@/pages/profile/profile-about"
 import { ProfileLayout } from "@/pages/profile/profile-layout"
 import { ProfilePosts } from "@/pages/profile/profile-posts"
 import { Saved } from "@/pages/saved"
+import { CollectionView } from "@/pages/saved/components/collection-view"
+import { SavedView } from "@/pages/saved/components/saved-view"
 import { createBrowserRouter, RouterProvider } from "react-router-dom"
 
 import { useAuth } from "@/providers/auth-provider"
@@ -153,6 +155,20 @@ const Routes = () => {
         {
           path: "/saved",
           element: <Saved />,
+          children: [
+            {
+              path: "",
+              element: <SavedView />,
+            },
+            {
+              path: "items",
+              element: <SavedView />,
+            },
+            {
+              path: "collection/:id",
+              element: <CollectionView />,
+            },
+          ],
         },
         {
           path: "/password/change/reason",
