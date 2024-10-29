@@ -15,7 +15,8 @@ export const ViewKeyboard = ({ setView }) => {
       <div className="mt-1">
         <SettingItem
           title="See all keyboard shortcuts"
-          icon={<i className="help_center_icon"></i>}
+          icon={<i className="help_center_icon "></i>}
+          className="px-2"
         />
         <div className="mt-3 flex gap-[6px] px-2">
           <div className="flex h-9 w-9 min-w-9 items-center justify-center rounded-full bg-background-secondary">
