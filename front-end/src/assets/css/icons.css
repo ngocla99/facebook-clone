@@ -412,7 +412,7 @@
   display: inline-block;
 }
 .refresh_icon {
-  background-image: url("/icons/sprite/refresh.png");
+  background-image: url("/icons/single/refresh.png");
   background-position: 0px 0px;
   background-size: auto;
   width: 20px;
@@ -643,7 +643,7 @@
   display: inline-block;
 }
 .lifeEvent_2_icon {
-  background-image: url(/icons/sprite/life-event.png);
+  background-image: url(/icons/single/life-event.png);
   background-position: 0px 0px;
   background-size: auto;
   width: 20px;
@@ -861,7 +861,7 @@
 .gift_icon {
   height: 36px;
   width: 36px;
-  background-image: url(/icons/sprite/gift.png);
+  background-image: url(/icons/single/gift.png);
   background-position: 0px 0px;
   background-size: auto;
   background-repeat: no-repeat;
@@ -904,16 +904,7 @@
   display: inline-block;
 }
 .avatar_group_icon {
-  background-image: url(./images/avatars.png);
-  background-position: 0px 0px;
-  background-size: auto;
-  width: 360px;
-  height: 181px;
-  background-repeat: no-repeat;
-  display: inline-block;
-}
-.avatar_group_icon {
-  background-image: url(./images/avatars.png);
+  background-image: url(/images/avatars.png);
   background-position: 0px 0px;
   background-size: auto;
   width: 360px;

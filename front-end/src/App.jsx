@@ -7,13 +7,14 @@ import { ThemeProvider } from "./providers/theme-provider"
 
 function App() {
   return (
-    <QueryProvider>
-      <AuthProvider>
-        <ThemeProvider defaultTheme="light" storageKey="vite-ui-theme">
-          <Routes />
-        </ThemeProvider>
-      </AuthProvider>
-    </QueryProvider>
+    <div>Hello</div>
+    // <QueryProvider>
+    //   <AuthProvider>
+    //     <ThemeProvider defaultTheme="light" storageKey="vite-ui-theme">
+    //       <Routes />
+    //     </ThemeProvider>
+    //   </AuthProvider>
+    // </QueryProvider>
   )
 }
 

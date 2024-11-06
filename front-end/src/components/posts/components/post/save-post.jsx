@@ -5,7 +5,6 @@ import { useMe } from "@/hooks"
 import { useMutation, useQuery, useQueryClient } from "@tanstack/react-query"
 
 import { cn } from "@/lib/utils"
-import { useProfile } from "@/hooks/use-profile"
 import { Button, buttonVariants } from "@/components/ui/button"
 import {
   DialogDescription,

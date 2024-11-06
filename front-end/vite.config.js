@@ -10,4 +10,9 @@ export default defineConfig({
       "@": path.resolve(__dirname, "./src"),
     },
   },
+  build: {
+    rollupOptions: {
+      treeshake: true, // Ensure tree shaking is enabled
+    },
+  },
 })
