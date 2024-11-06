@@ -1,7 +1,7 @@
 import React from "react"
-import { getMeApi } from "@/api/services/user"
 import { useMe } from "@/hooks"
-import { useQuery, useQueryClient } from "@tanstack/react-query"
+import { AnimatePresence, motion, MotionConfig } from "framer-motion"
+import useMeasure from "react-use-measure"
 
 import { cn, getInitialsName } from "@/lib/utils"
 import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar"
@@ -35,22 +35,31 @@ export const VIEWS = {
   KEYBOARD: "Keyboard",
 }
 
-const ViewRoot = ({ setView, children }) => {
+const ViewRoot = ({ view, setView, children }) => {
   return (
-    <>
-      {React.Children.map(children, (child) => {
-        if (React.isValidElement(child)) {
-          return React.cloneElement(child, { setView })
-        }
+    <AnimatePresence mode="popLayout" initial={false}>
+      <motion.div
+        key={view}
+        initial={{ x: "110%", opacity: 0 }}
+        animate={{ opacity: 1, x: 0 }}
+        exit={{ x: "-110%", opacity: 0 }}
+        transition={{ duration: 0.5, type: "spring", bounce: 0 }}
+      >
+        {React.Children.map(children, (child) => {
+          if (React.isValidElement(child)) {
+            return React.cloneElement(child, { setView })
+          }
 
-        return child
-      })}
-    </>
+          return child
+        })}
+      </motion.div>
+    </AnimatePresence>
   )
 }
 
 const View = () => {
   const [view, setView] = React.useState(VIEWS.BASE)
+  const [ref, bounds] = useMeasure()
 
   const component = () => {
     switch (view) {
@@ -71,7 +80,17 @@ const View = () => {
     }
   }
 
-  return <ViewRoot setView={setView}>{component()}</ViewRoot>
+  return (
+    <MotionConfig transition={{ duration: 0.5, type: "spring", bounce: 0 }}>
+      <motion.div animate={{ height: bounds.height }}>
+        <div ref={ref}>
+          <ViewRoot view={view} setView={setView}>
+            {component()}
+          </ViewRoot>
+        </div>
+      </motion.div>
+    </MotionConfig>
+  )
 }
 
 export const AccountSettings = () => {
@@ -95,7 +114,7 @@ export const AccountSettings = () => {
         </PopoverTrigger>
         <TooltipContent sideOffset={9}>Account</TooltipContent>
       </Tooltip>
-      <PopoverContent className="min-[375px]:w-[360px] p-0 shadow-3xl">
+      <PopoverContent className="overflow-hidden p-0 shadow-3xl min-[375px]:w-[360px]">
         <View />
       </PopoverContent>
     </Popover>
