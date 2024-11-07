@@ -1,21 +1,23 @@
 import axiosClient from "../axios"
 
 export const getMeApi = () => {
-  return axiosClient.get("/getMe")
+  return axiosClient.get("/users/profile/me")
 }
 
 export const getProfileApi = (username) => {
-  return axiosClient.get(`/getProfile/${username}`)
+  return axiosClient.get(`/users/profile/${username}`)
 }
 
 export const updateProfileApi = (data) => {
-  return axiosClient.patch(`/updateProfile`, data)
+  return axiosClient.patch(`/users/profile/update`, data)
 }
 
 export const sendFriendRequestApi = async (userId) => {
   //https://github.com/TanStack/query/discussions/6905
   const startTime = Date.now()
-  const response = await axiosClient.patch(`/sendFriendRequest`, { userId })
+  const response = await axiosClient.patch(`/users/friends/sendRequest`, {
+    userId,
+  })
   const endTime = Date.now()
   const delay = 1000 - (endTime - startTime)
   if (delay > 0) {
@@ -26,7 +28,9 @@ export const sendFriendRequestApi = async (userId) => {
 
 export const cancelFriendRequestApi = async (userId) => {
   const startTime = Date.now()
-  const response = await axiosClient.patch(`/cancelFriendRequest`, { userId })
+  const response = await axiosClient.patch(`/users/friends/cancelRequest`, {
+    userId,
+  })
   const endTime = Date.now()
   const delay = 1000 - (endTime - startTime)
   if (delay > 0) {
@@ -36,29 +40,29 @@ export const cancelFriendRequestApi = async (userId) => {
 }
 
 export const acceptFriendRequestApi = (userId) => {
-  return axiosClient.patch(`/acceptFriendRequest`, { userId })
+  return axiosClient.patch(`/users/friends/acceptRequest`, { userId })
 }
 
 export const removeFriendRequestApi = (userId) => {
-  return axiosClient.patch(`/removeFriendRequest`, { userId })
+  return axiosClient.patch(`/users/friends/removeRequest`, { userId })
 }
 
 export const unfriendApi = (userId) => {
-  return axiosClient.patch(`/unfriend`, { userId })
+  return axiosClient.patch(`/users/friends/unfriend`, { userId })
 }
 
 export const followApi = (userId) => {
-  return axiosClient.patch(`/follow`, { userId })
+  return axiosClient.patch(`/users/follow`, { userId })
 }
 
 export const unfollowApi = (userId) => {
-  return axiosClient.patch(`/unfollow`, { userId })
+  return axiosClient.patch(`/users/unfollow`, { userId })
 }
 
 export const getFriendsPageInfoApi = () => {
-  return axiosClient.get("/getFriendsPageInfo")
+  return axiosClient.get("/users/friends/info")
 }
 
 export const getOthersApi = () => {
-  return axiosClient.get("/getOthers")
+  return axiosClient.get("/users/others")
 }

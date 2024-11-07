@@ -1,37 +1,31 @@
-const express = require("express");
-const collectionController = require("../controllers/collection");
-const { authUser } = require("../middlewares/auth");
-const { validateUnSavedPost } = require("../middlewares/validatePost");
+const express = require("express")
+const collectionController = require("../controllers/collection")
+const { authUser } = require("../middlewares/auth")
+const { validateUnSavedPost } = require("../middlewares/validatePost")
 
-const router = express.Router();
+const router = express.Router()
 
-router.get("/getCollections", authUser, collectionController.getCollections);
-router.post(
-  "/createCollection",
-  authUser,
-  collectionController.createCollection
-);
+router
+  .route("/")
+  .get(authUser, collectionController.getCollections)
+  .post(authUser, collectionController.createCollection)
+
+router
+  .route("/:id")
+  .patch(authUser, collectionController.updateCollection)
+  .delete(authUser, collectionController.deleteCollection)
+
 router.patch(
-  "/updateCollection",
-  authUser,
-  collectionController.updateCollection
-);
-router.delete(
-  "/deleteCollection/:id",
-  authUser,
-  collectionController.deleteCollection
-);
-router.patch(
-  "/unSavePostInCollection",
+  "/unSavePost",
   authUser,
   validateUnSavedPost,
   collectionController.unSavePostInCollection
-);
+)
 router.patch(
-  "/savePostInCollection",
+  "/savePost",
   authUser,
   validateUnSavedPost,
   collectionController.savePostInCollection
-);
+)
 
-module.exports = router;
+module.exports = router

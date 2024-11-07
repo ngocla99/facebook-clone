@@ -1,11 +1,14 @@
-const express = require("express");
-const commentController = require("../controllers/comment");
-const { authUser } = require("../middlewares/auth");
+const express = require("express")
+const commentController = require("../controllers/comment")
+const { authUser } = require("../middlewares/auth")
 
-const router = express.Router();
+const router = express.Router()
 
-router.post("/createComment", authUser, commentController.createComment);
-router.post("/updateComment", authUser, commentController.updateComment);
-router.delete("/deleteComment/:id", authUser, commentController.deleteComment);
+router.route("/").post(authUser, commentController.createComment)
 
-module.exports = router;
+router
+  .route("/:id")
+  .patch(authUser, commentController.updateComment)
+  .delete(authUser, commentController.deleteComment)
+
+module.exports = router

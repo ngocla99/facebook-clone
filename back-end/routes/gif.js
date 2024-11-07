@@ -1,8 +1,8 @@
-const express = require("express");
-const gifController = require("../controllers/gif");
+const express = require("express")
+const gifController = require("../controllers/gif")
 
-const router = express.Router();
+const router = express.Router()
 
-router.get("/gifs", gifController.getGIFs);
+router.route("/").get(gifController.getGIFs)
 
-module.exports = router;
+module.exports = router

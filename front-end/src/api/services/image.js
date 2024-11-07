@@ -5,9 +5,9 @@ export const getGIFsApi = ({ searchBy, limit }) => {
 }
 
 export const getImagesApi = (query) => {
-  return axiosClient.post("/getImages", query)
+  return axiosClient.post("/upload/getImages", query)
 }
 
 export const uploadImageApi = (data) => {
-  return axiosClient.post("/uploadImages", data)
+  return axiosClient.post("/upload", data)
 }

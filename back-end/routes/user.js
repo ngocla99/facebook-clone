@@ -1,40 +1,39 @@
-const express = require("express");
-const userController = require("../controllers/user");
-const { authUser } = require("../middlewares/auth");
+const express = require("express")
+const userController = require("../controllers/user")
+const { authUser } = require("../middlewares/auth")
 
-const router = express.Router();
+const router = express.Router()
 
-router.post("/register", userController.register);
-router.post("/login", userController.login);
-router.post("/activate", authUser, userController.activateAccount);
-router.post("/sendVerification", authUser, userController.sendVerification);
-router.post("/findUser", userController.findUser);
-router.post("/sendResetPasswordCode", userController.sendResetPasswordCode);
-router.post("/validateResetCode", userController.validateResetCode);
-router.post("/changePassword", userController.changePassword);
-router.get("/getProfile/:username", authUser, userController.getProfile);
-router.get("/getMe", authUser, userController.getMe);
-router.get("/getFriendsPageInfo", authUser, userController.getFriendsPageInfo);
-router.get("/getOthers", authUser, userController.getOthers);
-router.patch("/updateProfile", authUser, userController.updateProfile);
-router.patch("/sendFriendRequest", authUser, userController.sendFriendRequest);
+// Profile-related routes
+router.get("/profile/me", authUser, userController.getMe)
+router.get("/profile/:username", authUser, userController.getProfile)
+router.patch("/profile/update", authUser, userController.updateProfile)
+
+// Friend-related routes
+router.get("/friends/info", authUser, userController.getFriendsPageInfo)
+router.patch("/friends/sendRequest", authUser, userController.sendFriendRequest)
 router.patch(
-  "/cancelFriendRequest",
+  "/friends/cancelRequest",
   authUser,
   userController.cancelFriendRequest
-);
+)
 router.patch(
-  "/acceptFriendRequest",
+  "/friends/acceptRequest",
   authUser,
   userController.acceptFriendRequest
-);
+)
 router.patch(
-  "/removeFriendRequest",
+  "/friends/removeRequest",
   authUser,
   userController.removeFriendRequest
-);
-router.patch("/unfriend", authUser, userController.unfriend);
-router.patch("/follow", authUser, userController.follow);
-router.patch("/unfollow", authUser, userController.unfollow);
+)
+router.patch("/friends/unfriend", authUser, userController.unfriend)
 
-module.exports = router;
+// Follow-related routes
+router.patch("/follow", authUser, userController.follow)
+router.patch("/unfollow", authUser, userController.unfollow)
+
+// Other routes
+router.get("/others", authUser, userController.getOthers)
+
+module.exports = router

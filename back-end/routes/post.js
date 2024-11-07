@@ -1,17 +1,31 @@
-const express = require("express");
-const postController = require("../controllers/post");
-const { authUser } = require("../middlewares/auth");
-const { validateSavedPost, validateUnSavedPost } = require("../middlewares/validatePost");
+const express = require("express")
+const postController = require("../controllers/post")
+const { authUser } = require("../middlewares/auth")
+const {
+  validateSavedPost,
+  validateUnSavedPost,
+} = require("../middlewares/validatePost")
 
-const router = express.Router();
+const router = express.Router()
 
-router.get("/getAllPost", authUser, postController.getAllPost);
-router.get("/getPost/:id", postController.getPost);
-router.post("/createPost", authUser, postController.createPost);
-router.post("/updatePost", authUser, postController.updatePost);
-router.delete("/deletePost/:id", authUser, postController.deletePost);
-router.post("/savePost", authUser, validateSavedPost, postController.savePost);
-router.post("/unSavePost", authUser, validateUnSavedPost, postController.unSavePost);
-router.get("/getSavedPosts", authUser, postController.getSavedPosts);
+router
+  .route("/")
+  .get(authUser, postController.getAllPost)
+  .post(authUser, postController.createPost)
 
-module.exports = router;
+router
+  .route("/:id")
+  .get(postController.getPost)
+  .patch(authUser, postController.updatePost)
+  .delete(authUser, postController.deletePost)
+
+router.get("/saved", authUser, postController.getSavedPosts)
+router.patch("/save", authUser, validateSavedPost, postController.savePost)
+router.patch(
+  "/unSave",
+  authUser,
+  validateUnSavedPost,
+  postController.unSavePost
+)
+
+module.exports = router

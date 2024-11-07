@@ -1,33 +1,33 @@
 import axiosClient from "../axios"
 
 export const getAllPostApi = () => {
-  return axiosClient.get("/getAllPost")
+  return axiosClient.get("/posts")
 }
 
 export const getPostApi = (id) => {
-  return axiosClient.get(`/getPost/${id}`)
+  return axiosClient.get(`/posts/${id}`)
 }
 
 export const createPostApi = (post) => {
-  return axiosClient.post("/createPost", post)
+  return axiosClient.post("/posts", post)
 }
 
 export const updatePostApi = (post) => {
-  return axiosClient.post("/updatePost", post)
+  return axiosClient.patch(`/posts/${post._id}`, post)
 }
 
 export const deletePostApi = (id) => {
-  return axiosClient.delete(`/deletePost/${id}`)
+  return axiosClient.delete(`/posts/${id}`)
 }
 
 export const savePostApi = (data) => {
-  return axiosClient.post(`/savePost`, data)
+  return axiosClient.patch(`/posts/save`, data)
 }
 
 export const unSavePostApi = (data) => {
-  return axiosClient.post(`/unSavePost`, data)
+  return axiosClient.patch(`/posts/unSave`, data)
 }
 
 export const getSavedPostsApi = () => {
-  return axiosClient.get(`/getSavedPosts`)
+  return axiosClient.get(`/posts/saved`)
 }
